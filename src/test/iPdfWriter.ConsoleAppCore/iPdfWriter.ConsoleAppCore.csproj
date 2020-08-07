@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Code\Sample08.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
+    <ProjectReference Include="..\..\lib\iTin.Core\iTin.Core\iTin.Core.csproj" />
+    <ProjectReference Include="..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
+    <ProjectReference Include="..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\iTin.Utilities.Pdf.Writer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Output\" />
+  </ItemGroup>
+
+</Project>

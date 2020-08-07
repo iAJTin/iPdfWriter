@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\ImageExtractor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.1" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.1" />
+    <PackageReference Include="itextsharp.xtra" Version="5.5.13.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.IO.Compression\iTin.Core.IO.Compression.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.Models\iTin.Core.Models.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Core\iTin.Core\iTin.Core.csproj" />
+    <ProjectReference Include="..\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
+  </ItemGroup>
+
+</Project>

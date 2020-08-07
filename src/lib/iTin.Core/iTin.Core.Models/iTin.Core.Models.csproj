@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netcoreapp2.1;netstandard2.0</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Design\Enums\KnownNegativeSign.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
+    <ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
+  </ItemGroup>
+
+
+  <!-- Design > Shared > Property -->
+  <ItemGroup>
+    <Compile Update="Design\Shared\Properties\Property\PropertyModel.*.cs">
+      <DependentUpon>PropertyModel.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Design\Shared\Properties\Property\Property.designer.cs">
+      <DependentUpon>Property.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

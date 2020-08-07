@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netcoreapp2.1;netstandard2.0</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Collections\**" />
+    <Compile Remove="Options\**" />
+    <Compile Remove="Shared\**" />
+    <EmbeddedResource Remove="Collections\**" />
+    <EmbeddedResource Remove="Options\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Collections\**" />
+    <None Remove="Options\**" />
+    <None Remove="Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="BaseModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core.csproj" />
+    <ProjectReference Include="..\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
+  </ItemGroup>
+
+  <!-- Design > Shared > Property -->
+
+</Project>
