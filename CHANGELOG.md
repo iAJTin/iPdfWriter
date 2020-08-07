@@ -1,7 +1,7 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2020-05-29
+## [1.0.0] - 
 
 ### Added
 - Create project and first commit
@@ -21,6 +21,5 @@ All notable changes to this project will be documented in this file.
 |iTin.Utilities.Core| 1.0.0 | Common models for pdf and another formats |
 |iTin.Utilities.Pdf| 1.0.0 | Pdf library |
 
-[1.0.0]: https://github.com/iAJTin/iPdf
+[1.0.0]: https://github.com/iAJTin/iPdfWriter
 
-[helpimg]: ./assets/helpimg.png "help"
