@@ -211,14 +211,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
                             }
                             else
                             {
-                                safeFixedWidth = r.Width + (cb.PdfDocument.PageSize.Width - r.Width) - (r.X + cb.PdfDocument.LeftMargin);
+                                safeFixedWidth = r.Width; 
                             }
 
                             // Creates aligned table by horizontal alignment value (this table contains the user table parameter)
                             var outerBorderTable = new PdfPTable(1)
                             {
                                 TotalWidth = safeFixedWidth,
-                                //HorizontalAlignment = style.Content.Alignment.Horizontal.ToHorizontalTableAlignment()
+                                HorizontalAlignment = Element.ALIGN_LEFT
                             };
 
                             var outerCell = PdfHelper.CreateEmptyWithBorderCell(style.Borders);
@@ -226,15 +226,16 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
                             outerCell.VerticalAlignment = style.Alignment.Vertical.ToVerticalTableAlignment();
                             outerCell.BackgroundColor = new BaseColor(ColorHelper.GetColorFromString(style.Content.Color));
 
+                            //table.Table.HorizontalAlignment = Element.ALIGN_LEFT;
                             table.Table.TotalWidth = safeFixedWidth - (outerCell.EffectivePaddingRight + outerCell.EffectivePaddingLeft) * 2;
                             table.Table.LockedWidth = true; // options.StartStrategy.Equals(StartLocationStrategy.LeftMargin) && options.EndStrategy.Equals(EndLocationStrategy.RightMargin);
                             outerCell.AddElement(table.Table);
                             outerBorderTable.AddCell(outerCell);
 
-                            // Creates strategy table (For shows testmode rectangle)
+                            // Creates strategy table (for shows testmode rectangle)
                             var useTestModeTable = new PdfPTable(1) { TotalWidth = safeFixedWidth  };
                             var useTestCell = PdfHelper.CreateEmptyCell(useTestMode);
-
+                            
                             if (table.Configuration.HeightStrategy == TableHeightStrategy.Exact)
                             {
                                 useTestCell.FixedHeight = table.Table.TotalHeight;

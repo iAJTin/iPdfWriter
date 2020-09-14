@@ -157,7 +157,7 @@ namespace iPdfWriter.Code
                     UseTestMode = useTestMode,
                     TableOffset = PointF.Empty,
                     Style = PdfTableStyle.Default,
-                    ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
+                    ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(), config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
                 }));
 
