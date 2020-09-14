@@ -53,13 +53,20 @@ namespace iTin.Core.IO.Compression
             {
                 string zipFilenameWithoutExtension = Path.GetFileNameWithoutExtension(outputPath);
 
-                File.Delete(outputPath);
+                bool existPath = File.Exists(outputPath);
+                if (existPath)
+                {
+                    File.Delete(outputPath);
+                }
 
-                using (ZipFile zip = new ZipFile(outputPath))
+                var outputDirectoryName = Path.GetDirectoryName(outputPath);
+                var di = Directory.CreateDirectory(outputDirectoryName);
+
+                using (var zip = new ZipFile(outputPath))
                 {
                     int currentFile = 0;
                     bool multipleElements = elementList.Count > 1;
-                    StringBuilder filenameBuilder = new StringBuilder();
+                    var filenameBuilder = new StringBuilder();
                     foreach (var element in elementList)
                     {
                         filenameBuilder.Clear();
@@ -121,9 +128,13 @@ namespace iTin.Core.IO.Compression
             string zipFilenameWithExtension = Path.GetFileName(zipFullPath);
             string zipFilenameWithoutExtension = Path.GetFileNameWithoutExtension(zipFullPath);
 
-            File.Delete(zipFullPath);
+            bool existPath = File.Exists(zipFullPath);
+            if (existPath)
+            {
+                File.Delete(zipFullPath);
+            }
 
-            string outputStreamName = string.Format(CultureInfo.InvariantCulture, "_{0}", zipFilenameWithExtension);
+            string outputStreamName = $"_{zipFilenameWithExtension}";
             string outputStreamFullPath = Path.Combine(tempDirectory, outputStreamName);
             FileStream fs = new FileStream(outputStreamFullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             using (var zip = new ZipFile(zipFullPath))

@@ -10,7 +10,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
     using iTin.Core.IO;
     using iTin.Core.IO.Compression;
 
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+    using Output;
 
     using NativeIO = System.IO;
     using iTinIO = iTin.Core.IO;

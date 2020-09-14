@@ -8,7 +8,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
     using iTin.Core.ComponentModel;
     using iTin.Core.IO.Compression;
 
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action;
+    using Action;
 
     /// <summary>
     /// Represents configuration information for an object <see cref="OutputResultData"/>.

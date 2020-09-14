@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Code\Sample08.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\lib\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
     <ProjectReference Include="..\..\lib\iTin.Core\iTin.Core\iTin.Core.csproj" />
     <ProjectReference Include="..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />

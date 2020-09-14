@@ -66,7 +66,7 @@ namespace iPdfWriter
             logger.Info("");
             logger.Info("> Start Pdf Sample 08");
             logger.Info(" > Shows the use of save as zip merged output");
-            //Sample08.Generate(logger);
+            Sample08.Generate(logger);
 
             // 09. Generate sample 09 report
             logger.Info("");

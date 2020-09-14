@@ -47,7 +47,7 @@ namespace iPdfWriter.Code
             };
 
             // Save image style to disk
-            var imageStyleAsXmlResult = imageStyle.SaveToFile("~/Output/ImageStyle");
+            var imageStyleAsXmlResult = imageStyle.SaveToFile("~/Output/Sample12/ImageStyle");
             if (!imageStyleAsXmlResult.Success)
             {
                 logger.Info("     > Error while saving image style as xml to disk");
@@ -56,10 +56,10 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved image style as xml to disk correctly");
-                logger.Info("       > Path: ~/Output/ImageStyle.xml");
+                logger.Info("       > Path: ~/Output/Sample12/ImageStyle.xml");
             }
 
-            var imageStyleAsJsonResult = imageStyle.SaveToFile("~/Output/ImageStyle", KnownFileFormat.Json);
+            var imageStyleAsJsonResult = imageStyle.SaveToFile("~/Output/Sample12/ImageStyle", KnownFileFormat.Json);
             if (!imageStyleAsJsonResult.Success)
             {
                 logger.Info("     > Error while saving image style as json to disk");
@@ -68,19 +68,19 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved image style as json to disk correctly");
-                logger.Info("       > Path: ~/Output/ImageStyle.json");
+                logger.Info("       > Path: ~/Output/Sample12/ImageStyle.json");
             }
 
             // New image style instances from disk
-            var imageStyleFromXml = PdfImageStyle.LoadFromFile("~/Output/ImageStyle.xml");
+            var imageStyleFromXml = PdfImageStyle.LoadFromFile("~/Output/Sample12/ImageStyle.xml");
             logger.Info(imageStyleFromXml == null
                 ? "     > Error while loading image style from xml file"
-                : "     > Image style loaded correctly from xml '~/Output/ImageStyle.xml' file");
+                : "     > Image style loaded correctly from xml '~/Output/Sample12/ImageStyle.xml' file");
 
-            var imageStyleFromJson = PdfImageStyle.LoadFromFile("~/Output/ImageStyle.json", KnownFileFormat.Json);
+            var imageStyleFromJson = PdfImageStyle.LoadFromFile("~/Output/Sample12/ImageStyle.json", KnownFileFormat.Json);
             logger.Info(imageStyleFromJson == null
                 ? "     > Error while loading image style from json file"
-                : "     > Image style loaded correctly from json '~/Output/ImageStyle.json' file");
+                : "     > Image style loaded correctly from json '~/Output/Sample12/ImageStyle.json' file");
 
             #endregion
 
@@ -121,7 +121,7 @@ namespace iPdfWriter.Code
             };
 
             // Save text style to disk
-            var textStyleAsXmlResult = textStyle.SaveToFile("~/Output/TextStyle");
+            var textStyleAsXmlResult = textStyle.SaveToFile("~/Output/Sample12/TextStyle");
             if (!textStyleAsXmlResult.Success)
             {
                 logger.Info("     > Error while saving text style as xml to disk");
@@ -130,10 +130,10 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved text style as xml to disk correctly");
-                logger.Info("       > Path: ~/Output/TextStyle.xml");
+                logger.Info("       > Path: ~/Output/Sample12/TextStyle.xml");
             }
 
-            var textStyleAsJsonResult = textStyle.SaveToFile("~/Output/TextStyle", KnownFileFormat.Json);
+            var textStyleAsJsonResult = textStyle.SaveToFile("~/Output/Sample12/TextStyle", KnownFileFormat.Json);
             if (!textStyleAsJsonResult.Success)
             {
                 logger.Info("     > Error while saving text style as json to disk");
@@ -142,19 +142,19 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved text style as json to disk correctly");
-                logger.Info("       > Path: ~/Output/TextStyle.json");
+                logger.Info("       > Path: ~/Output/Sample12/TextStyle.json");
             }
 
             // New text style instances from disk
-            var textStyleFromXml = PdfTextStyle.LoadFromFile("~/Output/TextStyle.xml");
+            var textStyleFromXml = PdfTextStyle.LoadFromFile("~/Output/Sample12/TextStyle.xml");
             logger.Info(textStyleFromXml == null
                 ? "     > Error while loading text style from xml file"
-                : "     > Text style loaded correctly from xml '~/Output/TextStyle.xml' file");
+                : "     > Text style loaded correctly from xml '~/Output/Sample12/TextStyle.xml' file");
 
-            var textStyleFromJson = PdfTextStyle.LoadFromFile("~/Output/TextStyle.json", KnownFileFormat.Json);
+            var textStyleFromJson = PdfTextStyle.LoadFromFile("~/Output/Sample12/TextStyle.json", KnownFileFormat.Json);
             logger.Info(textStyleFromJson == null
                 ? "     > Error while loading text style from json file"
-                : "     > Text style loaded correctly from json '~/Output/TextStyle.json' file");
+                : "     > Text style loaded correctly from json '~/Output/Sample12/TextStyle.json' file");
 
             #endregion
 
@@ -188,7 +188,7 @@ namespace iPdfWriter.Code
             };
 
             // Save table style to disk
-            var tableStyleAsXmlResult = tableStyle.SaveToFile("~/Output/TableStyle");
+            var tableStyleAsXmlResult = tableStyle.SaveToFile("~/Output/Sample12/TableStyle");
             if (!tableStyleAsXmlResult.Success)
             {
                 logger.Info("     > Error while saving table style as xml to disk");
@@ -197,10 +197,10 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved table style as xml to disk correctly");
-                logger.Info("       > Path: ~/Output/TableStyle.xml");
+                logger.Info("       > Path: ~/Output/Sample12/TableStyle.xml");
             }
 
-            var tableStyleAsJsonResult = tableStyle.SaveToFile("~/Output/TableStyle", KnownFileFormat.Json);
+            var tableStyleAsJsonResult = tableStyle.SaveToFile("~/Output/Sample12/TableStyle", KnownFileFormat.Json);
             if (!tableStyleAsJsonResult.Success)
             {
                 logger.Info("     > Error while saving table style as json to disk");
@@ -209,19 +209,19 @@ namespace iPdfWriter.Code
             else
             {
                 logger.Info("     > Saved table style as json to disk correctly");
-                logger.Info("       > Path: ~/Output/TableStyle.json");
+                logger.Info("       > Path: ~/Output/Sample12/TableStyle.json");
             }
 
             // New table style instances from disk
-            var tableStyleFromXml = PdfTableStyle.LoadFromFile("~/Output/TableStyle.xml");
+            var tableStyleFromXml = PdfTableStyle.LoadFromFile("~/Output/Sample12/TableStyle.xml");
             logger.Info(tableStyleFromXml == null
                 ? "     > Error while loading table style from xml file"
-                : "     > Table style loaded correctly from xml '~/Output/TableStyle.xml' file");
+                : "     > Table style loaded correctly from xml '~/Output/Sample12/TableStyle.xml' file");
 
-            var tableStyleFromJson = PdfTableStyle.LoadFromFile("~/Output/TableStyle.json", KnownFileFormat.Json);
+            var tableStyleFromJson = PdfTableStyle.LoadFromFile("~/Output/Sample12/TableStyle.json", KnownFileFormat.Json);
             logger.Info(tableStyleFromJson == null
                 ? "     > Error while loading table style from json file"
-                : "     > Table style loaded correctly from json '~/Output/TableStyle.json' file");
+                : "     > Table style loaded correctly from json '~/Output/Sample12/TableStyle.json' file");
 
             #endregion
         }

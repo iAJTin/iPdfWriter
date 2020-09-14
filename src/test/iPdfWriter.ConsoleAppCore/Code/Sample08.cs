@@ -158,8 +158,7 @@ namespace iPdfWriter.Code
                     TableOffset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
-                    Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(),
-                        config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
+                    Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(), config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
                 }));
 
             #endregion
