@@ -33,6 +33,6 @@
     </metadata>
     <files>
       <file src="..\README.txt" target="." />
-      <file src="..\src\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf\bin\Debug\**" target="lib" exclude="**\*.deps.json;**\*.pdb;" />
+      <file src="..\src\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\bin\Release\**" target="lib" exclude="**\*.deps.json;**\*.pdb;" />
     </files>
 </package>

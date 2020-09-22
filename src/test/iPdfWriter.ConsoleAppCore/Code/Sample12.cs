@@ -1,4 +1,6 @@
 ﻿
+using iTin.Core.Models.Design.Styling;
+
 namespace iPdfWriter.Code
 {
     using iTin.Core.ComponentModel;
@@ -7,7 +9,6 @@ namespace iPdfWriter.Code
 
     using iTin.Core.Models;
     using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
 
     using iTin.Utilities.Pdf.Design.Styles;
 
