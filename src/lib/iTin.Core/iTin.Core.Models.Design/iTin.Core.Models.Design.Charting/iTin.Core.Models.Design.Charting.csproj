@@ -5,19 +5,15 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>1.0.0</Version>
+    <Description>Base charting models</Description>
+    <Copyright>Copyright © 2020</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>iTin.Core.Models.Design.Charting</PackageId>
+    <Company>iTin</Company>
+    <Product>iTin.Core.Models.Design.Charting</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Collections\**" />
-    <Compile Remove="Options\**" />
-    <Compile Remove="Shared\**" />
-    <EmbeddedResource Remove="Collections\**" />
-    <EmbeddedResource Remove="Options\**" />
-    <EmbeddedResource Remove="Shared\**" />
-    <None Remove="Collections\**" />
-    <None Remove="Options\**" />
-    <None Remove="Shared\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="BaseModel.cs" />

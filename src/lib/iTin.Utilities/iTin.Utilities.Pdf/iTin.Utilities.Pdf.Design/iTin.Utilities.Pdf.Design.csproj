@@ -5,6 +5,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <Version>1.0.0</Version>
+    <Description>Pdf design elements</Description>
+    <Copyright>Copyright © 2020</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>iTin.Registry.Windows</PackageId>
+    <Company>iTin</Company>
+    <Product>iTin.Registry.Windows</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

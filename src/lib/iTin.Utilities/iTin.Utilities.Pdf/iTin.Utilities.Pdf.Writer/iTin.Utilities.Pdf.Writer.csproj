@@ -5,6 +5,14 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>1.0.0</Version>
+    <Description>Pdf Writer</Description>
+    <Copyright>Copyright © 2020</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>iTin.Utilities.Xlsx.Design</PackageId>
+    <Company>iTin</Company>
+    <Product>iTin.Utilities.Xlsx.Design</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
