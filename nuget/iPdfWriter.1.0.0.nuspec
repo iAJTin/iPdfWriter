@@ -1,38 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
-    <metadata>
-        <id>iPdfWriter</id>
-        <version>1.0.0</version>
-        <title>iPdfWriter</title>
-        <authors>iAJTin</authors>
-        <owners>iAJTin</owners>
-        <license type="expression">MIT</license>
-        <projectUrl>https://github.com/iAJTin/iPdfWriter</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/iAJTin/iPdfWriter/master/nuget/iPdfWriter.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags</description>
-        <copyright>Copyright © 2020 iAJTin</copyright>
-        <tags>PDF WRITER iTin</tags>
-        <repository type="git" url="https://github.com/iAJTin/iPdfWriter"/>
-        <!--<dependencies>
-          <group targetFramework="net45">
-          </group>
-          <group targetFramework=".NETStandard2.0">
-            <dependency id="System.Management" version="4.5.0" exclude="Build,Analyzers" />
-          </group>
-          <group targetFramework=".NETCoreApp2.1">
-            <dependency id="System.Management" version="4.5.0" exclude="Build,Analyzers" />
-          </group>
-          <group targetFramework=".NETCoreApp2.1">
-            <dependency id="System.Management" version="4.5.0" exclude="Build,Analyzers" />
-          </group>
-        </dependencies>
-        <frameworkAssemblies>
-          <frameworkAssembly assemblyName="System.Management" targetFramework="net45" />
-        </frameworkAssemblies>-->
-    </metadata>
-    <files>
-      <file src="..\README.txt" target="." />
-      <file src="..\src\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\bin\Release\**" target="lib" exclude="**\*.deps.json;**\*.pdb;" />
-    </files>
+  <metadata>
+    <id>iPdfWriter</id>
+    <version>1.0.0</version>
+    <title>iPdfWriter</title>
+    <authors>iAJTin</authors>
+    <owners>iAJTin</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/iAJTin/iPdfWriter</projectUrl>
+    <icon>.\iPdfWriter.png</icon>
+    <iconUrl>https://raw.githubusercontent.com/iAJTin/iPdfWriter/master/nuget/iPdfWriter.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags</description>
+    <copyright>Copyright © 2020 iAJTin</copyright>
+    <tags>PDF Writer Adobe iTin</tags>
+    <repository type="git" url="https://github.com/iAJTin/iPdfWriter"/>
+    <dependencies>
+      <group targetFramework="net461">
+        <dependency id="iTextSharp" version="5.5.13.2"/>
+        <dependency id="itextsharp.xmlworker" version="5.5.13.2"/>
+        <dependency id="itextsharp.xtra" version="5.5.13.2"/>
+        <dependency id="DotNetZip" version="1.13.8"/>
+        <dependency id="Newtonsoft.Json" version="12.0.3"/>
+        <dependency id="System.Drawing.Common" version="4.7.0"/>
+        <dependency id="Microsoft.Win32.Registry" version="4.7.0"/>
+      </group>
+      <group targetFramework=".NETCoreApp2.1">
+        <dependency id="iTextSharp" version="5.5.13.2"/>
+        <dependency id="itextsharp.xmlworker" version="5.5.13.2"/>
+        <dependency id="itextsharp.xtra" version="5.5.13.2"/>
+        <dependency id="DotNetZip" version="1.13.8"/>
+        <dependency id="Newtonsoft.Json" version="12.0.3"/>
+        <dependency id="System.Drawing.Common" version="4.7.0"/>
+        <dependency id="Microsoft.Win32.Registry" version="4.7.0"/>
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\README.txt" target="." />
+    <file src=".\iPdfWriter.png" target="." />
+    <file src="..\src\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\bin\Debug\**" target="lib" exclude="**\*.deps.json;**\*.pdb;" />
+  </files>
 </package>

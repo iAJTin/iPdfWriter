@@ -13,8 +13,13 @@
     <Company>iTin</Company>
     <Product>iTin.Utilities.Xlsx.Design</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+  
   <ItemGroup>
     <Compile Remove="Helpers\ImageExtractor.cs" />
   </ItemGroup>

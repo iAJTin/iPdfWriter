@@ -38,6 +38,8 @@ Library versions for current iPdfWriter version (1.0.0.0)
 Install via NuGet
 =================
 
+PM> Install-Package iPdfWriter
+
 For more information, please see https://www.nuget.org/packages/iPdfWriter/
 
 Usage
