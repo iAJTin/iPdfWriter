@@ -15,6 +15,8 @@
 
 # Install via NuGet
 
+- From nuget gallery
+
 <table>
   <tr>
     <td>
@@ -30,6 +32,10 @@
     </td>  
   </tr>
 </table>
+
+- From package manager console
+
+```PM> Install-Package iPdfWriter```
 
 # Usage
 
