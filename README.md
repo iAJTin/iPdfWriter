@@ -1,6 +1,5 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/iAJTin/iPdfWriter/master/nuget/iPdfWriter.png"  
-       height="32"/>
+  <img src="https://github.com/iAJTin/iXlsxWriter/blob/master/nuget/iPdfWriter.png" height="32"/>
 </p>
 <p align="center">
   <a href="https://github.com/iAJTin/iPdfWriter">
