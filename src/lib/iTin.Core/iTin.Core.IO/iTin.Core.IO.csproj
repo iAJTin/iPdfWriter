@@ -5,7 +5,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>1.0.0</Version>
+    <Version>1.0.0.0</Version>
     <Description>Input/Output calls</Description>
     <Copyright>Copyright © 2020</Copyright>
     <PackageProjectUrl></PackageProjectUrl>

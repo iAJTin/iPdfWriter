@@ -143,10 +143,10 @@ namespace iTin.Core.Helpers
         public static string Word2Str(int value) => string.Format(
                     CultureInfo.InvariantCulture,
                     "{0}{1}{2}{3}",
-                    (char)value & 0xff,
-                    (char)(value & 0xff00) >> 8,
-                    (char)(value & 0xff0000) >> 16,
-                    (char)(value & 0xff000000) >> 24);
+                    (char)(value & 0xff),
+                    (char)((value & 0xff00) >> 8),
+                    (char)((value & 0xff0000) >> 16),
+                    (char)((value & 0xff000000) >> 24));
 
         /// <summary>
         /// Convertir byte en string

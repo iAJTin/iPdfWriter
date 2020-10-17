@@ -223,10 +223,7 @@ namespace iTin.Core.Helpers
         /// <exception cref="ArgumentException">If <paramref name="value"/> isn't an enumerated type.</exception>
         /// <exception cref="InvalidEnumArgumentException">If <paramref name="value"/> not part of the enumeration.</exception>
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-        public static bool IsEnumValid<T>(T value) where T : struct
-        {
-            return IsEnumValid(value, false);
-        }
+        public static bool IsEnumValid<T>(T value) where T : struct => IsEnumValid(value, false);
         #endregion
 
         #region [public] {static} (bool) IsEnumValid<T>(T, bool): Performs a test on the method argument, if testOnly is false throws an exception of type InvalidEnumArgumentException if the specified value doesn't belong to enumeration

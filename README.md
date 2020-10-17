@@ -10,6 +10,7 @@
 ***
 
 # What is iPdfWriter?
+
 **iPdfWriter** is a lightweight implementation that allows modifying a **pdf** document totally or partially by replacing tags.
 
 # Install via NuGet
@@ -40,6 +41,10 @@
 
    ###### Coming soon!!
 
+# Documentation
+
+ - For **Writer** code documentation, please see next link [documentation].
+
 # How can I send feedback!!!
 
 If you have found **iPdfWriter** useful at work or in a personal project, I would love to hear about it. If you have decided not to use **iPdfWriter**, please send me and email stating why this is so. I will use this feedback to improve **iPdfWriter** in future releases.
@@ -48,5 +53,5 @@ My email address is
 
 ![email.png][email] 
 
-[CHANGELOG]: https://github.com/iAJTin/iSMBIOS/blob/master/CHANGELOG.md
 [email]: ./assets/email.png "email"
+[documentation]: ./documentation/iTin.Utilities.Pdf.Writer.md

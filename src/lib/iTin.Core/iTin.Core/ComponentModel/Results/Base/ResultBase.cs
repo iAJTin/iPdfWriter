@@ -29,6 +29,13 @@ namespace iTin.Core.ComponentModel
 
         #region public static properties
 
+        #region [public] {static} (IResult<T>) ErrorResult: Returns a new result indicating that output result has not been successfully
+        /// <summary>
+        /// Returns a new result indicating that output result has not been successfully.
+        /// </summary>
+        public static IResult<T> ErrorResult => new ResultBase<T> { Success = false };
+        #endregion
+
         #region [public] {static} (IResult<T>) NullResult: Returns a new result indicating a null result
         /// <summary>
         /// Returns a new result indicating a null result.

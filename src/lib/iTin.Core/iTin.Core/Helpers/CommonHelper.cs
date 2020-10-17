@@ -25,7 +25,7 @@ namespace iTin.Core.Helpers
             Logger.Instance.Info("  > Library: iTin.Core");
             Logger.Instance.Info("  > Class: CommonHelper");
             Logger.Instance.Info("  > Method: IsNumeric(string, NumberStyles)");
-            Logger.Instance.Info("  > Output: System.Uri");
+            Logger.Instance.Info("  > Output: bool");
 
             return double.TryParse(target, numberStyle, CultureInfo.CurrentCulture, out _);
         }

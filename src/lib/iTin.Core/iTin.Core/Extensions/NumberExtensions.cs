@@ -184,7 +184,7 @@ namespace iTin.Core
 
         #region Int32
 
-        #region [public] {static} (bool) CheckBit(this int, Bits): Returns a value indicating whether the specified bit is enabled.
+        #region [public] {static} (bool) CheckBit(this int, Bits): Returns a value indicating whether the specified bit is enabled
         /// <summary>
         /// Returns a value indicating whether the specified bit is enabled.
         /// </summary>
@@ -202,7 +202,7 @@ namespace iTin.Core
         }
         #endregion
 
-        #region [public] {static} (bool) CheckBit(this int, byte): Returns a value indicating whether the specified bit is enabled.
+        #region [public] {static} (bool) CheckBit(this int, byte): Returns a value indicating whether the specified bit is enabled
         /// <summary>
         /// Returns a value indicating whether the specified bit is enabled.
         /// </summary>
@@ -220,7 +220,7 @@ namespace iTin.Core
         #endregion
 
 
-        #region [public] {static} (int) GetBit(this int, Bits): Returns the current state of the specified bit.
+        #region [public] {static} (int) GetBit(this int, Bits): Returns the current state of the specified bit
         /// <summary>
         /// Returns the current state of the specified bit.
         /// </summary>
@@ -238,7 +238,7 @@ namespace iTin.Core
         }
         #endregion
 
-        #region [public] {static} (int) GetBit(this int, byte): Returns the current state of the specified bit.
+        #region [public] {static} (int) GetBit(this int, byte): Returns the current state of the specified bit
         /// <summary>
         /// Returns the current state of the specified bit.
         /// </summary>
@@ -256,7 +256,7 @@ namespace iTin.Core
         #endregion
 
 
-        #region [public] {static} (byte) GetByte(this int, Bytes): Returns the specified byte.
+        #region [public] {static} (byte) GetByte(this int, Bytes): Returns the specified byte
         /// <summary>
         /// Returns the specified byte.
         /// </summary>
@@ -272,7 +272,7 @@ namespace iTin.Core
         }
         #endregion
 
-        #region [public] {static} (byte) GetByte(this int, byte): Returns the specified byte.
+        #region [public] {static} (byte) GetByte(this int, byte): Returns the specified byte
         /// <summary>
         /// Returns the specified byte.
         /// </summary>
@@ -288,7 +288,7 @@ namespace iTin.Core
         #endregion
 
 
-        #region [public] {static} (byte[]) ToArray(this int): Returns reference value splitted into bytes as a 2 byte array.
+        #region [public] {static} (byte[]) ToArray(this int): Returns reference value splitted into bytes as a 2 byte array
         /// <summary>
         /// Returns reference value splitted into bytes as a 2 byte array
         /// </summary>
@@ -296,10 +296,7 @@ namespace iTin.Core
         /// <returns>
         /// A byte <see cref="T:System.Array"/> that contains the result.
         /// </returns>
-        public static byte[] ToArray(this int value)
-        {
-            return BitConverter.GetBytes(value);
-        }
+        public static byte[] ToArray(this int value) => BitConverter.GetBytes(value);
         #endregion
 
         #endregion
@@ -510,11 +507,13 @@ namespace iTin.Core
         /// </summary>
         /// <param name="value">Reference value.</param>
         /// <param name="onebyte">Byte to retrieve.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// 
+        /// </returns>
         public static byte GetByte(this uint value, Bytes onebyte)
         {
             SentinelHelper.IsEnumValid(onebyte);
-            SentinelHelper.IsTrue((byte)onebyte > 1);
+            SentinelHelper.IsTrue((byte)onebyte > 3);
 
             return value.GetByte((byte)onebyte);
         }
@@ -529,7 +528,7 @@ namespace iTin.Core
         /// <returns></returns>
         public static byte GetByte(this uint value, byte onebyte)
         {
-            SentinelHelper.IsTrue(onebyte > 1);
+            SentinelHelper.IsTrue(onebyte > 3);
 
             return value.ToArray()[onebyte];
         }
@@ -544,10 +543,7 @@ namespace iTin.Core
         /// <returns>
         /// A byte <see cref="T:System.Array"/> that contains the result.
         /// </returns>
-        public static byte[] ToArray(this uint value)
-        {
-            return BitConverter.GetBytes(value);
-        }
+        public static byte[] ToArray(this uint value) => BitConverter.GetBytes(value);
         #endregion
 
         #endregion
@@ -670,10 +666,7 @@ namespace iTin.Core
         /// <returns>
         /// A byte <see cref="T:System.Array"/> that contains the result.
         /// </returns>
-        public static byte[] ToArray(this ulong value)
-        {
-            return BitConverter.GetBytes(value);
-        }
+        public static byte[] ToArray(this ulong value) => BitConverter.GetBytes(value);
         #endregion
 
         #endregion
