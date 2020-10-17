@@ -91,6 +91,13 @@ PM> Install-Package iPdfWriter
 
 For more information, please see https://www.nuget.org/packages/iPdfWriter/
 
+
+Documentation
+=============
+
+ - For Writer code documentation, please see next link https://github.com/iAJTin/iPdfWriter/blob/master/documentation/iTin.Utilities.Pdf.Writer.md
+
+
 Usage
 =====
 
