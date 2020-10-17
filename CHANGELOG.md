@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file.
 |:------|:------|:----------|
 | iTin.Core | **2.0.0.2** | Base library containing various extensions, helpers, common constants |
 | iTin.Core.Drawing | **1.0.0.0** | Drawing objects, extension, helpers, common constants |
-| iTin.Core.IO | **1.0.0.0** | Input/Output calls |
+| iTin.Core.IO | **1.0.0.0** | Common I/O calls |
 | iTin.Core.IO.Compression | **1.0.0.0** | Compression library |
 | iTin.Core.Models | **1.0.0.0** | Data models base |
 | iTin.Core.Models.Design.Charting | **1.0.0.0** | Base charting models |
@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.0] - 2020-29-09
 
 ### Added
+
 - Create project and first commit
 
 - Library versions for this version
@@ -41,7 +42,7 @@ All notable changes to this project will be documented in this file.
 |:------|:------|:----------|
 |iTin.Core| 2.0.0 | Common calls |
 |iTin.Core.Drawing| 1.0.0 | Drawing calls |
-|iTin.Core.IO| 1.0.0 | Input/Output calls |
+|iTin.Core.IO| 1.0.0 | Common I/O calls |
 |iTin.Core.IO.Compression| 1.0.0 | Compression library |
 |iTin.Core.Models| 1.0.0 | Data models base |
 |iTin.Core.Models.Design.Charting| 1.0.0 | Base charting models |
