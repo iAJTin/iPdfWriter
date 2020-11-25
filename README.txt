@@ -18,6 +18,10 @@ Changes in this version 1.0.1
 · Changed
   -------
 
+    - Changed IResultGeneric interface. Changed Value property name by Result (for code clarify).
+
+      · This change may have implications in your final code, it is resolved by changing Value to Result
+
     - Update result classes for support more scenaries.
 
     - Library versions for this version
