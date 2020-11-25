@@ -31,7 +31,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
         public new static OutputResult CreateErroResult(IResultError[] errors) =>
             new OutputResult
             {
-                Value = default,
+                Result = default,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -40,25 +40,25 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
         /// Returns a new <see cref="OutputResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="OutputResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static OutputResult CreateErroResult(string message, OutputResultData value, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, value);
+        public new static OutputResult CreateErroResult(string message, OutputResultData Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="OutputResult"/> with specified detailed errors collection.
         /// </summary>
         /// <param name="errors">A errors collection</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new invalid <see cref="OutputResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static OutputResult CreateErroResult(IResultError[] errors, OutputResultData value) =>
+        public new static OutputResult CreateErroResult(IResultError[] errors, OutputResultData Result) =>
             new OutputResult
             {
-                Value = value,
+                Result = Result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -66,14 +66,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
         /// <summary>
         /// Returns a new success result.
         /// </summary>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new valid <see cref="OutputResult"/>.
         /// </returns>
-        public new static OutputResult CreateSuccessResult(OutputResultData value) =>
+        public new static OutputResult CreateSuccessResult(OutputResultData Result) =>
             new OutputResult
             {
-                Value = value,
+                Result = Result,
                 Success = true,
                 Errors = new List<IResultError>()
             };
@@ -91,14 +91,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
         /// Creates a new <see cref="OutputResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new <see cref="OutputResult"/> instance for specified exception.
         /// </returns>
-        public new static OutputResult FromException(System.Exception exception, OutputResultData value) =>
+        public new static OutputResult FromException(System.Exception exception, OutputResultData Result) =>
             new OutputResult
             {
-                Value = value,
+                Result = Result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

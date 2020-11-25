@@ -161,7 +161,7 @@ namespace iPdfWriter.Code
 
             #region Saves output result
 
-            var saveResult = result.Value.Action(new SaveToFile { OutputPath = $"~/Output/Sample07/Sample-07" });
+            var saveResult = result.Result.Action(new SaveToFile { OutputPath = $"~/Output/Sample07/Sample-07" });
             var ts = sw.Elapsed;
             sw.Stop();
 

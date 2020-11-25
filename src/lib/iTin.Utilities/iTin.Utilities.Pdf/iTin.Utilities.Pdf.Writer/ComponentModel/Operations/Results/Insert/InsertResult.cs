@@ -39,7 +39,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         public new static InsertResult CreateErroResult(IResultError[] errors) =>
             new InsertResult
             {
-                Value = default,
+                Result = default,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -50,12 +50,12 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// Returns a new <see cref="InsertResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="InsertResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static InsertResult CreateErroResult(string message, InsertResultData value, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, value);
+        public new static InsertResult CreateErroResult(string message, InsertResultData Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
         #endregion
 
         #region [public] {new} {static} (InsertResult) CreateErroResult(IResultError[], InsertResultData): Returns a new result with specified detailed errors collection
@@ -63,14 +63,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// Returns a new <see cref="InsertResult"/> with specified detailed errors collection.
         /// </summary>
         /// <param name="errors">A errors collection</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new invalid <see cref="InsertResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static InsertResult CreateErroResult(IResultError[] errors, InsertResultData value) =>
+        public new static InsertResult CreateErroResult(IResultError[] errors, InsertResultData Result) =>
             new InsertResult
             {
-                Value = value,
+                Result = Result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -80,14 +80,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// <summary>
         /// Returns a new success result.
         /// </summary>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new valid <see cref="InsertResult"/>.
         /// </returns>
-        public new static InsertResult CreateSuccessResult(InsertResultData value) =>
+        public new static InsertResult CreateSuccessResult(InsertResultData Result) =>
             new InsertResult
             {
-                Value = value,
+                Result = Result,
                 Success = true,
                 Errors = new List<IResultError>()
             };
@@ -109,14 +109,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// Creates a new <see cref="InsertResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="value">Response value</param>
+        /// <param name="Result">Response Result</param>
         /// <returns>
         /// A new <see cref="InsertResult"/> instance for specified exception.
         /// </returns>
-        public new static InsertResult FromException(System.Exception exception, InsertResultData value) =>
+        public new static InsertResult FromException(System.Exception exception, InsertResultData Result) =>
             new InsertResult
             {
-                Value = value,
+                Result = Result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };
@@ -143,17 +143,17 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
                     ? CreateErroResult("Missing data")
                     : CreateSuccessResult(new InsertResultData
                     {
-                        Context = Value.Context,
-                        InputStream = Value.OutputStream,
-                        OutputStream = Value.OutputStream
+                        Context = Result.Context,
+                        InputStream = Result.OutputStream,
+                        OutputStream = Result.OutputStream
                     });
             }
 
-            InsertResult result = InsertImplStrategy(data, Value.Context);
+            InsertResult result = InsertImplStrategy(data, Result.Context);
 
-            if (Value.Context.AutoUpdateChanges)
+            if (Result.Context.AutoUpdateChanges)
             {
-                Value.Context.Input = result.Value.OutputStream;
+                Result.Context.Input = result.Result.OutputStream;
             }
 
             return result;
@@ -177,17 +177,17 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
                     ? ReplaceResult.CreateErroResult("Missing data")
                     : ReplaceResult.CreateSuccessResult(new ReplaceResultData
                     {
-                        Context = Value.Context,
-                        InputStream = Value.OutputStream,
-                        OutputStream = Value.OutputStream
+                        Context = Result.Context,
+                        InputStream = Result.OutputStream,
+                        OutputStream = Result.OutputStream
                     });
             }
 
-            ReplaceResult result = ReplaceImplStrategy(data, Value.Context);
+            ReplaceResult result = ReplaceImplStrategy(data, Result.Context);
 
-            if (Value.Context.AutoUpdateChanges)
+            if (Result.Context.AutoUpdateChanges)
             {
-                Value.Context.Input = result.Value.OutputStream;
+                Result.Context.Input = result.Result.OutputStream;
             }
 
             return result;
@@ -211,17 +211,17 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
                     ? SetResult.CreateErroResult("Missing data")
                     : SetResult.CreateSuccessResult(new SetResultData
                     {
-                        Context = Value.Context,
-                        InputStream = Value.OutputStream,
-                        OutputStream = Value.OutputStream
+                        Context = Result.Context,
+                        InputStream = Result.OutputStream,
+                        OutputStream = Result.OutputStream
                     });
             }
 
-            SetResult result = SetImplStrategy(data, Value.Context);
+            SetResult result = SetImplStrategy(data, Result.Context);
 
-            if (Value.Context.AutoUpdateChanges)
+            if (Result.Context.AutoUpdateChanges)
             {
-                Value.Context.Input = result.Value.OutputStream;
+                Result.Context.Input = result.Result.OutputStream;
             }
 
             return result;
@@ -233,13 +233,13 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         #region private methods
 
         private InsertResult InsertImplStrategy(IInsert data, IInput context)
-            => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(Value.OutputStream, context);
+            => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         private ReplaceResult ReplaceImplStrategy(IReplace data, IInput context)
-            => data == null ? ReplaceResult.CreateErroResult("Missing data") : data.Apply(Value.OutputStream, context);
+            => data == null ? ReplaceResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         private SetResult SetImplStrategy(ISet data, IInput context)
-            => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(Value.OutputStream, context);
+            => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         #endregion
     }

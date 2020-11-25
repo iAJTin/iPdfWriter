@@ -106,9 +106,9 @@ namespace iTin.Utilities.Pdf.Writer
         /// <summary>
         /// Gets or sets the pdf input list.
         /// </summary>
-        /// <value>
+        /// <Result>
         /// The items.
-        /// </value>
+        /// </Result>
         public IEnumerable<PdfInput> Items { get; set; }
         #endregion
 
@@ -116,9 +116,9 @@ namespace iTin.Utilities.Pdf.Writer
         /// <summary>
         /// Gets the configuration settings.
         /// </summary>
-        /// <value>
+        /// <Result>
         /// The object configuration.
-        /// </value>
+        /// </Result>
         public PdfObjectConfig Configuration { get; }
         #endregion
 
@@ -133,11 +133,11 @@ namespace iTin.Utilities.Pdf.Writer
         /// <returns>
         /// <para>
         /// A <see cref="OutputResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
+        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
         /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
         /// </para>
         /// <para>
-        /// The type of the return value is <see cref="OutputResultData"/>, which contains the operation result
+        /// The type of the return Result is <see cref="OutputResultData"/>, which contains the operation result
         /// </para>
         /// </returns>
         public OutputResult TryMergeInputs()
@@ -197,7 +197,7 @@ namespace iTin.Utilities.Pdf.Writer
                     
                     if (rawMergedResult.Success)
                     {
-                        outStream = new MemoryStream((byte[])rawMergedResult.Value.OutputStream.AsByteArray().Clone());
+                        outStream = new MemoryStream((byte[])rawMergedResult.Result.OutputStream.AsByteArray().Clone());
                     }
                 }
 
@@ -220,12 +220,12 @@ namespace iTin.Utilities.Pdf.Writer
 
                     if (rawMergedWithTagsResult.Success)
                     {
-                        if (rawMergedWithTagsResult.Value.OutputStream.Position != 0)
+                        if (rawMergedWithTagsResult.Result.OutputStream.Position != 0)
                         {
-                            rawMergedWithTagsResult.Value.OutputStream.Position = 0;
+                            rawMergedWithTagsResult.Result.OutputStream.Position = 0;
                         }
 
-                        outStream = new MemoryStream((byte[])rawMergedWithTagsResult.Value.OutputStream.AsByteArray().Clone());
+                        outStream = new MemoryStream((byte[])rawMergedWithTagsResult.Result.OutputStream.AsByteArray().Clone());
                     }
                 }
 

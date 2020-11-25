@@ -25,27 +25,27 @@ Changes in this version 1.0.1
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | Library                               Version   Description                                                           |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core                             2.0.0.2   Base library containing various extensions, helpers, common constants |
+    | iTin.Core                             2.0.0.3   Base library containing various extensions, helpers, common constants |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Drawing                     1.0.0.0   Drawing objects, extension, helpers, common constants                 |
+    | iTin.Core.Drawing                     1.0.0.1   Drawing objects, extension, helpers, common constants                 |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.IO                          1.0.0.0   Common I/O calls                                                      |
+    | iTin.Core.IO                          1.0.0.1   Common I/O calls                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.IO.Compression              1.0.0.0   Compression library                                                   |
+    | iTin.Core.IO.Compression              1.0.0.1   Compression library                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models                      1.0.0.0   Data models base                                                      |
+    | iTin.Core.Models                      1.0.0.1   Data models base                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models.Design.Charting      1.0.0.0   Base charting models                                                  |
+    | iTin.Core.Models.Design.Charting      1.0.0.1   Base charting models                                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models.Design.Styling       1.0.0.0   Base styling models                                                   |
+    | iTin.Core.Models.Design.Styling       1.0.0.1   Base styling models                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Logging                          1.0.0.0   Logging library                                                       |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Registry.Windows                 1.0.0.0   Common classes for model definitions                                  |
+    | iTin.Registry.Windows                 1.0.0.1   Common classes for model definitions                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Utilities.Pdf.Design             1.0.0.0   Pdf design elements                                                   |
+    | iTin.Utilities.Pdf.Design             1.0.0.1   Pdf design elements                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Utilities.Pdf.Writer             1.0.0.0   Pdf writer                                                            |
+    | iTin.Utilities.Pdf.Writer             1.0.0.1   Pdf writer                                                            |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
 
 

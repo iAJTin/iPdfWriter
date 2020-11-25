@@ -9,9 +9,9 @@
     <Description>Pdf design elements</Description>
     <Copyright>Copyright © 2020</Copyright>
     <PackageProjectUrl></PackageProjectUrl>
-    <PackageId>iTin.Registry.Windows</PackageId>
+    <PackageId>iTin.Utilities.Pdf.Design</PackageId>
     <Company>iTin</Company>
-    <Product>iTin.Registry.Windows</Product>
+    <Product>iTin.Utilities.Pdf.Design</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.2" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
   </ItemGroup>
 
   <ProjectExtensions>

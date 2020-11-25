@@ -252,7 +252,7 @@ namespace iPdfWriter.Code
             #region save
 
             // Saves merged result to disk
-            var saveResult = mergeResult.Value.Action(new SaveToFile { OutputPath = "~/Output/Sample09/Sample-09" });
+            var saveResult = mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample09/Sample-09" });
             var ts = sw.Elapsed;
             sw.Stop();
 
