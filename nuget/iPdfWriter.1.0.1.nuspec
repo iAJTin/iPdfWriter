@@ -12,7 +12,7 @@
     <iconUrl>https://raw.githubusercontent.com/iAJTin/iPdfWriter/master/nuget/iPdfWriter.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags</description>
-    <copyright>Copyright © 2020 iAJTin</copyright>
+    <copyright>Copyright © 2022 iAJTin</copyright>
     <tags>PDF Writer Adobe iTin</tags>
     <repository type="git" url="https://github.com/iAJTin/iPdfWriter"/>
     <dependencies>
