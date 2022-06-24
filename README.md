@@ -39,7 +39,7 @@
 
 # Usage
 
-   ###### Coming soon!, Please see **Test samples** in solution
+   - **Coming soon!**, Please see [Test samples] in solution.
 
 # Documentation
 
@@ -55,3 +55,4 @@ My email address is
 
 [email]: ./assets/email.png "email"
 [documentation]: ./documentation/iTin.Utilities.Pdf.Writer.md
+[Test samples]: https://github.com/iAJTin/iPdfWriter/tree/v1.0.2/src/test/iPdfWriter.ConsoleAppCore
