@@ -6,7 +6,7 @@
     <title>iPdfWriter</title>
     <authors>iAJTin</authors>
     <owners>iAJTin</owners>
-    <license type="expression">GNU</license>
+    <license type="expression">AGPL-3.0-only</license>
     <projectUrl>https://github.com/iAJTin/iPdfWriter</projectUrl>
     <icon>.\iPdfWriter.png</icon>
     <iconUrl>https://raw.githubusercontent.com/iAJTin/iPdfWriter/master/nuget/iPdfWriter.png</iconUrl>
