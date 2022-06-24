@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 namespace iTin.Utilities.Pdf.Design.Table
 {
     using System;
@@ -98,7 +100,7 @@ namespace iTin.Utilities.Pdf.Design.Table
             CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
             HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
             htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
-
+            
             // pipelines
             ElementList elements = new ElementList();
             ElementHandlerPipeline pdf = new ElementHandlerPipeline(elements, null);
@@ -108,9 +110,9 @@ namespace iTin.Utilities.Pdf.Design.Table
             // XML Worker
             XMLWorker worker = new XMLWorker(cssPipeline, true);
             XMLParser parser = new XMLParser(worker, Encoding.UTF8);
-            parser.Parse(html.AsStream(Encoding.UTF8));
+            parser.Parse(html.AsStream(Encoding.UTF8), true);
 
-            PdfPTable nativeTable = (PdfPTable)elements[0];
+            PdfPTable nativeTable = elements.OfType<PdfPTable>().FirstOrDefault();
 
             return new PdfTable(nativeTable, config);
         }

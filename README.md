@@ -39,7 +39,7 @@
 
 # Usage
 
-   ###### Coming soon!!
+   ###### Coming soon!, Please see **Test samples** in solution
 
 # Documentation
 

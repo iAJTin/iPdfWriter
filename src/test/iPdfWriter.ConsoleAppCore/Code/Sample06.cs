@@ -283,7 +283,7 @@ namespace iPdfWriter.Code
             result.AppendLine($"    <td>Lorem ipsum</td>");
             result.AppendLine($"    <td>Lorem ipsum</td>");
             result.AppendLine($"    <td>Lorem ipsum</td>");
-            result.AppendLine($" </tr>");
+            result.AppendLine($"  </tr>");
             result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
             result.AppendLine($"    <td>1</td>");
             result.AppendLine($"    <td>In eleifend velit vitae libero sollicitudin euismod.</td>");

@@ -86,6 +86,12 @@ namespace iPdfWriter
             logger.Info(" >  Shows the use of how serialize and deserialize text, image and table styles");
             Sample12.Generate(logger);
 
+            // 13. Generate sample 13 report
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 13");
+            logger.Info(" > Shows the use of text and image replacement");
+            Sample13.Generate(logger, YesNo.No);
+
             logger.Info("");
             logger.Debug(">End Logging<");
             Console.ReadKey();
