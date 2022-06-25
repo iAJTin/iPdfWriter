@@ -13,6 +13,8 @@
 
 **iPdfWriter** is a lightweight implementation that allows modifying a **pdf** document totally or partially by replacing tags.
 
+The idea is to try to quickly and easily facilitate the task of filling in the 'typical' report file that the client wants to send by email with the data filled in from their erp, vertical application, custom development, etc... to which I am sure that you have faced each other at some point.
+
 # Install via NuGet
 
 - From nuget gallery
