@@ -324,7 +324,7 @@ Basic steps, for more details please see [sample03.cs] file.
 
      ```csharp   
      var mergeResult = files.TryMergeInputs();
-     if (!result.Success)
+     if (!mergeResult.Success)
      {
          // Handle errors                 
      }
