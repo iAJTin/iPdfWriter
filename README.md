@@ -45,7 +45,7 @@ I hope it helps someone. ;)
 
 ## Samples
 
-### Sample 1 - Shows the use of text and image replacement
+### Sample 1 - Shows the use of text and image replacement with styles
 
 - Page 1
 
@@ -58,8 +58,46 @@ I hope it helps someone. ;)
                 AutoUpdateChanges = true,
                 Input = "~/Resources/Sample-01/file-sample.pdf"
             };
+            
+    2. Define the styles to use
 
-    2. Replace **#TITLE#** tag with another text
+      2.1 Text styles
+      
+            private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+            {
+                "ReportTitle",
+                new PdfTextStyle
+                {
+                    Font =
+                    {
+                        Name = "Arial",
+                        Size = 28.0f,
+                        Bold = YesNo.Yes,
+                        Italic = YesNo.Yes,
+                        Color = "Blue"
+                    },
+                    Content =
+                    {
+                        Alignment =
+                        {
+                            Vertical = KnownVerticalAlignment.Center,
+                            Horizontal = KnownHorizontalAlignment.Center
+                        }
+                    }
+                }
+            };   
+        
+      2.2 Image styles
+      
+            private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+            {           
+                {
+                    "Default",
+                    new PdfImageStyle { Content = { Alignment = { Horizontal = KnownHorizontalAlignment.Left }}}
+                }
+            };    
+
+    3. Replace **#TITLE#** tag with another text
 
             doc.Replace(new ReplaceText(
                 new WithTextObject
@@ -72,7 +110,7 @@ I hope it helps someone. ;)
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }));
 
-    3. Replace **#BAR-CHART#** tag with an image
+    4. Replace **#BAR-CHART#** tag with an image
 
             using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
             {
@@ -88,7 +126,7 @@ I hope it helps someone. ;)
                     }));
             }
 
-    4. Save pdf file result
+    5. Save pdf file result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
 
