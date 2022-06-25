@@ -95,17 +95,7 @@ I hope it helps someone. ;)
 
     Below is an image showing the original pdf file and the result after applying the replacements described above
 
-
-
-
-
-
-
 ![Sample01Page01][Sample01Page01] 
-
-
-
-
 
 
 # Documentation
@@ -124,6 +114,5 @@ My email address is
 [documentation]: ./documentation/iTin.Utilities.Pdf.Writer.md
 [Test samples]: https://github.com/iAJTin/iPdfWriter/tree/v1.0.2/src/test/iPdfWriter.ConsoleAppCore
 
-[Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
-
 [sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample01.cs
+[Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
