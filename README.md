@@ -53,7 +53,7 @@ I hope it helps someone. :smirk:
 
     1. Load pdf file
 
-        ```        
+        ```csharp   
         var doc = new PdfInput
         {
             AutoUpdateChanges = true,
@@ -64,7 +64,7 @@ I hope it helps someone. :smirk:
         
         **Text styles**
       
-        ```        
+        ```csharp   
         private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
         {
             "ReportTitle",
@@ -91,7 +91,7 @@ I hope it helps someone. :smirk:
         ```
         **Image styles**
       
-        ```
+        ```csharp   
         private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
         {           
             {
@@ -102,7 +102,7 @@ I hope it helps someone. :smirk:
         ```
     3. Replace **#TITLE#** tag with another text
 
-        ```
+        ```csharp   
         doc.Replace(new ReplaceText(
             new WithTextObject
             {
@@ -117,7 +117,7 @@ I hope it helps someone. :smirk:
 
     4. Replace **#BAR-CHART#** tag with an image
 
-        ```
+        ```csharp   
         using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
         {
             doc.Replace(new ReplaceText(
@@ -135,9 +135,9 @@ I hope it helps someone. :smirk:
 
     5. Save pdf file result
     
-       ```
-       var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
-       ```
+        ```csharp   
+        var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+        ```
     Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample01Page01][Sample01Page01] 
