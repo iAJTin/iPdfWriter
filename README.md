@@ -47,101 +47,206 @@ I hope it helps someone. :smirk:
 
 ### Sample 1 - Shows the use of text and image replacement with styles
 
-- Page 1
 
-    Basic steps, for more details please see [sample01.cs] file.
+Basic steps, for more details please see [sample01.cs] file.
 
-    1. Load pdf file
+1. Load pdf file
 
-        ```csharp   
-        var doc = new PdfInput
-        {
-            AutoUpdateChanges = true,
-            Input = "~/Resources/Sample-01/file-sample.pdf"
-        };
-        ```             
-    2. Define the styles to use
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-01/file-sample.pdf"
+    };
+    ```             
+2. Define the styles to use
         
-        **Text styles**
+    **Text styles**
       
-        ```csharp   
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+    ```csharp   
+    private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+    {
+        "ReportTitle",
+        new PdfTextStyle
         {
-            "ReportTitle",
-            new PdfTextStyle
+            Font =
             {
-                Font =
+                Name = "Arial",
+                Size = 28.0f,
+                Bold = YesNo.Yes,
+                Italic = YesNo.Yes,
+                Color = "Blue"
+            },
+            Content =
+            {
+                Alignment =
                 {
-                    Name = "Arial",
-                    Size = 28.0f,
-                    Bold = YesNo.Yes,
-                    Italic = YesNo.Yes,
-                    Color = "Blue"
-                },
-                Content =
-                {
-                    Alignment =
-                    {
-                        Vertical = KnownVerticalAlignment.Center,
-                        Horizontal = KnownHorizontalAlignment.Center
-                    }
+                    Vertical = KnownVerticalAlignment.Center,
+                    Horizontal = KnownHorizontalAlignment.Center
                 }
             }
-        };         
-        ```
-        **Image styles**
-      
-        ```csharp   
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
-        {           
-            {
-                "Default",
-                new PdfImageStyle { Content = { Alignment = { Horizontal = KnownHorizontalAlignment.Left }}}
-            }
-        };                
-        ```
-    3. Replace **#TITLE#** tag with another text
-
-        ```csharp   
-        doc.Replace(new ReplaceText(
-            new WithTextObject
-            {
-                Text = "#TITLE#",
-                NewText = "Lorem ipsum",
-                UseTestMode = useTestMode,
-                TextOffset = PointF.Empty,
-                Style = TextStylesTable["ReportTitle"],
-                ReplaceOptions = ReplaceTextOptions.AccordingToMargins
-            }));            
-        ```
-
-    4. Replace **#BAR-CHART#** tag with an image
-
-        ```csharp   
-        using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
-        {
-            doc.Replace(new ReplaceText(
-                new WithImageObject
-                {
-                    Text = "#BAR-CHART#",
-                    UseTestMode = useTestMode,
-                    ImageOffset = PointF.Empty,
-                    Style = ImagesStylesTable["Default"],
-                    ReplaceOptions = ReplaceTextOptions.Default,
-                    Image = barGraph
-                }));
         }
-        ```
+    };         
+    ```
+    **Image styles**
+      
+    ```csharp   
+    private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+    {           
+        {
+            "Default",
+            new PdfImageStyle { Content = { Alignment = { Horizontal = KnownHorizontalAlignment.Left }}}
+        }
+    };                
+    ```
+3. Replace **#TITLE#** tag with another text
 
-    5. Save pdf file result
-    
-        ```csharp   
-        var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
-        ```
-    Below is an image showing the original pdf file and the result after applying the replacements described above
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTextObject
+        {
+            Text = "#TITLE#",
+            NewText = "Lorem ipsum",
+            UseTestMode = useTestMode,
+            TextOffset = PointF.Empty,
+            Style = TextStylesTable["ReportTitle"],
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+        }));            
+    ```
+
+4. Replace **#BAR-CHART#** tag with an image
+
+    ```csharp   
+    using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
+    {
+        doc.Replace(new ReplaceText(
+            new WithImageObject
+            {
+                Text = "#BAR-CHART#",
+                UseTestMode = useTestMode,
+                ImageOffset = PointF.Empty,
+                Style = ImagesStylesTable["Default"],
+                ReplaceOptions = ReplaceTextOptions.Default,
+                Image = barGraph
+            }));
+    }
+    ```
+5. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+6. Save pdf file result
+ 
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+    ```
+7. Output
+
+   Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample01Page01][Sample01Page01] 
 
+### Sample 2 - Shows the use of html table replacement in a pdf document
+
+Basic steps, for more details please see [sample02.cs] file.
+
+1. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-02/file-sample.pdf"
+    };
+    ```             
+2. Define HTML table with embbebed styles
+
+    ```csharp   
+    private static string GenerateHtmlDatatable()
+    {
+        var result = new StringBuilder();
+        result.AppendLine("<table border='1' cellspacing='0' cellpadding='6' style='width:100%'>");
+        result.AppendLine(" <tbody>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine("    <td>Lorem ipsum</td>");
+        result.AppendLine("    <td>Lorem ipsum</td>");
+        result.AppendLine("    <td>Lorem ipsum</td>");
+        result.AppendLine("  </tr>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>1</td>");
+        result.AppendLine("    <td>In eleifend velit vitae libero sollicitudin euismod.</td>");
+        result.AppendLine("    <td>Lorem</td>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine("  </tr>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>2</td>");
+        result.AppendLine("    <td>Cras fringilla ipsum magna, in fringilla dui commodo a.</td>");
+        result.AppendLine("    <td>Lorem</td>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine("  </tr>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>3</td>");
+        result.AppendLine("    <td>LAliquam erat volutpat.</td>");
+        result.AppendLine("    <td>Lorem</td>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine("  </tr>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>4</td>");
+        result.AppendLine("    <td>Fusce vitae vestibulum velit. </td>");
+        result.AppendLine("    <td>Lorem</td>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine("  </tr>");
+        result.AppendLine("  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
+        result.AppendLine("    <td>5</td>");
+        result.AppendLine("    <td>Etiam vehicula luctus fermentum.</td>");
+        result.AppendLine("    <td>Ipsum</td>");
+        result.AppendLine("    <td>&nbsp;</td>");
+        result.AppendLine(" </tr>");
+        result.AppendLine(" </tbody>");
+        result.AppendLine("</table>");
+
+        return result.ToString();
+    }
+    ```             
+3. Replace **#DATA-TABLE#** tag with a **HTML** table
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTableObject
+        {
+            Text = "#DATA-TABLE#",
+            UseTestMode = useTestMode,
+            TableOffset = PointF.Empty,
+            Style = PdfTableStyle.Default,
+            ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
+            Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable())
+        }));
+    ```
+4. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+5. Save pdf result to file
+    
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample02/Sample-02" });
+    ```    
+6. Output
+
+   Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample02Page01][Sample02Page01] 
 
 # Documentation
 
@@ -161,3 +266,6 @@ My email address is
 
 [sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample01.cs
 [Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
+
+[sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample02.cs
+[Sample02Page01]: ./assets/samples/sample2/page1.png "sample02 - page01"
