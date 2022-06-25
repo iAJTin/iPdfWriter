@@ -53,84 +53,91 @@ I hope it helps someone. ;)
 
     1. Load pdf file
 
-            var doc = new PdfInput
-            {
-                AutoUpdateChanges = true,
-                Input = "~/Resources/Sample-01/file-sample.pdf"
-            };
-            
+        ```        
+        var doc = new PdfInput
+        {
+            AutoUpdateChanges = true,
+            Input = "~/Resources/Sample-01/file-sample.pdf"
+        };
+        ```             
     2. Define the styles to use
-
-      2.1 Text styles
+        
+        **Text styles**
       
-            private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        ```        
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        {
+            "ReportTitle",
+            new PdfTextStyle
             {
-                "ReportTitle",
-                new PdfTextStyle
+                Font =
                 {
-                    Font =
+                    Name = "Arial",
+                    Size = 28.0f,
+                    Bold = YesNo.Yes,
+                    Italic = YesNo.Yes,
+                    Color = "Blue"
+                },
+                Content =
+                {
+                    Alignment =
                     {
-                        Name = "Arial",
-                        Size = 28.0f,
-                        Bold = YesNo.Yes,
-                        Italic = YesNo.Yes,
-                        Color = "Blue"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
+                        Vertical = KnownVerticalAlignment.Center,
+                        Horizontal = KnownHorizontalAlignment.Center
                     }
                 }
-            };   
-        
-      2.2 Image styles
+            }
+        };         
+        ```
+        **Image styles**
       
-            private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
-            {           
-                {
-                    "Default",
-                    new PdfImageStyle { Content = { Alignment = { Horizontal = KnownHorizontalAlignment.Left }}}
-                }
-            };    
-
+        ```
+        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+        {           
+            {
+                "Default",
+                new PdfImageStyle { Content = { Alignment = { Horizontal = KnownHorizontalAlignment.Left }}}
+            }
+        };                
+        ```
     3. Replace **#TITLE#** tag with another text
 
-            doc.Replace(new ReplaceText(
-                new WithTextObject
-                {
-                    Text = "#TITLE#",
-                    NewText = "Lorem ipsum",
-                    UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
-                    Style = TextStylesTable["ReportTitle"],
-                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins
-                }));
+        ```
+        doc.Replace(new ReplaceText(
+            new WithTextObject
+            {
+                Text = "#TITLE#",
+                NewText = "Lorem ipsum",
+                UseTestMode = useTestMode,
+                TextOffset = PointF.Empty,
+                Style = TextStylesTable["ReportTitle"],
+                ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+            }));            
+        ```
 
     4. Replace **#BAR-CHART#** tag with an image
 
-            using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#BAR-CHART#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = barGraph
-                    }));
-            }
+        ```
+        using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
+        {
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#BAR-CHART#",
+                    UseTestMode = useTestMode,
+                    ImageOffset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = barGraph
+                }));
+        }
+        ```
 
     5. Save pdf file result
-
-            var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
-
-
+    
+       ```
+       var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+       ```
     Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample01Page01][Sample01Page01] 
