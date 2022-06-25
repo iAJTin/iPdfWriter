@@ -246,7 +246,7 @@ Basic steps, for more details please see [sample02.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample02Page01][Sample02Page01] 
+![Sample02Page02][Sample02Page02] 
 
 # Documentation
 
@@ -268,4 +268,4 @@ My email address is
 [Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
 
 [sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample02.cs
-[Sample02Page01]: ./assets/samples/sample2/page1.png "sample02 - page01"
+[Sample02Page02]: ./assets/samples/sample2/page2.png "sample02 - page02"
