@@ -39,7 +39,70 @@
 
 # Usage
 
-   - **Coming soon!**, Please see [Test samples] in solution.
+## Samples
+
+### Sample 1 - Shows the use of text and image replacement
+
+- Page 1
+
+    Basic steps, for more details please see [sample01.cs] file.
+
+    1. Load pdf file
+
+            var doc = new PdfInput
+            {
+                AutoUpdateChanges = true,
+                Input = "~/Resources/Sample-01/file-sample.pdf"
+            };
+
+    2. Replace **#TITLE#** tag with another text
+
+            doc.Replace(new ReplaceText(
+                new WithTextObject
+                {
+                    Text = "#TITLE#",
+                    NewText = "Lorem ipsum",
+                    UseTestMode = useTestMode,
+                    TextOffset = PointF.Empty,
+                    Style = TextStylesTable["ReportTitle"],
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+                }));
+
+    3. Replace **#BAR-CHART#** tag with an image
+
+            using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
+            {
+                doc.Replace(new ReplaceText(
+                    new WithImageObject
+                    {
+                        Text = "#BAR-CHART#",
+                        UseTestMode = useTestMode,
+                        ImageOffset = PointF.Empty,
+                        Style = ImagesStylesTable["Default"],
+                        ReplaceOptions = ReplaceTextOptions.Default,
+                        Image = barGraph
+                    }));
+            }
+
+    4. Save pdf file result
+
+            var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+
+
+    Below is an image showing the original pdf file and the result after applying the replacements described above
+
+
+
+
+
+
+
+![Sample01Page01][Sample01Page01] 
+
+
+
+
+
 
 # Documentation
 
@@ -56,3 +119,7 @@ My email address is
 [email]: ./assets/email.png "email"
 [documentation]: ./documentation/iTin.Utilities.Pdf.Writer.md
 [Test samples]: https://github.com/iAJTin/iPdfWriter/tree/v1.0.2/src/test/iPdfWriter.ConsoleAppCore
+
+[Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
+
+[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample01.cs
