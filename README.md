@@ -147,7 +147,7 @@ Basic steps, for more details please see [sample01.cs] file.
     ```
 7. Output
 
-   Below is an image showing the original pdf file and the result after applying the replacements described above
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample01Page01][Sample01Page01] 
 
@@ -244,7 +244,7 @@ Basic steps, for more details please see [sample02.cs] file.
     ```    
 6. Output
 
-   Below is an image showing the original pdf file and the result after applying the replacements described above
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample02Page01][Sample02Page01] 
 
