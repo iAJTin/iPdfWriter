@@ -144,7 +144,11 @@ Basic steps, for more details please see [sample01.cs] file.
  
     ```csharp   
     var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
-    ```
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
 7. Output
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
@@ -241,12 +245,104 @@ Basic steps, for more details please see [sample02.cs] file.
     
     ```csharp   
     var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample02/Sample-02" });
-    ```    
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
 6. Output
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
 ![Sample02Page02][Sample02Page02] 
+
+### Sample 3 - Shows the use of merge action
+
+Basic steps, for more details please see [sample03.cs] file.
+
+1. Load pdf pages 
+
+    **Page 1**
+     
+    ```csharp   
+    var page1 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-03/file-sample-1.pdf"
+    };
+    ```             
+    **Page 2**
+     
+    ```csharp   
+    var page2 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-03/file-sample-2.pdf"
+    };
+    ```             
+    **Page 3**
+     
+    ```csharp   
+    var page3 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-03/file-sample-3.pdf"
+    };
+    ```             
+    **Page 4**
+     
+    ```csharp   
+    var page4 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-03/file-sample-4.pdf"
+    };
+    ```             
+
+2. Replace Tags
+
+    Replace the elements in the pages, for reasons of space I omit this step,
+    We would do it as we have seen in examples 1 and 2.
+
+3. Create a list of elements to merge
+
+    Note that you can set the order in which they will be merged.
+
+    ```csharp   
+    var files = new PdfObject
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4}
+        }
+    };
+    ```
+4. Try to merge into a pdf output result
+
+     ```csharp   
+     var mergeResult = files.TryMergeInputs();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+5. Save merged result to file
+    
+    ```csharp   
+    var saveResult =  mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample03/Sample-03" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+6. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample03AllPages][Sample03AllPages] 
 
 # Documentation
 
@@ -269,3 +365,6 @@ My email address is
 
 [sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample02.cs
 [Sample02Page02]: ./assets/samples/sample2/page2.png "sample02 - page02"
+
+[sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample03.cs
+[Sample03AllPages]: ./assets/samples/sample3/mergeresult.png "sample03 - merge"
