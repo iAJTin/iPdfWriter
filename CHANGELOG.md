@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.3 - 
+
+### Added
+
+ - Add support for **net60**,
+ - Replace **Newtonsoft.Json** for **System.Text.Json**
+ - Replace **DotNetZip** for native library
 
 ## [1.0.2] - 2022-24-06
 
@@ -18,7 +25,6 @@ All notable changes to this project will be documented in this file.
  - Upgrade Newtonsoft.Json nuget package to version 13.0.1 (without critical errors)
 
  - Fix an error that occurs when trying to create an html table with html5 tags (not supported)
-
 
 ### Changed
  

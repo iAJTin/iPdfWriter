@@ -649,7 +649,7 @@ To enable or disable test mode, the **UseTestMode** property is available on all
 Where:
 
 | Value | Description |
-|:------|:------|:----------|
+|:------|:----------|
 | YesNo.Yes | Activates the test mode |
 | YesNo.No | Shows the applied change |
 
@@ -831,6 +831,37 @@ Basic steps, for more details please see [sample06.cs] file.
 
 ![Sample06AllPages][Sample06AllPages] 
 
+### Sample 7 - Shows the use of save as zip a pdf input (one pdf file)
+
+ Sometimes the result of a **pdf** is too heavy to be able to send it by email or to save it on disk, etc...
+
+ **iPdfWriter** provides the [OutputResultConfig.cs] class, where you can define the **name of the zip file** as well as 
+ a property indicating whether it is to be compressed.
+
+ Basic steps, for more details please see [sample07.cs] file.
+
+1. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult(new OutputResultConfig { Filename = "Sample-07.pdf", Zipped = true });
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+2. Save pdf file result
+ 
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample07/Sample-07" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+3. Output
+
+    You can see the result following the following link [Sample07.zip].
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -864,3 +895,8 @@ My email address is
 
 [sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample06.cs
 [Sample06AllPages]: ./assets/samples/sample6/testmode.png "sample06 - test mode"
+
+[sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample07.cs
+[Sample07.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample07
+
+[OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs

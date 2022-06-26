@@ -19,7 +19,7 @@ namespace iPdfWriter.Code
     using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
 
     /// <summary>
-    /// Shows the use of save as zip a input.
+    /// Shows the use of save as zip an input.
     /// </summary>
     internal class Sample07
     {
