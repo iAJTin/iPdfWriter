@@ -345,8 +345,6 @@ On many occasions we must make repetitive replacements such as the header or foo
 
 For these cases we have global replacements.
 
-Note that the page numbers have not been included in this section as you have a better place to replace them, this is covered a bit later!
-
 Basic steps, for more details please see [sample04.cs] file.
 
 1. Load pdf pages 
@@ -473,6 +471,171 @@ Basic steps, for more details please see [sample04.cs] file.
 
 ![Sample04AllPages][Sample04AllPages] 
 
+### Sample 5 - Shows use System tags
+
+Another repetitive task when we create or modify reports is the page numbers to try to speed up this, the **SystemTags** appear.
+
+Currently we natively have the PageNumberSystemTag and TotalPagesSystemTag objects for this purpose.
+
+Remember that you can create the ones you need, for this you have to implement the **ISystemTag** interface
+
+Basic steps, for more details please see [sample05.cs] file.
+
+1. Load pdf pages 
+
+    **Page 1**
+     
+    ```csharp   
+    var page1 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-05/file-sample-1.pdf"
+    };
+    ```             
+    **Page 2**
+     
+    ```csharp   
+    var page2 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-05/file-sample-2.pdf"
+    };
+    ```             
+    **Page 3**
+     
+    ```csharp   
+    var page3 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-05/file-sample-3.pdf"
+    };
+    ```             
+    **Page 4**
+     
+    ```csharp   
+    var page4 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-05/file-sample-4.pdf"
+    };
+    ```             
+2. Define the styles to use
+      
+    ```csharp   
+    private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+    {
+        "Header",
+        new PdfTextStyle
+        {
+            Font =
+            {
+                Name = "Verdana",
+                Size = 8.0f,
+                Bold = YesNo.Yes,
+                Color = "Gray"
+            },
+            Content =
+            {
+                Alignment =
+                {
+                    Vertical = KnownVerticalAlignment.Center,
+                    Horizontal = KnownHorizontalAlignment.Left
+                }
+            }
+        },
+        "PageNumber",
+        new PdfTextStyle
+        {
+            Font =
+            {
+                Name = "Verdana",
+                Size = 8.0f,
+                Bold = YesNo.No,
+                Color = "Gray"
+            },
+            Content =
+            {
+                Alignment =
+                {
+                    Vertical = KnownVerticalAlignment.Center,
+                    Horizontal = KnownHorizontalAlignment.Right
+                }
+            }
+        },
+        // Other tag styles here!!
+    };             
+    ```
+3. Replace Tags
+
+    Replace the elements in the pages, for reasons of space I omit this step,
+    We would do it as we have seen in examples 1 and 2.
+
+4. Create a special object **GlobalReplacementsCollection**
+
+    ```csharp   
+    var globalReplacements = new GlobalReplacementsCollection
+    {
+        new WithTextObject
+        {
+            Text = "#HEADER-TEXT#",
+            NewText = "Report Name - Lorem ipsum dolor",
+            Style = TextStylesTable["Header"],
+            ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement
+        }
+    };
+    ```
+5. Create a special object **SystemTagsCollection**
+
+    ```csharp   
+    var systemTags = new SystemTagsCollection
+    {
+        new PageNumberSystemTag
+        {
+            TextOffset = PointF.Empty,
+            Style = TextStylesTable["PageNumber"],
+            ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
+        }
+    };
+    ```
+6. Create a list of elements to merge
+
+    Note that you can set the order in which they will be merged.
+
+    ```csharp   
+    var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements })
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4}
+        }
+    };
+    ```
+7. Try to merge into a pdf output result
+
+     ```csharp   
+     var mergeResult = files.TryMergeInputs();
+     if (!mergeResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+8. Save merged result to file
+    
+    ```csharp   
+    var saveResult =  mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample05/Sample-05" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+9. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample05AllPages][Sample05AllPages] 
 
 # Documentation
 
@@ -501,3 +664,6 @@ My email address is
 
 [sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample04.cs
 [Sample04AllPages]: ./assets/samples/sample4/globalreplacements.png "sample04 - global header"
+
+[sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample05.cs
+[Sample05AllPages]: ./assets/samples/sample5/systemtags.png "sample05 - system tags - page numbers"
