@@ -644,6 +644,15 @@ The **test mode** represents a special mode for use at **development time** to s
 During the test mode, both in the case of text and table, it appears with a **red** outline, in the case of images, 
 it is not drawn and the outline also appears in **red**.
 
+To enable or disable test mode, the **UseTestMode** property is available on all repleceable elements.
+
+Where:
+
+| Value | Description |
+|:------|:------|:----------|
+| YesNo.Yes | Activates the test mode |
+| YesNo.No | Shows the applied change |
+
 Basic steps, for more details please see [sample06.cs] file.
 
 1. Load pdf pages 
@@ -761,6 +770,7 @@ Basic steps, for more details please see [sample06.cs] file.
         new WithTextObject
         {
             Text = "#HEADER-TEXT#",
+            UseTestMode = YesNo.Yes,
             NewText = "Report Name - Lorem ipsum dolor",
             Style = TextStylesTable["Header"],
             ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement
@@ -775,6 +785,7 @@ Basic steps, for more details please see [sample06.cs] file.
         new PageNumberSystemTag
         {
             TextOffset = PointF.Empty,
+            UseTestMode = YesNo.Yes,
             Style = TextStylesTable["PageNumber"],
             ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
         }
