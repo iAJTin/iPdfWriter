@@ -36,12 +36,12 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
 
         #region public properties
 
-        #region [public] (bool) Filename: Gets or sets a value thats represents filename if is marked as zipped
+        #region [public] (string) Filename: Gets or sets a value thats represents filename if is marked as zipped
         /// <summary>
         /// Gets or sets a value thats represents filename if is marked as zipped
         /// </summary>
         /// <value>
-        /// <b>true</b> if compression is allowed; otherwise, <b>false</b>.
+        /// Represents filename.
         /// </value>
         public string Filename { get; set; }
         #endregion 

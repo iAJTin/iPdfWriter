@@ -862,6 +862,79 @@ Basic steps, for more details please see [sample06.cs] file.
 
     You can see the result following the following link [Sample07.zip].
 
+### Sample 8 - Shows the use of save as zip a merged output (many files)
+
+ **iPdfWriter** provides the class [PdfObjectConfig.cs], where you can indicate if the result of merging the different pdf files is going to be compressed (for more information, please see **AllowCompression** property), 
+ you can also indicate a threshold (for more information, please see **CompressionThreshold** property), that indicates from what size it is going to be compressed, for example, 
+ you can indicate that you want the result to be compressed if the result of the merge is greater than 2Mb Basic steps, 
+ 
+ For more details please see [sample08.cs] file.
+
+1. Create a list of elements to merge
+
+    **Without CompressionThreshold**
+
+    ```csharp   
+    var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements, AllowCompression = true })
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4},
+        }
+    };
+    ```
+    **With CompressionThreshold**
+
+    ```csharp   
+    var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements, AllowCompression = true, CompressionThreshold = 2 })
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4},
+        }
+    };
+    ```
+2. Try to merge into a pdf output result
+
+    ```csharp   
+    var mergeResult = files.TryMergeInputs();
+    if (!mergeResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+3. Save pdf file result
+ 
+     **Without CompressionThreshold**
+
+    ```csharp   
+    var saveResult = mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample08/Sample-08" });
+    if (!saveResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+    **With CompressionThreshold**
+
+    ```csharp   
+    var saveResult = mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample09/Sample-09" });
+    if (!saveResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+4. Output
+
+    You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample09.zip].
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -898,5 +971,10 @@ My email address is
 
 [sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample07.cs
 [Sample07.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample07
-
 [OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
+
+[sample08.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample08.cs
+[Sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample08
+[PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
+
+[Sample09.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample09
