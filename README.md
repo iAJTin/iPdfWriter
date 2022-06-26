@@ -637,6 +637,189 @@ Basic steps, for more details please see [sample05.cs] file.
 
 ![Sample05AllPages][Sample05AllPages] 
 
+### Sample 6 - Shows use the test mode
+
+The **test mode** represents a special mode for use at **development time** to see if the changes are adjusted correctly.
+
+During the test mode, both in the case of text and table, it appears with a **red** outline, in the case of images, 
+it is not drawn and the outline also appears in **red**.
+
+Basic steps, for more details please see [sample06.cs] file.
+
+1. Load pdf pages 
+
+    **Page 1**
+     
+    ```csharp   
+    var page1 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-06/file-sample-1.pdf"
+    };
+    ```             
+    **Page 2**
+     
+    ```csharp   
+    var page2 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-06/file-sample-2.pdf"
+    };
+    ```             
+    **Page 3**
+     
+    ```csharp   
+    var page3 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-06/file-sample-3.pdf"
+    };
+    ```             
+    **Page 4**
+     
+    ```csharp   
+    var page4 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-06/file-sample-4.pdf"
+    };
+    ```
+2. Define styles
+
+    Please see sample 1.
+
+3. Replace Tags
+
+    **Page 1**
+
+    ```csharp   
+    page1.Replace(new ReplaceText(
+        new WithTextObject
+        {
+            Text = "#TITLE#",
+            NewText = "Lorem ipsum",
+            UseTestMode = YesNo.Yes,
+            Style = TextStylesTable["ReportTitle"],
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+        }));            
+    ```
+
+    ```csharp   
+    using (var barGraph = PdfImage.FromFile("~/Resources/Sample-06/Images/bar-chart.png"))
+    {
+        page1.Replace(new ReplaceText(
+            new WithImageObject
+            {
+                Text = "#BAR-CHART#",
+                UseTestMode = YesNo.Yes,
+                Style = ImagesStylesTable["Default"],
+                ReplaceOptions = ReplaceTextOptions.Default,
+                Image = barGraph
+            }));
+    }
+    ```
+    **Page 2**
+
+    ```csharp   
+    page2.Replace(new ReplaceText(
+        new WithTableObject
+        {
+            Text = "#DATA-TABLE#",
+            UseTestMode = YesNo.Yes,
+            TableOffset = PointF.Empty,
+            Style = PdfTableStyle.Default,
+            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement,
+            Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(), config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
+        }));
+    ```
+    **Page 3**
+
+    Nothing to do
+
+    **Page 4**
+
+    ```csharp   
+    using (var image = PdfImage.FromFile("~/Resources/Sample-06/Images/image-1.jpg"))
+    {
+        page4.Replace(new ReplaceText(
+            new WithImageObject
+            {
+                Text = "#IMAGE1#",
+                UseTestMode = YesNo.Yes,
+                ImageOffset = PointF.Empty,
+                Style = PdfImageStyle.Default,
+                ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+                Image = image
+            }));
+    }
+    ```
+4. Create a special object **GlobalReplacementsCollection**
+
+    ```csharp   
+    var globalReplacements = new GlobalReplacementsCollection
+    {
+        new WithTextObject
+        {
+            Text = "#HEADER-TEXT#",
+            NewText = "Report Name - Lorem ipsum dolor",
+            Style = TextStylesTable["Header"],
+            ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement
+        }
+    };
+    ```
+5. Create a special object **SystemTagsCollection**
+
+    ```csharp   
+    var systemTags = new SystemTagsCollection
+    {
+        new PageNumberSystemTag
+        {
+            TextOffset = PointF.Empty,
+            Style = TextStylesTable["PageNumber"],
+            ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
+        }
+    };
+    ```
+6. Create a list of elements to merge
+
+    Note that you can set the order in which they will be merged.
+
+    ```csharp   
+    var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements })
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4}
+        }
+    };
+    ```
+7. Try to merge into a pdf output result
+
+     ```csharp   
+     var mergeResult = files.TryMergeInputs();
+     if (!mergeResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+8. Save merged result to file
+    
+    ```csharp   
+    var saveResult =  mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample06/Sample-06" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+9. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample06AllPages][Sample06AllPages] 
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -667,3 +850,6 @@ My email address is
 
 [sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample05.cs
 [Sample05AllPages]: ./assets/samples/sample5/systemtags.png "sample05 - system tags - page numbers"
+
+[sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample06.cs
+[Sample06AllPages]: ./assets/samples/sample6/testmode.png "sample06 - test mode"
