@@ -107,8 +107,6 @@ Basic steps, for more details please see [sample01.cs] file.
         {
             Text = "#TITLE#",
             NewText = "Lorem ipsum",
-            UseTestMode = useTestMode,
-            TextOffset = PointF.Empty,
             Style = TextStylesTable["ReportTitle"],
             ReplaceOptions = ReplaceTextOptions.AccordingToMargins
         }));            
@@ -123,8 +121,6 @@ Basic steps, for more details please see [sample01.cs] file.
             new WithImageObject
             {
                 Text = "#BAR-CHART#",
-                UseTestMode = useTestMode,
-                ImageOffset = PointF.Empty,
                 Style = ImagesStylesTable["Default"],
                 ReplaceOptions = ReplaceTextOptions.Default,
                 Image = barGraph
@@ -225,7 +221,6 @@ Basic steps, for more details please see [sample02.cs] file.
         new WithTableObject
         {
             Text = "#DATA-TABLE#",
-            UseTestMode = useTestMode,
             TableOffset = PointF.Empty,
             Style = PdfTableStyle.Default,
             ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
@@ -344,6 +339,141 @@ Basic steps, for more details please see [sample03.cs] file.
 
 ![Sample03AllPages][Sample03AllPages] 
 
+### Sample 4 - Shows use global replacements
+
+On many occasions we must make repetitive replacements such as the header or footer, or any other text or image across the entire report.
+
+For these cases we have global replacements.
+
+Note that the page numbers have not been included in this section as you have a better place to replace them, this is covered a bit later!
+
+Basic steps, for more details please see [sample04.cs] file.
+
+1. Load pdf pages 
+
+    **Page 1**
+     
+    ```csharp   
+    var page1 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-04/file-sample-1.pdf"
+    };
+    ```             
+    **Page 2**
+     
+    ```csharp   
+    var page2 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-04/file-sample-2.pdf"
+    };
+    ```             
+    **Page 3**
+     
+    ```csharp   
+    var page3 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-04/file-sample-3.pdf"
+    };
+    ```             
+    **Page 4**
+     
+    ```csharp   
+    var page4 = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-04/file-sample-4.pdf"
+    };
+    ```             
+2. Define the styles to use
+      
+    ```csharp   
+    private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+    {
+        "Header",
+        new PdfTextStyle
+        {
+            Font =
+            {
+                Name = "Verdana",
+                Size = 8.0f,
+                Bold = YesNo.Yes,
+                Color = "Gray"
+            },
+            Content =
+            {
+                Alignment =
+                {
+                    Vertical = KnownVerticalAlignment.Center,
+                    Horizontal = KnownHorizontalAlignment.Left
+                }
+            }
+        },
+        // Other tag styles here!!
+    };             
+    ```
+3. Replace Tags
+
+    Replace the elements in the pages, for reasons of space I omit this step,
+    We would do it as we have seen in examples 1 and 2.
+
+4. Create a special object **GlobalReplacementsCollection**
+
+    ```csharp   
+    var globalReplacements = new GlobalReplacementsCollection
+    {
+        new WithTextObject
+        {
+            Text = "#HEADER-TEXT#",
+            NewText = "Report Name - Lorem ipsum dolor",
+            Style = TextStylesTable["Header"],
+            ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement
+        }
+    };
+    ```
+5. Create a list of elements to merge
+
+    Note that you can set the order in which they will be merged.
+
+    ```csharp   
+    var files = new PdfObject(new PdfObjectConfig { GlobalReplacements = globalReplacements })
+    {
+        Items = new List<PdfInput>
+        {
+            new PdfInput {Index = 0, Input = page1},
+            new PdfInput {Index = 1, Input = page2},
+            new PdfInput {Index = 2, Input = page3},
+            new PdfInput {Index = 3, Input = page4}
+        }
+    };
+    ```
+6. Try to merge into a pdf output result
+
+     ```csharp   
+     var mergeResult = files.TryMergeInputs();
+     if (!mergeResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+7. Save merged result to file
+    
+    ```csharp   
+    var saveResult =  mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample04/Sample-04" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+8. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample04AllPages][Sample04AllPages] 
+
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -368,3 +498,6 @@ My email address is
 
 [sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample03.cs
 [Sample03AllPages]: ./assets/samples/sample3/mergeresult.png "sample03 - merge"
+
+[sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample04.cs
+[Sample04AllPages]: ./assets/samples/sample4/globalreplacements.png "sample04 - global header"
