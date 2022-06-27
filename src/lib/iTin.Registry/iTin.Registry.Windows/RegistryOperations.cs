@@ -66,12 +66,12 @@ namespace iTin.Registry.Windows
             var existSubkey = CheckClassesRootKey(subkey);
             if (!existSubkey)
             {
-                return default(T);
+                return default;
             }
 
             if (string.IsNullOrEmpty(keyName))
             {
-                return default(T);
+                return default;
             }
 
             return (T)Registry.GetValue($@"HKEY_CLASSES_ROOT\{subkey}", keyName, default(T));
@@ -90,12 +90,12 @@ namespace iTin.Registry.Windows
             var existSubkey = CheckCurrentConfigKey(subkey);
             if (!existSubkey)
             {
-                return default(T);
+                return default;
             }
 
             if (string.IsNullOrEmpty(keyName))
             {
-                return default(T);
+                return default;
             }
 
             return (T)Registry.GetValue($@"HKEY_CURRENT_CONFIG\{subkey}", keyName, default(T));
@@ -114,12 +114,12 @@ namespace iTin.Registry.Windows
             var existSubkey = CheckCurrentUserKey(subkey);
             if (!existSubkey)
             {
-                return default(T);
+                return default;
             }
 
             if (string.IsNullOrEmpty(keyName))
             {
-                return default(T);
+                return default;
             }
 
             return (T)Registry.GetValue($@"HKEY_CURRENT_USER\{subkey}", keyName, default(T));
@@ -162,12 +162,12 @@ namespace iTin.Registry.Windows
             var existSubkey = CheckMachineKey(subkey);
             if (!existSubkey)
             {
-                return default(T);
+                return default;
             }
 
             if (string.IsNullOrEmpty(keyName))
             {
-                return default(T);
+                return default;
             }
 
             return (T)Registry.GetValue($@"HKEY_LOCAL_MACHINE\{subkey}", keyName, default(T));
@@ -186,12 +186,12 @@ namespace iTin.Registry.Windows
             var existSubkey = CheckUsersKey(subkey);
             if (!existSubkey)
             {
-                return default(T);
+                return default;
             }
 
             if (string.IsNullOrEmpty(keyName))
             {
-                return default(T);
+                return default;
             }
 
             return (T)Registry.GetValue($@"HKEY_USERS\{subkey}", keyName, default(T));
