@@ -938,7 +938,7 @@ Basic steps, for more details please see [sample06.cs] file.
 
     You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample09.zip].
 
-### Sample 9 - Shows the use of how serialize text, image and table styles
+### Sample 9 - Shows the use of how serialize and deserialize text, image and table styles
 
  Ok, it's nice to be able to use styles, but in the end if we need to modify the color, or the font, etc..., it would be good if it was static!!!
 
