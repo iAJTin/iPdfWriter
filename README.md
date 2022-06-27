@@ -1204,6 +1204,13 @@ Basic steps, for more details please see [sample06.cs] file.
          // Handle errors
     }
     ```
+
+### Sample 10 - Show a more complete example
+
+ Basic steps, for more details please see [sample13.cs] file.
+
+![Sample13AllPages][Sample13AllPages] 
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -1253,3 +1260,6 @@ My email address is
 
 [sample12.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample12.cs
 [Sample12]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample12
+
+[sample13.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample13.cs
+[Sample13AllPages]: ./assets/samples/sample13/sample13.png "sample13"

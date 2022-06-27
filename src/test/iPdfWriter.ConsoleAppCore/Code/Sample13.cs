@@ -543,7 +543,7 @@ namespace iPdfWriter.Code
                 doc.Replace(new ReplaceText(
                     new WithImageObject
                     {
-                        Text = "#FIRMA1E#",
+                        Text = "#FIRMA1#",
                         UseTestMode = useTestMode,
                         ImageOffset = PointF.Empty,
                         Style = ImagesStylesTable["Default"],
