@@ -23,7 +23,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of test mode.
     /// </summary>
-    internal class Sample06
+    internal static class Sample06
     {
         // Text styles
         private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>

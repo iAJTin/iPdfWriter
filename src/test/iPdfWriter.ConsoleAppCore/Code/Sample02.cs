@@ -22,7 +22,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of html table replacement in a pdf document.
     /// </summary>
-    internal class Sample02
+    internal static class Sample02
     {
         // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)

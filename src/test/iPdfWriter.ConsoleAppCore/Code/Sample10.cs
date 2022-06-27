@@ -21,7 +21,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of save as zip a input with random name.
     /// </summary>
-    internal class Sample10
+    internal static class Sample10
     {
         // Image styles
         private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>

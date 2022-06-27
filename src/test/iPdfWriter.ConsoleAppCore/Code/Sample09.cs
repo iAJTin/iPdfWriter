@@ -24,7 +24,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of compression threshold (>2MB) when merge and zip files (NO zipped).
     /// </summary>
-    internal class Sample09
+    internal static class Sample09
     {
         // Text styles
         private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>

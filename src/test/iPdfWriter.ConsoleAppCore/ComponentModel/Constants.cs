@@ -1,7 +1,7 @@
 ﻿
 namespace iPdfWriter.ComponentModel
 {
-    internal class Constants
+    internal static class Constants
     {
         /// <summary>
         /// Defines app name

@@ -23,7 +23,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the header replacement after merge action
     /// </summary>
-    internal class Sample04
+    internal static class Sample04
     {
         // Image styles
         private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>

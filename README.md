@@ -835,8 +835,11 @@ Basic steps, for more details please see [sample06.cs] file.
 
  Sometimes the result of a **pdf** is too heavy to be able to send it by email or to save it on disk, etc...
 
- **iPdfWriter** provides the [OutputResultConfig.cs] class, where you can define the **name of the zip file** as well as 
- a property indicating whether it is to be compressed.
+ **iPdfWriter** provides the [OutputResultConfig.cs] class, where you can define the **zip file name** as well as 
+ a property indicating whether it is to be compressed. 
+ 
+ If the file name **is not** specified, a **random name** will be automatically generated, the [sample10.cs] file show how it works 
+ and the following link [sample10.zip] shows the output.
 
  Basic steps, for more details please see [sample07.cs] file.
 
@@ -935,6 +938,272 @@ Basic steps, for more details please see [sample06.cs] file.
 
     You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample09.zip].
 
+### Sample 9 - Shows the use of how serialize text, image and table styles
+
+ Ok, it's nice to be able to use styles, but in the end if we need to modify the color, or the font, etc..., it would be good if it was static!!!
+
+ Well, **iPdfWriter** provides a mechanism to be able to serialize and deserialize any style, supported formats are **XML** and **Json**, 
+ you can decide this by using a parameter when saving the style. 
+ 
+ By default it is saved in **XML** format.
+ 
+ For more details please see [sample12.cs] file.
+
+1. Create styles
+
+    **PdfImageStyle**
+
+    ```csharp   
+    var imageStyle = new PdfImageStyle
+    {
+        Name = "ImageStyle",
+        Borders =
+        {
+            new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
+            new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+        },
+        Content =
+        {
+            Color = "Blue",
+            Alignment =
+            {
+                Horizontal = KnownHorizontalAlignment.Right
+            },
+            Properties = new Properties
+            {
+                new Property {Name = "p001", Value = "v001"},
+                new Property {Name = "p002", Value = "v002"}
+            }
+        }
+    };
+    ```
+    **PdfTextStyle**
+
+    ```csharp   
+    var textStyle = new PdfTextStyle
+    {
+        Name = "NormalStyle",
+        Font =
+        {
+            Bold = YesNo.Yes,
+            Italic = YesNo.Yes,
+            Color = "Yellow",
+            Underline = YesNo.No
+        },
+        Borders =
+        {
+            new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
+            new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+        },
+        Content =
+        {
+            Color = "Blue",
+            Alignment =
+            {
+                Vertical = KnownVerticalAlignment.Top,
+                Horizontal = KnownHorizontalAlignment.Right
+            },
+            Properties = new Properties
+            {
+                new Property {Name = "p001", Value = "v001"},
+                new Property {Name = "p002", Value = "v002"}
+            }
+        }
+    };
+    ```
+    **PdfTableStyle**
+
+    ```csharp   
+    var tableStyle = new PdfTableStyle
+    {
+        Name = "NormalStyle",
+        Alignment =
+        {
+            Vertical = KnownVerticalAlignment.Top
+        },
+        Borders =
+        {
+            new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
+            new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+        },
+        Content =
+        {
+            Color = "Blue",
+            Show = YesNo.Yes,
+            Properties = new Properties
+            {
+                new Property {Name = "p001", Value = "v001"},
+                new Property {Name = "p002", Value = "v002"}
+            }
+        }
+    };
+    ```
+2. Try to save styles
+
+    **PdfImageStyle**
+    ***
+
+    **XML**
+    ```csharp   
+    var imageStyleAsXmlResult = imageStyle.SaveToFile("~/Output/Sample12/ImageStyle");
+    if (!imageStyleAsXmlResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+    **Json**
+    ```csharp   
+    var imageStyleAsJsonResult = imageStyle.SaveToFile("~/Output/Sample12/ImageStyle", KnownFileFormat.Json);
+    if (!tableStyleAsJsonResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+    **PdfTextStyle**
+    ***
+
+    **XML**
+    ```csharp   
+    var textStyleAsXmlResult = textStyle.SaveToFile("~/Output/Sample12/TextStyle");
+    if (!textStyleAsXmlResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+    **Json**
+    ```csharp   
+    var textStyleAsJsonResult = textStyle.SaveToFile("~/Output/Sample12/TextStyle", KnownFileFormat.Json);
+    if (!textStyleAsJsonResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+    **PdfTableStyle**
+    ***
+
+    **XML**
+    ```csharp   
+    var tableStyleAsXmlResult = tableStyle.SaveToFile("~/Output/Sample12/TableStyle");
+    if (!tableStyleAsXmlResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+
+    **Json**
+    ```csharp   
+    var tableStyleAsJsonResult = tableStyle.SaveToFile("~/Output/Sample12/TableStyle", KnownFileFormat.Json);
+    if (!tableStyleAsJsonResult.Success)
+    {
+         // Handle errors
+    }
+    ```
+3. Output
+
+    As an example, the result of serializing an image style is shown. 
+    You can see all the results by following the following link [Sample12].
+
+<table>
+ <tr>
+  <td><strong>XML</strong></td>
+  <td><strong>Json</strong></td>
+ </tr>
+ <tr>
+  <td style="vertical-align: top">
+
+```XML
+<?xml version="1.0" encoding="utf-8"?>
+<PdfBaseStyle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:q1="http://schemas.iTin.com/pdf/style/v1.0" xsi:type="q1:PdfImageStyle" Name="ImageStyle">
+	<q1:Borders Color="Red" Position="Right" Show="Yes" />
+	<q1:Borders Color="Yellow" Position="Top" Show="Yes" />
+	<q1:Content AlternateColor="Blue" Color="Blue">
+		<Properties xmlns="http://schemas.iTin.com/style/v1.0">
+			<Property Name="p001" Value="v001" />
+			<Property Name="p002" Value="v002" />
+		</Properties>
+		<q1:Alignment Horizontal="Right" />
+	</q1:Content>
+</PdfBaseStyle>```
+```
+  </td>
+  <td style="vertical-align: top">
+
+```json
+{
+  "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageStyle, iTin.Utilities.Pdf.Design",
+  "content": {
+    "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContent, iTin.Utilities.Pdf.Design",
+    "alignment": {
+      "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContentAlignment, iTin.Utilities.Pdf.Design",
+      "horizontal": "Right"
+    },
+    "alternate-color": "Blue",
+    "color": "Blue",
+    "properties": {
+      "$type": "iTin.Core.Models.Properties, iTin.Core.Models",
+      "$values": [
+        {
+          "$type": "iTin.Core.Models.Property, iTin.Core.Models",
+          "name": "p001",
+          "value": "v001"
+        },
+        {
+          "$type": "iTin.Core.Models.Property, iTin.Core.Models",
+          "name": "p002",
+          "value": "v002"
+        }
+      ]
+    }
+  },
+  "name": "ImageStyle",
+  "inherits": null,
+  "borders": {
+    "$type": "iTin.Core.Models.Design.Styling.BordersCollection, iTin.Core.Models.Design.Styling",
+    "$values": [
+      {
+        "$type": "iTin.Core.Models.Design.Styling.BaseBorder, iTin.Core.Models.Design.Styling",
+        "color": "Red",
+        "position": "Right",
+        "show": "Yes"
+      },
+      {
+        "$type": "iTin.Core.Models.Design.Styling.BaseBorder, iTin.Core.Models.Design.Styling",
+        "color": "Yellow",
+        "position": "Top",
+        "show": "Yes"
+      }
+    ]
+  }
+}
+```
+  </td>
+ </tr>
+</table>
+
+4. Deserialize styles
+
+    Below is how to deserialize an image style
+
+    **XML**
+    ```csharp   
+    var imageStyleFromXml = PdfImageStyle.LoadFromFile("~/Output/Sample12/ImageStyle.xml");
+    if (imageStyleFromXml == null)
+    {
+         // Handle errors
+    }
+    ```
+
+     **Json**
+   ```csharp   
+    var imageStyleFromJson = PdfImageStyle.LoadFromFile("~/Output/Sample12/ImageStyle.json", KnownFileFormat.Json);
+    if (imageStyleFromJson == null)
+    {
+         // Handle errors
+    }
+    ```
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -978,3 +1247,9 @@ My email address is
 [PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
 
 [Sample09.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample09
+
+[Sample10.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample10.cs
+[Sample10.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample10
+
+[sample12.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample12.cs
+[Sample12]: https://github.com/iAJTin/iPdfWriter/tree/master/src/test/iPdfWriter.ConsoleAppCore/Output/Sample12

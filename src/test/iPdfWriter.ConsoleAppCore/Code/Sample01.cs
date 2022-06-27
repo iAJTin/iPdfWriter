@@ -21,7 +21,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of text and image replacement in a pdf document.
     /// </summary>
-    internal class Sample01
+    internal static class Sample01
     {
         // Image styles
         private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>

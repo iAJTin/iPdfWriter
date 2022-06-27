@@ -11,7 +11,7 @@ namespace iPdfWriter
     using Code;
     using ComponentModel;
 
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {

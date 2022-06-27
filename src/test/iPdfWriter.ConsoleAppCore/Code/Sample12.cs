@@ -1,6 +1,4 @@
 ﻿
-using iTin.Core.Models.Design.Styling;
-
 namespace iPdfWriter.Code
 {
     using iTin.Core.ComponentModel;
@@ -9,13 +7,14 @@ namespace iPdfWriter.Code
 
     using iTin.Core.Models;
     using iTin.Core.Models.Design.Enums;
+    using iTin.Core.Models.Design.Styling;
 
     using iTin.Utilities.Pdf.Design.Styles;
 
     /// <summary>
     /// Shows the use of how serialize and deserialize text, image and table styles.
     /// </summary>
-    internal class Sample12
+    internal static class Sample12
     {
         // Generates document
         public static void Generate(ILogger logger)

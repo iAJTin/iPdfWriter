@@ -22,7 +22,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of <b>System Tags</b> such as page number of a document and the use of merge of several entries to compose a complete document.
     /// </summary>
-    internal class Sample05
+    internal static class Sample05
     {
         // Text styles
         private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>

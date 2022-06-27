@@ -23,7 +23,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of save as zip merged output.
     /// </summary>
-    internal class Sample08
+    internal static class Sample08
     {
         // Text styles
         private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>

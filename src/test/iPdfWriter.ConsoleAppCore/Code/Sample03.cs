@@ -23,7 +23,7 @@ namespace iPdfWriter.Code
     /// <summary>
     /// Shows the use of merge action.
     /// </summary>
-    internal class Sample03
+    internal static class Sample03
     {
         // Image styles
         private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>

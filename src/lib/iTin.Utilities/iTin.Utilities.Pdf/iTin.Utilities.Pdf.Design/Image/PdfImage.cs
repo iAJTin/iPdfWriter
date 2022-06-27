@@ -22,7 +22,7 @@ namespace iTin.Utilities.Pdf.Design.Image
     /// <summary>
     /// Defines a <b>pdf</b> image object.
     /// </summary>
-    public class PdfImage : IEquatable<PdfImage>, IDisposable
+    public sealed class PdfImage : IEquatable<PdfImage>, IDisposable
     {
         #region public static readonly members
 
@@ -390,7 +390,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public PdfImage ScaleTo(float maxSize, ScaleStrategy strategy = ScaleStrategy.Auto)
         {
-            if (this.Equals(PdfImage.Null))
+            if (Equals(PdfImage.Null))
             {
                 return this;
             }
@@ -411,20 +411,20 @@ namespace iTin.Utilities.Pdf.Design.Image
             switch (strategy)
             {
                 case ScaleStrategy.Horizontal:
-                    var hratio = (float)maxSize / Image.Width;
+                    var hratio = maxSize / Image.Width;
                     height = Image.Height * hratio;
                     width = Image.Width * hratio;
                     break;
 
                 case ScaleStrategy.Vertical:
-                    var vratio = (float)maxSize / Image.Height;
+                    var vratio = maxSize / Image.Height;
                     height = Image.Height * vratio;
                     width = Image.Width * vratio;
                     break;
 
                 default:
                 case ScaleStrategy.Auto:
-                    var ratio = (float)Math.Min(Image.Width, Image.Height) / Math.Max(Image.Width, Image.Height);
+                    var ratio = Math.Min(Image.Width, Image.Height) / Math.Max(Image.Width, Image.Height);
                     width = Image.Width >= Image.Height ? maxSize : maxSize * ratio;
                     height = Image.Height >= Image.Width ? maxSize : maxSize * ratio;
                     break;
