@@ -1,6 +1,7 @@
 ﻿
 namespace iPdfWriter.Code
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
@@ -314,6 +315,23 @@ namespace iPdfWriter.Code
                         Style = TextStylesTable["MainTitle"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                     }));
+
+            #endregion
+
+            #region Section: Date
+
+            doc
+                .Replace(
+                    new ReplaceText(
+                        new WithTextObject
+                        {
+                            Text = "#DATE_ENTREGA#",
+                            NewText = DateTime.Now.ToShortDateString(),
+                            UseTestMode = useTestMode,
+                            TextOffset = PointF.Empty,
+                            Style = TextStylesTable["RazonSocial"],
+                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                        }));
 
             #endregion
 

@@ -22,7 +22,7 @@ namespace iTin.Utilities.Pdf.Design.Image
     /// <summary>
     /// Defines a <b>pdf</b> image object.
     /// </summary>
-    public sealed class PdfImage : IEquatable<PdfImage>, IDisposable
+    public class PdfImage : IEquatable<PdfImage>, IDisposable
     {
         #region public static readonly members
 
