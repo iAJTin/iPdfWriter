@@ -1126,7 +1126,7 @@ Basic steps, for more details please see [sample06.cs] file.
 		</Properties>
 		<q1:Alignment Horizontal="Right" />
 	</q1:Content>
-</PdfBaseStyle>```
+</PdfBaseStyle>
 ```
   </td>
   <td style="vertical-align: top">
