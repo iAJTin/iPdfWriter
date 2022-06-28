@@ -70,7 +70,7 @@ namespace iTin.Core.IO
                 return string.Empty;
             }
 
-            Uri lUri = new Uri(uri);
+            var lUri = new Uri(uri);
 
             return string.Concat(lUri.LocalPath, lUri.Fragment);
         }
@@ -225,7 +225,11 @@ namespace iTin.Core.IO
                 throw new ArgumentNullException(nameof(path));
             }
 
-            return PathResolverImpl(path.Contains(":") ? UncPathResolver(path) : path);
+            return
+                PathResolverImpl(
+                    path.Contains(":")
+                        ? UncPathResolver(path)
+                        : path);
         }
 
         /// <summary>
@@ -302,16 +306,21 @@ namespace iTin.Core.IO
             var unscapedCandidateUri = Uri.UnescapeDataString(candidateUri.Path);
             var candidateRootPath = NativePath.GetDirectoryName(unscapedCandidateUri);
 
-            var outputPartialPath = string.Empty;
             var rootPattern = $"~{Path.DirectorySeparatorChar}";
+            var outputPartialPath = string.Empty;
             if (!relativePathNormalized.Equals(rootPattern))
             {
-                outputPartialPath = relativePathNormalized.Split(new[] { rootPattern }, StringSplitOptions.RemoveEmptyEntries)[0];
-            }
 
-            var rootPath = candidateRootPath.ToUpperInvariant()
-                .Replace("BIN", string.Empty)
-                .Replace($"{Path.DirectorySeparatorChar}DEBUG", string.Empty);
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+                outputPartialPath = relativePathNormalized
+                    .AsSpan()[(relativePathNormalized.IndexOf('~') + 1)..]
+                    .TrimStart(Path.DirectorySeparatorChar)
+                    .ToString();
+#else
+                outputPartialPath = relativePathNormalized.Split(new[] { rootPattern }, StringSplitOptions.RemoveEmptyEntries)[0];
+#endif
+
+            }
 
             var targetAssembly = Assembly.GetEntryAssembly();
             if (targetAssembly == null)
@@ -319,8 +328,14 @@ namespace iTin.Core.IO
                 targetAssembly = Assembly.GetCallingAssembly();
             }
 
-            var runtimeRootPath = rootPath;
             var netFrameworkVersion = NetFrameworkHelper.GetAssemblyFrameworkVersion(targetAssembly);
+
+            var rootPath = candidateRootPath.ToUpperInvariant()
+                .Replace("BIN", string.Empty)
+                .Replace($"{Path.DirectorySeparatorChar}DEBUG", string.Empty)
+                .Replace($"{Path.DirectorySeparatorChar}NET{netFrameworkVersion.VersionNumber}", string.Empty);
+
+            var runtimeRootPath = rootPath;
             var hasRuntimeOutputFolder = !string.IsNullOrEmpty(netFrameworkVersion.RuntimeOutputFolder());
             if (hasRuntimeOutputFolder)
             {

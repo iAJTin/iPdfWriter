@@ -1,11 +1,10 @@
 ﻿
+using iTin.Core.ComponentModel;
+using iTin.Core.Helpers;
+using iTin.Logging;
+
 namespace iTin.Core.IO
 {
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Helpers;
-
-    using iTin.Logging;
-
     /// <summary>
     /// Static class than contains extension methods for objects <see cref="T:System.Array" /> of type <see cref="T:System.Byte" />.
     /// </summary> 
@@ -22,7 +21,7 @@ namespace iTin.Core.IO
         public static IResult SaveToFile(this byte[] data, string filename)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Saves this byte array into file");
             Logger.Instance.Debug($" > Signature: ({typeof(IResult)}) SaveToFile(this {typeof(byte[])}, {typeof(string)})");
 

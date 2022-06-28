@@ -18,7 +18,7 @@ namespace iTin.Core
         public static void Clear(this StringBuilder builder)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: StringBuilderExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(StringBuilderExtensions).Assembly.GetName().Name}, v{typeof(StringBuilderExtensions).Assembly.GetName().Version}, Namespace: {typeof(StringBuilderExtensions).Namespace}, Class: {nameof(StringBuilderExtensions)}");
             Logger.Instance.Debug(" Clears the specified string builder");
             Logger.Instance.Debug($" > Signature: (void) Clear(this {typeof(StringBuilder)})");
 

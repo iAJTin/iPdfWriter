@@ -22,7 +22,7 @@ namespace iTin.Core
         public static string AsString(this List<string> items, char separator)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: StringListExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(StringListExtensions).Assembly.GetName().Name}, v{typeof(StringListExtensions).Assembly.GetName().Version}, Namespace: {typeof(StringListExtensions).Namespace}, Class: {nameof(StringListExtensions)}");
             Logger.Instance.Debug(" Returns a new string with string items joined with specified char");
             Logger.Instance.Debug($" > Signature: ({typeof(string)}) AsString(this {typeof(List<string>)}, {typeof(char)})");
             Logger.Instance.Debug($"   > items: {items.Count}, [{items[0]} ...]");

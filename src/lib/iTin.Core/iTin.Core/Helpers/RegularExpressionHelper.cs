@@ -43,7 +43,7 @@ namespace iTin.Core.Helpers
         public static bool IsNumeric(string value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: RegularExpressionHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(RegularExpressionHelper).Assembly.GetName().Name}, v{typeof(RegularExpressionHelper).Assembly.GetName().Version}, Namespace: {typeof(RegularExpressionHelper).Namespace}, Class: {nameof(RegularExpressionHelper)}");
             Logger.Instance.Debug(" Determines whether value parameter is a integer number.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsNumeric({typeof(string)})");
 
@@ -75,7 +75,7 @@ namespace iTin.Core.Helpers
         public static bool IsValidGuid(string value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: RegularExpressionHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(RegularExpressionHelper).Assembly.GetName().Name}, v{typeof(RegularExpressionHelper).Assembly.GetName().Version}, Namespace: {typeof(RegularExpressionHelper).Namespace}, Class: {nameof(RegularExpressionHelper)}");
             Logger.Instance.Debug(" Determines whether value parameter is a valid guid.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidGuid({typeof(string)})");
 
@@ -105,7 +105,7 @@ namespace iTin.Core.Helpers
         public static bool IsValidIpAddress(string value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: RegularExpressionHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(RegularExpressionHelper).Assembly.GetName().Name}, v{typeof(RegularExpressionHelper).Assembly.GetName().Version}, Namespace: {typeof(RegularExpressionHelper).Namespace}, Class: {nameof(RegularExpressionHelper)}");
             Logger.Instance.Debug(" Determines whether value parameter is valid ip address.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidIpAddress({typeof(string)})");
 
@@ -136,7 +136,7 @@ namespace iTin.Core.Helpers
         public static bool IsValidEmailAddress(string value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: RegularExpressionHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(RegularExpressionHelper).Assembly.GetName().Name}, v{typeof(RegularExpressionHelper).Assembly.GetName().Version}, Namespace: {typeof(RegularExpressionHelper).Namespace}, Class: {nameof(RegularExpressionHelper)}");
             Logger.Instance.Debug(" Determines whether value parameter is valid mail address.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidEmailAddress({typeof(string)})");
 
@@ -166,7 +166,7 @@ namespace iTin.Core.Helpers
         public static bool IsValidPath(string value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: RegularExpressionHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(RegularExpressionHelper).Assembly.GetName().Name}, v{typeof(RegularExpressionHelper).Assembly.GetName().Version}, Namespace: {typeof(RegularExpressionHelper).Namespace}, Class: {nameof(RegularExpressionHelper)}");
             Logger.Instance.Debug(" Determines whether value parameter is a valid path.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidPath({typeof(string)})");
 

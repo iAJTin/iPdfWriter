@@ -20,7 +20,7 @@ namespace iTin.Core.Helpers
         public static TimeSpan ToTimeSpan(int minutes)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: TimeHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(TimeHelper).Assembly.GetName().Name}, v{typeof(TimeHelper).Assembly.GetName().Version}, Namespace: {typeof(TimeHelper).Namespace}, Class: {nameof(TimeHelper)}");
             Logger.Instance.Debug($" Converts value expresed in minutes into a new {typeof(TimeSpan)}.");
             Logger.Instance.Debug($" > Signature: ({typeof(TimeSpan)}) ToTimeSpan(this {typeof(int)})");
             Logger.Instance.Debug($"   > minutes: {minutes}");

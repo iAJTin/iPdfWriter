@@ -78,6 +78,11 @@ namespace iTin.Core.IO
             bool isNetCore = VersionName.Contains("NETCore");
             if (isNetCore)
             {
+                if (float.Parse(VersionNumber) >= 60f)
+                {
+                    return $"net{VersionNumber}";
+                }
+
                 return $"netcoreapp{VersionNumber}";
             }
 

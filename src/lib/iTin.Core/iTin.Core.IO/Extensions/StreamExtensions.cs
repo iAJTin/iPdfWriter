@@ -1,16 +1,15 @@
 ﻿
+using System;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+using iTin.Core.Helpers;
+using iTin.Logging;
+
+using NativeIO = System.IO;
+
 namespace iTin.Core.IO
 {
-    using System;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-    using iTin.Core.Helpers;
-
-    using iTin.Logging;
-
-    using NativeIO = System.IO;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.IO.Stream" />.
     /// </summary> 
@@ -30,7 +29,7 @@ namespace iTin.Core.IO
         public static IResult SaveToFile(this NativeIO.Stream stream, string fileName, SaveOptions options = null)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly:  iTin.Core.IO, Namespace:  iTin.Core.IO, Class: StreamExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(StreamExtensions).Assembly.GetName().Name}, v{typeof(StreamExtensions).Assembly.GetName().Version}, Namespace: {typeof(StreamExtensions).Namespace}, Class: {nameof(StreamExtensions)}");
             Logger.Instance.Debug(" Saves this stream into a file with name specified by filename");
             Logger.Instance.Debug($" > Signature: ({typeof(IResult)}) SaveToFile(this {typeof(NativeIO.Stream)}, {typeof(string)})");
 

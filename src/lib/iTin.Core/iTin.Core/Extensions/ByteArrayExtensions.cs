@@ -22,7 +22,7 @@ namespace iTin.Core
         public static MemoryStream ToMemoryStream(this byte[] data)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Returns a {typeof(MemoryStream)} from this byte array");
             Logger.Instance.Debug($" > Signature: ({typeof(MemoryStream)}) ToMemoryStream(this {typeof(byte[])})");
 
@@ -48,7 +48,7 @@ namespace iTin.Core
         public static int GetDoubleWord(this byte[] data, byte start)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Returns a Double Word from this array of bytes starting in start");
             Logger.Instance.Debug($" > Signature: ({typeof(int)}) GetDoubleWord(this {typeof(byte[])}, {typeof(byte)})");
 
@@ -77,7 +77,7 @@ namespace iTin.Core
         public static long GetQuadrupleWord(this byte[] data, byte start)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Returns a Quadriple Word from this array of bytes starting in start");
             Logger.Instance.Debug($" > Signature: ({typeof(long)}) GetQuadrupleWord(this {typeof(byte[])}, {typeof(byte)})");
 
@@ -106,7 +106,7 @@ namespace iTin.Core
         public static int GetWord(this byte[] data, byte start)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Returns a Word from this array of bytes starting in start");
             Logger.Instance.Debug($" > Signature: ({typeof(int)}) GetWord(this {typeof(byte[])}, {typeof(byte)})");
 
@@ -134,7 +134,7 @@ namespace iTin.Core
         public static byte[] Swap(this byte[] data)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: ByteArrayExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
             Logger.Instance.Debug(" Returns an array of bytes by exchanging bytes.");
             Logger.Instance.Debug($" > Signature: ({typeof(byte[])}) GetWord(this {typeof(byte[])})");
 

@@ -1,0 +1,17 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
+		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Models.Design\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
+		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core\iTin.Core.csproj" />
+		<ProjectReference Include="..\..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
+		<ProjectReference Include="..\..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\iTin.Utilities.Pdf.Writer.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -22,7 +22,7 @@ namespace iTin.Core.Helpers
         public static async Task DelayActionAsync(int delay, Action action)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: TimeAsyncHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(TimeAsyncHelper).Assembly.GetName().Name}, v{typeof(TimeAsyncHelper).Assembly.GetName().Version}, Namespace: {typeof(TimeAsyncHelper).Namespace}, Class: {nameof(TimeAsyncHelper)}");
             Logger.Instance.Debug($" Make a wait asynchronously and then execute the specified action");
             Logger.Instance.Debug($" > Signature: ({typeof(Task)}) DelayActionAsync({typeof(int)}, {typeof(Action)})");
             Logger.Instance.Debug($"   > delay: {delay}");

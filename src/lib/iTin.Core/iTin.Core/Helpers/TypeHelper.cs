@@ -19,7 +19,7 @@ namespace iTin.Core.Helpers
         public static T ToType<T>(object value)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core.Helpers, Class: TypeHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(TypeHelper).Assembly.GetName().Name}, v{typeof(TypeHelper).Assembly.GetName().Version}, Namespace: {typeof(TypeHelper).Namespace}, Class: {nameof(TypeHelper)}");
             Logger.Instance.Debug(" Converts value to specified type");
             Logger.Instance.Debug($" > Signature: ({typeof(T)}) ToType<{typeof(T)}>(this {typeof(object)})");
 

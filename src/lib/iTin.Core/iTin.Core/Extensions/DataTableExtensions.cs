@@ -22,7 +22,7 @@ namespace iTin.Core
         public static string ToHtmlTable(this DataTable input)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core, Namespace: iTin.Core, Class: DataTableExtensions");
+            Logger.Instance.Debug($" Assembly: {typeof(DataTableExtensions).Assembly.GetName().Name}, v{typeof(DataTableExtensions).Assembly.GetName().Version}, Namespace: {typeof(DataTableExtensions).Namespace}, Class: {nameof(DataTableExtensions)}");
             Logger.Instance.Debug(" Returns a HTML table.");
             Logger.Instance.Debug($" > Signature: ({typeof(string)}) ToHtmlTable(this {typeof(DataTable)})");
             Logger.Instance.Debug($"   > input: {input}");
