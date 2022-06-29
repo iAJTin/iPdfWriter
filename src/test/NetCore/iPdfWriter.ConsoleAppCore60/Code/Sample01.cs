@@ -114,7 +114,6 @@ namespace iPdfWriter.Code
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }));
 
-
             // Inserts bar-chart image
             using (var barGraph = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png"))
             {

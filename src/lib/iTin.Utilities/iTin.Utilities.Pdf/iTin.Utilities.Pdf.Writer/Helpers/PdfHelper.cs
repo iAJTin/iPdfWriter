@@ -29,7 +29,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         public static PdfPCell CreateCell(string text, PdfTextStyle style, YesNo useTestMode = YesNo.No)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.Helpers, Class: PdfHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
             Logger.Instance.Debug($" Creates a new cell with the visual style defined in the model");
             Logger.Instance.Debug($" > Signature: ({typeof(PdfPCell)}) CreateCell({typeof(string)}, {typeof(PdfTextStyle)})");
             Logger.Instance.Debug($"   > text: {text}");
@@ -51,9 +51,13 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// </returns>
         public static PdfPCell CreateEmptyCell(YesNo useTestMode = YesNo.No, BordersCollection borders = null)
         {
-            return useTestMode.AsBoolean()
-                ? CreateEmptyWithBorderCell(BordersCollection.FromKnownColor(KnownBorderColor.Red))
-                : borders == null
+            if (useTestMode.AsBoolean())
+            {
+                return CreateEmptyWithBorderCell(BordersCollection.FromKnownColor(KnownBorderColor.Red));
+            }
+
+            return
+                borders == null
                     ? CreateEmptyWithoutBorderCell()
                     : CreateEmptyWithBorderCell(borders);
         }
@@ -85,7 +89,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         public static Font CreateFont(FontModel font)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.Helpers, Class: PdfHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
             Logger.Instance.Debug($" Creates a new font from model");
             Logger.Instance.Debug($" > Signature: ({typeof(Font)}) CreateFont({typeof(FontModel)})");
             Logger.Instance.Debug($"   > font: {font}");
@@ -147,7 +151,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         public static Font DefaultFont()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.Helpers, Class: PdfHelper");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
             Logger.Instance.Debug($" Creates a new font which is default font from model");
             Logger.Instance.Debug($" > Signature: ({typeof(Font)}) DefaultFont()");
 

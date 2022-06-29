@@ -33,16 +33,16 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public static PdfPTable AddCells(this PdfPTable table, Collection<PdfPCell> cells)
         {
-            Logger.Instance.Debug("External Call");
-            Logger.Instance.Info("  Adds the cells");
-            Logger.Instance.Info("  > Library: iTin.Utilities.Pdf");
-            Logger.Instance.Info("  > Class: PdfExtensions");
-            Logger.Instance.Info("  > Method: AddCells(this PdfPTable, Collection<PdfPCell>)");
-            Logger.Instance.Info("  > Output: PdfPTable");
-
             SentinelHelper.ArgumentNull(table, nameof(table));
             SentinelHelper.ArgumentNull(cells, nameof(cells));
 
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
+            Logger.Instance.Debug($" Creates a new font from model");
+            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPTable)}, {typeof(Collection<PdfPCell>)})");
+            Logger.Instance.Debug($"   > table: {table}");
+            Logger.Instance.Debug($"   > cells: {cells.Count}");
+            
             foreach (var cell in cells)
             {
                 table.AddCell(cell);
@@ -60,15 +60,15 @@ namespace iTin.Utilities.Pdf.Writer
         /// <param name="alignment">Text alignment to apply.</param>
         public static void SetAlignmentVisualStyle(this PdfPCell cell, PdfTextContentAlignment alignment)
         {
-            Logger.Instance.Debug("External Call");
-            Logger.Instance.Info("  Sets visual text alignment for specified cell");
-            Logger.Instance.Info("  > Library: iTin.Utilities.Pdf");
-            Logger.Instance.Info("  > Class: PdfExtensions");
-            Logger.Instance.Info("  > Method: SetAlignmentVisualStyle(this PdfPCell, ContentAlignmentModel)");
-            Logger.Instance.Info("  > Output: void");
-
             SentinelHelper.ArgumentNull(cell, nameof(cell));
             SentinelHelper.ArgumentNull(alignment, nameof(alignment));
+
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
+            Logger.Instance.Debug($" Sets visual text alignment for specified cell");
+            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPCell)}, {typeof(PdfTextContentAlignment)})");
+            Logger.Instance.Debug($"   > cell: {cell}");
+            Logger.Instance.Debug($"   > alignment: {alignment}");
 
             cell.VerticalAlignment = alignment.Vertical.ToElementVerticalAlignment();
             cell.HorizontalAlignment = alignment.Horizontal.ToElementHorizontalAlignment();
@@ -226,15 +226,16 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public static PdfPCell SetVisualStyle(this PdfPCell cell, PdfTextStyle style, YesNo useTestMode = YesNo.No)
         {
-            Logger.Instance.Debug("External Call");
-            Logger.Instance.Info("  Sets visual style for specified cell");
-            Logger.Instance.Info("  > Library: iTin.Utilities.Pdf");
-            Logger.Instance.Info("  > Class: PdfExtensions");
-            Logger.Instance.Info("  > Method: SetVisualStyle(this PdfPCell, StyleModel)");
-            Logger.Instance.Info("  > Output: PdfPCell");
-
             SentinelHelper.ArgumentNull(cell, nameof(cell));
             SentinelHelper.ArgumentNull(style, nameof(style));
+
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
+            Logger.Instance.Debug($" Sets visual text alignment for specified cell");
+            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPCell)}, {typeof(PdfTextStyle)}, {typeof(YesNo)} = {nameof(YesNo.No)})");
+            Logger.Instance.Debug($"   > cell: {cell}");
+            Logger.Instance.Debug($"   > style: {style}");
+            Logger.Instance.Debug($"   > useTestMode: {useTestMode}");
 
             cell.BackgroundColor = new BaseColor(style.Content.GetColor());
             cell.SetAlignmentVisualStyle(style.Content.Alignment);

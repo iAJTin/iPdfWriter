@@ -131,7 +131,7 @@ namespace iTin.Core
 
             if (items == null)
             {
-                return null;
+                return Array.Empty<T>().ToList();
             }
 
             var list = items.ToList();

@@ -669,8 +669,6 @@ namespace iTin.Core.Drawing
         /// <exception cref="ArgumentNullException">
         /// El valor de format es <strong>null</strong>.
         /// </exception>
-        [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
-        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public static Rectangle[] AlignInside(Rectangle rect, Size text, ContentAlignment textAlignment, Size image, ContentAlignment imageAlignment, int gap)
         {
             Rectangle auxRect;

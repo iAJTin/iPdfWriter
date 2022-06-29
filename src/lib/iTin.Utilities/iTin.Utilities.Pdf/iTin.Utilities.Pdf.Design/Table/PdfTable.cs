@@ -1,10 +1,9 @@
 ﻿
-using System.Linq;
-
 namespace iTin.Utilities.Pdf.Design.Table
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Text;
 
     using iTextSharp.text.pdf;
@@ -17,6 +16,7 @@ namespace iTin.Utilities.Pdf.Design.Table
     using iTextSharp.tool.xml.pipeline.html;
 
     using iTin.Core;
+    using iTin.Logging;
 
     /// <summary>
     /// Defines a <b>pdf</b> table object.
@@ -33,6 +33,11 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <param name="configuration">Table configuration reference.</param>
         private PdfTable(PdfPTable reference, PdfTableConfig configuration = null)
         {
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfTable).Assembly.GetName().Name}, v{typeof(PdfTable).Assembly.GetName().Version}, Namespace: {typeof(PdfTable).Namespace}, Class: {nameof(PdfTable)}");
+            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfTable)} class");
+            Logger.Instance.Debug($" > Signature: #ctor({typeof(PdfPTable)}, {typeof(PdfTableConfig)} = null)");
+
             var safeConfiguration = configuration;
             if (configuration == null)
             {
@@ -41,6 +46,9 @@ namespace iTin.Utilities.Pdf.Design.Table
 
             Table = reference;
             Configuration = safeConfiguration.Clone();
+
+            Logger.Instance.Debug($"   -> Table: {Table}");
+            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
         }
         #endregion
 
@@ -72,15 +80,15 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region public static methods
 
-        #region [public] {static} (PdfTable) CreateFromHtml(string, string = default, PdfTableConfig = null): Creates a PdfTable object from specified HTML code.
+        #region [public] {static} (PdfTable) CreateFromHtml(string, string = default, PdfTableConfig = null): Creates a PdfTable object from specified HTML code, HTML5 tags not supported.
         /// <summary>
-        /// Creates a <see cref="PdfTable"/> object from specified <b>HTML</b> code.
+        /// Creates a <see cref="PdfTable"/> object from specified <b>HTML</b> code, <b>HTML5 tags not supported</b> 
         /// </summary>
         /// <param name="html">A reference to input html code to convert.</param>
         /// <param name="css">A reference to css styles to apply.</param>
         /// <param name="config">Table configuration reference.</param>
         /// <returns>
-        /// A new <see cref="PdfPTable"/> that contains a 
+        /// A new <see cref="PdfPTable"/> instance that contains the table from <b>HTML</b>.
         /// </returns>
         public static PdfTable CreateFromHtml(string html, string css = default, PdfTableConfig config = null)
         {
@@ -91,28 +99,28 @@ namespace iTin.Utilities.Pdf.Design.Table
             }
 
             // css
-            StyleAttrCSSResolver cssResolver = new StyleAttrCSSResolver();
-            ICssFile cssFile = XMLWorkerHelper.GetCSS(css.AsStream());
+            var cssResolver = new StyleAttrCSSResolver();
+            var cssFile = XMLWorkerHelper.GetCSS(css.AsStream());
             cssResolver.AddCss(cssFile);
 
             // html
-            XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts)));
-            CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
-            HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
+            var fontProvider = new XMLWorkerFontProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts)));
+            var cssAppliers = new CssAppliersImpl(fontProvider);
+            var htmlContext = new HtmlPipelineContext(cssAppliers);
             htmlContext.SetTagFactory(Tags.GetHtmlTagProcessorFactory());
             
             // pipelines
-            ElementList elements = new ElementList();
-            ElementHandlerPipeline pdf = new ElementHandlerPipeline(elements, null);
-            HtmlPipeline htmlPipeline = new HtmlPipeline(htmlContext, pdf);
-            CssResolverPipeline cssPipeline = new CssResolverPipeline(cssResolver, htmlPipeline);
+            var elements = new ElementList();
+            var pdf = new ElementHandlerPipeline(elements, null);
+            var htmlPipeline = new HtmlPipeline(htmlContext, pdf);
+            var cssPipeline = new CssResolverPipeline(cssResolver, htmlPipeline);
 
             // XML Worker
-            XMLWorker worker = new XMLWorker(cssPipeline, true);
-            XMLParser parser = new XMLParser(worker, Encoding.UTF8);
+            var worker = new XMLWorker(cssPipeline, true);
+            var parser = new XMLParser(worker, Encoding.UTF8);
             parser.Parse(html.AsStream(Encoding.UTF8), true);
 
-            PdfPTable nativeTable = elements.OfType<PdfPTable>().FirstOrDefault();
+            var nativeTable = elements.OfType<PdfPTable>().FirstOrDefault();
 
             return new PdfTable(nativeTable, config);
         }

@@ -158,14 +158,11 @@ namespace iTin.Core.IO
         /// <summary>
         /// True if the child path is a child of the parent path.
         /// </summary>
-        public static bool IsChildPath(string parentPath, string childPath)
-        {
-            return
-                parentPath.Length > 0
-                && childPath.Length > parentPath.Length
-                && PathsEqual(childPath, parentPath, parentPath.Length)
-                && (IsDirectorySeparator(parentPath[parentPath.Length - 1]) || IsDirectorySeparator(childPath[parentPath.Length]));
-        }
+        public static bool IsChildPath(string parentPath, string childPath) =>
+            parentPath.Length > 0 && 
+            childPath.Length > parentPath.Length && 
+            PathsEqual(childPath, parentPath, parentPath.Length) && 
+            (IsDirectorySeparator(parentPath[parentPath.Length - 1]) || IsDirectorySeparator(childPath[parentPath.Length]));
 
         /// <summary>
         /// True if the two paths are the same.
@@ -306,21 +303,23 @@ namespace iTin.Core.IO
             var unscapedCandidateUri = Uri.UnescapeDataString(candidateUri.Path);
             var candidateRootPath = NativePath.GetDirectoryName(unscapedCandidateUri);
 
-            var rootPattern = $"~{Path.DirectorySeparatorChar}";
+            var rootPattern = $"~{DirectorySeparatorChar}";
+            
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+            var outputPartialPath = ReadOnlySpan<char>.Empty;
+            if (!relativePathNormalized.Equals(rootPattern))
+            {
+                outputPartialPath = relativePathNormalized
+                    .AsSpan()[(relativePathNormalized.IndexOf('~') + 1)..]
+                    .TrimStart(DirectorySeparatorChar);
+            }
+#else
             var outputPartialPath = string.Empty;
             if (!relativePathNormalized.Equals(rootPattern))
             {
-
-#if NETSTANDARD2_1 || NET5_0_OR_GREATER
-                outputPartialPath = relativePathNormalized
-                    .AsSpan()[(relativePathNormalized.IndexOf('~') + 1)..]
-                    .TrimStart(Path.DirectorySeparatorChar)
-                    .ToString();
-#else
                 outputPartialPath = relativePathNormalized.Split(new[] { rootPattern }, StringSplitOptions.RemoveEmptyEntries)[0];
-#endif
-
             }
+#endif
 
             var targetAssembly = Assembly.GetEntryAssembly();
             if (targetAssembly == null)
@@ -332,17 +331,21 @@ namespace iTin.Core.IO
 
             var rootPath = candidateRootPath.ToUpperInvariant()
                 .Replace("BIN", string.Empty)
-                .Replace($"{Path.DirectorySeparatorChar}DEBUG", string.Empty)
-                .Replace($"{Path.DirectorySeparatorChar}NET{netFrameworkVersion.VersionNumber}", string.Empty);
+                .Replace($"{DirectorySeparatorChar}DEBUG", string.Empty)
+                .Replace($"{DirectorySeparatorChar}NET{netFrameworkVersion.VersionNumber}", string.Empty);
 
             var runtimeRootPath = rootPath;
             var hasRuntimeOutputFolder = !string.IsNullOrEmpty(netFrameworkVersion.RuntimeOutputFolder());
             if (hasRuntimeOutputFolder)
             {
-                runtimeRootPath = rootPath.Replace($"{Path.DirectorySeparatorChar}{netFrameworkVersion.RuntimeOutputFolder().ToUpperInvariant()}", string.Empty);
+                runtimeRootPath = rootPath.Replace($"{DirectorySeparatorChar}{netFrameworkVersion.RuntimeOutputFolder().ToUpperInvariant()}", string.Empty);
             }
 
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+            return NativePath.Combine(runtimeRootPath, outputPartialPath.ToString());
+#else
             return NativePath.Combine(runtimeRootPath, outputPartialPath);
+#endif
         }
     }
 }

@@ -117,7 +117,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 return PdfBaseStyle.Default;
             }
 
-            var style = Find(s => s.Name.Equals(value));
+            var style = Find(stle => stle.Name.Equals(value));
 
             return style ?? PdfBaseStyle.Default;
         }

@@ -1,8 +1,18 @@
 
 namespace iTin.Core.ComponentModel
 {
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+    using System.Linq;
+
+#else
+
     using System;
-    using System.Runtime.Versioning;
+
+#endif
+
+using System.Runtime.Versioning;
 
     /// <summary>
     /// This class allows to obtain the .net framework folder for a specific version.
@@ -18,11 +28,23 @@ namespace iTin.Core.ComponentModel
         /// <param name="frameworkAttribute">Framework compiled information</param>
         internal FrameworkVersion(TargetFrameworkAttribute frameworkAttribute)
         {
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+            var items = frameworkAttribute.FrameworkName.SplitString(new[] {','}).AsEnumerable().ToList();
+            VersionName = items.ElementAt(0);
+
+            var frameworkVersionItems = items.ElementAt(1).SplitString(new[] {'='}).AsEnumerable();
+            VersionNumber = frameworkVersionItems.ElementAt(1).Replace("v", string.Empty);
+
+#else
             var items = frameworkAttribute.FrameworkName.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
             VersionName = items[0];
 
             var frameworkVersionItems = items[1].Split(new[] {'='}, StringSplitOptions.RemoveEmptyEntries);
             VersionNumber = frameworkVersionItems[1].Replace("v", string.Empty);
+
+#endif
         }
         #endregion
 

@@ -1,11 +1,18 @@
 
 namespace iTin.Core
 {
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+    
+    using System.Linq;
+
+#endif
+
     using System;
     using System.Globalization;
 
     using Logging;
-
+    
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.DateTime" />.
     /// </summary> 
@@ -210,19 +217,31 @@ namespace iTin.Core
         /// </returns>
         public static string[] Split(this DateTime target)
         {
-            var databaseFullDate = target.ToString();
+            var databaseFullDate = target.ToString(CultureInfo.CurrentCulture);
 
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+            return databaseFullDate.SplitString(new[] {' '}).AsEnumerable().ToArray();
+#else
             return databaseFullDate.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+#endif
         }
 
         /// <summary>
-        /// 
+        /// Returns only time part of target <see cref="T:System.DateTime"/>.
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="target">target datetime</param>
         /// <returns>
+        /// Returns only time part of target datetime
         /// </returns>
         public static string TimePartOnly(this DateTime target)
         {
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(DateTimeExtensions).Assembly.GetName().Name}, v{typeof(DateTimeExtensions).Assembly.GetName().Version}, Namespace: {typeof(DateTimeExtensions).Namespace}, Class: {nameof(DateTimeExtensions)}");
+            Logger.Instance.Debug($" Returns only time part of target {typeof(DateTime)}");
+            Logger.Instance.Debug($" > Signature: ({typeof(string)}) DatePartOnly(this {typeof(DateTime)})");
+            Logger.Instance.Debug($"   > target: {target.ToString(CultureInfo.CurrentCulture)}");
+
             var dateAndTime = target.Split();
             var existTimePart = dateAndTime.Length == 2;
 

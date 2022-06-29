@@ -289,11 +289,11 @@ namespace iTin.Core
 
         #region internal static methods
 
-        #region [public] {static} (void) ReverseContents<T>(this T[]);
+        #region [internal] {static} (void) ReverseContents<T>(this T[]);
         internal static void ReverseContents<T>(this T[] array) => ReverseContents(array, 0, array.Length);
         #endregion
 
-        #region [public] {static} (void) ReverseContents<T>(this T[], int, int): 
+        #region [internal] {static} (void) ReverseContents<T>(this T[], int, int): 
         internal static void ReverseContents<T>(this T[] array, int start, int count)
         {
             int end = start + count - 1;

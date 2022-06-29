@@ -1,41 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp3.1;netstandard2.0</TargetFrameworks>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>1.0.0.1</Version>
-    <Description>Data models base</Description>
-    <Copyright>Copyright © 2020</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageId>iTin.Core.Models</PackageId>
-    <Company>iTin</Company>
-    <Product>iTin.Core.Models</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net461;</TargetFrameworks>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.0.2</Version>
+		<Description>Data models base</Description>
+		<Copyright>Copyright © 2020</Copyright>
+		<PackageProjectUrl></PackageProjectUrl>
+		<PackageId>iTin.Core.Models</PackageId>
+		<Company>iTin</Company>
+		<Product>iTin.Core.Models</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
-    <ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
+		<ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
+	</ItemGroup>
 
 
-  <!-- Design > Shared > Property -->
-  <ItemGroup>
-    <Compile Update="Design\Shared\Properties\Property\PropertyModel.*.cs">
-      <DependentUpon>PropertyModel.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Design\Shared\Properties\Property\Property.designer.cs">
-      <DependentUpon>Property.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<!-- Design > Shared > Property -->
+	<ItemGroup>
+		<Compile Update="Design\Shared\Properties\Property\PropertyModel.*.cs">
+			<DependentUpon>PropertyModel.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Design\Shared\Properties\Property\Property.designer.cs">
+			<DependentUpon>Property.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
 </Project>

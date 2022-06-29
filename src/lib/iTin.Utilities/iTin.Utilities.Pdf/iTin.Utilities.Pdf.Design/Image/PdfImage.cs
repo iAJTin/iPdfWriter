@@ -13,6 +13,7 @@ namespace iTin.Utilities.Pdf.Design.Image
     using iTin.Core.Drawing;
     using iTin.Core.Drawing.ComponentModel;
     using iTin.Core.Helpers;
+    using iTin.Logging;
 
     using NativeImage = System.Drawing.Image;
     using NativePdfImage = iTextSharp.text.Image;
@@ -22,7 +23,7 @@ namespace iTin.Utilities.Pdf.Design.Image
     /// <summary>
     /// Defines a <b>pdf</b> image object.
     /// </summary>
-    public class PdfImage : IEquatable<PdfImage>, IDisposable
+    public sealed class PdfImage : IEquatable<PdfImage>, IDisposable
     {
         #region public static readonly members
 
@@ -65,6 +66,10 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </summary>
         internal PdfImage()
         {
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
+            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class");
+            Logger.Instance.Debug($" > Signature: #ctor()");
         }
         #endregion
 
@@ -74,9 +79,43 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </summary>
         /// <param name="imagePath">A reference to image path. The use of the <b>~</b> character is allowed to indicate relative paths, and you can also use <b>UNC</b> path.</param>
         /// <param name="configuration">Image configuration reference.</param>
-        internal PdfImage(string imagePath, PdfImageConfig configuration = null) : this(NativeImage.FromFile(iTinIO.Path.PathResolver(imagePath)), configuration)
+        internal PdfImage(string imagePath, PdfImageConfig configuration = null)
         {
-            Path = iTinIO.File.ToUri(iTinIO.Path.PathResolver(imagePath));
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
+            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class with a image path and optional image configuration");
+            Logger.Instance.Debug($" > Signature: #ctor({typeof(PdfImage)}, {typeof(PdfImageConfig)} = null)");
+
+            var safeConfiguration = configuration;
+            if (configuration == null)
+            {
+                safeConfiguration = PdfImageConfig.Default;
+            }
+
+            Configuration = safeConfiguration.Clone();
+
+            var normalizedImagePath = iTinIO.Path.PathResolver(imagePath);
+            Path = iTinIO.File.ToUri(normalizedImagePath);
+
+            using (var image = NativeImage.FromFile(normalizedImagePath))
+            {
+                InitializeImage(image);
+            }
+
+            IsValid = true;
+
+            Logger.Instance.Debug($"   -> Path: {Path}");
+            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
+            Logger.Instance.Debug($"      > TransparentColor: {Configuration.TransparentColor}");
+            Logger.Instance.Debug($"      > UseTransparentBackground: {Configuration.UseTransparentBackground}");
+            Logger.Instance.Debug($"      > Effects: {Configuration.Effects?.Length ?? 0}");
+            Logger.Instance.Debug($"   -> Images:");
+            Logger.Instance.Debug($"      > Image: {Image}");
+            Logger.Instance.Debug($"      > OriginalImage: {OriginalImage.Width}x{OriginalImage.Height}");
+            Logger.Instance.Debug($"      > ProcessedImage: {ProcessedImage.Width}x{ProcessedImage.Height}");
+            Logger.Instance.Debug($"        > ScaledHeight: {ScaledHeight}");
+            Logger.Instance.Debug($"        > ScaledWidth: {ScaledWidth}");
+            Logger.Instance.Debug($"   -> IsValid: {IsValid}");
         }
         #endregion
 
@@ -88,40 +127,38 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <param name="configuration">Image configuration reference.</param>
         internal PdfImage(NativeImage image, PdfImageConfig configuration = null)
         {
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
+            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class from image with optional image configuration");
+            Logger.Instance.Debug($" > Signature: #ctor({typeof(NativeImage)}, {typeof(PdfImageConfig)} = null)");
+
             var safeConfiguration = configuration;
             if (configuration == null)
             {
                 safeConfiguration = PdfImageConfig.Default;
             }
 
+            Configuration = safeConfiguration.Clone();
             Path = null;
-            Configuration = safeConfiguration.Clone(); 
-            OriginalImage = (NativeImage)image.Clone();
 
-            var concreteOriginalImage = (Bitmap)image.Clone();
-            if (Configuration.UseTransparentBackground)
-            {
-                if (Configuration.TransparentColor.Equals(PdfImageConfig.DefaultColor, StringComparison.OrdinalIgnoreCase))
-                {
-                    Configuration.SetParentImage(concreteOriginalImage);
-                }
+            InitializeImage(image);
 
-                concreteOriginalImage.MakeTransparent(Configuration.GetColor());
-            }
-
-            NativeImage processedImage = (NativeImage)concreteOriginalImage.Clone();
-            if (Configuration.Effects != null)
-            {
-                processedImage = (NativeImage)concreteOriginalImage.ApplyEffects(Configuration.Effects).Clone();
-            }
-
-            ProcessedImage = (NativeImage)processedImage.Clone();
-            ScaledHeight = processedImage.Height;
-            ScaledWidth = processedImage.Width;
-
-            Image = NativePdfImage.GetInstance(ProcessedImage, ImageFormat.Png);
+            image?.Dispose();
 
             IsValid = true;
+
+            Logger.Instance.Debug($"   -> Path: (Undefined)");
+            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
+            Logger.Instance.Debug($"      > TransparentColor: {Configuration.TransparentColor}");
+            Logger.Instance.Debug($"      > UseTransparentBackground: {Configuration.UseTransparentBackground}");
+            Logger.Instance.Debug($"      > Effects: {Configuration.Effects.Length}");
+            Logger.Instance.Debug($"   -> Images:");
+            Logger.Instance.Debug($"      > Image: {Image}");
+            Logger.Instance.Debug($"      > OriginalImage: {OriginalImage.Width}x{OriginalImage.Height}");
+            Logger.Instance.Debug($"      > ProcessedImage: {ProcessedImage.Width}x{ProcessedImage.Height}");
+            Logger.Instance.Debug($"        > ScaledHeight: {ScaledHeight}");
+            Logger.Instance.Debug($"        > ScaledWidth: {ScaledWidth}");
+            Logger.Instance.Debug($"   -> IsValid: {IsValid}");
         }
         #endregion
 
@@ -175,6 +212,28 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <b>true</b> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.
         /// </returns>
         public bool Equals(PdfImage other) => other.Equals((object)this);
+        #endregion
+
+        #region [public] {override} (bool) Equals(object): Returns a value that indicates whether this class is equal to another
+        /// <summary>
+        /// Returns a value that indicates whether this class is equal to another
+        /// </summary>
+        /// <param name="obj">Class with which to compare.</param>
+        /// <returns>
+        /// Results equality comparison.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is PdfImage other))
+            {
+                return false;
+            }
+
+            return
+                other.Path == Path && 
+                other.IsValid == IsValid && 
+                other.ToString().Equals(ToString());
+        }
         #endregion
 
         #endregion
@@ -250,7 +309,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <value>
         /// A <see cref="System.Drawing.Image"/> object that contains a reference to pdf image object.
         /// </value>
-        public NativeImage OriginalImage { get; }
+        public NativeImage OriginalImage { get; private set; }
         #endregion
 
         #region [public] (Uri) Path: Gets a reference to image uri
@@ -260,7 +319,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <value>
         /// A <see cref="Uri"/> that contains the image uri.
         /// </value>
-        public Uri Path { get; }
+        public Uri Path { get; private set; }
         #endregion
 
         #region [public] (NativeImage) ProcessedImage: Gets a reference to the original image after it has been processed
@@ -362,7 +421,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public PdfImage ScalePercent(float percentX, float percentY)
         {
-            if (this.Equals(PdfImage.Null))
+            if (Equals(PdfImage.Null))
             {
                 return this;
             }
@@ -551,35 +610,6 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region public override methods
 
-        #region [public] {override} (bool) Equals(object): Returns a value that indicates whether this class is equal to another
-        /// <summary>
-        /// Returns a value that indicates whether this class is equal to another
-        /// </summary>
-        /// <param name="obj">Class with which to compare.</param>
-        /// <returns>
-        /// Results equality comparison.
-        /// </returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            if (!(obj is PdfImage))
-            {
-                return false;
-            }
-
-            var other = (PdfImage)obj;
-
-            return
-                other.Path == Path && 
-                other.IsValid == IsValid && 
-                other.ToString().Equals(ToString());
-        }
-        #endregion
-
         #region [public] {override} (int) GetHashCode(): Returns a value that represents the hash code for this class
         /// <summary>
         /// Returns a value that represents the hash code for this class.
@@ -602,17 +632,9 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #endregion
 
-        #region protected virtual methods
+        #region private methods
 
-        #region [protected] {virtual} (void) Dispose(bool): Cleans managed and unmanaged resources
-        /// <summary>
-        /// Cleans managed and unmanaged resources.
-        /// </summary>
-        /// <param name="disposing">
-        /// If it is <b>true</b>, the method is invoked directly or indirectly from the user code.
-        /// If it is <b>false</b>, the method is called the finalizer and only unmanaged resources are finalized.
-        /// </param>
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (_isDisposed)
             {
@@ -622,6 +644,7 @@ namespace iTin.Utilities.Pdf.Design.Image
             // free managed resources
             if (disposing)
             {
+                Path = null;
                 Image = null;
                 OriginalImage?.Dispose();
                 ProcessedImage?.Dispose();
@@ -632,7 +655,34 @@ namespace iTin.Utilities.Pdf.Design.Image
             // avoid seconds calls 
             _isDisposed = true;
         }
-        #endregion
+
+        private void InitializeImage(ICloneable image)
+        {
+            OriginalImage = (NativeImage)image.Clone();
+
+            var concreteOriginalImage = (Bitmap)image.Clone();
+            if (Configuration.UseTransparentBackground)
+            {
+                if (Configuration.TransparentColor.Equals(PdfImageConfig.DefaultColor, StringComparison.OrdinalIgnoreCase))
+                {
+                    Configuration.SetParentImage(concreteOriginalImage);
+                }
+
+                concreteOriginalImage.MakeTransparent(Configuration.GetColor());
+            }
+
+            NativeImage processedImage = (NativeImage)concreteOriginalImage.Clone();
+            if (Configuration.Effects != null)
+            {
+                processedImage = (NativeImage)concreteOriginalImage.ApplyEffects(Configuration.Effects).Clone();
+            }
+
+            ProcessedImage = (NativeImage)processedImage.Clone();
+            ScaledHeight = processedImage.Height;
+            ScaledWidth = processedImage.Width;
+
+            Image = NativePdfImage.GetInstance(ProcessedImage, ImageFormat.Png);
+        }
 
         #endregion
 

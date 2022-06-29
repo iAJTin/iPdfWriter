@@ -1,30 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp3.1;netstandard2.0</TargetFrameworks>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Version>1.0.0.1</Version>
-    <Description></Description>
-    <Copyright>Copyright © 2020</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageId>iTin.Core.Models.Design.Styling</PackageId>
-    <Company>iTin</Company>
-    <Product>iTin.Core.Models.Design.Styling</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net461;</TargetFrameworks>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.0.2</Version>
+		<Description></Description>
+		<Copyright>Copyright © 2020</Copyright>
+		<PackageProjectUrl></PackageProjectUrl>
+		<PackageId>iTin.Core.Models.Design.Styling</PackageId>
+		<Company>iTin</Company>
+		<Product>iTin.Core.Models.Design.Styling</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
+		<ProjectReference Include="..\..\iTin.Core\iTin.Core.csproj" />
+	</ItemGroup>
 
-  <!-- Design > Shared > Property -->
+	<!-- Design > Shared > Property -->
 
 </Project>

@@ -20,7 +20,7 @@ namespace iTin.Utilities.Pdf.Design.Text
         public PdfText(string text, int page, long position)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.ComponentModel, Class: PdfText");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfText).Assembly.GetName().Name}, v{typeof(PdfText).Assembly.GetName().Version}, Namespace: {typeof(PdfText).Namespace}, Class: {nameof(PdfText)}");
             Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfText)} class");
             Logger.Instance.Debug($" > Signature: #ctor({typeof(string)}, {typeof(int)}, {typeof(long)})");
 

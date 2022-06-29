@@ -55,7 +55,7 @@ namespace iTin.Core.IO
         public static void CleanOrCreateTemporaryDirectory()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Clean or create temporary work directory");
             Logger.Instance.Debug(" > Signature: (void) CleanOrCreateTemporaryDirectory()");
 
@@ -91,7 +91,7 @@ namespace iTin.Core.IO
         public static void CopyFiles(string sourceDirectory, string targetDirectory, string criterial, bool overrides)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Copies specified files from source to target directory");
             Logger.Instance.Debug($" > Signature: (void) CopyFiles({typeof(string)}, {typeof(string)}, {typeof(string)}, {typeof(bool)})");
 
@@ -123,7 +123,7 @@ namespace iTin.Core.IO
         public static void DeleteTemporaryOutputFiles()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Removes the directory and intermediates files");
             Logger.Instance.Debug(" > Signature: (void) DeleteTemporaryOutputFiles()");
 
@@ -161,7 +161,7 @@ namespace iTin.Core.IO
         public static IEnumerable<string> GetFiles(string folder, string criterial, int timeThreshold = 0)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Returns a collection that contains all files in a folder with the specified criterial");
             Logger.Instance.Debug($" > Signature: ({typeof(IEnumerable<string>)}) GetFiles({typeof(string)}, {typeof(string)}, {typeof(int)})");
             Logger.Instance.Debug($"   > folder: {folder}");
@@ -199,7 +199,7 @@ namespace iTin.Core.IO
         public static Uri GetUniqueTempRandomFile()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug($" Returns a temp {typeof(Uri)}");
             Logger.Instance.Debug($" > Signature: ({typeof(Uri)}) GetUniqueTempRandomFile()");
 
@@ -224,7 +224,7 @@ namespace iTin.Core.IO
         public static bool IsValidFileName(string name)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Determines whether specified filename is a valid name for a file");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidFileName({typeof(string)})");
             Logger.Instance.Debug($"   > name: {name}");
@@ -249,7 +249,7 @@ namespace iTin.Core.IO
         public static IEnumerable<string> GetFilesWithoutExtension(string folder, string criterial, int timeThreshold)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Returns a collection that contains all files without extension in a folder with the specified criterial");
             Logger.Instance.Debug($" > Signature: ({typeof(IEnumerable<string>)}) GetFilesWithoutExtension({typeof(string)}, {typeof(string)}, {typeof(int)})");
             Logger.Instance.Debug($"   > folder: {folder}");
@@ -288,19 +288,20 @@ namespace iTin.Core.IO
         public static bool IsUrl(string path)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
             Logger.Instance.Debug(" Gets a value indicating whether the specified path is a web address.");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsUrl({typeof(string)})");
             Logger.Instance.Debug($"   > path: {path}");
 
             if (string.IsNullOrEmpty(path))
             {
-                Logger.Instance.Debug(" > Output: False");
+                Logger.Instance.Debug($"  > Output: false");
+
                 return false;
             }
 
             bool result = path.IndexOf("://", StringComparison.Ordinal) > 0;
-            Logger.Instance.Debug($" > Output: {result}");
+            Logger.Instance.Debug($"  > Output: {result}");
 
             return result;
         }
@@ -317,8 +318,8 @@ namespace iTin.Core.IO
         public static Uri ToUri(string filename)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Core.IO, Namespace: iTin.Core.IO, Class: File");
-            Logger.Instance.Debug(" This method makes a valid URL from a given filename");
+            Logger.Instance.Debug($" Assembly: {typeof(File).Assembly.GetName().Name}, v{typeof(File).Assembly.GetName().Version}, Namespace: {typeof(File).Namespace}, Class: {nameof(File)}");
+            Logger.Instance.Debug($" This method makes a valid URL from a given filename");
             Logger.Instance.Debug($" > Signature: ({typeof(Uri)}) ToUrl({typeof(string)})");
             Logger.Instance.Debug($"   > filename: {filename}");
 
@@ -326,14 +327,14 @@ namespace iTin.Core.IO
             try
             {
                 result = new Uri(filename);
-                Logger.Instance.Debug($" > Output: {result}");
+                Logger.Instance.Debug($"  > Output: {result}");
 
                 return result;
             }
             catch
             {
                 result = new Uri(NativePath.GetFullPath(filename));
-                Logger.Instance.Debug($" > Output: {result}");
+                Logger.Instance.Debug($"  > Output: {result}");
 
                 return result;
             }

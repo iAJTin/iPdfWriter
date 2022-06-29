@@ -135,7 +135,7 @@ namespace iTin.Utilities.Pdf.Design.Image
             var styleCloned = (PdfImageConfig)MemberwiseClone();
             if (Effects != null)
             {
-                styleCloned.Effects = (EffectType[])Effects.Clone();
+                styleCloned.Effects = (EffectType[]) Effects.Clone();
             }
 
             return styleCloned;
@@ -157,7 +157,7 @@ namespace iTin.Utilities.Pdf.Design.Image
             }
 
             // Get the color of a background pixel.
-            return ((Bitmap)ImageReference).GetPixel(1, 1);
+            return ((Bitmap) ImageReference).GetPixel(1, 1);
         }
         #endregion
 

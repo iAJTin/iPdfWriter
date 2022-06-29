@@ -52,9 +52,9 @@ namespace iTin.Utilities.Pdf.Writer
         public PdfInput()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.ComponentModel, Class: PdfInput");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
             Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfInput)} class");
-            Logger.Instance.Debug(" > Signature: #ctor()");
+            Logger.Instance.Debug($" > Signature: #ctor()");
 
             AutoUpdateChanges = false;
             DeletePhysicalFilesAfterMerge = true;
@@ -245,7 +245,7 @@ namespace iTin.Utilities.Pdf.Writer
         public InsertResult Insert(IInsert data)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.ComponentModel, Class: PdfInput");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
             Logger.Instance.Debug(" Try to replace an element in this input");
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) Replace({typeof(IInsert)}, out {typeof(NativeIO.Stream)})");
             Logger.Instance.Debug($"   > data: {data}");
@@ -281,7 +281,7 @@ namespace iTin.Utilities.Pdf.Writer
         public ReplaceResult Replace(IReplace data)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf.Writer, Namespace: iTin.Utilities.Pdf.Writer, Class: PdfInput");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
             Logger.Instance.Debug(" Try to replace an element in this input");
             Logger.Instance.Debug($" > Signature: ({typeof(ReplaceResult)}) Replace({typeof(IReplace)})");
             Logger.Instance.Debug($"   > data: {data}");
@@ -317,7 +317,7 @@ namespace iTin.Utilities.Pdf.Writer
         public SetResult Set(ISet data)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.DocX.Writer, Namespace: iTin.Utilities.DocX.Writer, Class: DocXInput");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
             Logger.Instance.Debug(" Try to set an element in this input");
             Logger.Instance.Debug($" > Signature: ({typeof(SetResult)}) Set({typeof(ISet)})");
             Logger.Instance.Debug($"   > data: {data}");
@@ -475,7 +475,7 @@ namespace iTin.Utilities.Pdf.Writer
         public PdfInput Clone()
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf, Namespace: iTin.Utilities.Pdf.ComponentModel, Class: PdfInput");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
             Logger.Instance.Debug(" Create a new object that is a copy of the current instance");
             Logger.Instance.Debug($" > Signature: ({typeof(PdfInput)}) Clone()");
 
@@ -501,12 +501,12 @@ namespace iTin.Utilities.Pdf.Writer
         public IEnumerable<PdfText> SearchText(string text)
         {
             Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf.Writer, Namespace: iTin.Utilities.Pdf.Writer, Class: PdfInput");
-            Logger.Instance.Debug(" earch specified text into this input file");
+            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
+            Logger.Instance.Debug(" Search specified text into this input file");
             Logger.Instance.Debug($" > Signature: ({typeof(IEnumerable<PdfText>)}) SearchText({typeof(string)})");
             Logger.Instance.Debug($"   > text: {text}");
 
-            List<PdfText> matchs = new List<PdfText>();
+            var matchs = new List<PdfText>();
 
             try
             {
@@ -529,6 +529,7 @@ namespace iTin.Utilities.Pdf.Writer
             }
             catch
             {
+                Logger.Instance.Debug($" > Output: Error, no match item(s)");
             }
 
             Logger.Instance.Debug($" > Output: {matchs.Count} item(s)");

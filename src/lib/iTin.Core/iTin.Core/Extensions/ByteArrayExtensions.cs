@@ -143,7 +143,7 @@ namespace iTin.Core
 
             for (int i = 0; i < data.Length; i += 2)
             {
-                byte loByte = data[i];
+                var loByte = data[i];
                 data[i] = data[i + 1];
                 data[i + 1] = loByte;
             }

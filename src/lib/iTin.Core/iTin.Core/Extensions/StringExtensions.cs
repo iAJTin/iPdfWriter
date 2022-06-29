@@ -1,6 +1,13 @@
 ﻿
 namespace iTin.Core
 {
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+    
+    using ComponentModel.Enumerators;
+
+#endif
+
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -732,5 +739,35 @@ namespace iTin.Core
             return new string(array);
         }
         #endregion
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="separators"></param>
+        /// <returns></returns>
+        public static SplitEnumerator SplitString(this string str, char[] separators) => new SplitEnumerator(str.AsSpan(), separators.AsSpan());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static SplitEnumerator SplitLines(this string str) => new SplitEnumerator(str, new[] {'\r', '\n'});
     }
+
+#else
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string[] SplitLines(this string str) 
+            => str.Split(new[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+    }
+
+#endif
+
 }
