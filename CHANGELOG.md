@@ -6,9 +6,13 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
- - Add support for **net60**
+ 1. Add support for **netstandard2.1** 
+ 
+   - Add **SplitEnumerator** ref struct.
    
-   Add support for the use of the **~** character in the **iTin.Core.IO** library
+   - Add support for the use of the **~** character in the **iTin.Core.IO** library
+
+ 2. Add sample project for **net60**
  
 ### Changed
 
