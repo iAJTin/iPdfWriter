@@ -597,7 +597,7 @@ namespace iPdfWriter.Code
             }
 
             logger.Info("   > Saved to disk correctly");
-            logger.Info("     > Path: ~/Output/Sample01/Sample-01.pdf");
+            logger.Info("     > Path: ~/Output/Sample13/Sample-13.pdf");
             logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
 
             #endregion

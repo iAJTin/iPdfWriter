@@ -331,6 +331,7 @@ namespace iTin.Core.IO
 
             var rootPath = candidateRootPath.ToUpperInvariant()
                 .Replace("BIN", string.Empty)
+                .Replace("RELEASE", string.Empty)
                 .Replace($"{DirectorySeparatorChar}DEBUG", string.Empty)
                 .Replace($"{DirectorySeparatorChar}NET{netFrameworkVersion.VersionNumber}", string.Empty);
 
