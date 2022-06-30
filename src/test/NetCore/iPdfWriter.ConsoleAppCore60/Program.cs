@@ -17,7 +17,7 @@ namespace iPdfWriter
         {
             Console.Title = Constants.AppName;
 
-            ILogger logger = new Logger(Constants.AppName, new ILog[] { new FileLog(), new ColoredConsoleLog() }) { Deep = LogDeep.AnyCall, Status = LogStatus.Running };
+            ILogger logger = new Logger(Constants.AppName, new ILog[] { new FileLog(), new ColoredConsoleLog() }) { Deep = LogDeep.OnlyApplicationCalls, Status = LogStatus.Running };
             logger.Debug(">Start Logging<");
 
             // 01. Generate sample 01 report
