@@ -13,6 +13,7 @@
     <Company>iTin</Company>
     <Product>iTin.Core.IO.Compression</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

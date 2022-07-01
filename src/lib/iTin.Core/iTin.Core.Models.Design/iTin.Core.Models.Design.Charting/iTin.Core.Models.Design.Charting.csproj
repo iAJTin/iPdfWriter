@@ -13,7 +13,8 @@
 		<Company>iTin</Company>
 		<Product>iTin.Core.Models.Design.Charting</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	</PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<Compile Remove="BaseModel.cs" />

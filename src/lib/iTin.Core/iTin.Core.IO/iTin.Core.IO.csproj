@@ -13,7 +13,8 @@
 		<Company>iTin</Company>
 		<Product>iTin.Core.IO</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	</PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\iTin.Registry\iTin.Registry.Windows\iTin.Registry.Windows.csproj" />

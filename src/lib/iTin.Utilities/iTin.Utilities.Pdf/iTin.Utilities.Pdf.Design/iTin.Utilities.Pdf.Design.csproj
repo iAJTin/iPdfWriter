@@ -13,6 +13,7 @@
     <Company>iTin</Company>
     <Product>iTin.Utilities.Pdf.Design</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

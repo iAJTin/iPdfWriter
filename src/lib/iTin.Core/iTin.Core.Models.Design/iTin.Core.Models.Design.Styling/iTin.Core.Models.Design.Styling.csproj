@@ -13,7 +13,8 @@
 		<Company>iTin</Company>
 		<Product>iTin.Core.Models.Design.Styling</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	</PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

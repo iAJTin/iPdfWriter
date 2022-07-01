@@ -12,6 +12,7 @@
     <Company>iTin</Company>
     <Product>iTin.Registry.Windows</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
