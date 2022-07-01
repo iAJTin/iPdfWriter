@@ -191,7 +191,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public OutputResult CreateResult(OutputResultConfig config = null)
         {
-            OutputResultConfig configToApply = OutputResultConfig.Default;
+            var configToApply = OutputResultConfig.Default;
             if (config != null)
             {
                 configToApply = config;

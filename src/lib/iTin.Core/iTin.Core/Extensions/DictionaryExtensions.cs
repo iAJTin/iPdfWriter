@@ -39,5 +39,67 @@ namespace iTin.Core
         /// </returns>
         public static TValue Find<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source, TKey key)
             => !source.TryGetValue(key, out var value) ? default : value;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns>
+        /// </returns>
+        public static bool DictionaryEqual<TKey, TValue>(
+            this IDictionary<TKey, TValue> first,
+            IDictionary<TKey, TValue> second)
+            => first.DictionaryEqual(second, null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <param name="valueComparer"></param>
+        /// <returns>
+        /// </returns>
+        public static bool DictionaryEqual<TKey, TValue>(
+            this IDictionary<TKey, TValue> first,
+            IDictionary<TKey, TValue> second,
+            IEqualityComparer<TValue> valueComparer)
+        {
+            if (first == second)
+            {
+                return true;
+            }
+
+            if (first == null || second == null)
+            {
+                return false;
+            }
+
+            if (first.Count != second.Count)
+            {
+                return false;
+            }
+
+            valueComparer ??= EqualityComparer<TValue>.Default;
+
+            foreach (var kvp in first)
+            {
+                if (!second.TryGetValue(kvp.Key, out var secondValue))
+                {
+                    return false;
+                }
+
+                if (!valueComparer.Equals(kvp.Value, secondValue))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

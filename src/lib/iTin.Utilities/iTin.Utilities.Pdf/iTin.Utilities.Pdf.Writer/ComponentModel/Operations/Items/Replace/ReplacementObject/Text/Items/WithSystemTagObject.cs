@@ -154,7 +154,11 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
                         // It's not really needed to get the text back, but we have to call this line ALWAYS,
                         // because it triggers the process that will get all chunks from PDF into our strategy Object
                         var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
-                        var stringsArray = allStrings.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        var stringsList =
+                            allStrings
+                                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                                .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
+                                .ToList();
 
                         // The real getter process starts in the following line
                         var textMatchesFound = strategy.GetExtendedTextLocations(tag.GetDescription(), options).ToList();
@@ -169,7 +173,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
                             cb.Fill();
 
                             // Calculates new rectangle
-                            var r = BuildRectangleByStrategies(match, tag.GetDescription(), strategy, cb, (string[])stringsArray.Clone(), options);
+                            var r = BuildRectangleByStrategies(match, tag.GetDescription(), strategy, cb, stringsList, options);
 
                             // Add table
                             var table = new PdfPTable(1) { TotalWidth = r.Width - offset.X };
