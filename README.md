@@ -1109,7 +1109,6 @@ Basic steps, for more details please see [sample06.cs] file.
 <table>
  <tr>
   <td><strong>XML</strong></td>
-  <td><strong>Json</strong></td>
  </tr>
  <tr>
   <td style="vertical-align: top">
@@ -1128,7 +1127,16 @@ Basic steps, for more details please see [sample06.cs] file.
 	</q1:Content>
 </PdfBaseStyle>
 ```
+
   </td>
+ </tr>
+</table>
+
+<table>
+ <tr>
+  <td><strong>Json</strong></td>
+ </tr>
+ <tr>
   <td style="vertical-align: top">
 
 ```json
@@ -1179,6 +1187,7 @@ Basic steps, for more details please see [sample06.cs] file.
   }
 }
 ```
+
   </td>
  </tr>
 </table>
