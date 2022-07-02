@@ -11,8 +11,6 @@ namespace iTin.Utilities.Pdf.Writer
     using iTin.Core.Models.Design.Enums;
     using iTin.Core.Models.Design.Styling;
 
-    using iTin.Logging;
-
     using Design.Styles;
 
     /// <summary>
@@ -35,13 +33,6 @@ namespace iTin.Utilities.Pdf.Writer
         {
             SentinelHelper.ArgumentNull(table, nameof(table));
             SentinelHelper.ArgumentNull(cells, nameof(cells));
-
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
-            Logger.Instance.Debug($" Creates a new font from model");
-            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPTable)}, {typeof(Collection<PdfPCell>)})");
-            Logger.Instance.Debug($"   > table: {table}");
-            Logger.Instance.Debug($"   > cells: {cells.Count}");
             
             foreach (var cell in cells)
             {
@@ -62,13 +53,6 @@ namespace iTin.Utilities.Pdf.Writer
         {
             SentinelHelper.ArgumentNull(cell, nameof(cell));
             SentinelHelper.ArgumentNull(alignment, nameof(alignment));
-
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
-            Logger.Instance.Debug($" Sets visual text alignment for specified cell");
-            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPCell)}, {typeof(PdfTextContentAlignment)})");
-            Logger.Instance.Debug($"   > cell: {cell}");
-            Logger.Instance.Debug($"   > alignment: {alignment}");
 
             cell.VerticalAlignment = alignment.Vertical.ToElementVerticalAlignment();
             cell.HorizontalAlignment = alignment.Horizontal.ToElementHorizontalAlignment();
@@ -229,14 +213,6 @@ namespace iTin.Utilities.Pdf.Writer
             SentinelHelper.ArgumentNull(cell, nameof(cell));
             SentinelHelper.ArgumentNull(style, nameof(style));
 
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfExtensions).Assembly.GetName().Name}, v{typeof(PdfExtensions).Assembly.GetName().Version}, Namespace: {typeof(PdfExtensions).Namespace}, Class: {nameof(PdfExtensions)}");
-            Logger.Instance.Debug($" Sets visual text alignment for specified cell");
-            Logger.Instance.Debug($" > Signature: (this {typeof(PdfPCell)}, {typeof(PdfTextStyle)}, {typeof(YesNo)} = {nameof(YesNo.No)})");
-            Logger.Instance.Debug($"   > cell: {cell}");
-            Logger.Instance.Debug($"   > style: {style}");
-            Logger.Instance.Debug($"   > useTestMode: {useTestMode}");
-
             cell.BackgroundColor = new BaseColor(style.Content.GetColor());
             cell.SetAlignmentVisualStyle(style.Content.Alignment);
 
@@ -268,21 +244,13 @@ namespace iTin.Utilities.Pdf.Writer
         /// <returns>
         /// A <see cref="int"/> value that represents the alignment.
         /// </returns>
-        public static int ToHorizontalTableAlignment(this KnownHorizontalAlignment horizontalAlignment)
-        {
-            switch (horizontalAlignment)
+        public static int ToHorizontalTableAlignment(this KnownHorizontalAlignment horizontalAlignment) =>
+            horizontalAlignment switch
             {
-                case KnownHorizontalAlignment.Center:
-                    return Element.ALIGN_CENTER;
-                    
-                case KnownHorizontalAlignment.Right:
-                    return Element.ALIGN_RIGHT;
-
-                default:
-                case KnownHorizontalAlignment.Left:
-                    return Element.ALIGN_LEFT;
-            }
-        }
+                KnownHorizontalAlignment.Center => Element.ALIGN_CENTER,
+                KnownHorizontalAlignment.Right => Element.ALIGN_RIGHT,
+                _ => Element.ALIGN_LEFT,
+            };
         #endregion
 
         #region [public] {static} (int) ToVerticalTableAlignment(this KnownVerticalAlignment): Converts one of the enumeration values KnownVerticalAlignment to the proper vertical alignment value for iTextSharp
@@ -293,21 +261,13 @@ namespace iTin.Utilities.Pdf.Writer
         /// <returns>
         /// A <see cref="int"/> value that represents the vertical alignment.
         /// </returns>
-        public static int ToVerticalTableAlignment(this KnownVerticalAlignment verticalAlignment)
-        {
-            switch (verticalAlignment)
+        public static int ToVerticalTableAlignment(this KnownVerticalAlignment verticalAlignment) =>
+            verticalAlignment switch
             {
-                case KnownVerticalAlignment.Bottom:
-                    return Element.ALIGN_BOTTOM;
-
-                case KnownVerticalAlignment.Center:
-                    return Element.ALIGN_MIDDLE;
-
-                default:
-                case KnownVerticalAlignment.Top:
-                    return Element.ALIGN_TOP;
-            }
-        }
+                KnownVerticalAlignment.Bottom => Element.ALIGN_BOTTOM,
+                KnownVerticalAlignment.Center => Element.ALIGN_MIDDLE,
+                _ => Element.ALIGN_TOP,
+            };
         #endregion
 
         #endregion

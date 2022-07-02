@@ -37,7 +37,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// A new invalid <see cref="ReplaceResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ReplaceResult CreateErroResult(IResultError[] errors) =>
-            new ReplaceResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// A new valid <see cref="ReplaceResult"/>.
         /// </returns>
         public new static ReplaceResult CreateSuccessResult(ReplaceResultData Result) =>
-            new ReplaceResult
+            new()
             {
                 Result = Result,
                 Success = true,
@@ -83,7 +83,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// A new <see cref="ReplaceResult"/> instance for specified exception.
         /// </returns>
         public new static ReplaceResult FromException(System.Exception exception, ReplaceResultData Result) =>
-            new ReplaceResult
+            new()
             {
                 Result = Result,
                 Success = false,

@@ -26,10 +26,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
 
         #region [public] (Stream) InputStream: Gets or sets a
         /// <summary>
-        /// Gets or sets a value indicating whether output file has been zipped.
+        /// Gets or sets a value 
         /// </summary>
         /// <value>
-        /// <b>true</b> if output file has been zipped; otherwise, <b>false</b>.
+        /// 
         /// </value>
         public Stream InputStream { get; set; }
 
@@ -37,10 +37,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
 
         #region [public] (Stream) OutputStream: Gets or sets a
         /// <summary>
-        /// Gets or sets a value indicating whether output file has been zipped.
+        /// Gets or sets a value 
         /// </summary>
         /// <value>
-        /// <b>true</b> if output file has been zipped; otherwise, <b>false</b>.
+        /// 
         /// </value>
         public Stream OutputStream { get; set; }
     

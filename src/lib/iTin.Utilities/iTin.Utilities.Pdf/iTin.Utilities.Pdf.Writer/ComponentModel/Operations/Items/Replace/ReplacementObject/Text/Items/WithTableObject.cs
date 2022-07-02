@@ -60,7 +60,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// <value>
         /// A <see cref="WithTableObject"/> that contains the default values.
         /// </value>
-        public static WithTableObject Default => new WithTableObject();
+        public static WithTableObject Default => new();
         #endregion
 
         #endregion
@@ -163,101 +163,100 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 
             try
             {
-                using (var reader = new PdfReader(input))
-                using (var stamper = new PdfStamper(reader, outputStream))
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+
+                var pages = reader.NumberOfPages;
+                for (var page = 1; page <= pages; page++)
                 {
-                    var pages = reader.NumberOfPages;
-                    for (var page = 1; page <= pages; page++)
+                    var strategy = new CustomLocationTextExtractionStrategy();
+                    var cb = stamper.GetOverContent(page);
+
+                    // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                    // but i'm not sure if this could change in some cases.
+                    strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                    strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                    // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                    // because it triggers the process that will get all chunks from PDF into our strategy Object
+                    var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    var stringsList =
+                        allStrings
+                            .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
+                            .ToList();
+
+                    // The real getter process starts in the following line
+                    var textMatchesFound = strategy.GetExtendedTextLocations(oldText, options).ToList();
+
+                    // MatchesFound contains all text with locations
+                    foreach (var match in textMatchesFound)
                     {
-                        var strategy = new CustomLocationTextExtractionStrategy();
-                        var cb = stamper.GetOverContent(page);
+                        // Delete tag
+                        var bColor = BaseColor.WHITE;
+                        cb.SetColorFill(bColor);
+                        cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
+                        cb.Fill();
 
-                        // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
-                        // but i'm not sure if this could change in some cases.
-                        strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
-                        strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+                        // Calculates new rectangle
+                        var deltaY = CalculatesVerticalDelta(options, match.Rect);
+                        var cellHeight = CalculatesCellHeight(match, oldText, strategy, cb, stringsList, options, deltaY);
+                        var r = BuildRectangleByStrategies(match, oldText, strategy, cb, stringsList, options);
 
-                        // It's not really needed to get the text back, but we have to call this line ALWAYS,
-                        // because it triggers the process that will get all chunks from PDF into our strategy Object
-                        var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
-                        var stringsList =
-                            allStrings
-                                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                                .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
-                                .ToList();
-
-                        // The real getter process starts in the following line
-                        var textMatchesFound = strategy.GetExtendedTextLocations(oldText, options).ToList();
-
-                        // MatchesFound contains all text with locations
-                        foreach (var match in textMatchesFound)
+                        // Width strategy to use
+                        var safeFixedWidth = fixedWidth;
+                        var useFixedWidth = !fixedWidth.Equals(DefaultFixedWidth);
+                        if (useFixedWidth)
                         {
-                            // Delete tag
-                            var bColor = BaseColor.WHITE;
-                            cb.SetColorFill(bColor);
-                            cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
-                            cb.Fill();
-
-                            // Calculates new rectangle
-                            var deltaY = CalculatesVerticalDelta(options, match.Rect);
-                            var cellHeight = CalculatesCellHeight(match, oldText, strategy, cb, stringsList, options, deltaY);
-                            var r = BuildRectangleByStrategies(match, oldText, strategy, cb, stringsList, options);
-
-                            // Width strategy to use
-                            var safeFixedWidth = fixedWidth;
-                            var useFixedWidth = !fixedWidth.Equals(DefaultFixedWidth);
-                            if (useFixedWidth)
+                            if (fixedWidth > r.Width)
                             {
-                                if (fixedWidth > r.Width)
-                                {
-                                    safeFixedWidth = r.Width;
-                                }
+                                safeFixedWidth = r.Width;
                             }
-                            else
-                            {
-                                safeFixedWidth = r.Width; 
-                            }
-
-                            // Creates aligned table by horizontal alignment value (this table contains the user table parameter)
-                            var outerBorderTable = new PdfPTable(1)
-                            {
-                                TotalWidth = safeFixedWidth,
-                                HorizontalAlignment = Element.ALIGN_LEFT
-                            };
-
-                            var outerCell = PdfHelper.CreateEmptyWithBorderCell(style.Borders);
-                            outerCell.MinimumHeight = cellHeight;
-                            outerCell.VerticalAlignment = style.Alignment.Vertical.ToVerticalTableAlignment();
-                            outerCell.BackgroundColor = new BaseColor(ColorHelper.GetColorFromString(style.Content.Color));
-
-                            //table.Table.HorizontalAlignment = Element.ALIGN_LEFT;
-                            table.Table.TotalWidth = safeFixedWidth - (outerCell.EffectivePaddingRight + outerCell.EffectivePaddingLeft) * 2;
-                            table.Table.LockedWidth = true; // options.StartStrategy.Equals(StartLocationStrategy.LeftMargin) && options.EndStrategy.Equals(EndLocationStrategy.RightMargin);
-                            outerCell.AddElement(table.Table);
-                            outerBorderTable.AddCell(outerCell);
-
-                            // Creates strategy table (for shows testmode rectangle)
-                            var useTestModeTable = new PdfPTable(1) { TotalWidth = safeFixedWidth  };
-                            var useTestCell = PdfHelper.CreateEmptyCell(useTestMode);
-                            
-                            if (table.Configuration.HeightStrategy == TableHeightStrategy.Exact)
-                            {
-                                useTestCell.FixedHeight = table.Table.TotalHeight;
-                            }
-
-                            useTestCell.AddElement(outerBorderTable);
-                            useTestModeTable.AddCell(useTestCell);
-                            useTestModeTable.WriteSelectedRows(-1, -1, r.X + tableOffset.X, r.Y - tableOffset.Y - deltaY, cb);
-
-                            cb.Fill();
+                        }
+                        else
+                        {
+                            safeFixedWidth = r.Width; 
                         }
 
-                        cb.Stroke();
+                        // Creates aligned table by horizontal alignment value (this table contains the user table parameter)
+                        var outerBorderTable = new PdfPTable(1)
+                        {
+                            TotalWidth = safeFixedWidth,
+                            HorizontalAlignment = Element.ALIGN_LEFT
+                        };
+
+                        var outerCell = PdfHelper.CreateEmptyWithBorderCell(style.Borders);
+                        outerCell.MinimumHeight = cellHeight;
+                        outerCell.VerticalAlignment = style.Alignment.Vertical.ToVerticalTableAlignment();
+                        outerCell.BackgroundColor = new BaseColor(ColorHelper.GetColorFromString(style.Content.Color));
+
+                        //table.Table.HorizontalAlignment = Element.ALIGN_LEFT;
+                        table.Table.TotalWidth = safeFixedWidth - (outerCell.EffectivePaddingRight + outerCell.EffectivePaddingLeft) * 2;
+                        table.Table.LockedWidth = true; // options.StartStrategy.Equals(StartLocationStrategy.LeftMargin) && options.EndStrategy.Equals(EndLocationStrategy.RightMargin);
+                        outerCell.AddElement(table.Table);
+                        outerBorderTable.AddCell(outerCell);
+
+                        // Creates strategy table (for shows testmode rectangle)
+                        var useTestModeTable = new PdfPTable(1) { TotalWidth = safeFixedWidth  };
+                        var useTestCell = PdfHelper.CreateEmptyCell(useTestMode);
+                            
+                        if (table.Configuration.HeightStrategy == TableHeightStrategy.Exact)
+                        {
+                            useTestCell.FixedHeight = table.Table.TotalHeight;
+                        }
+
+                        useTestCell.AddElement(outerBorderTable);
+                        useTestModeTable.AddCell(useTestCell);
+                        useTestModeTable.WriteSelectedRows(-1, -1, r.X + tableOffset.X, r.Y - tableOffset.Y - deltaY, cb);
+
+                        cb.Fill();
                     }
 
-                    stamper.Close();
-                    reader.Close();
+                    cb.Stroke();
                 }
+
+                stamper.Close();
+                reader.Close();
 
                 return ReplaceResult.CreateSuccessResult(new ReplaceResultData
                 {

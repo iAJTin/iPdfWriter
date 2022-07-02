@@ -34,7 +34,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <value>
         /// A <see cref="ReplaceTextOptions"/> instance that contains the default value of replace text options.
         /// </value>
-        public static ReplaceTextOptions AccordingToMargins => new ReplaceTextOptions { StartStrategy = StartLocationStrategy.LeftMargin, EndStrategy = EndLocationStrategy.RightMargin };
+        public static ReplaceTextOptions AccordingToMargins => new() { StartStrategy = StartLocationStrategy.LeftMargin, EndStrategy = EndLocationStrategy.RightMargin };
         #endregion
 
         #region [public] {static} (ReplaceTextOptions) Default: Gets a default replace text options
@@ -44,7 +44,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <value>
         /// A <see cref="ReplaceTextOptions"/> instance that contains the default value of replace text options.
         /// </value>
-        public static ReplaceTextOptions Default => new ReplaceTextOptions();
+        public static ReplaceTextOptions Default => new();
         #endregion
 
         #region [public] {static} (ReplaceTextOptions) FromLeftMarginToNextElement: Gets a default replace text options, sets strategy as left margin position to next element
@@ -54,7 +54,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <value>
         /// A <see cref="ReplaceTextOptions"/> instance that contains the default value of replace text options.
         /// </value>
-        public static ReplaceTextOptions FromLeftMarginToNextElement => new ReplaceTextOptions { StartStrategy = StartLocationStrategy.LeftMargin, EndStrategy = EndLocationStrategy.NextElement };
+        public static ReplaceTextOptions FromLeftMarginToNextElement => new() { StartStrategy = StartLocationStrategy.LeftMargin, EndStrategy = EndLocationStrategy.NextElement };
         #endregion
 
         #region [public] {static} (ReplaceTextOptions) FromPositionToNextElement: Gets a default replace text options, sets strategy as current position to next element
@@ -64,7 +64,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <value>
         /// A <see cref="ReplaceTextOptions"/> instance that contains the default value of replace text options.
         /// </value>
-        public static ReplaceTextOptions FromPositionToNextElement => new ReplaceTextOptions { EndStrategy = EndLocationStrategy.NextElement };
+        public static ReplaceTextOptions FromPositionToNextElement => new() { EndStrategy = EndLocationStrategy.NextElement };
         #endregion
 
         #region [public] {static} (ReplaceTextOptions) FromPositionToRightMargin: Gets a default replace text options, sets strategy as current position to right margin
@@ -74,7 +74,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <value>
         /// A <see cref="ReplaceTextOptions"/> instance that contains the default value of replace text options.
         /// </value>
-        public static ReplaceTextOptions FromPositionToRightMargin => new ReplaceTextOptions { EndStrategy = EndLocationStrategy.RightMargin };
+        public static ReplaceTextOptions FromPositionToRightMargin => new() { EndStrategy = EndLocationStrategy.RightMargin };
         #endregion
 
         #endregion

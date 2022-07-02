@@ -37,7 +37,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// A new invalid <see cref="InsertResult"/> with specified detailed errors collection.
         /// </returns>
         public new static InsertResult CreateErroResult(IResultError[] errors) =>
-            new InsertResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -68,7 +68,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// A new invalid <see cref="InsertResult"/> with specified detailed errors collection.
         /// </returns>
         public new static InsertResult CreateErroResult(IResultError[] errors, InsertResultData Result) =>
-            new InsertResult
+            new()
             {
                 Result = Result,
                 Success = false,
@@ -85,7 +85,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// A new valid <see cref="InsertResult"/>.
         /// </returns>
         public new static InsertResult CreateSuccessResult(InsertResultData Result) =>
-            new InsertResult
+            new()
             {
                 Result = Result,
                 Success = true,
@@ -114,7 +114,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
         /// A new <see cref="InsertResult"/> instance for specified exception.
         /// </returns>
         public new static InsertResult FromException(System.Exception exception, InsertResultData Result) =>
-            new InsertResult
+            new()
             {
                 Result = Result,
                 Success = false,

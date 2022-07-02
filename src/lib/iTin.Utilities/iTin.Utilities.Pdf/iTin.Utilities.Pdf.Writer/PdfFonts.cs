@@ -21,7 +21,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// <summary>
         /// 
         /// </summary>
-        public static readonly Dictionary<string, Font> Fonts = new Dictionary<string, Font>();
+        public static readonly Dictionary<string, Font> Fonts = new();
         #endregion
 
         #region public static members

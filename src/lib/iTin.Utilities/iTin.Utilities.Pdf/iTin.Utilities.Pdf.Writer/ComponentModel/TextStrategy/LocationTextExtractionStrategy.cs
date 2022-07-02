@@ -21,7 +21,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
     {      
         #region private readonly members
         private readonly SortedList<string, DocumentFont> _thisPdfDocFonts;
-        private readonly List<TextChunk> _locationalResult = new List<TextChunk>();
+        private readonly List<TextChunk> _locationalResult = new();
         #endregion
 
         #region constructor/s
@@ -363,7 +363,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         }
         #endregion
 
-        #region [public] (void) BeginTextBlock(): Render text
+        #region [public] (void) RenderImage(): Render image
         /// <summary>
         /// Render text
         /// </summary>

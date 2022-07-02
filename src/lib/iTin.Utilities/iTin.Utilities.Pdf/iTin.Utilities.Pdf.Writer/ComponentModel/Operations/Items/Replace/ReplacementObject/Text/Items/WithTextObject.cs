@@ -53,7 +53,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// <value>
         /// A <see cref="WithTextObject"/> that contains the default values.
         /// </value>
-        public static WithTextObject Default => new WithTextObject();
+        public static WithTextObject Default => new();
         #endregion
 
         #endregion
@@ -146,8 +146,8 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 
             try
             {
-                var reader = new PdfReader(input);
-                var stamper = new PdfStamper(reader, outputStream);
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
 
                 var pages = reader.NumberOfPages;
                 for (var page = 1; page <= pages; page++)

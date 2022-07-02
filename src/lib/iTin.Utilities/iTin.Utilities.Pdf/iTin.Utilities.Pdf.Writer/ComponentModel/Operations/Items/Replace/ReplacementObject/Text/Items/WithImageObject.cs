@@ -54,7 +54,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// <value>
         /// A <see cref="WithImageObject"/> that contains the default values.
         /// </value>
-        public static WithImageObject Default => new WithImageObject();
+        public static WithImageObject Default => new();
         #endregion
 
         #endregion
@@ -128,7 +128,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// </returns>
         protected override ReplaceResult ReplaceImpl(Stream input, IInput context)
         {
-            if (Image == Design.Image.PdfImage.Null)
+            if (Image.Equals(Design.Image.PdfImage.Null))
             {
                 return ReplaceResult.CreateSuccessResult(new ReplaceResultData
                 {
@@ -158,74 +158,73 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 
             try
             {
-                using (var reader = new PdfReader(input))
-                using (var stamper = new PdfStamper(reader, outputStream))
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+
+                var pages = reader.NumberOfPages;
+                for (var page = 1; page <= pages; page++)
                 {
-                    var pages = reader.NumberOfPages;
-                    for (var page = 1; page <= pages; page++)
+                    var strategy = new CustomLocationTextExtractionStrategy();
+                    var cb = stamper.GetOverContent(page);
+
+                    // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                    // but i'm not sure if this could change in some cases.
+                    strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                    strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                    // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                    // because it triggers the process that will get all chunks from PDF into our strategy Object
+                    var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    var stringsList =
+                        allStrings
+                            .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
+                            .ToList();
+                    // The real getter process starts in the following line
+                    var textMatchesFound = strategy.GetExtendedTextLocations(oldText, options).ToList();
+
+                    // MatchesFound contains all text with locations
+                    foreach (var match in textMatchesFound)
                     {
-                        var strategy = new CustomLocationTextExtractionStrategy();
-                        var cb = stamper.GetOverContent(page);
+                        // Delete tag
+                        var bColor = BaseColor.WHITE;
+                        cb.SetColorFill(bColor);
+                        cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
+                        cb.Fill();
 
-                        // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
-                        // but i'm not sure if this could change in some cases.
-                        strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
-                        strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+                        // Calculates new rectangle
+                        var r = BuildRectangleByStrategies(match, oldText, image.ScaledHeight, image.ScaledWidth, strategy, cb, stringsList, options);
 
-                        // It's not really needed to get the text back, but we have to call this line ALWAYS,
-                        // because it triggers the process that will get all chunks from PDF into our strategy Object
-                        var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
-                        var stringsList =
-                            allStrings
-                                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                                .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
-                                .ToList();
-                        // The real getter process starts in the following line
-                        var textMatchesFound = strategy.GetExtendedTextLocations(oldText, options).ToList();
+                        image.Image.ScaleToFit(r.Width, r.Height);
+                        var dX = CalculatesHorizontalDelta(style.Content.Alignment.Horizontal, r, image.Image, imageOffset.X);
 
-                        // MatchesFound contains all text with locations
-                        foreach (var match in textMatchesFound)
+                        if (useTestMode == YesNo.Yes)
                         {
-                            // Delete tag
-                            var bColor = BaseColor.WHITE;
-                            cb.SetColorFill(bColor);
-                            cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
-                            cb.Fill();
-
-                            // Calculates new rectangle
-                            var r = BuildRectangleByStrategies(match, oldText, image.ScaledHeight, image.ScaledWidth, strategy, cb, stringsList, options);
-
-                            image.Image.ScaleToFit(r.Width, r.Height);
-                            var dX = CalculatesHorizontalDelta(style.Content.Alignment.Horizontal, r, image.Image, imageOffset.X);
-
-                            if (useTestMode == YesNo.Yes)
+                            using (Bitmap emptyImage = BitmapHelper.CreateEmptyBitmap(image.Image.ScaledWidth + 1, image.Image.ScaledHeight + 1, Color.LightGray))
+                            using (Graphics g = Graphics.FromImage(emptyImage))
+                            using (Canvas canvas = new(g))
                             {
-                                using (Bitmap emptyImage = BitmapHelper.CreateEmptyBitmap(image.Image.ScaledWidth + 1, image.Image.ScaledHeight + 1, Color.LightGray))
-                                using (Graphics g = Graphics.FromImage(emptyImage))
-                                using (Canvas canvas = new Canvas(g))
-                                {
-                                    canvas.DrawBorder(Color.Red);
+                                canvas.DrawBorder(Color.Red);
 
-                                    var testImage = TextSharpPdfImage.GetInstance(emptyImage, ImageFormat.Png);
-                                    testImage.SetAbsolutePosition(r.X + dX, -imageOffset.Y + (r.Y - image.Image.ScaledHeight));
-                                    cb.AddImage(testImage);
-                                }
-                            }
-                            else
-                            {
-                                image.Image.SetVisualStyle(style);
-                                image.Image.SetAbsolutePosition(r.X + dX, -imageOffset.Y + (r.Y - image.Image.ScaledHeight));
-                                cb.AddImage(image.Image);
+                                var testImage = TextSharpPdfImage.GetInstance(emptyImage, ImageFormat.Png);
+                                testImage.SetAbsolutePosition(r.X + dX, -imageOffset.Y + (r.Y - image.Image.ScaledHeight));
+                                cb.AddImage(testImage);
                             }
                         }
-
-                        cb.Fill();
-                        cb.Stroke();
+                        else
+                        {
+                            image.Image.SetVisualStyle(style);
+                            image.Image.SetAbsolutePosition(r.X + dX, -imageOffset.Y + (r.Y - image.Image.ScaledHeight));
+                            cb.AddImage(image.Image);
+                        }
                     }
 
-                    stamper.Close();
-                    reader.Close();
+                    cb.Fill();
+                    cb.Stroke();
                 }
+
+                stamper.Close();
+                reader.Close();
 
                 return ReplaceResult.CreateSuccessResult(new ReplaceResultData
                 {

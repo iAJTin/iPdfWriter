@@ -54,7 +54,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// <value>
         /// A <see cref="WithSystemTagObject"/> that contains the default values.
         /// </value>
-        public static WithSystemTagObject Default => new WithSystemTagObject();
+        public static WithSystemTagObject Default => new();
         #endregion
 
         #endregion
@@ -137,72 +137,71 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 
             try
             {
-                using (var reader = new PdfReader(input))
-                using (var stamper = new PdfStamper(reader, outputStream))
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+
+                var pages = reader.NumberOfPages;
+                for (var page = 1; page <= pages; page++)
                 {
-                    var pages = reader.NumberOfPages;
-                    for (var page = 1; page <= pages; page++)
+                    var strategy = new CustomLocationTextExtractionStrategy();
+                    var cb = stamper.GetOverContent(page);
+
+                    // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                    // but i'm not sure if this could change in some cases.
+                    strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                    strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                    // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                    // because it triggers the process that will get all chunks from PDF into our strategy Object
+                    var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    var stringsList =
+                        allStrings
+                            .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
+                            .ToList();
+
+                    // The real getter process starts in the following line
+                    var textMatchesFound = strategy.GetExtendedTextLocations(tag.GetDescription(), options).ToList();
+
+                    // Text matches found contains all text with locations, so do whatever you want with it
+                    foreach (var match in textMatchesFound)
                     {
-                        var strategy = new CustomLocationTextExtractionStrategy();
-                        var cb = stamper.GetOverContent(page);
+                        // Delete tag
+                        var bColor = BaseColor.WHITE;
+                        cb.SetColorFill(bColor);
+                        cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
+                        cb.Fill();
 
-                        // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
-                        // but i'm not sure if this could change in some cases.
-                        strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
-                        strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+                        // Calculates new rectangle
+                        var r = BuildRectangleByStrategies(match, tag.GetDescription(), strategy, cb, stringsList, options);
 
-                        // It's not really needed to get the text back, but we have to call this line ALWAYS,
-                        // because it triggers the process that will get all chunks from PDF into our strategy Object
-                        var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
-                        var stringsList =
-                            allStrings
-                                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                                .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
-                                .ToList();
+                        // Add table
+                        var table = new PdfPTable(1) { TotalWidth = r.Width - offset.X };
 
-                        // The real getter process starts in the following line
-                        var textMatchesFound = strategy.GetExtendedTextLocations(tag.GetDescription(), options).ToList();
-
-                        // Text matches found contains all text with locations, so do whatever you want with it
-                        foreach (var match in textMatchesFound)
+                        // New text
+                        string newText = string.Empty;
+                        switch (tag)
                         {
-                            // Delete tag
-                            var bColor = BaseColor.WHITE;
-                            cb.SetColorFill(bColor);
-                            cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
-                            cb.Fill();
+                            case SystemTags.PageNumber:
+                                newText = page.ToString();
+                                break;
 
-                            // Calculates new rectangle
-                            var r = BuildRectangleByStrategies(match, tag.GetDescription(), strategy, cb, stringsList, options);
-
-                            // Add table
-                            var table = new PdfPTable(1) { TotalWidth = r.Width - offset.X };
-
-                            // New text
-                            string newText = string.Empty;
-                            switch (tag)
-                            {
-                                case SystemTags.PageNumber:
-                                    newText = page.ToString();
-                                    break;
-
-                                case SystemTags.TotalPages:
-                                    newText = pages.ToString();
-                                    break;
-                            }
-
-                            table.AddCell(PdfHelper.CreateCell(newText, style, useTestMode));
-                            table.WriteSelectedRows(-1, -1, r.X + offset.X, r.Y - offset.Y, cb);
-                            cb.Fill();
+                            case SystemTags.TotalPages:
+                                newText = pages.ToString();
+                                break;
                         }
 
+                        table.AddCell(PdfHelper.CreateCell(newText, style, useTestMode));
+                        table.WriteSelectedRows(-1, -1, r.X + offset.X, r.Y - offset.Y, cb);
                         cb.Fill();
-                        cb.Stroke();
                     }
 
-                    stamper.Close();
-                    reader.Close();
+                    cb.Fill();
+                    cb.Stroke();
                 }
+
+                stamper.Close();
+                reader.Close();
 
                 return ReplaceResult.CreateSuccessResult(new ReplaceResultData
                 {
