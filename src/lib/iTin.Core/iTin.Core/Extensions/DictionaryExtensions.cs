@@ -84,7 +84,7 @@ namespace iTin.Core
                 return false;
             }
 
-            valueComparer ??= EqualityComparer<TValue>.Default;
+            valueComparer = valueComparer == null ? null : EqualityComparer<TValue>.Default;
 
             foreach (var kvp in first)
             {

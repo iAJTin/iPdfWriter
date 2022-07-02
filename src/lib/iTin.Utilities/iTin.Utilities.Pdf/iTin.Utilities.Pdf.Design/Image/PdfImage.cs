@@ -7,16 +7,16 @@ namespace iTin.Utilities.Pdf.Design.Image
     using System.Drawing.Imaging;
     using System.IO;
     using System.Net;
-    using System.Threading;
+    using System.Threading.Tasks;
     
     using iTin.Core;
     using iTin.Core.Drawing;
     using iTin.Core.Drawing.ComponentModel;
     using iTin.Core.Helpers;
-    using iTin.Logging;
 
     using NativeImage = System.Drawing.Image;
     using NativePdfImage = iTextSharp.text.Image;
+    using NativePdfRectangle = iTextSharp.text.Rectangle;
 
     using iTinIO = iTin.Core.IO;
 
@@ -34,7 +34,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <value>
         /// A <see cref="PdfImage"/> reference.
         /// </value>
-        public static readonly PdfImage Null = new PdfImage {IsValid = false};
+        public static readonly PdfImage Null = new() { IsValid = false};
         #endregion
 
         #endregion
@@ -66,10 +66,6 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </summary>
         internal PdfImage()
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class");
-            Logger.Instance.Debug($" > Signature: #ctor()");
         }
         #endregion
 
@@ -81,11 +77,6 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <param name="configuration">Image configuration reference.</param>
         internal PdfImage(string imagePath, PdfImageConfig configuration = null)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class with a image path and optional image configuration");
-            Logger.Instance.Debug($" > Signature: #ctor({typeof(PdfImage)}, {typeof(PdfImageConfig)} = null)");
-
             var safeConfiguration = configuration;
             if (configuration == null)
             {
@@ -97,25 +88,10 @@ namespace iTin.Utilities.Pdf.Design.Image
             var normalizedImagePath = iTinIO.Path.PathResolver(imagePath);
             Path = iTinIO.File.ToUri(normalizedImagePath);
 
-            using (var image = NativeImage.FromFile(normalizedImagePath))
-            {
-                InitializeImage(image);
-            }
+            using var image = NativeImage.FromFile(normalizedImagePath);
+            InitializeImage(image);
 
             IsValid = true;
-
-            Logger.Instance.Debug($"   -> Path: {Path}");
-            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
-            Logger.Instance.Debug($"      > TransparentColor: {Configuration.TransparentColor}");
-            Logger.Instance.Debug($"      > UseTransparentBackground: {Configuration.UseTransparentBackground}");
-            Logger.Instance.Debug($"      > Effects: {Configuration.Effects?.Length ?? 0}");
-            Logger.Instance.Debug($"   -> Images:");
-            Logger.Instance.Debug($"      > Image: {Image}");
-            Logger.Instance.Debug($"      > OriginalImage: {OriginalImage.Width}x{OriginalImage.Height}");
-            Logger.Instance.Debug($"      > ProcessedImage: {ProcessedImage.Width}x{ProcessedImage.Height}");
-            Logger.Instance.Debug($"        > ScaledHeight: {ScaledHeight}");
-            Logger.Instance.Debug($"        > ScaledWidth: {ScaledWidth}");
-            Logger.Instance.Debug($"   -> IsValid: {IsValid}");
         }
         #endregion
 
@@ -127,11 +103,6 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <param name="configuration">Image configuration reference.</param>
         internal PdfImage(NativeImage image, PdfImageConfig configuration = null)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfImage).Assembly.GetName().Name}, v{typeof(PdfImage).Assembly.GetName().Version}, Namespace: {typeof(PdfImage).Namespace}, Class: {nameof(PdfImage)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfImage)} class from image with optional image configuration");
-            Logger.Instance.Debug($" > Signature: #ctor({typeof(NativeImage)}, {typeof(PdfImageConfig)} = null)");
-
             var safeConfiguration = configuration;
             if (configuration == null)
             {
@@ -146,19 +117,6 @@ namespace iTin.Utilities.Pdf.Design.Image
             image?.Dispose();
 
             IsValid = true;
-
-            Logger.Instance.Debug($"   -> Path: (Undefined)");
-            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
-            Logger.Instance.Debug($"      > TransparentColor: {Configuration.TransparentColor}");
-            Logger.Instance.Debug($"      > UseTransparentBackground: {Configuration.UseTransparentBackground}");
-            Logger.Instance.Debug($"      > Effects: {Configuration.Effects.Length}");
-            Logger.Instance.Debug($"   -> Images:");
-            Logger.Instance.Debug($"      > Image: {Image}");
-            Logger.Instance.Debug($"      > OriginalImage: {OriginalImage.Width}x{OriginalImage.Height}");
-            Logger.Instance.Debug($"      > ProcessedImage: {ProcessedImage.Width}x{ProcessedImage.Height}");
-            Logger.Instance.Debug($"        > ScaledHeight: {ScaledHeight}");
-            Logger.Instance.Debug($"        > ScaledWidth: {ScaledWidth}");
-            Logger.Instance.Debug($"   -> IsValid: {IsValid}");
         }
         #endregion
 
@@ -211,7 +169,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// <b>true</b> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.
         /// </returns>
-        public bool Equals(PdfImage other) => other.Equals((object)this);
+        public bool Equals(PdfImage other) => other != null && other.Equals((object)this);
         #endregion
 
         #region [public] {override} (bool) Equals(object): Returns a value that indicates whether this class is equal to another
@@ -224,7 +182,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is PdfImage other))
+            if (obj is not PdfImage other)
             {
                 return false;
             }
@@ -238,34 +196,6 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #endregion
 
-        #endregion
-
-        #endregion
-
-        #region public static operators
-
-        #region [public] {static} (bool) operator ==(PdfImage, PdfImage): Implements the equality operator (==). Check if two objects PdfImage are equal
-        /// <summary>
-        /// Implements the equality operator (==). Check if two objects <see cref="PdfImage"/> are equal.
-        /// </summary>
-        /// <param name="left">Left part of equality. </param>
-        /// <param name="right">Right part of equality. </param>
-        /// <returns>
-        /// <b>true</b> if <paramref name="left"/> is equal to <paramref name="right"/>; otherwise, <b>false</b>.
-        /// </returns>
-        public static bool operator ==(PdfImage left, PdfImage right) => left.Equals(right);
-        #endregion
-
-        #region [public] {static} (bool) operator !=(PdfImage, PdfImage): Implements the inequality operator (==). Check if two objects PdfImage are not equal
-        /// <summary>
-        /// Implements the inequality operator (!=). Check if two objects <see cref="PdfImage"/> are not equal.
-        /// </summary>
-        /// <param name="left">Left part of equality. </param>
-        /// <param name="right">Right part of equality. </param>
-        /// <returns>
-        /// <b>true</b> if <paramref name="left"/> not equal to <paramref name="right"/>; otherwise, <b>false</b>.
-        /// </returns>
-        public static bool operator !=(PdfImage left, PdfImage right) => !left.Equals(right);
         #endregion
 
         #endregion
@@ -366,7 +296,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public PdfImage ApplyEffects(EffectType[] effects)
         {
-            if (this.Equals(PdfImage.Null))
+            if (Equals(Null))
             {
                 return this;
             }
@@ -421,7 +351,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public PdfImage ScalePercent(float percentX, float percentY)
         {
-            if (Equals(PdfImage.Null))
+            if (Equals(Null))
             {
                 return this;
             }
@@ -438,7 +368,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         }
         #endregion
 
-        #region [public] (PdfImage) ScaleToFit(float, ScaleStrategy = ScaleStrategy.Auto): Scale this image proportionally until at most indicate the value
+        #region [public] (PdfImage) ScaleTo(float, ScaleStrategy = ScaleStrategy.Auto): Scale this image proportionally until at most indicate the value
         /// <summary>
         /// Scale this image proportionally until at most indicate the value of the parameter <paramref name="maxSize"/>, if the value is less than or equal to zero it returns the raw image.
         /// </summary>
@@ -449,7 +379,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// </returns>
         public PdfImage ScaleTo(float maxSize, ScaleStrategy strategy = ScaleStrategy.Auto)
         {
-            if (Equals(PdfImage.Null))
+            if (Equals(Null))
             {
                 return this;
             }
@@ -496,6 +426,67 @@ namespace iTin.Utilities.Pdf.Design.Image
         }
         #endregion
 
+        #region [public] (PdfImage) ScaleToFit(NativePdfRectangle): Scales this image so to the dimensions of the rectangle
+        /// <summary>
+        /// Scales the images to the dimensions of the rectangle.
+        /// </summary>
+        /// <param name="rectangle">the dimensions to fit</param>
+        /// <returns>
+        /// Returns this instance scaled.
+        /// </returns>
+        public PdfImage ScaleToFit(NativePdfRectangle rectangle) => ScaleToFit(rectangle.Width, rectangle.Height);
+        #endregion
+
+        #region [public] (PdfImage) ScaleToFit(SizeF): Scales this image so to the dimensions of the size
+        /// <summary>
+        /// Scales the images to the dimensions of the size.
+        /// </summary>
+        /// <param name="size">the scaling percentage of the size</param>
+        /// <returns>
+        /// Returns this instance scaled to percent value.
+        /// </returns>
+        public PdfImage ScaleToFit(SizeF size) => ScaleToFit(size.Width, size.Height);
+        #endregion
+
+        #region [public] (PdfImage) ScaleToFit(float, float): Scales this image so that it fits a certain width and height
+        /// <summary>
+        /// Scales this image so that it fits a certain width and height.
+        /// </summary>
+        /// <param name="width">the width to fit</param>
+        /// <param name="height">the height to fit</param>
+        /// <returns>
+        /// Returns this instance scaled.
+        /// </returns>
+        public PdfImage ScaleToFit(float width, float height)
+        {
+            if (Equals(Null))
+            {
+                return this;
+            }
+
+            if (Image == null)
+            {
+                return this;
+            }
+
+            _hasScaledPercent = false;
+            _hasScaledFit = true;
+            _scaleX = width;
+            _scaleY = height;
+
+            var original = (NativeImage)OriginalImage.Clone();
+            var originalWithEffects = original;
+            if (Configuration.Effects != null)
+            {
+                originalWithEffects = original.ApplyEffects(Configuration.Effects);
+            }
+
+            ProcessedImage = (NativeImage)originalWithEffects.ScaleToFit(width, height).Clone();
+
+            return this;
+        }
+        #endregion
+
         #endregion
 
         #region public static methods
@@ -521,7 +512,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromFile(string imagePath, PdfImageConfig configuration = null) => new PdfImage(imagePath, configuration);
+        public static PdfImage FromFile(string imagePath, PdfImageConfig configuration = null) => new(imagePath, configuration);
         #endregion
 
         #region [public] {static} (PdfImage) FromImage(NativeImage, PdfImageConfig = null): Creates a new PdfImage object from specified image, format and optional image effect collection
@@ -533,7 +524,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromImage(NativeImage image, PdfImageConfig configuration = null) => new PdfImage(image, configuration);
+        public static PdfImage FromImage(NativeImage image, PdfImageConfig configuration = null) => new(image, configuration);
         #endregion
 
         #region [public] {static} (PdfImage) FromStream(Stream, PdfImageConfig = null): Creates a new PdfImage object from specified stream, format and optional image effect collection
@@ -564,7 +555,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         {
             SentinelHelper.ArgumentNull(imageUri, nameof(imageUri));
 
-            PdfImage result = PdfImage.Null;
+            PdfImage result = Null;
 
             bool uriIsAccesible = imageUri.IsAccessible();
             if (!uriIsAccesible)
@@ -574,27 +565,77 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             try
             {
-                PdfImage pdfimage;
-                using (var response = GetResponse(imageUri, timeout))
+                using var response = GetResponse(imageUri, timeout);
+                var pdfimage = FromStream(response.GetResponseStream(), configuration);        
+                if (pdfimage.Equals(Null))
                 {
+                    Task.Delay(300);
+                    
+                    using var responseAlternative = GetResponse(imageUri, timeout);
                     pdfimage = FromStream(response.GetResponseStream(), configuration);
-                }
-
-                if (pdfimage == PdfImage.Null)
-                {
-                    Thread.Sleep(300);
-                    using (var response = GetResponse(imageUri, timeout))
+                    if (pdfimage.Equals(Null))
                     {
-                        pdfimage = FromStream(response.GetResponseStream(), configuration);
-                    }
-
-                    if (pdfimage == PdfImage.Null)
-                    {
-                        Thread.Sleep(500);
+                        Task.Delay(500);
                         pdfimage = GetPdfImageByWebClient(imageUri);
                     }
                 }
                 
+                result = pdfimage;
+            }
+            catch
+            {
+                return result;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #endregion
+
+        #region public static async methods
+
+        #region [public] {static} {async} (Task<PdfImage>) FromUriAsync(Uri imageUri, PdfImageConfig = null, int = 5000): Creates a new PdfImage object from specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image
+        /// <summary>
+        /// Creates a new <see cref="PdfImage"/> object from the specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image.
+        /// If the process of getting the image fails or the uri is wrong, <b>null</b> is returned.
+        /// </summary>
+        /// <param name="imageUri">Uri to image resource.</param>
+        /// <param name="configuration">An image configuration to apply.</param>
+        /// <param name="timeout">An image effects collection to apply.</param>
+        /// <returns>
+        /// A new <see cref="PdfImage"/> reference represents image.
+        /// </returns>
+        public static async Task<PdfImage> FromUriAsync(Uri imageUri, PdfImageConfig configuration = null, int timeout = 15000)
+        {
+            SentinelHelper.ArgumentNull(imageUri, nameof(imageUri));
+
+            PdfImage result = Null;
+
+            bool uriIsAccesible = await imageUri.IsAccessibleAsync();
+            if (!uriIsAccesible)
+            {
+                return result;
+            }
+
+            try
+            {
+                using var response = await GetResponseAsync(imageUri, timeout);
+
+                var pdfimage = FromStream(response.GetResponseStream(), configuration);                
+                if (pdfimage.Equals(Null))
+                {
+                    await Task.Delay(300);
+
+                    using var responseAlternative = await GetResponseAsync(imageUri, timeout);
+                    pdfimage = FromStream(responseAlternative.GetResponseStream(), configuration);                    
+                    if (pdfimage.Equals(Null))
+                    {
+                        await Task.Delay(500);
+                        pdfimage = await GetPdfImageByWebClientAsync(imageUri);
+                    }
+                }
+
                 result = pdfimage;
             }
             catch
@@ -699,18 +740,46 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         private static PdfImage GetPdfImageByWebClient(Uri imageUri)
         {
-            PdfImage result = PdfImage.Null;
+            PdfImage result = Null;
+
+            try
+            {                
+                using var webClient = new WebClient();
+                using var ms = new MemoryStream(webClient.DownloadData(imageUri));
+                var bmp = NativeImage.FromStream(ms);
+                
+                return FromImage(bmp);
+            }
+            catch
+            {
+                return result;
+            }
+        }
+
+        #endregion
+
+        #region private static async methods
+
+        private static async Task<HttpWebResponse> GetResponseAsync(Uri imageUri, int timeout = 15000)
+        {
+            var request = (HttpWebRequest) WebRequest.Create(imageUri);
+            request.Timeout = timeout;
+            request.ReadWriteTimeout = timeout;
+
+            return (HttpWebResponse) await request.GetResponseAsync();
+        }
+
+        private static async Task<PdfImage> GetPdfImageByWebClientAsync(Uri imageUri)
+        {
+            PdfImage result = Null;
 
             try
             {
-                NativeImage bmp;
-                using (var webClient = new WebClient())
-                using (var ms = new MemoryStream(webClient.DownloadData(imageUri)))
-                {
-                    bmp = NativeImage.FromStream(ms);
-                }
-
-                return PdfImage.FromImage(bmp);
+                using var webClient = new WebClient();
+                using var ms = new MemoryStream(await webClient.DownloadDataTaskAsync(imageUri));
+                var bmp = NativeImage.FromStream(ms);
+                
+                return FromImage(bmp);
             }
             catch
             {
@@ -721,64 +790,3 @@ namespace iTin.Utilities.Pdf.Design.Image
         #endregion
     }
 }
-
-//#region [public] (PdfImage) ScaleToFit(NativePdfRectangle): Scales this image so to the dimensions of the rectangle
-///// <summary>
-///// Scales the images to the dimensions of the rectangle.
-///// </summary>
-///// <param name="rectangle">the dimensions to fit</param>
-///// <returns>
-///// Returns this instance scaled.
-///// </returns>
-//public PdfImage ScaleToFit(NativePdfRectangle rectangle) => ScaleToFit(rectangle.Width, rectangle.Height);
-//#endregion
-
-//#region [public] (PdfImage) ScaleToFit(SizeF): Scales this image so to the dimensions of the size
-///// <summary>
-///// Scales the images to the dimensions of the size.
-///// </summary>
-///// <param name="size">the scaling percentage of the size</param>
-///// <returns>
-///// Returns this instance scaled to percent value.
-///// </returns>
-//public PdfImage ScaleToFit(SizeF size) => ScaleToFit(size.Width, size.Height);
-//#endregion
-
-//#region [public] (PdfImage) ScaleToFit(float, float): Scales this image so that it fits a certain width and height
-///// <summary>
-///// Scales this image so that it fits a certain width and height.
-///// </summary>
-///// <param name="width">the width to fit</param>
-///// <param name="height">the height to fit</param>
-///// <returns>
-///// Returns this instance scaled.
-///// </returns>
-//public PdfImage ScaleToFit(float width, float height)
-//{
-//    if (this.Equals(PdfImage.Null))
-//    {
-//        return this;
-//    }
-
-//    if (Image == null)
-//    {
-//        return this;
-//    }
-
-//    _hasScaledPercent = false;
-//    _hasScaledFit = true;
-//    _scaleX = width;
-//    _scaleY = height;
-
-//    var original = (NativeImage) OriginalImage.Clone();
-//    var originalWithEffects = original;
-//    if (Configuration.Effects != null)
-//    {
-//        originalWithEffects = original.ApplyEffects(Configuration.Effects);
-//    }
-
-//    ProcessedImage = (NativeImage)originalWithEffects.ScaleToFit(width, height).Clone();
-
-//    return this;
-//}
-//#endregion
