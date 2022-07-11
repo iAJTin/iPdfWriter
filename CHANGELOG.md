@@ -288,5 +288,5 @@ All notable changes to this project will be documented in this file.
 [1.0.1]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.1
 [1.0.0]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.0
 
-[sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample16.cs
-[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/iPdfWriter.ConsoleAppCore/Code/Sample17.cs
+[sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
+[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
