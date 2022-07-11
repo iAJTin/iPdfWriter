@@ -55,7 +55,7 @@ namespace iPdfWriter.Code
             var doc = new PdfInput
             {
                 AutoUpdateChanges = true,
-                Input = "~/Resources/Sample-01/file-sample.pdf"
+                Input = "~/Resources/Sample-18/file-sample.pdf"
             };
 
             #endregion

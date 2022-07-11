@@ -47,7 +47,6 @@ I hope it helps someone. :smirk:
 
 ### Sample 1 - Shows the use of text and image replacement with styles
 
-
 Basic steps, for more details please see [sample01.cs] file.
 
 1. Load pdf file
@@ -1220,6 +1219,258 @@ Basic steps, for more details please see [sample06.cs] file.
 
 ![Sample13AllPages][Sample13AllPages] 
 
+### Sample 11 - Show the use of add an enumerable in a pdf document
+
+Basic steps, for more details please see [sample16.cs] file.
+
+1. Defines a **Person** model
+
+    ```csharp   
+    public class Person
+    {
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+    }    
+    ```             
+
+2. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-16/file-sample.pdf"
+    };
+    ```             
+
+3. Replace **#DATA-TABLE#** tag with an typed enumerable
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTableObject
+        {
+            Text = "#DATA-TABLE#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = PdfTableStyle.Default,
+            ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
+            Table = PdfTable.CreateFromEnumerable(
+                new List<Person>
+                {
+                    new Person {Name = "Name-01", Surname = "Surname-01"},
+                    new Person {Name = "Name-02", Surname = "Surname-02"},
+                    new Person {Name = "Name-03", Surname = "Surname-03"},
+                    new Person {Name = "Name-04", Surname = "Surname-04"},
+                    new Person {Name = "Name-05", Surname = "Surname-05"},
+                    new Person {Name = "Name-06", Surname = "Surname-06"},
+                    new Person {Name = "Name-07", Surname = "Surname-07"},
+                    new Person {Name = "Name-08", Surname = "Surname-08"},
+                    new Person {Name = "Name-09", Surname = "Surname-09"},
+                    new Person {Name = "Name-10", Surname = "Surname-10"},
+                })
+        }));
+    ```
+4. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+5. Save pdf result to file
+    
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample16/Sample-16" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+6. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample16AllPages][Sample16AllPages] 
+
+### Sample 12 - Show the use of add an DataTable in a pdf document
+
+Basic steps, for more details please see [sample17.cs] file.
+
+1. Defines a **Person** model
+
+    ```csharp   
+    public class Person
+    {
+        public string Name { get; set; }
+
+        public string Surname { get; set; }
+    }    
+    ```             
+
+2. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-17/file-sample.pdf"
+    };
+    ```             
+
+3. Replace **#DATA-TABLE#** tag with a DataTable object
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTableObject
+        {
+            Text = "#DATA-TABLE#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = PdfTableStyle.Default,
+            ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
+            Table = PdfTable.CreateFromDataTable(
+                new List<Person>
+                {
+                    new Person {Name = "Name-01", Surname = "Surname-01"},
+                    new Person {Name = "Name-02", Surname = "Surname-02"},
+                    new Person {Name = "Name-03", Surname = "Surname-03"},
+                    new Person {Name = "Name-04", Surname = "Surname-04"},
+                    new Person {Name = "Name-05", Surname = "Surname-05"},
+                    new Person {Name = "Name-06", Surname = "Surname-06"},
+                    new Person {Name = "Name-07", Surname = "Surname-07"},
+                    new Person {Name = "Name-08", Surname = "Surname-08"},
+                    new Person {Name = "Name-09", Surname = "Surname-09"},
+                    new Person {Name = "Name-10", Surname = "Surname-10"},
+                }
+                .ToDataTable<Person>("People"))
+        }));
+    ```
+4. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+5. Save pdf result to file
+    
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample17/Sample-17" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+6. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample17AllPages][Sample17AllPages] 
+
+### Sample 13 - Shows the use of text and image replacement with styles from file
+
+Basic steps, for more details please see [sample18.cs] file.
+
+1. Creates Style file
+
+   Remember you can use both **XML** and **Json** formats.
+
+    ##### TextStyle
+    ```XML   
+    <?xml version="1.0" encoding="utf-8"?>
+    <PdfBaseStyle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:q1="http://schemas.iTin.com/pdf/style/v1.0" xsi:type="q1:PdfTextStyle" Name="ReportTitle">
+      <q1:Font Name="Arial" Size="28" Color="Blue" Bold="Yes" Italic="Yes" />
+      <q1:Content AlternateColor="Transparent">
+        <q1:Alignment Horizontal="Center" />
+      </q1:Content>
+    </PdfBaseStyle>  
+    ```
+
+    ##### ImageStyle
+    ```Json   
+    {
+        "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageStyle, iTin.Utilities.Pdf.Design",
+        "content": {
+        "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContent, iTin.Utilities.Pdf.Design",
+        "alignment": {
+            "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContentAlignment, iTin.Utilities.Pdf.Design",
+            "horizontal": "Center"
+        },
+        "alternate-color": "Transparent"
+        },
+        "name": "Center",
+        "inherits": null
+    }
+    ```             
+
+2. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-18/file-sample.pdf"
+    };
+    ```             
+
+3. Replace **#TITLE#** tag with another text but using a style that is loaded from a file
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTextObject
+        {
+            Text = "#TITLE#",
+            NewText = "Lorem ipsum",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+            Style = (PdfTextStyle) PdfTextStyle.LoadFromFile("~Resources/Sample-18/Styles/TextStyle.Xml", format: KnownFileFormat.Xml)
+        }));        
+    ```
+
+4. Replace **#IMAGE1#** tag with an image but using a style that is loaded from a file
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithImageObject
+        {
+            Text = "#IMAGE1#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+            Image = PdfImage.FromFile("~/Resources/Sample-18/Images/image-1.jpg"),
+            Style = (PdfImageStyle) PdfImageStyle.LoadFromFile("~Resources/Sample-18/Styles/ImageStyle.Json", format: KnownFileFormat.Json)
+        }));   
+    ```
+
+5. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+6. Save pdf result to file
+    
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample18/Sample-18" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+7. Output
+
+   The result is the same as in sample 1.
+
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -1273,3 +1524,9 @@ My email address is
 
 [sample13.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample13.cs
 [Sample13AllPages]: ./assets/samples/sample13/sample13.png "sample13"
+
+[sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
+[Sample16AllPages]: ./assets/samples/sample16/sample16.png "sample16"
+
+[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
+[Sample17AllPages]: ./assets/samples/sample17/sample17.png "sample17"
