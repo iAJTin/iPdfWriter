@@ -1,13 +1,13 @@
 
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+
+using iTin.Core.Drawing.ComponentModel;
+
 namespace iTin.Core.Drawing.Helpers
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.IO;
-
-    using ComponentModel;
-
     /// <summary> 
     /// Static class than contains methods for manipulating images.
     /// </summary>

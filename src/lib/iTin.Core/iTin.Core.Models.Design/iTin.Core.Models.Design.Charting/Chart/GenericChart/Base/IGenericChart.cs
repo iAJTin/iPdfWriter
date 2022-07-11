@@ -1,10 +1,10 @@
 ﻿
+using System.Drawing;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Design.Charting
 {
-    using System.Drawing;
-
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Defines a generic content.
     /// </summary>

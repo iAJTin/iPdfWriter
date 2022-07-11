@@ -1,19 +1,19 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.IO;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Helpers;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Charting
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.IO;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core.Helpers;
-
-    using Enums;
-
     /// <summary>
     /// A Specialization of <see cref="IChart"/> interface.<br/>
     /// Defines a generic chart.

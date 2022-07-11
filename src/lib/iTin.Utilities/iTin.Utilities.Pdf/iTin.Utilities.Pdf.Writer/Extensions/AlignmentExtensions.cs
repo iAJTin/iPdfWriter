@@ -1,10 +1,10 @@
 ﻿
+using System.Drawing;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System.Drawing;
-
-    using iTin.Core.Models.Design.Enums;
-
     /// <summary>
     /// Static class than contains common extension methods for <see cref="KnownHorizontalAlignment"/> enumeration.
     /// </summary>

@@ -1,15 +1,15 @@
 ﻿
+using System.Diagnostics;
+using System.IO;
+
+using iTin.Core;
+using iTin.Core.ComponentModel;
+using iTin.Core.IO.Compression;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
 {
-    using System.Diagnostics;
-    using System.IO;
-
-    using iTin.Core;
-    using iTin.Core.ComponentModel;
-    using iTin.Core.IO.Compression;
-
-    using Action;
-
     /// <summary>
     /// Represents configuration information for an object <see cref="OutputResultData"/>.
     /// </summary>

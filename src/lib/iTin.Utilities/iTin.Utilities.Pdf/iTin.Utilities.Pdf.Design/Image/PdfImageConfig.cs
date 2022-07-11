@@ -1,14 +1,15 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Drawing.Helpers;
+
+using NativeDrawing = System.Drawing;
+
 namespace iTin.Utilities.Pdf.Design.Image
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Drawing;
-
-    using iTin.Core.Drawing.ComponentModel;
-    using iTin.Core.Drawing.Helpers;
-
     /// <summary>
     /// Represents configuration information for an object <see cref="PdfImage"/>.
     /// </summary>
@@ -109,14 +110,14 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region private properties
 
-        #region [internal] (Image) ImageReference: Gets or set a value containing the image which acts as parent
+        #region [internal] (NativeDrawing.Image) ImageReference: Gets or set a value containing the image which acts as parent
         /// <summary>
         /// Gets or set a value containing the <see cref="Image"/> reference which acts as parent
         /// </summary>
         /// <value>
         /// An <see cref="Image"/> reference.
         /// </value>
-        private Image ImageReference { get; set; }
+        private NativeDrawing.Image ImageReference { get; set; }
         #endregion
 
         #endregion
@@ -142,14 +143,14 @@ namespace iTin.Utilities.Pdf.Design.Image
         }
         #endregion
 
-        #region [public] (Color) GetColor(): Gets a reference to the color structure preferred for transparent background
+        #region [public] (NativeDrawing.Color) GetColor(): Gets a reference to the color structure preferred for transparent background
         /// <summary>
-        /// Gets a reference to the <see cref="Color"/> structure preferred for transparent background.
+        /// Gets a reference to the <see cref="NativeDrawing.Color"/> structure preferred for transparent background.
         /// </summary>
         /// <returns>
-        /// <see cref="Color"/> structure that represents a .NET color.
+        /// <see cref="NativeDrawing.Color"/> structure that represents a .NET color.
         /// </returns> 
-        public Color GetColor()
+        public NativeDrawing.Color GetColor()
         {
             if (ImageReference == null)
             {
@@ -157,7 +158,7 @@ namespace iTin.Utilities.Pdf.Design.Image
             }
 
             // Get the color of a background pixel.
-            return ((Bitmap) ImageReference).GetPixel(1, 1);
+            return ((NativeDrawing.Bitmap) ImageReference).GetPixel(1, 1);
         }
         #endregion
 
@@ -165,12 +166,12 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region internal methods
 
-        #region [internal] (void) SetParentImage(Image): Sets the reference to parent image
+        #region [internal] (void) SetParentImage(NativeDrawing.Image): Sets the reference to parent image
         /// <summary>
-        /// Sets the reference to parent <see cref="Image"/>.
+        /// Sets the reference to parent <see cref="NativeDrawing.Image"/>.
         /// </summary>
-        /// <param name="parent">An <see cref="Image"/> reference</param>
-        internal void SetParentImage(Image parent)
+        /// <param name="parent">An <see cref="NativeDrawing.Image"/> reference</param>
+        internal void SetParentImage(NativeDrawing.Image parent)
         {
             ImageReference = parent;
         }

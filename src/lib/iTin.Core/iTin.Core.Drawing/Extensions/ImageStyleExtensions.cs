@@ -1,10 +1,10 @@
 
+using System.Drawing.Drawing2D;
+
+using iTin.Core.Drawing.ComponentModel;
+
 namespace iTin.Core.Drawing
 {
-    using System.Drawing.Drawing2D;
-
-    using ComponentModel;
-
     /// <summary>
     /// Static class than contains extension methods for structures of type <see cref="ImageStyle"/>.
     /// </summary> 

@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Reflection;
+
 namespace iTin.Core.IO
 {
-    using System;
-    using System.Reflection;
-
     /// <summary>
     /// Static class which contains methods for retrieve <see cref="Assembly"/> information.
     /// </summary>

@@ -1,17 +1,17 @@
 ﻿
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design;
+
 namespace iTin.Core.Models.Collections
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using Design;
-
     /// <summary>
     /// Represents a strongly typed list of model objects that can be accessed by index, allow defines type of parent.<br/>
     /// Provides methods to search, sort, and manipulate lists.

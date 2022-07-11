@@ -1,13 +1,13 @@
 ﻿
+using System.Drawing;
+using System.IO;
+
+using iTin.Core.Models.Design.Styling;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.Drawing;
-    using System.IO;
-
-    using iTin.Core.Models.Design.Styling;
-
-    using Result.Insert;
-
     /// <summary>
     /// Defines allowed actions for insert objects
     /// </summary>

@@ -1,10 +1,10 @@
 ﻿
+using System.Diagnostics;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.Diagnostics;
-
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-
     /// <inheritdoc/>
     /// <summary>
     /// Represents configuration information for an object <see cref="PdfObject"/>.

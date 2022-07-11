@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.Globalization;
+using System.Resources;
+using System.Threading;
+
 namespace iTin.Core.Drawing.Exceptions
 {
-    using System;
-    using System.Globalization;
-    using System.Resources;
-    using System.Threading;
-
     /// <summary>
     /// Class Exception.
     /// </summary>
@@ -13,7 +13,7 @@ namespace iTin.Core.Drawing.Exceptions
     [Serializable]
     internal class Exception : System.Exception
     {
-        internal static object Lock = new object();
+        internal static object Lock = new();
         internal static ResourceManager generalExceptionResourceManager;
 
         #region constructor/s

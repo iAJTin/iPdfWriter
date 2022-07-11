@@ -1,24 +1,22 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+using iTin.Core;
+using iTin.Core.Helpers;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-
-    using iTextSharp.text;
-    using iTextSharp.text.pdf;
-
-    using iTin.Core;
-    using iTin.Core.Helpers;
-
-    using iTin.Logging;
-
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
-
     /// <summary>
     /// Represents a generic pdf object, this allows add pdf files to <see cref="PdfObject.Items"/> property and specify a user custom configuration.
     /// </summary>
@@ -50,12 +48,6 @@ namespace iTin.Utilities.Pdf.Writer
         /// <param name="configuration">The configuration.</param>
         public PdfObject(PdfObjectConfig configuration)
         {
-            Logger.Instance.Debug("External Call");
-            Logger.Instance.Info("  Initializes a new instance of the PdfObject class with specified configuration");
-            Logger.Instance.Info("  > Library: iTin.Utilities.Pdf");
-            Logger.Instance.Info("  > Class: PdfObject");
-            Logger.Instance.Info("  > Method: ctor(PdfObjectConfig)");
-
             Configuration = configuration;
             Items = new List<PdfInput>();
         }
@@ -142,15 +134,11 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public OutputResult TryMergeInputs()
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug(" Assembly: iTin.Utilities.Pdf.Writer, Namespace: iTin.Utilities.Pdf.Writer, Class: PdfObject");
-            Logger.Instance.Debug($" Merges all {typeof(PdfInput)} entries into a new {typeof(PdfObject)}");
-            Logger.Instance.Debug($" > Signature: ({typeof(OutputResult)}) TryMergeInputs()");
+            Items.ForEach(item => item.ProcessInput());
 
-            var items = Items.ToList();
             if (Configuration.UseIndex)
             {
-                items = items.OrderBy(i => i.Index).ToList();
+                Items = Items.OrderBy(i => i.Index).ToList();
             }
 
             try
@@ -164,7 +152,7 @@ namespace iTin.Utilities.Pdf.Writer
                         
                         PdfReader.unethicalreading = true;
 
-                        foreach (var item in items)
+                        foreach (var item in Items)
                         {
                             var itemAsStream = item.Clone().ToStream();
                             if (itemAsStream == null)
@@ -192,7 +180,8 @@ namespace iTin.Utilities.Pdf.Writer
                     ReplaceResult rawMergedResult = null;
                     foreach (var tag in Configuration.Tags)
                     {
-                        rawMergedResult = pdfRawMerged.Replace(new ReplaceSystemTag(tag.BuildReplacementObject()));
+                        var z = pdfRawMerged.Replace(new ReplaceSystemTag(tag.BuildReplacementObject()));
+                        rawMergedResult = pdfRawMerged.ProcessInput();
                     }
                     
                     if (rawMergedResult.Success)
@@ -215,7 +204,8 @@ namespace iTin.Utilities.Pdf.Writer
                     ReplaceResult rawMergedWithTagsResult = null;
                     foreach (var replacement in Configuration.GlobalReplacements)
                     {
-                        rawMergedWithTagsResult = pdfRawMergedWithTags.Replace(new ReplaceText(replacement));
+                        pdfRawMergedWithTags.Replace(new ReplaceText(replacement));
+                        rawMergedWithTagsResult = pdfRawMergedWithTags.ProcessInput();
                     }
 
                     if (rawMergedWithTagsResult.Success)
@@ -231,7 +221,7 @@ namespace iTin.Utilities.Pdf.Writer
 
                 if (Configuration.DeletePhysicalFilesAfterMerge)
                 {
-                    foreach (var item in items)
+                    foreach (var item in Items)
                     {
                         var inputType = item.InputType;
                         if (inputType != KnownInputType.Filename)

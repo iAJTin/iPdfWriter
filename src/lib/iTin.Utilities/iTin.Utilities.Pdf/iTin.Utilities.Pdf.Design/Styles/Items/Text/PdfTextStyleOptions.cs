@@ -1,15 +1,15 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Options;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core.Models.Design.Options;
-
     /// <summary>
     /// A Specialization of <see cref="BaseOptions"/> class.<br/>
     /// Defines a set of options that we can use to quickly adjust an existing <see cref="PdfTextStyle"/> instance.

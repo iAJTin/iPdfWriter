@@ -1,17 +1,16 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core.Helpers;
-
-    using Enums;
-
     /// <summary>
     /// A Specialization of <see cref="IContentAlignment"/> interface.<br/>
     /// Which acts as the base class for different content alignment configurations.

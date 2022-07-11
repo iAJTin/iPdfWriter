@@ -1,8 +1,8 @@
 ﻿
+using System.IO;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
 {
-    using System.IO;
-
     /// <summary>
     /// Represents set data for an object <see cref="SetResult"/>.
     /// </summary>

@@ -1,20 +1,13 @@
 ﻿
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Versioning;
+
+using iTin.Core.ComponentModel;
+using iTin.Logging;
+
 namespace iTin.Core.Helpers
 {
-	using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-	using System.Reflection;
-    using System.Runtime.Versioning;
-    using System.Security.Permissions;
-
-    using Microsoft.Win32;
-
-	using ComponentModel;
-	using Logging;
-
 	/// <summary>
 	/// Static class which contains methods for retrieve <b>.NET Framework</b> information.
 	/// </summary>

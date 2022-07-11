@@ -1,23 +1,26 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+using iTin.Core;
+using iTin.Core.Helpers;
+using iTin.Utilities.Pdf.Design.Styles;
+
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.tool.xml.css;
+using iTextSharp.tool.xml.html;
+using iTextSharp.tool.xml.parser;
+using iTextSharp.tool.xml.pipeline.css;
+using iTextSharp.tool.xml.pipeline.end;
+using iTextSharp.tool.xml.pipeline.html;
+
 namespace iTin.Utilities.Pdf.Design.Table
 {
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-
-    using iTextSharp.text.pdf;
-    using iTextSharp.tool.xml;
-    using iTextSharp.tool.xml.css;
-    using iTextSharp.tool.xml.html;
-    using iTextSharp.tool.xml.parser;
-    using iTextSharp.tool.xml.pipeline.css;
-    using iTextSharp.tool.xml.pipeline.end;
-    using iTextSharp.tool.xml.pipeline.html;
-
-    using iTin.Core;
-    using iTin.Logging;
-
     /// <summary>
     /// Defines a <b>pdf</b> table object.
     /// </summary>
@@ -33,11 +36,6 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <param name="configuration">Table configuration reference.</param>
         private PdfTable(PdfPTable reference, PdfTableConfig configuration = null)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfTable).Assembly.GetName().Name}, v{typeof(PdfTable).Assembly.GetName().Version}, Namespace: {typeof(PdfTable).Namespace}, Class: {nameof(PdfTable)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfTable)} class");
-            Logger.Instance.Debug($" > Signature: #ctor({typeof(PdfPTable)}, {typeof(PdfTableConfig)} = null)");
-
             var safeConfiguration = configuration;
             if (configuration == null)
             {
@@ -46,9 +44,6 @@ namespace iTin.Utilities.Pdf.Design.Table
 
             Table = reference;
             Configuration = safeConfiguration.Clone();
-
-            Logger.Instance.Debug($"   -> Table: {Table}");
-            Logger.Instance.Debug($"   -> Configuration: {Configuration}");
         }
         #endregion
 
@@ -80,6 +75,42 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region public static methods
 
+        #region [public] {static} (PdfTable) CreateFromEnumerable<Ti>(IEnumerable<Ti>, PdfTableConfig = null): Creates a PdfTable object from specified typed enumerable 
+        /// <summary>
+        /// Creates a <see cref="PdfTable"/> object from specified typed enumerable.
+        /// </summary>
+        /// <param name="data">A reference to input typed enumerable to convert.</param>
+        /// <param name="styles">A reference to styles to use.</param>
+        /// <param name="config">Table configuration reference.</param>
+        /// <returns>
+        /// A new <see cref="PdfPTable"/> instance that contains the table from specified typed enumerable.
+        /// </returns>
+        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, PdfTextStyle styles = null, PdfTableConfig config = null)
+        {
+            SentinelHelper.ArgumentNull(data, nameof(data));
+
+            return CreateFromDataTable(data.ToDataTable<Ti>(nameof(data)), styles, config);
+        }
+        #endregion
+
+        #region [public] {static} (PdfTable) CreateFromDataTable(DataTable, PdfTableConfig = null): Creates a PdfTable object from specified DataTable
+        /// <summary>
+        /// Creates a <see cref="PdfTable"/> object from specified <see cref="T:System.Data.DataTable"/>.
+        /// </summary>
+        /// <param name="data">A reference to input <see cref="T:System.Data.DataTable"/> to convert.</param>
+        /// <param name="styles">A reference to styles to use.</param>
+        /// <param name="config">Table configuration reference.</param>
+        /// <returns>
+        /// A new <see cref="PdfPTable"/> instance that contains the table from specified <see cref="T:System.Data.DataTable"/>.
+        /// </returns>
+        public static PdfTable CreateFromDataTable(DataTable data, PdfTextStyle styles = null, PdfTableConfig config = null)
+        {
+            SentinelHelper.ArgumentNull(data, nameof(data));
+
+            return CreateFromHtml(data.ToHtmlTable(), css: default, config: config);
+        }
+        #endregion
+
         #region [public] {static} (PdfTable) CreateFromHtml(string, string = default, PdfTableConfig = null): Creates a PdfTable object from specified HTML code, HTML5 tags not supported.
         /// <summary>
         /// Creates a <see cref="PdfTable"/> object from specified <b>HTML</b> code, <b>HTML5 tags not supported</b> 
@@ -95,7 +126,23 @@ namespace iTin.Utilities.Pdf.Design.Table
             var hasCss = !string.IsNullOrEmpty(css);
             if (!hasCss)
             {
-                css = " ";
+                css = @"
+                        table { 
+                            border-spacing: 0px;
+                            border-collapse: collapse;  
+                        }
+
+                        tr {
+                            font-size: 9pt;
+                            font-family: Arial; 
+                            color: #000000;
+                            text-align: left;
+                            overflow: hidden;
+                        }
+
+                        td {
+                            padding: 4px;
+                        }";
             }
 
             // css

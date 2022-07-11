@@ -1,8 +1,8 @@
 ﻿
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Defines a generic content.
     /// </summary>

@@ -1,20 +1,20 @@
 ﻿
+using System;
+using System.Diagnostics;
+
+using iTin.Core;
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+using iTin.Core.IO;
+using iTin.Core.IO.Compression;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+
+using NativeIO = System.IO;
+using iTinIO = iTin.Core.IO;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
 {
-    using System;
-    using System.Diagnostics;
-
-    using iTin.Core;
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-    using iTin.Core.IO;
-    using iTin.Core.IO.Compression;
-
-    using Output;
-
-    using NativeIO = System.IO;
-    using iTinIO = iTin.Core.IO;
-
     /// <inheritdoc/>
     /// <summary>
     /// Defines allowed actions for output result data

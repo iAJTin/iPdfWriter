@@ -1,8 +1,6 @@
 ﻿
 namespace iTin.Core.Helpers
 {
-    using Logging;
-
     /// <summary>
     /// Static class than contains methods for manipulating generic types.
     /// </summary>

@@ -1,17 +1,17 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+using iTin.Core.IO.Compression;
+using iTin.Core.Helpers;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-
-    using iTin.Core.IO.Compression;
-    using iTin.Core.Helpers;
-
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
-
     /// <summary>
     /// Static class than contains common extension methods for objects of type <see cref="PdfInput"/>.
     /// </summary>

@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-
-    using Core.Helpers;
-
     /// <summary>
     /// Sets the smoothing quality of lines and curves for the graphic context specified in one of the values in the enumeration <see cref="SmoothingModeEx"/>.
     /// </summary>

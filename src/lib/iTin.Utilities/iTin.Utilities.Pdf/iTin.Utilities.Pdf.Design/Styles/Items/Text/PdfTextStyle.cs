@@ -1,15 +1,15 @@
 ﻿
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design;
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core.Models.Design;
-    using iTin.Core.Models.Design.Enums;
-
     /// <summary>
     /// A Specialization of <see cref="PdfBaseStyle"/> class.<br/>
     /// Defines a <b>pdf</b> text style.
@@ -156,7 +156,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         }
         #endregion
 
-        #endregion
+        #endregion        
 
         #region public new properties
 

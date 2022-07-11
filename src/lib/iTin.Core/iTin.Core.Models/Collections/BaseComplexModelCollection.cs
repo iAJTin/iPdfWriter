@@ -1,10 +1,10 @@
 ﻿
+using System;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Collections
 {
-    using System;
-
-    using Newtonsoft.Json;
-
     /// <inheritdoc/>
     /// <summary>
     /// A Specialization of <see cref="BaseSimpleModelCollection{TItem, TParent}"/> class.<br/>.

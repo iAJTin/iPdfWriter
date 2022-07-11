@@ -1,9 +1,9 @@
 ﻿
+using System.Drawing;
+using System.Drawing.Imaging;
+
 namespace iTin.Core.Drawing.Helpers
 {
-    using System.Drawing;
-    using System.Drawing.Imaging;
-
     /// <summary>
     /// Static class than contains methods for manipulating objects of type <see cref="Bitmap"/>.
     /// </summary>

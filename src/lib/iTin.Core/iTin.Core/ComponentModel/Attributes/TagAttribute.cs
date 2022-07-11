@@ -1,8 +1,8 @@
 
+using System;
+
 namespace iTin.Core.ComponentModel
-{
-    using System;
-    
+{   
     /// <summary>    
     /// Especifica una descripción para un elemento de tipo enumerado.       
     /// </summary>

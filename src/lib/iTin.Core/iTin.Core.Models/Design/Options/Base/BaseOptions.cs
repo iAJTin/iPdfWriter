@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.ComponentModel;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Design.Options
 {
-    using System;
-    using System.ComponentModel;
-
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Base class for model option elements. 
     /// </summary>

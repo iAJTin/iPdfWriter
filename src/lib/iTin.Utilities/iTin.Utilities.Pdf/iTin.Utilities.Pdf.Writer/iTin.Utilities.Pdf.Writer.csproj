@@ -22,7 +22,9 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Remove="ComponentModel\Operations\Items\Replace\ReplacementObject\Base\ReplacementBase.cs" />
     <Compile Remove="Helpers\ImageExtractor.cs" />
+    <Compile Remove="PdfProcessCommands.cs" />
   </ItemGroup>
 
   <ItemGroup>

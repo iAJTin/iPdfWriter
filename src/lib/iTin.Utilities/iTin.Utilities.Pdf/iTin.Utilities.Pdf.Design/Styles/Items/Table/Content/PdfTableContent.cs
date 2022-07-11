@@ -1,12 +1,12 @@
 ﻿
+using System.Diagnostics;
+
+using iTin.Core;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System.Diagnostics;
-
-    using iTin.Core;
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// A Specialization of <see cref="BaseContent"/> class.<br/>
     /// Defines a <b>pdf</b> image content.

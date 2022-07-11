@@ -1,8 +1,8 @@
 ﻿
+using System;
+
 namespace iTin.Utilities.Pdf.Design.Table
 {
-    using System;
-
     /// <summary>
     /// Specifies the known table height strategy.
     /// </summary>

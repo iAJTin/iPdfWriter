@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-
-    using Core.Helpers;
-
     /// <summary>
     /// Set the interpolation mode to <see cref="InterpolationMode.HighQualityBicubic"/>.
     /// </summary>

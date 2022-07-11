@@ -1,22 +1,21 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+
+using iTin.Core.Helpers;
+using iTin.Logging;
+
+using NativeIO = System.IO;
+using NativeFile = System.IO.File;
+using NativePath = System.IO.Path;
+using NativeDirectory = System.IO.Directory;
+
 namespace iTin.Core.IO
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Linq;
-
-    using iTin.Core.Helpers;
-
-    using Logging;
-
-    using NativeIO = System.IO;
-    using NativeFile = System.IO.File;
-    using NativePath = System.IO.Path;
-    using NativeDirectory = System.IO.Directory;
-
     /// <summary>
     /// 
     /// </summary>

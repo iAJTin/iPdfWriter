@@ -1,13 +1,11 @@
 ﻿
+using System.Drawing;
+
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 {
-    using System.IO;
-
-    using iTin.Core.Helpers;
-    using iTin.Core.Models.Design.Styling;
-
-    using Result.Replace;
-
     /// <summary>
     /// Specialization of <see cref="IReplacement"/> interface.<br/>
     /// Acts as base class for system tags replacement actions.
@@ -18,53 +16,18 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
 
         #region IReplacement
 
-        #region public methods
-
-        #region [public] (ReplaceResult) Apply(string, IInput): Try to execute the replacement action
-        /// <summary>
-        /// Try to execute the replacement action.
-        /// </summary>
-        /// <param name="file">file input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        public ReplaceResult Apply(string file, IInput context) => Apply(StreamHelper.TextFileToStream(file), context);
-        #endregion
-
-        #region [public] (ReplaceResult) Apply(Stream, IInput): Try to execute the replacement action
-        /// <summary>
-        /// Try to execute the replacement action.
-        /// </summary>
-        /// <param name="input">stream input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        public ReplaceResult Apply(Stream input, IInput context) => ReplaceImpl(input, context);
-        #endregion
-
-        #endregion
-
-        #endregion
-
-        #region ISystemTagTextReplacement
-
         #region public properties
+
+        #region [public] (PointF) Offset: Gets or sets a reference a point structure which represents the text/image/table offset
+        /// <summary>
+        /// Gets or sets a reference a point structure which represents the text/image/table offset. The default is <see cref="PointF.Empty"/>.
+        /// Positive values on the y axis move the text/image/table down and positive values on the x axis move the text/image right.
+        /// </summary>
+        /// <value>
+        /// A <see cref="PointF"/> object that contains text/image/table offset to apply.
+        /// </value>
+        public PointF Offset { get; set; }
+        #endregion
 
         #region [public] (ReplaceTextOptions) ReplaceOptions: Gets or sets a value that represents replace text options
         /// <inheritdoc />
@@ -76,6 +39,24 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// </value>
         public ReplaceTextOptions ReplaceOptions { get; set; }
         #endregion
+
+        #region [public] (YesNo) UseTestMode: Gets or sets a value that indicates whether the elements to be inserted are shown with a red border that identifies their position and size in order to validate that they are correct
+        /// <summary>
+        /// Gets or sets a value that indicates whether the elements to be inserted are shown with a red border that identifies their position and size in order to validate that they are correct. The default value is <see cref="YesNo.No"/>.
+        /// </summary>
+        /// <value>
+        /// <see cref="YesNo.Yes"/> if works in mode test; otherwise <see cref="YesNo.No"/>.
+        /// </value>
+        public YesNo UseTestMode { get; set; }
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        #region ISystemTagTextReplacement
+
+        #region public properties
 
         #region [public] (SystemTags) Tag: Gets or sets a value that contains the system tag to replace
         /// <summary>
@@ -103,29 +84,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         /// A <see cref="BaseStyle"/> object that contains a reference to style to apply
         /// </value>
         public BaseStyle Style { get; set; }
-        #endregion
-
-        #endregion
-
-        #region protected abtract methods
-
-        #region [public] {abstract} (ReplaceResult) ReplaceImpl(Stream, IInput): Implementation to execute when replace action 
-        /// <summary>
-        /// Implementation to execute when replace action.
-        /// </summary>
-        /// <param name="input">stream input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        protected abstract ReplaceResult ReplaceImpl(Stream input, IInput context);
         #endregion
 
         #endregion

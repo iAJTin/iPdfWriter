@@ -1,12 +1,12 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.ComponentModel;
-    using System.Xml.Serialization;
-    
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Defines a generic style
     /// </summary>

@@ -1,14 +1,14 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Charting
 {
-    using System;
-    using System.ComponentModel;
-    using System.Xml.Serialization;
-    
-    using Newtonsoft.Json;
-
-    using Enums;
-
     /// <summary>
     /// Defines a generic chart
     /// </summary>

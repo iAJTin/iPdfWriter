@@ -1,13 +1,12 @@
 ﻿
+using System.Collections.Generic;
+
+using iTin.Core.ComponentModel;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
 {
-    using System.Collections.Generic;
-
-    using iTin.Core.ComponentModel;
-
-    using Insert;
-    using Replace;
-
     /// <summary>
     /// Specialization of <see cref="ResultBase{SetResultData}"/> interface.<br/>
     /// Represents result after set an element in <b>pdf</b> document.
@@ -160,40 +159,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
         }
         #endregion
 
-        #region [public] (ReplaceResult) Replace(IReplace, bool = true): Try to replace an element in this input
-        /// <summary>
-        /// Try to replace an element in this input.
-        /// </summary>
-        /// <param name="data">Reference to replaceable object information</param>
-        /// <param name="canReplace">Determines if can replace. Default is <b>true</b>.</param>
-        /// <returns>
-        /// Operation result.
-        /// </returns>
-        public ReplaceResult Replace(IReplace data, bool canReplace = true)
-        {
-            if (!canReplace)
-            {
-                return data == null
-                    ? ReplaceResult.CreateErroResult("Missing data")
-                    : ReplaceResult.CreateSuccessResult(new ReplaceResultData
-                    {
-                        Context = Result.Context,
-                        InputStream = Result.OutputStream,
-                        OutputStream = Result.OutputStream
-                    });
-            }
-
-            ReplaceResult result = ReplaceImplStrategy(data, Result.Context);
-
-            if (Result.Context.AutoUpdateChanges)
-            {
-                Result.Context.Input = result.Result.OutputStream;
-            }
-
-            return result;
-        }
-        #endregion
-
         #region [public] (SetResult) Set(ISet, bool = true): Try to set an element in this input
         /// <summary>
         /// Try to set an element in this input.
@@ -234,9 +199,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
 
         private InsertResult InsertImplStrategy(IInsert data, IInput context)
             => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
-
-        private ReplaceResult ReplaceImplStrategy(IReplace data, IInput context)
-            => data == null ? ReplaceResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         private SetResult SetImplStrategy(ISet data, IInput context)
             => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);

@@ -1,10 +1,10 @@
 
+using System.ComponentModel;
+
+using iTin.Core.ComponentModel;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System.ComponentModel;
-
-    using Core.ComponentModel;
-
     /// <summary>
     /// Specifies effects applicable to an image
     /// </summary>

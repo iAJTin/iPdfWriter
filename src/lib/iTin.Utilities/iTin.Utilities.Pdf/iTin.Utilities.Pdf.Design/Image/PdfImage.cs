@@ -1,25 +1,25 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+
+using iTin.Core;
+using iTin.Core.Drawing;
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Helpers;
+
+using NativeImage = System.Drawing.Image;
+using NativePdfImage = iTextSharp.text.Image;
+using NativePdfRectangle = iTextSharp.text.Rectangle;
+
+using iTinIO = iTin.Core.IO;
+
 namespace iTin.Utilities.Pdf.Design.Image
 {
-    using System;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Net;
-    using System.Threading.Tasks;
-    
-    using iTin.Core;
-    using iTin.Core.Drawing;
-    using iTin.Core.Drawing.ComponentModel;
-    using iTin.Core.Helpers;
-
-    using NativeImage = System.Drawing.Image;
-    using NativePdfImage = iTextSharp.text.Image;
-    using NativePdfRectangle = iTextSharp.text.Rectangle;
-
-    using iTinIO = iTin.Core.IO;
-
     /// <summary>
     /// Defines a <b>pdf</b> image object.
     /// </summary>

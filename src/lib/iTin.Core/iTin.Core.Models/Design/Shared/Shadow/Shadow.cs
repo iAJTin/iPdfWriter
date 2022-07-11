@@ -1,21 +1,19 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Helpers;
+using iTin.Core.Models.Design.Options;
+
 namespace iTin.Core.Models.Design
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core;
-    using iTin.Core.Helpers;
-
-    using Enums;
-    using Helpers;
-    using Options;
-
     /// <summary>
     /// Represents the visual setting of border's shadow. Includes the shadow color and visibility.
     /// </summary>

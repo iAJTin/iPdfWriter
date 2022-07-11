@@ -1,11 +1,11 @@
 ﻿
+using System.Drawing.Imaging;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Drawing.Helpers;
+
 namespace iTin.Core.Drawing.Effects
 {
-    using System.Drawing.Imaging;
-
-    using ComponentModel;
-    using Helpers;
-
     /// <summary>
     /// A Specialization of <see cref="IEffect"/> interface.<br/>
     /// Which represents more brightness effect.

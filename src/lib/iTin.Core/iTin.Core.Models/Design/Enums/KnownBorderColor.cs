@@ -1,20 +1,18 @@
 ﻿
+using System;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 #pragma warning disable 1591
 
 namespace iTin.Core.Models.Design.Enums
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
     /// <summary>
     /// Represents a known borders value.
     /// </summary>
     [Serializable]
     [JsonConverter(typeof(StringEnumConverter))]
-    [SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue")]
     public enum KnownBorderColor
     {
         Transparent,

@@ -1,18 +1,17 @@
 ﻿
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Drawing.Helpers;
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Linq;
-
-    using Core.Helpers;
-
-    using ComponentModel;
-    using Helpers;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="Image"/>.
     /// </summary> 

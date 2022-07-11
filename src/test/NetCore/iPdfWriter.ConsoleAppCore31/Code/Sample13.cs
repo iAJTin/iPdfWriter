@@ -311,7 +311,7 @@ namespace iPdfWriter.Code
                         Text = "#TITLE#",
                         NewText = "Lorem ipsum",
                         UseTestMode = useTestMode,
-                        TextOffset = new PointF(0.0f, -10.0f),
+                        Offset = new PointF(0.0f, -10.0f),
                         Style = TextStylesTable["MainTitle"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                     }));
@@ -328,7 +328,7 @@ namespace iPdfWriter.Code
                             Text = "#DATE_ENTREGA#",
                             NewText = DateTime.Now.ToShortDateString(),
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocial"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }));
@@ -345,7 +345,7 @@ namespace iPdfWriter.Code
                             Text = "#RAZONSOCIAL#",
                             NewText = "Sample razón social",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocial"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -356,7 +356,7 @@ namespace iPdfWriter.Code
                             Text = "#PERSONASOLICITANTE#",
                             NewText = "Nombre persona",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["PersonaSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -367,7 +367,7 @@ namespace iPdfWriter.Code
                             Text = "#TELEFONOSOLICITANTE#",
                             NewText = "932645687",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["TelefonoSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -378,7 +378,7 @@ namespace iPdfWriter.Code
                             Text = "#EMAILSOLICITANTE#",
                             NewText = "some@domain.com",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["EmailSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }));
@@ -395,7 +395,7 @@ namespace iPdfWriter.Code
                             Text = "#FECHAINICIO#",
                             NewText = "01/01/2022",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["FechaInicio"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -406,7 +406,7 @@ namespace iPdfWriter.Code
                             Text = "#FECHAACABADO#",
                             NewText = "31/12/2022",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["FechaAcabado"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -417,7 +417,7 @@ namespace iPdfWriter.Code
                         Text = "#HORARIO#",
                         NewText = "09:00h - 18:30h",
                         UseTestMode = useTestMode,
-                        TextOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = TextStylesTable["Horario"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
@@ -434,7 +434,7 @@ namespace iPdfWriter.Code
                             Text = "#RAZONSOCIALEMPRESA#",
                             NewText = "Empresa test",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocialEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -445,7 +445,7 @@ namespace iPdfWriter.Code
                             Text = "#CONTACTOEMPRESA#",
                             NewText = "Persona contacto empresa",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["ContactoEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -456,7 +456,7 @@ namespace iPdfWriter.Code
                             Text = "#TELEFONOEMPRESA#",
                             NewText = "699233665",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["TelefonoEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -467,7 +467,7 @@ namespace iPdfWriter.Code
                         Text = "#EMAILEMPRESA#",
                         NewText = "some@companydomain.com",
                         UseTestMode = useTestMode,
-                        TextOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = TextStylesTable["EmailEmpresa"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
@@ -481,7 +481,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#SAMPLETABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement,
                     Table = PdfTable.CreateFromHtml(
@@ -545,7 +545,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#FIRMA1#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = ImagesStylesTable["Default"],
                         ReplaceOptions = ReplaceTextOptions.Default,
                         Image = sign1
@@ -559,7 +559,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#FIRMA2#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = ImagesStylesTable["Default"],
                         ReplaceOptions = ReplaceTextOptions.Default,
                         Image = sign2

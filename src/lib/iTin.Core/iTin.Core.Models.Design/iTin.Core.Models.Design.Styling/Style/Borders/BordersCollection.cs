@@ -1,14 +1,13 @@
 ﻿
+using System;
+using System.Linq;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Collections;
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.Linq;
-
-    using iTin.Core.Helpers;
-
-    using Collections;
-    using Enums;
-
     /// <summary>
     /// Defines a borders collection.
     /// </summary>

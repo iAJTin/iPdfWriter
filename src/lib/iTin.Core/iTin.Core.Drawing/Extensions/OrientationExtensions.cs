@@ -1,8 +1,8 @@
 
+using iTin.Core.Drawing.ComponentModel;
+
 namespace iTin.Core.Drawing
 {
-    using ComponentModel;
-
     /// <summary>
     /// Static class than contains extension methods for type <see cref="Orientation"/>.
     /// </summary> 

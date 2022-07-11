@@ -1,8 +1,8 @@
 
+using System.Drawing;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System.Drawing;
-
     /// <summary>
     /// Sets the smoothing quality of lines and curves for the graphic context in <see cref="SmoothingModeEx.HighQuality"/>.
     /// </summary>

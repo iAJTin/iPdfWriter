@@ -1,15 +1,15 @@
 ﻿
+using System.IO;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.IO;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
-
     /// <summary>
     /// Defines a generic input
     /// </summary>
@@ -89,20 +89,11 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         InsertResult Insert(IInsert data);
 
         /// <summary>
-        /// Try to replace an element in a input.
+        /// 
         /// </summary>
-        /// <param name="data">Reference to replacement object information</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        ReplaceResult Replace(IReplace data);
+        /// <param name="data"></param>
+        /// <returns></returns>
+        PdfInputReplaceAction Replace(IReplace data);
 
         /// <summary>
         /// Saves this input into a file.

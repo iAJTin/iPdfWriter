@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Reflection;
+
+using iTin.Registry.Windows;
+
+using NativePath = System.IO.Path;
+
 namespace iTin.Core.IO
 {
-    using System;
-    using System.Reflection;
-
-    using iTin.Registry.Windows;
-
-    using NativePath = System.IO.Path;
-
     /// <summary>
     /// Helper class for works for path's.
     /// </summary>

@@ -1,8 +1,8 @@
 ﻿
+using System.Drawing.Imaging;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System.Drawing.Imaging;
-
     /// <summary>
     /// Interface IEffect
     /// </summary>

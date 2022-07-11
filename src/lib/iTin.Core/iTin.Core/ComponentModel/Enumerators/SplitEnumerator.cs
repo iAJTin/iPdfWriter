@@ -1,9 +1,10 @@
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
+using System;
+
 namespace iTin.Core.ComponentModel.Enumerators
 {
-    using System;
 
     /// <summary>
     /// Must be a ref struct as it contains a ReadOnlySpan char

@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Drawing;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.Drawing;
-    
-    using Newtonsoft.Json;
-
-    using Enums;
-
     /// <summary>
     /// Defines a generic style
     /// </summary>

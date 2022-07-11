@@ -1,14 +1,13 @@
 ﻿
+using System.Diagnostics;
+using System.Drawing.Imaging;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Drawing.Helpers;
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing.Effects
 {
-    using System.Diagnostics;
-    using System.Drawing.Imaging;
-
-    using Core.Helpers;
-
-    using ComponentModel;
-    using Helpers;
-
     /// <summary>
     /// A Specialization of <see cref="IEffect"/> interface.<br/>
     /// Which represents opacity effect.

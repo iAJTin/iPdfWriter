@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Options
 {
-    using System;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using Enums;
-
     /// <summary>
     /// Defines a set of options that we can use to quickly adjust an existing <see cref="FontModel"/> model.
     /// </summary>

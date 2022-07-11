@@ -1,17 +1,17 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+
+using iTinIO = iTin.Core.IO;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System;
-    using System.Collections.Generic;
-
-    using iTextSharp.text;
-    using iTextSharp.text.pdf;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-
-    using iTinIO = iTin.Core.IO;
-
     /// <summary>
     /// Represents 
     /// </summary>

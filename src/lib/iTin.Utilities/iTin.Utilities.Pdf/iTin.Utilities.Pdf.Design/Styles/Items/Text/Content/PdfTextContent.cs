@@ -1,16 +1,16 @@
 ﻿
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core;
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// A Specialization of <see cref="BaseBasicContent"/> class.<br/>
     /// Defines a <b>pdf</b> text content.

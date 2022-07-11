@@ -1,14 +1,14 @@
 ﻿
+using System.Drawing;
+using System.IO;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Design.Styling;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.Drawing;
-    using System.IO;
-
-    using iTin.Core.Helpers;
-    using iTin.Core.Models.Design.Styling;
-
-    using Result.Insert;
-
     /// <inheritdoc/>
     /// <summary>
     /// Specialization of <see cref="IInsert"/> interface.<br/>

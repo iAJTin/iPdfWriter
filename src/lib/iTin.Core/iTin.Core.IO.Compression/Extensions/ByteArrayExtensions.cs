@@ -1,21 +1,19 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Ionic.Zip;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+using iTin.Core.Helpers;
+
+using NativeIO = System.IO;
+
 namespace iTin.Core.IO.Compression
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-
-    using Ionic.Zip;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-    using iTin.Core.Helpers;
-
-    using iTinIO = iTin.Core.IO;
-
     /// <summary>
     /// Static class than contains extension methods for objects <see cref="T:System.Array" /> of type <see cref="T:System.Byte" />.
     /// </summary> 
@@ -29,7 +27,7 @@ namespace iTin.Core.IO.Compression
         /// <param name="itemExtension">File elements extension.</param>
         /// <param name="outputPath">Zip output path.</param>
         /// <returns>
-        /// A <see cref="Stream"/> than contains zipped file.
+        /// A <see cref="IResult"/> than contains zipped file.
         /// </returns>
         public static IResult TrySaveAsZip(this byte[] item, string itemExtension, string outputPath) => new[] {item}.TrySaveAsZip(itemExtension, outputPath);
         #endregion
@@ -51,16 +49,16 @@ namespace iTin.Core.IO.Compression
 
             try
             {
-                string zipFilenameWithoutExtension = Path.GetFileNameWithoutExtension(outputPath);
+                string zipFilenameWithoutExtension = NativeIO.Path.GetFileNameWithoutExtension(outputPath);
 
-                bool existPath = File.Exists(outputPath);
+                bool existPath = NativeIO.File.Exists(outputPath);
                 if (existPath)
                 {
-                    File.Delete(outputPath);
+                    NativeIO.File.Delete(outputPath);
                 }
 
-                var outputDirectoryName = Path.GetDirectoryName(outputPath);
-                var di = Directory.CreateDirectory(outputDirectoryName);
+                var outputDirectoryName = NativeIO.Path.GetDirectoryName(outputPath);
+                var di = NativeIO.Directory.CreateDirectory(outputDirectoryName);
 
                 using (var zip = new ZipFile(outputPath))
                 {
@@ -95,48 +93,48 @@ namespace iTin.Core.IO.Compression
         }
         #endregion
 
-        #region [public] {static} (Stream) ToZipStream(this byte[]): Returns a stream with with specified element compressed
+        #region [public] {static} (NativeIO.Stream) ToZipStream(this byte[]): Returns a stream with with specified element compressed
         /// <summary>
         /// Returns a stream with with specified element compressed.
         /// </summary>
         /// <param name="item">Element to compress.</param>
         /// <returns>
-        /// A <see cref="Stream"/> than contains zipped file.
+        /// A <see cref="NativeIO.Stream"/> than contains zipped file.
         /// </returns>
-        public static Stream ToZipStream(this byte[] item) => new[] {item}.ToZipStream();
+        public static NativeIO.Stream ToZipStream(this byte[] item) => new[] {item}.ToZipStream();
         #endregion
 
-        #region [public] {static} (Stream) ToZipStream(this IEnumerable<byte[]>): Returns a stream with with specified elements compressed
+        #region [public] {static} (NativeIO.Stream) ToZipStream(this IEnumerable<byte[]>): Returns a stream with with specified elements compressed
         /// <summary>
         /// Returns a stream with with specified element compressed
         /// </summary>
         /// <param name="elements">Zip elements.</param>
         /// <returns>
-        /// A <see cref="Stream"/> than contains zipped file.
+        /// A <see cref="NativeIO.Stream"/> than contains zipped file.
         /// </returns>
-        public static Stream ToZipStream(this IEnumerable<byte[]> elements)
+        public static NativeIO.Stream ToZipStream(this IEnumerable<byte[]> elements)
         {
             IList<byte[]> elementList = elements as IList<byte[]> ?? elements.ToList();
             SentinelHelper.ArgumentNull(elementList, nameof(elements));
 
-            iTinIO.File.CleanOrCreateTemporaryDirectory();
+            File.CleanOrCreateTemporaryDirectory();
 
-            Uri zipNameTempUri = iTinIO.File.GetUniqueTempRandomFile();
-            string zipNameLocalPath = Path.GetFileName(zipNameTempUri.LocalPath);
-            string tempDirectory = iTinIO.File.TempDirectoryFullName;
-            string zipFullPath = Path.Combine(tempDirectory, zipNameLocalPath);
-            string zipFilenameWithExtension = Path.GetFileName(zipFullPath);
-            string zipFilenameWithoutExtension = Path.GetFileNameWithoutExtension(zipFullPath);
+            Uri zipNameTempUri = File.GetUniqueTempRandomFile();
+            string zipNameLocalPath = NativeIO.Path.GetFileName(zipNameTempUri.LocalPath);
+            string tempDirectory = File.TempDirectoryFullName;
+            string zipFullPath = NativeIO.Path.Combine(tempDirectory, zipNameLocalPath);
+            string zipFilenameWithExtension = NativeIO.Path.GetFileName(zipFullPath);
+            string zipFilenameWithoutExtension = NativeIO.Path.GetFileNameWithoutExtension(zipFullPath);
 
-            bool existPath = File.Exists(zipFullPath);
+            bool existPath = NativeIO.File.Exists(zipFullPath);
             if (existPath)
             {
-                File.Delete(zipFullPath);
+                NativeIO.File.Delete(zipFullPath);
             }
 
             string outputStreamName = $"_{zipFilenameWithExtension}";
-            string outputStreamFullPath = Path.Combine(tempDirectory, outputStreamName);
-            FileStream fs = new FileStream(outputStreamFullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            string outputStreamFullPath = NativeIO.Path.Combine(tempDirectory, outputStreamName);
+            NativeIO.FileStream fs = new(outputStreamFullPath, NativeIO.FileMode.OpenOrCreate, NativeIO.FileAccess.ReadWrite, NativeIO.FileShare.ReadWrite);
             using (var zip = new ZipFile(zipFullPath))
             {
                 int currentFile = 0;

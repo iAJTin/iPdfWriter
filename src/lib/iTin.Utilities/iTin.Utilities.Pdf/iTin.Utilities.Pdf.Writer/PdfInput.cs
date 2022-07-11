@@ -1,36 +1,33 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+
+using iTin.Core;
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+using iTin.Core.Helpers;
+using iTin.Core.IO;
+
+using iTin.Utilities.Pdf.Design.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set;
+
+using iTextSharp.text;
+
+using iTinIO = iTin.Core.IO;
+using NativeIO = System.IO;
+using NativePdf = iTextSharp.text.pdf;
+using NativePdfParser = iTextSharp.text.pdf.parser;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Text;
-
-    using iTin.Core;
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-    using iTin.Core.Helpers;
-    using iTin.Core.IO;
-
-    using iTin.Logging;
-
-    using ComponentModel;
-    using ComponentModel.Result.Insert;
-    using ComponentModel.Result.Output;
-    using ComponentModel.Result.Replace;
-    using ComponentModel.Result.Set;
-
-    using Design.Text;
-
-    using iTextSharp.text;
-
-    using NativePdf = iTextSharp.text.pdf;
-    using NativePdfParser = iTextSharp.text.pdf.parser;
-
-    using NativeIO = System.IO;
-    using iTinIO = iTin.Core.IO;
-
     /// <summary>
     /// Represents a pdf file.
     /// </summary>
@@ -51,16 +48,8 @@ namespace iTin.Utilities.Pdf.Writer
         /// </summary>
         public PdfInput()
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfInput)} class");
-            Logger.Instance.Debug($" > Signature: #ctor()");
-
             AutoUpdateChanges = false;
             DeletePhysicalFilesAfterMerge = true;
-
-            Logger.Instance.Debug($"   -> AutoUpdateChanges: {AutoUpdateChanges}");
-            Logger.Instance.Debug($"   -> DeletePhysicalFilesAfterMerge: {DeletePhysicalFilesAfterMerge}");
         }
         #endregion
 
@@ -191,6 +180,8 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public OutputResult CreateResult(OutputResultConfig config = null)
         {
+            ProcessInput();
+
             var configToApply = OutputResultConfig.Default;
             if (config != null)
             {
@@ -244,12 +235,6 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public InsertResult Insert(IInsert data)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug(" Try to replace an element in this input");
-            Logger.Instance.Debug($" > Signature: ({typeof(bool)}) Replace({typeof(IInsert)}, out {typeof(NativeIO.Stream)})");
-            Logger.Instance.Debug($"   > data: {data}");
-
             InsertResult result = InsertImplStrategy(data, this);
 
             if (AutoUpdateChanges)
@@ -257,45 +242,21 @@ namespace iTin.Utilities.Pdf.Writer
                 Input = result.Result.OutputStream;
             }
 
-            Logger.Instance.Debug($" > Output: Inserted = {result.Success}");
-
             return result;
         }
         #endregion
 
-        #region [public] (ReplaceResult) Replace(IReplace): Try to replace an element in this input
+        #region [public] (InputReplaceAction) Replace(IReplace): 
         /// <summary>
-        /// Try to replace an element in this input.
+        /// 
         /// </summary>
-        /// <param name="data">Reference to replacement object information</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return Result is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        public ReplaceResult Replace(IReplace data)
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public PdfInputReplaceAction Replace(IReplace data)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug(" Try to replace an element in this input");
-            Logger.Instance.Debug($" > Signature: ({typeof(ReplaceResult)}) Replace({typeof(IReplace)})");
-            Logger.Instance.Debug($"   > data: {data}");
+            PdfInputCache.Cache.AddTextReplacement(this, data);
 
-            ReplaceResult result = ReplaceImplStrategy(data, this);
-
-            if (AutoUpdateChanges)
-            {
-                Input = result.Result.OutputStream;
-            }
-
-            Logger.Instance.Debug($" > Output: Replacement = {result.Success}");
-
-            return result;
+            return new PdfInputReplaceAction(this);
         }
         #endregion
 
@@ -316,20 +277,12 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public SetResult Set(ISet data)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug(" Try to set an element in this input");
-            Logger.Instance.Debug($" > Signature: ({typeof(SetResult)}) Set({typeof(ISet)})");
-            Logger.Instance.Debug($"   > data: {data}");
-
             SetResult result = SetImplStrategy(data, this);
 
             if (AutoUpdateChanges)
             {
                 Input = result.Result.OutputStream;
             }
-
-            Logger.Instance.Debug($" > Output: Setted = {result.Success}");
 
             return result;
         }
@@ -474,17 +427,10 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public PdfInput Clone()
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug(" Create a new object that is a copy of the current instance");
-            Logger.Instance.Debug($" > Signature: ({typeof(PdfInput)}) Clone()");
-
             PdfInput clonned = (PdfInput)MemberwiseClone();
 
             NativeIO.Stream innerStream = ToStream().Clone();
             clonned.Input = innerStream;
-
-            Logger.Instance.Debug($" > Output: Cloned correctly");
 
             return clonned;
         }
@@ -500,40 +446,25 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public IEnumerable<PdfText> SearchText(string text)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfInput).Assembly.GetName().Name}, v{typeof(PdfInput).Assembly.GetName().Version}, Namespace: {typeof(PdfInput).Namespace}, Class: {nameof(PdfInput)}");
-            Logger.Instance.Debug(" Search specified text into this input file");
-            Logger.Instance.Debug($" > Signature: ({typeof(IEnumerable<PdfText>)}) SearchText({typeof(string)})");
-            Logger.Instance.Debug($"   > text: {text}");
-
             var matchs = new List<PdfText>();
 
-            try
+            NativePdf.PdfReader pdfReader = new NativePdf.PdfReader(ToStream());
+            int count = pdfReader.NumberOfPages;
+            for (int page = 1; page <= count; page++)
             {
-                NativePdf.PdfReader pdfReader = new NativePdf.PdfReader(ToStream());
-                int count = pdfReader.NumberOfPages;
-                for (int page = 1; page <= count; page++)
+                NativePdfParser.ITextExtractionStrategy strategy = new NativePdfParser.SimpleTextExtractionStrategy();
+                string currentText = NativePdfParser.PdfTextExtractor.GetTextFromPage(pdfReader, page, strategy);
+                currentText = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentText)));
+
+                var absolutePosition = currentText.IndexOf(text, StringComparison.OrdinalIgnoreCase);
+                if (absolutePosition != -1)
                 {
-                    NativePdfParser.ITextExtractionStrategy strategy = new NativePdfParser.SimpleTextExtractionStrategy();
-                    string currentText = NativePdfParser.PdfTextExtractor.GetTextFromPage(pdfReader, page, strategy);
-                    currentText = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentText)));
-
-                    var absolutePosition = currentText.IndexOf(text, StringComparison.OrdinalIgnoreCase);
-                    if (absolutePosition != -1)
-                    {
-                        matchs.Add(new PdfText(text, page, absolutePosition));
-                    }
+                    matchs.Add(new PdfText(text, page, absolutePosition));
                 }
-
-                pdfReader.Close();
-            }
-            catch
-            {
-                Logger.Instance.Debug($" > Output: Error, no match item(s)");
             }
 
-            Logger.Instance.Debug($" > Output: {matchs.Count} item(s)");
-
+            pdfReader.Close();
+            
             return matchs;
         }
         #endregion
@@ -576,13 +507,39 @@ namespace iTin.Utilities.Pdf.Writer
 
         #endregion
 
+        #region internal methods
+
+        internal ReplaceResult ProcessInput()
+        {
+            var hasItem = PdfInputCache.Cache.ExistTextReplacementInput(this);
+            if (!hasItem)
+            {
+                var stream = ToStream();
+
+                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = this,
+                    InputStream = stream,
+                    OutputStream = stream
+                });
+            }
+
+            var result = PdfInputRender.TextReplacementsRender(this);
+
+            if (AutoUpdateChanges)
+            {
+                Input = result.Result.OutputStream;
+            }
+
+            return result;
+        }
+
+        #endregion
+
         #region private methods
 
         private InsertResult InsertImplStrategy(IInsert data, IInput context)
             => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(ToStream(), context);
-
-        private ReplaceResult ReplaceImplStrategy(IReplace data, IInput context)
-            => data == null ? ReplaceResult.CreateErroResult("Missing data") : data.Apply(ToStream(), context);
 
         private SetResult SetImplStrategy(ISet data, IInput context)
             => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(ToStream(), context);

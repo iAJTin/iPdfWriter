@@ -1,12 +1,12 @@
 ﻿
+using System.IO;
+
+using iTin.Core.Helpers;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.IO;
-
-    using iTin.Core.Helpers;
-
-    using Result.Set;
-
     /// <summary>
     /// Specialization of <see cref="ISet"/> interface.<br/>
     /// Acts as base class for set actions

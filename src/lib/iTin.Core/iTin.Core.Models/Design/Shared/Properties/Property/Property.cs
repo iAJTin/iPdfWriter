@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models
 {
-    using System;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Defines a user custom property.
     /// </summary>

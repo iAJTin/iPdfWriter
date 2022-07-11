@@ -1,17 +1,17 @@
 ﻿
+using System;
+using System.Drawing;
+using System.IO;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+
+using TextSharp = iTextSharp.text.pdf;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System;
-    using System.Drawing;
-    using System.IO;
-
-    using Design.Image;
-    using Design.Styles;
-
-    using Result.Insert;
-
-    using TextSharp = iTextSharp.text.pdf;
-
     /// <summary>
     /// A Specialization of <see cref="InsertBase"/> class.<br/>
     /// Allows insert an image object.

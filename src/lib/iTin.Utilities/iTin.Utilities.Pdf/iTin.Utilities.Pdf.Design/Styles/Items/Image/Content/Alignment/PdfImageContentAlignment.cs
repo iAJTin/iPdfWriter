@@ -1,9 +1,9 @@
 ﻿
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// A Specialization of <see cref="BaseContentAlignment"/> class.<br/>
     /// Defines a <b>Pdf</b> image content alignment.

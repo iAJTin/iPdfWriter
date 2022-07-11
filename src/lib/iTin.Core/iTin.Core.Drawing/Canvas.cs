@@ -1,18 +1,16 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Drawing.Helpers;
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing
 {
-    using System;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-    using System.Drawing.Text;
-
-    using Core.Helpers;
-
-    using ComponentModel;
-    using Helpers;
-
     /// <summary>
     /// Encapsulates a drawing surface with orientation support.
     /// </summary>

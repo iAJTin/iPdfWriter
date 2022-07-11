@@ -1,10 +1,10 @@
 
+using System;
+using System.Drawing;
+using System.Globalization;
+
 namespace iTin.Core.Drawing.Helpers
 {
-    using System;
-    using System.Drawing;
-    using System.Globalization;
-
     /// <summary> 
     /// Static class that contains methods for manipulating structures of type <see cref="T:System.Drawing.Color"/>.
     /// </summary>

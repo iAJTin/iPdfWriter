@@ -1,17 +1,16 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Xml.Serialization;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Helpers;
+
 namespace iTin.Core.Models.Design.Charting
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Xml.Serialization;
-
-    using iTin.Core.Helpers;
-
-    using Enums;
-    using Helpers;
-
     /// <summary>
     /// A Specialization of <see cref="IGenericChart"/> interface.<br/>
     /// Defines a generic chart.

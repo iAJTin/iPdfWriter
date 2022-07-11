@@ -1,8 +1,8 @@
 ﻿
+using System;
+
 namespace iTin.Utilities.Pdf.Design.Image
 {
-    using System;
-
     /// <summary>
     /// Specifies the known scale strategy.
     /// </summary>

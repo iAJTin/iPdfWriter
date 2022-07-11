@@ -1,29 +1,31 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+using iTin.Core.Helpers;
+using iTin.Core.IO;
+using iTin.Core.Models.ComponentModel;
+using iTin.Core.Models.ComponentModel.Strategies;
+using iTin.Core.Models.ComponentModel.Strategies.Result;
+
+using NativePath = System.IO.Path;
+using iTinPath = iTin.Core.IO.Path;
+
 namespace iTin.Core.Models
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Xml;
-    using System.Xml.Schema;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core;
-    using iTin.Core.ComponentModel;
-    using iTin.Core.ComponentModel.Results;
-    using iTin.Core.Helpers;
-    using iTin.Core.IO;
-
-    using NativePath = System.IO.Path;
-    using iTinPath = iTin.Core.IO.Path;
-
-
     /// <summary>
     /// Base class for model elements.<br/>
     /// Implements functionality to record and read configuration files.
@@ -35,6 +37,15 @@ namespace iTin.Core.Models
         #region private members
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Properties _properties;
+        #endregion
+
+        #region private static readonly members
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static readonly IEnumerable<LoadFileStrategyBase> LoadFileStrategies = new List<LoadFileStrategyBase>()
+        {
+            new LoadFileWithExtensionStrategy(),
+            new LoadFileWithoutExtensionStrategy() 
+        };
         #endregion
 
         #region public readonly properties
@@ -160,26 +171,28 @@ namespace iTin.Core.Models
         /// <returns>
         /// A new reference that constains the model.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
         public static T LoadFromFile(string fileName, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.ArgumentNull(fileName, nameof(fileName));
             SentinelHelper.IsEnumValid(format);
 
-            FileStream file = null;
+            LoadFileResult targetLoadResult = null;
+            foreach(var strategy in LoadFileStrategies)
+            {
+                var loadResult = strategy.TryLoadFile(fileName, format);
+                if (loadResult.Success)
+                {
+                    targetLoadResult = loadResult;
+
+                    break;
+                }
+            }
+
+            string value;
+            FileStream file = targetLoadResult.Result.Stream;
 
             try
-            {
-                var parsedFilenamePath = iTinPath.PathResolver(fileName);
-                var fileInfo = new FileInfo(parsedFilenamePath);
-                bool existFile = fileInfo.Exists;
-                if (!existFile)
-                {
-                    return default;
-                }
-
-                string value;
-                file = new FileStream(parsedFilenamePath, FileMode.Open, FileAccess.Read);
+            {                
                 using (var reader = new StreamReader(file))
                 {
                     file = null;
@@ -206,7 +219,6 @@ namespace iTin.Core.Models
 
                 throw new XmlSchemaValidationException(modelErrorMessage.ToString());
             }
-
             finally
             {
                 file?.Dispose();

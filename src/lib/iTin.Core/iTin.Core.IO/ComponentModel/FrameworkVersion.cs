@@ -1,7 +1,4 @@
 
-namespace iTin.Core.IO
-{
-
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
     using System.Linq;
@@ -12,8 +9,10 @@ namespace iTin.Core.IO
 
 #endif
 
-    using System.Runtime.Versioning;
+using System.Runtime.Versioning;
 
+namespace iTin.Core.IO
+{
     /// <summary>
     /// This class allows to obtain the .net framework folder for a specific version.
     /// </summary>

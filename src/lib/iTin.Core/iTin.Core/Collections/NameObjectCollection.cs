@@ -1,11 +1,11 @@
 
+using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Runtime.Serialization;
+
 namespace iTin.Core.Collections
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Specialized;
-    using System.Runtime.Serialization;
-
     /// <summary>
     /// Especialización de la clase <see cref="NameObjectCollectionBase"/> que define una colección de claves de <see cref="string"/>
     /// y valores de <see cref="object"/> asociados a los que se puede obtener acceso con la clave o con el índice.

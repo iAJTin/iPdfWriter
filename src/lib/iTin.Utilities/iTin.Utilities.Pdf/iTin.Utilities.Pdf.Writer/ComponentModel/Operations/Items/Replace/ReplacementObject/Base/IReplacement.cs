@@ -1,47 +1,27 @@
 ﻿
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement
 {
-    using System.IO;
-
-    using Result.Replace;
-
     /// <summary>
     /// Defines allowed actions for bookmark replacement object
     /// </summary>
     public interface IReplacement
     {
         /// <summary>
-        /// Try to execute the replacement action.
+        /// Gets or sets a value that represents text replace options.
         /// </summary>
-        /// <param name="file">file input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        ReplaceResult Apply(string file, IInput context);
+        /// <value>
+        /// A <see cref="ReplaceTextOptions"/> instance that contains text options.
+        /// </value>
+        ReplaceTextOptions ReplaceOptions { get; set; }
 
         /// <summary>
-        /// Try to execute the replacement action.
+        /// Gets or sets a value that indicates whether the elements to be inserted are shown with a red border that identifies their position and size in order to validate that they are correct. The default value is <see cref="YesNo.No"/>.
         /// </summary>
-        /// <param name="input">stream input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="ReplaceResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="ReplaceResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        ReplaceResult Apply(Stream input, IInput context);
+        /// <value>
+        /// <see cref="YesNo.Yes"/> if works in mode test; otherwise <see cref="YesNo.No"/>.
+        /// </value>
+        public YesNo UseTestMode { get; set; }
     }
 }

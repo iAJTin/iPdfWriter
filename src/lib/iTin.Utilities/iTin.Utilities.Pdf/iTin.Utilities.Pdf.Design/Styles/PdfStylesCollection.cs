@@ -1,13 +1,13 @@
 ﻿
+using System;
+
+using iTin.Core.Helpers;
+
+using iTin.Core.Models.Collections;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System;
-
-    using iTin.Core.Helpers;
-
-    using iTin.Core.Models.Collections;
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// Defines a styles collection.
     /// </summary>

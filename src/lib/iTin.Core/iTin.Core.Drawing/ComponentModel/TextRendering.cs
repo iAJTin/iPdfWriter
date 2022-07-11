@@ -1,12 +1,12 @@
 ﻿
+using System;
+using System.Drawing;
+using System.Drawing.Text;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Text;
-
-    using Core.Helpers;
-
     /// <summary>
     /// Sets the quality of text rendering indicating one of the enumeration values <see cref="TextRenderingHint"/>.
     /// </summary>

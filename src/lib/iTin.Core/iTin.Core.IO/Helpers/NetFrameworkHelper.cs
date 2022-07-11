@@ -1,10 +1,10 @@
 ﻿
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Versioning;
+
 namespace iTin.Core.IO
 {
-    using System.Linq;
-	using System.Reflection;
-    using System.Runtime.Versioning;
-
 	/// <summary>
 	/// Static class which contains methods for retrieve <b>.NET Framework</b> information.
 	/// </summary>

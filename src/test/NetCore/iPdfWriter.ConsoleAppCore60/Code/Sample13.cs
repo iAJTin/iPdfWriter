@@ -1,31 +1,30 @@
 ﻿
+using System.Diagnostics;
+using System.Drawing;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+using iTin.Utilities.Pdf.Design.Table;
+
+using iTin.Utilities.Pdf.Writer;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+
 namespace iPdfWriter.Code
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Drawing;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Utilities.Pdf.Design.Image;
-    using iTin.Utilities.Pdf.Design.Styles;
-    using iTin.Utilities.Pdf.Design.Table;
-    using iTin.Utilities.Pdf.Writer;
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
     /// <summary>
     /// Shows the use of text and image replacement in a pdf document.
     /// </summary>
     internal static class Sample13
     {
         // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
         {
             {
                 "Default",
@@ -43,7 +42,7 @@ namespace iPdfWriter.Code
         };
 
         // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
         {
             {
                 "MainTitle",
@@ -311,7 +310,7 @@ namespace iPdfWriter.Code
                         Text = "#TITLE#",
                         NewText = "Lorem ipsum",
                         UseTestMode = useTestMode,
-                        TextOffset = new PointF(0.0f, -10.0f),
+                        Offset = new PointF(0.0f, -10.0f),
                         Style = TextStylesTable["MainTitle"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                     }));
@@ -328,7 +327,7 @@ namespace iPdfWriter.Code
                             Text = "#DATE_ENTREGA#",
                             NewText = DateTime.Now.ToShortDateString(),
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocial"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }));
@@ -345,7 +344,7 @@ namespace iPdfWriter.Code
                             Text = "#RAZONSOCIAL#",
                             NewText = "Sample razón social",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocial"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -356,7 +355,7 @@ namespace iPdfWriter.Code
                             Text = "#PERSONASOLICITANTE#",
                             NewText = "Nombre persona",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["PersonaSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -367,7 +366,7 @@ namespace iPdfWriter.Code
                             Text = "#TELEFONOSOLICITANTE#",
                             NewText = "932645687",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["TelefonoSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -378,7 +377,7 @@ namespace iPdfWriter.Code
                             Text = "#EMAILSOLICITANTE#",
                             NewText = "some@domain.com",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["EmailSolicitante"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }));
@@ -395,7 +394,7 @@ namespace iPdfWriter.Code
                             Text = "#FECHAINICIO#",
                             NewText = "01/01/2022",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["FechaInicio"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -406,7 +405,7 @@ namespace iPdfWriter.Code
                             Text = "#FECHAACABADO#",
                             NewText = "31/12/2022",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["FechaAcabado"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -417,7 +416,7 @@ namespace iPdfWriter.Code
                         Text = "#HORARIO#",
                         NewText = "09:00h - 18:30h",
                         UseTestMode = useTestMode,
-                        TextOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = TextStylesTable["Horario"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
@@ -434,7 +433,7 @@ namespace iPdfWriter.Code
                             Text = "#RAZONSOCIALEMPRESA#",
                             NewText = "Empresa test",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["RazonSocialEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -445,7 +444,7 @@ namespace iPdfWriter.Code
                             Text = "#CONTACTOEMPRESA#",
                             NewText = "Persona contacto empresa",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["ContactoEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -456,7 +455,7 @@ namespace iPdfWriter.Code
                             Text = "#TELEFONOEMPRESA#",
                             NewText = "699233665",
                             UseTestMode = useTestMode,
-                            TextOffset = PointF.Empty,
+                            Offset = PointF.Empty,
                             Style = TextStylesTable["TelefonoEmpresa"],
                             ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                         }))
@@ -467,7 +466,7 @@ namespace iPdfWriter.Code
                         Text = "#EMAILEMPRESA#",
                         NewText = "some@companydomain.com",
                         UseTestMode = useTestMode,
-                        TextOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = TextStylesTable["EmailEmpresa"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
@@ -481,7 +480,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#SAMPLETABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement,
                     Table = PdfTable.CreateFromHtml(
@@ -531,40 +530,37 @@ namespace iPdfWriter.Code
                             td {
                               padding: 6px;
                             }",
-                        config: new PdfTableConfig {HeightStrategy = TableHeightStrategy.Auto})
+                        config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Auto })
                 }));
 
             #endregion
 
             #region Section: Firmas
 
-            using (var sign1 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#FIRMA1#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = sign1
-                    }));
-            }
+            //using (var sign1 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal))
+            //{
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#FIRMA1#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal)
+                }));
+            //}
 
-            using (var sign2 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma2.jpg").ScalePercent(90))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#FIRMA2#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = sign2
-                    }));
-            }
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#FIRMA2#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma2.jpg").ScalePercent(90)
+                }));
 
             #endregion
 
@@ -577,6 +573,7 @@ namespace iPdfWriter.Code
             {
                 logger.Info("   > Error creating output result");
                 logger.Info($"     > Error: {result.Errors.AsMessages().ToStringBuilder()}");
+
                 return;
             }
 
@@ -593,6 +590,7 @@ namespace iPdfWriter.Code
                 logger.Info("   > Error while saving to disk");
                 logger.Info($"     > Error: {saveResult.Errors.AsMessages().ToStringBuilder()}");
                 logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
+
                 return;
             }
 

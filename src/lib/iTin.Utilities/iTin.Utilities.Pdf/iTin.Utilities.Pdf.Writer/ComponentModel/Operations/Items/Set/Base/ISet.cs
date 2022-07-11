@@ -1,10 +1,10 @@
 ﻿
+using System.IO;
+
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.IO;
-
-    using Result.Set;
-
     /// <summary>
     /// Defines allowed actions for set features to pdf document.
     /// </summary>

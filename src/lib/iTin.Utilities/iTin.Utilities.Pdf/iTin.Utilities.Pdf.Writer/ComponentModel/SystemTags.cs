@@ -1,8 +1,8 @@
 ﻿
+using iTin.Core.ComponentModel;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using iTin.Core.ComponentModel;
-
     /// <summary>
     /// Defines the system replaceable tags.
     /// </summary>

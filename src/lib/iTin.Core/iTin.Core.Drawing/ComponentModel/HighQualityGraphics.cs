@@ -1,12 +1,12 @@
 ﻿
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing.ComponentModel
 {
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-
-    using Core.Helpers;
-
     /// <summary>
     /// Set the smoothing quality of lines and curves for the graphic context in <see cref="AntiAlias"/> and the interpolation mode in <see cref="HighQualityBicubicInterpolation"/>.
     /// </summary>

@@ -1,8 +1,8 @@
 ﻿
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// Defines a generic pdf styles collection
     /// </summary>

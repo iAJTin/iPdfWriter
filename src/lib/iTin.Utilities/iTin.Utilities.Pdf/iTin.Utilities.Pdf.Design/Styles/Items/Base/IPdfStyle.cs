@@ -1,14 +1,14 @@
 ﻿
+using System.ComponentModel;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design;
+using iTin.Core.Models.Design.Styling;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System.ComponentModel;
-    using System.Xml.Serialization;
-    
-    using Newtonsoft.Json;
-
-    using iTin.Core.Models.Design;
-    using iTin.Core.Models.Design.Styling;
-
     /// <summary>
     /// A Specialization of <see cref="IStyle"/> interface.<br/>
     /// Defines a generic <b>pdf</b> style.

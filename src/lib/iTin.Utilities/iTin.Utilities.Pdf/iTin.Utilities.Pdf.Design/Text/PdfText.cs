@@ -1,8 +1,6 @@
 ﻿
 namespace iTin.Utilities.Pdf.Design.Text
 {
-    using Logging;
-
     /// <summary>
     /// Defines a <b>pdf</b> text object.
     /// </summary>
@@ -19,18 +17,9 @@ namespace iTin.Utilities.Pdf.Design.Text
         /// <param name="position">The position.</param>
         public PdfText(string text, int page, long position)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfText).Assembly.GetName().Name}, v{typeof(PdfText).Assembly.GetName().Version}, Namespace: {typeof(PdfText).Namespace}, Class: {nameof(PdfText)}");
-            Logger.Instance.Debug($" Initializes a new instance of the {typeof(PdfText)} class");
-            Logger.Instance.Debug($" > Signature: #ctor({typeof(string)}, {typeof(int)}, {typeof(long)})");
-
             Text = text;
             Page = page;
             Position = position;
-
-            Logger.Instance.Debug($"   -> Text: {Text}");
-            Logger.Instance.Debug($"   -> Page: {Page}");
-            Logger.Instance.Debug($"   -> Position: {Position}");
         }
         #endregion
 

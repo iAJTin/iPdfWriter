@@ -1,14 +1,14 @@
 ﻿
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Models
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-
-    using iTin.Core.Helpers;
-
     /// <summary>
     /// Defines a user-custom property.
     /// </summary>

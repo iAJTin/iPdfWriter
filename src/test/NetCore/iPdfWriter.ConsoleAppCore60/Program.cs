@@ -1,16 +1,14 @@
 ﻿
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging;
+using iTin.Logging.ComponentModel;
+
+using iPdfWriter.Code;
+using iPdfWriter.ComponentModel;
+
 namespace iPdfWriter
 {
-    using System;
-
-    using iTin.Logging;
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Core.Models.Design.Enums;
-
-    using Code;
-    using ComponentModel;
-
     static class Program
     {
         static void Main(string[] args)
@@ -44,7 +42,7 @@ namespace iPdfWriter
             logger.Info(" > Shows the header replacement after merge action");
             Sample04.Generate(logger);
 
-            // 05. Generate sample 05 report
+            //05.Generate sample 05 report
             logger.Info("");
             logger.Info("> Start Pdf Sample 05");
             logger.Info(" > Shows the use of System Tags such as page number");
@@ -91,6 +89,24 @@ namespace iPdfWriter
             logger.Info("> Start Pdf Sample 13");
             logger.Info(" > Shows the use of text and image replacement");
             Sample13.Generate(logger, YesNo.No);
+
+            // 16. Shows the use of add an enumerable in a pdf document.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 16");
+            logger.Info(" > Shows the use of add an enumerable in a pdf document");
+            Sample16.Generate(logger, YesNo.No);
+
+            // 17. Shows the use of add a datatable in a pdf document.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 17");
+            logger.Info(" > Shows the use of add a datatable in a pdf document");
+            Sample17.Generate(logger, YesNo.No);
+
+            // 18. Shows the use of add a datatable in a pdf document.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 18");
+            logger.Info(" > Shows the use of text and image replacement with styles from file");
+            Sample18.Generate(logger, YesNo.No);
 
             logger.Info("");
             logger.Debug(">End Logging<");

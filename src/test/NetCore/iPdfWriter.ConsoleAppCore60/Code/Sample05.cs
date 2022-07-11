@@ -1,31 +1,31 @@
 ﻿
+using System.Diagnostics;
+using System.Drawing;
+using System.Text;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+using iTin.Utilities.Pdf.Design.Table;
+
+using iTin.Utilities.Pdf.Writer;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+
 namespace iPdfWriter.Code
 {
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Text;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Utilities.Pdf.Design.Image;
-    using iTin.Utilities.Pdf.Design.Styles;
-    using iTin.Utilities.Pdf.Design.Table;
-
-    using iTin.Utilities.Pdf.Writer;
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
     /// <summary>
     /// Shows the use of <b>System Tags</b> such as page number of a document and the use of merge of several entries to compose a complete document.
     /// </summary>
     internal static class Sample05
     {
         // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
         {
             {
                 "Header",
@@ -97,6 +97,11 @@ namespace iPdfWriter.Code
         // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
+            #region Initialize timer
+            var sw = new Stopwatch();
+            sw.Start();
+            #endregion
+
             #region page-1
 
             var page1 = new PdfInput
@@ -105,33 +110,29 @@ namespace iPdfWriter.Code
                 Input = "~/Resources/Sample-05/file-sample-1.pdf"
             };
 
-            // Inserts report title
-            page1.Replace(new ReplaceText(
+            // Report title
+            page1
+                .Replace(new ReplaceText(
                 new WithTextObject
                 {
                     Text = "#TITLE#",
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+                }))
+            // bar-chart image
+            .Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#BAR-CHART#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = PdfImageStyle.Center,
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+                    Image = PdfImage.FromFile("~/Resources/Sample-05/Images/bar-chart.png")
                 }));
-
-
-            // Inserts bar-chart image
-            using (var barGraph = PdfImage.FromFile("~/Resources/Sample-05/Images/bar-chart.png"))
-            {
-                page1.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#BAR-CHART#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = PdfImageStyle.Center,
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                        Image = barGraph
-                    }));
-            }
 
             #endregion
 
@@ -143,13 +144,13 @@ namespace iPdfWriter.Code
                 Input = "~/Resources/Sample-05/file-sample-2.pdf"
             };
 
-            // Inserts html table
+            // html table
             page2.Replace(new ReplaceText(
                 new WithTableObject
                 {
                     Text = "#DATA-TABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable())
@@ -176,19 +177,16 @@ namespace iPdfWriter.Code
             };
 
             // Inserts image
-            using (var image = PdfImage.FromFile("~/Resources/Sample-05/Images/image-1.jpg"))
-            {
-                page4.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#IMAGE1#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = PdfImageStyle.Default,
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                        Image = image
-                    }));
-            }
+            page4.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#IMAGE1#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = PdfImageStyle.Default,
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+                    Image = PdfImage.FromFile("~/Resources/Sample-05/Images/image-1.jpg")
+                }));
 
             #endregion
 
@@ -200,7 +198,7 @@ namespace iPdfWriter.Code
                 new PageNumberSystemTag
                 {
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["PageNumber"],
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
                 }
@@ -216,12 +214,12 @@ namespace iPdfWriter.Code
                     Style = TextStylesTable["Header"],
                     ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement,
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty
+                    Offset = PointF.Empty
                 }
             };
 
             // Defines merge configuration, includes tags, global replacements and allow compress the merged output 
-            var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements })
+            var files = new PdfObject(new PdfObjectConfig { Tags = systemTags , GlobalReplacements = globalReplacements })
             {
                 Items = new List<PdfInput>
                 {
@@ -237,6 +235,7 @@ namespace iPdfWriter.Code
             {
                 logger.Info("   > Error creating output merge result");
                 logger.Info($"     > Error: {mergeResult.Errors.AsMessages().ToStringBuilder()}");
+
                 return;
             }
 
@@ -246,15 +245,21 @@ namespace iPdfWriter.Code
 
             // Saves merged result to disk
             var saveResult = mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample05/Sample-05" });
+            var ts = sw.Elapsed;
+            sw.Stop();
+
             if (!saveResult.Success)
             {
                 logger.Info("   > Error while saving to disk");
                 logger.Info($"     > Error: {saveResult.Errors.AsMessages().ToStringBuilder()}");
+                logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
+
                 return;
             }
 
             logger.Info("   > Saved to disk correctly");
             logger.Info("     > Path: ~/Output/Sample05/Sample-05.pdf");
+            logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
 
             #endregion
         }

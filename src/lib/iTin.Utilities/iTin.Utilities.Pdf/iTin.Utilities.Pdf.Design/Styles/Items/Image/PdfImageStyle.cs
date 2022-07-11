@@ -1,14 +1,14 @@
 ﻿
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
-    using iTin.Core.Models.Design.Enums;
-
     /// <summary>
     /// A Specialization of <see cref="PdfBaseStyle"/> class.<br/>
     /// Defines a <b>pdf</b> image style.

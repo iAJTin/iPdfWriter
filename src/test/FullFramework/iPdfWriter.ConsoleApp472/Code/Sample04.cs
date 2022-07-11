@@ -128,7 +128,7 @@ namespace iPdfWriter.Code
                     Text = "#TITLE#",
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }));
@@ -142,7 +142,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#BAR-CHART#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = ImagesStylesTable["Default"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
                         Image = barGraph
@@ -165,7 +165,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#DATA-TABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable())
@@ -199,7 +199,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#IMAGE1#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = ImagesStylesTable["Center"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
                         Image = image
@@ -220,7 +220,7 @@ namespace iPdfWriter.Code
                     Style = TextStylesTable["Header"],
                     ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement,
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty
+                    Offset = PointF.Empty
                 }
             };
 

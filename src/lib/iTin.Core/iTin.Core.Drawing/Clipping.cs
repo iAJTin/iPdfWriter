@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing
 {
-    using System;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-
-    using Core.Helpers;
-
     /// <summary>
     /// Define graphic cropping by using a figure, a rectangle or a region.
     /// </summary>

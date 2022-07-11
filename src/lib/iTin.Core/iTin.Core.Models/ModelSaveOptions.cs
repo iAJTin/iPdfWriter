@@ -1,10 +1,10 @@
 ﻿
+using System.Text;
+
+using iTin.Core.ComponentModel;
+
 namespace iTin.Core.Models
 {
-    using System.Text;
-
-    using iTin.Core.ComponentModel;
-
     /// <summary>
     /// Defines file save options. Allows defining if the directory is created automatically if it does not exist, output document without indentation. 
     /// By defaults uses <b>UTF8</b> encoding.

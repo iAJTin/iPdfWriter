@@ -1,10 +1,10 @@
 ﻿
+using System.Drawing;
+using System.IO;
+using System.Reflection;
+
 namespace iTin.Core.Drawing
 {
-    using System.Drawing;
-    using System.IO;
-    using System.Reflection;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="Assembly"/>.
     /// </summary> 

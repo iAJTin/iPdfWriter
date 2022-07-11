@@ -1,10 +1,10 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+
 namespace iTin.Utilities.Pdf.Design.Table
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-
     /// <summary>
     /// Represents configuration information for an object <see cref="PdfTable"/>.
     /// </summary>
@@ -12,7 +12,7 @@ namespace iTin.Utilities.Pdf.Design.Table
     {
         #region private constants
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private const TableHeightStrategy DefaultHeightStrategy = TableHeightStrategy.Auto;
+        private const TableHeightStrategy DefaultHeightStrategy = TableHeightStrategy.Exact;
         #endregion
 
         #region public static members
@@ -63,7 +63,7 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region [public] (TableHeightStrategy) HeightStrategy: Gets or sets a value that indicates the strategy to determine the height of the table to insert
         /// <summary>
-        /// Gets or sets a value that indicates the strategy to determine the height of the table to insert. The default value is <see cref="TableHeightStrategy.Auto"/>.
+        /// Gets or sets a value that indicates the strategy to determine the height of the table to insert. The default value is <see cref="TableHeightStrategy.Exact"/>.
         /// </summary>
         /// <value>
         /// One of the <see cref="TableHeightStrategy"/> enumeration values.

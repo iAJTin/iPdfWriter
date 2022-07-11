@@ -7,14 +7,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
     public interface ISystemTagTextReplacement : IReplacement
     {
         /// <summary>
-        /// Gets or sets a value that represents text replace options.
-        /// </summary>
-        /// <value>
-        /// A <see cref="ReplaceTextOptions"/> instance that contains text options.
-        /// </value>
-        ReplaceTextOptions ReplaceOptions { get; set; }
-
-        /// <summary>
         /// Gets or sets a value that contains the system tag to replace.
         /// </summary>
         /// <value>

@@ -1,15 +1,15 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.ComponentModel;
-    using System.Drawing;
-    using System.Xml.Serialization;
-    
-    using Newtonsoft.Json;
-
-    using Enums;
-
     /// <summary>
     /// Defines a generic content.
     /// </summary>

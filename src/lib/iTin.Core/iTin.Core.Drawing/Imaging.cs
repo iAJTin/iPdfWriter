@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
+
 namespace iTin.Core.Drawing
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// Class that constains methods for image color detection.
     /// </summary>

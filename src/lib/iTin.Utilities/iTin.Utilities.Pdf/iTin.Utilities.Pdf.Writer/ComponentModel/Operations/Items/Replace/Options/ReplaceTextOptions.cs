@@ -1,8 +1,8 @@
 ﻿
+using System;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System;
-
     /// <summary>
     /// Represents replace text options
     /// </summary>

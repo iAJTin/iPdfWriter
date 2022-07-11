@@ -1,8 +1,8 @@
 ﻿
+using System;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-
     /// <summary>
     /// Defines a generic style
     /// </summary>

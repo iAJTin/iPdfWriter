@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.Reflection;
+
+using iTin.Logging;
+
 namespace iTin.Core.Helpers
 {
-    using System;
-    using System.Reflection;
-
-    using Logging;
-
     /// <summary>
     /// Static class which contains methods for retrieve <see cref="T:System.Assembly" /> information.
     /// </summary>

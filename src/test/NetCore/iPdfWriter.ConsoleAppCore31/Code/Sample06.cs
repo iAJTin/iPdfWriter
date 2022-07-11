@@ -118,7 +118,7 @@ namespace iPdfWriter.Code
                     Text = "#TITLE#",
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }));
@@ -132,7 +132,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#BAR-CHART#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = PdfImageStyle.Center,
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
                         Image = barGraph
@@ -155,7 +155,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#DATA-TABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(), config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
@@ -189,7 +189,7 @@ namespace iPdfWriter.Code
                     {
                         Text = "#IMAGE1#",
                         UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
+                        Offset = PointF.Empty,
                         Style = PdfImageStyle.Default,
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
                         Image = image
@@ -206,7 +206,7 @@ namespace iPdfWriter.Code
                 new PageNumberSystemTag
                 {
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["PageNumber"],
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
                 }
@@ -222,7 +222,7 @@ namespace iPdfWriter.Code
                     Style = TextStylesTable["Header"],
                     ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement,
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty
+                    Offset = PointF.Empty
                 }
             };
 

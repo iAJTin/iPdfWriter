@@ -1,10 +1,10 @@
 ﻿
+using System.Collections.Generic;
+
+using iTin.Core.ComponentModel;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output
 {
-    using System.Collections.Generic;
-
-    using iTin.Core.ComponentModel;
-
     /// <summary>
     /// Specialization of <see cref="ResultBase{OutputResultData}"/> interface.<br/>
     /// Represents configuration information for an object <see cref="OutputResult"/>.

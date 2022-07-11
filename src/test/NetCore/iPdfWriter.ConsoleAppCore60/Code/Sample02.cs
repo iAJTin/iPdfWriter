@@ -50,7 +50,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#DATA-TABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable())

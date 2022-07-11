@@ -1,18 +1,18 @@
 ﻿
+using System.Collections.ObjectModel;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Design;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
+using iTin.Utilities.Pdf.Design.Styles;
+
 namespace iTin.Utilities.Pdf.Writer
 {
-    using System.Collections.ObjectModel;
-
-    using iTextSharp.text;
-    using iTextSharp.text.pdf;
-
-    using iTin.Core.Helpers;
-    using iTin.Core.Models.Design;
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
-    using Design.Styles;
-
     /// <summary>
     /// Static class than contains common extension methods for objects of the namespace <see cref="N:iTextSharp.text.pdf"/>.
     /// </summary>

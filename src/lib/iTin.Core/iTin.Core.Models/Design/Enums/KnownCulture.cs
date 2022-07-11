@@ -1,13 +1,13 @@
 ﻿
+using System;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+using iTin.Core.ComponentModel;
+
 namespace iTin.Core.Models.Design.Enums
 {
-    using System;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
-    using iTin.Core.ComponentModel;
-
     /// <summary>
     /// Known cultures.
     /// </summary>

@@ -312,6 +312,18 @@ namespace iTin.Core
         }
         #endregion
 
+        #region [public] {static} (bool) IsNullOrEmpty<T>(this IEnumerable<T>): Indicates whether the specified IEnumerable collection is null or empty
+        /// <summary>
+        /// Indicates whether the specified IEnumerable collection is null or empty.
+        /// </summary>
+        /// <typeparam name="T">The IEnumerable objects type</typeparam>
+        /// <param name="items">List of objects</param>
+        /// <returns>
+        /// <b>true</b> if the IEnumerable is null or empty; otherwise, <b>false</b>.
+        /// </returns>
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> items) => items == null || !items.Any();
+        #endregion
+
         #region [public] {static} (Dictionary<TFirstKey, Dictionary<TSecondKey, TValue>>) Pivot<TSource, TFirstKey, TSecondKey, TValue>)(this IEnumerable<TSource>, Func<TSource, TFirstKey>, Func<TSource, TSecondKey>, Func<IEnumerable<TSource>, TValue>): Pivots the specified first key selector
         /// <summary>
         /// Pivots the specified first key selector.
@@ -435,6 +447,21 @@ namespace iTin.Core
             Logger.Instance.Debug($"   > source: {source}");
 
             return new ObservableCollection<T>(source);
+        }
+        #endregion
+
+        #region [public] {static} (IEnumerable<T>) Yield<T>)(this T): Wraps this object instance into an IEnumerable<T> consisting of a single item
+        /// <summary>
+        /// Wraps this object instance into an <see cref="IEnumerable{T}"/> consisting of a single item.
+        /// </summary>
+        /// <typeparam name="T"> Type of the object.</typeparam>
+        /// <param name="item">The instance that will be wrapped.</param>
+        /// <returns>
+        /// An <see cref="IEnumerable{T}"/> consisting of a single item.
+        /// </returns>
+        public static IEnumerable<T> Yield<T>(this T item)
+        {
+            yield return item;
         }
         #endregion
     }

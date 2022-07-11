@@ -1,13 +1,12 @@
 ﻿
+using System.Collections.Generic;
+using System.Drawing;
+
+using iTin.Core.Drawing.ComponentModel;
+using iTin.Core.Helpers;
+
 namespace iTin.Core.Drawing
 {
-    using System.Collections.Generic;
-    using System.Drawing;
-
-    using Core.Helpers;
-
-    using ComponentModel;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="Rectangle"/>.
     /// </summary> 

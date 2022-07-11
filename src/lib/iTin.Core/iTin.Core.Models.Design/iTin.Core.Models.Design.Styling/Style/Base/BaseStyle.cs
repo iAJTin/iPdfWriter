@@ -1,15 +1,15 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.IO;
+using System.Xml.Serialization;
+
+using Newtonsoft.Json;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.IO;
-    using System.Xml.Serialization;
-
-    using Newtonsoft.Json;
-
     /// <summary>
     /// A Specialization of <see cref="IStyle"/> interface.<br/>
     /// Defines a generic style.

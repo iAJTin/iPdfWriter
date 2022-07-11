@@ -1,32 +1,31 @@
 ﻿
+using System.Diagnostics;
+using System.Drawing;
+using System.Text;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+using iTin.Utilities.Pdf.Design.Table;
+
+using iTin.Utilities.Pdf.Writer;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+
 namespace iPdfWriter.Code
 {
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Drawing;
-    using System.Text;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Utilities.Pdf.Design.Image;
-    using iTin.Utilities.Pdf.Design.Styles;
-    using iTin.Utilities.Pdf.Design.Table;
-
-    using iTin.Utilities.Pdf.Writer;
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
     /// <summary>
     /// Shows the use of merge action.
     /// </summary>
     internal static class Sample03
     {
         // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
         {
             {
                 "Center",
@@ -57,7 +56,7 @@ namespace iPdfWriter.Code
         };
 
         // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
         {
             {
                 "ReportTitle",
@@ -107,26 +106,26 @@ namespace iPdfWriter.Code
                     Text = "#TITLE#",
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
-                    TextOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }));
 
 
             // Inserts bar-chart image
-            using (var barGraph = PdfImage.FromFile("~/Resources/Sample-03/Images/bar-chart.png"))
-            {
-                page1.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#BAR-CHART#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                        Image = barGraph
-                    }));
-            }
+            //using (var barGraph = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png"))
+            //{
+            page1.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#BAR-CHART#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png")
+                }));
+            //}
 
             #endregion
 
@@ -144,7 +143,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#DATA-TABLE#",
                     UseTestMode = useTestMode,
-                    TableOffset = PointF.Empty,
+                    Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable(), config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Exact })
@@ -171,19 +170,19 @@ namespace iPdfWriter.Code
             };
 
             // Inserts image
-            using (var image = PdfImage.FromFile("~/Resources/Sample-03/Images/image-1.jpg"))
-            {
-                page4.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#IMAGE1#",
-                        UseTestMode = useTestMode,
-                        ImageOffset = PointF.Empty,
-                        Style = ImagesStylesTable["Center"],
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                        Image = image
-                    }));
-            }
+            //using (var image = PdfImage.FromFile("~/Resources/Sample-01/Images/image-1.jpg"))
+            //{
+            page4.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#IMAGE1#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Center"],
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+                    Image = PdfImage.FromFile("~/Resources/Sample-01/Images/image-1.jpg")
+                }));
+            //}
 
             #endregion
 

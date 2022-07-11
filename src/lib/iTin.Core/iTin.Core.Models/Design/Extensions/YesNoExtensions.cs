@@ -1,8 +1,8 @@
 ﻿
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design
 {
-    using Enums;
-
     /// <summary>
     /// Extensions methods for <see cref="T:iTin.Core.Models.Design.Enums.YesNo"/> enumerated type. 
     /// </summary>

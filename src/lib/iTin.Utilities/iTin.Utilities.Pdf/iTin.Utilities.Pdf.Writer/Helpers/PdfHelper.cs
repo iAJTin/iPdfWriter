@@ -1,17 +1,15 @@
 ﻿
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+using iTin.Core.Models.Design;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
+using iTin.Utilities.Pdf.Design.Styles;
+
 namespace iTin.Utilities.Pdf.Writer.Helpers
 {
-    using iTextSharp.text;
-    using iTextSharp.text.pdf;
-
-    using iTin.Core.Models.Design;
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
-    using iTin.Logging;
-
-    using iTin.Utilities.Pdf.Design.Styles;
-
     /// <summary>
     /// Contains common helper methods for Portable Document Format (pdf format).
     /// </summary>
@@ -28,13 +26,6 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// </returns>
         public static PdfPCell CreateCell(string text, PdfTextStyle style, YesNo useTestMode = YesNo.No)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
-            Logger.Instance.Debug($" Creates a new cell with the visual style defined in the model");
-            Logger.Instance.Debug($" > Signature: ({typeof(PdfPCell)}) CreateCell({typeof(string)}, {typeof(PdfTextStyle)})");
-            Logger.Instance.Debug($"   > text: {text}");
-            Logger.Instance.Debug($"   > style: {style}");
-
             var phrase = new Phrase { Font = CreateFont(style.Font) };
             phrase.Add(text);
 
@@ -88,12 +79,6 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// </returns>
         public static Font CreateFont(FontModel font)
         {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
-            Logger.Instance.Debug($" Creates a new font from model");
-            Logger.Instance.Debug($" > Signature: ({typeof(Font)}) CreateFont({typeof(FontModel)})");
-            Logger.Instance.Debug($"   > font: {font}");
-
             if (font == null)
             {
                 font = FontModel.DefaultFont;
@@ -148,14 +133,6 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// <returns>
         /// A new <see cref="Font"/> that contains default font from model.
         /// </returns>
-        public static Font DefaultFont()
-        {
-            Logger.Instance.Debug("");
-            Logger.Instance.Debug($" Assembly: {typeof(PdfHelper).Assembly.GetName().Name}, v{typeof(PdfHelper).Assembly.GetName().Version}, Namespace: {typeof(PdfHelper).Namespace}, Class: {nameof(PdfHelper)}");
-            Logger.Instance.Debug($" Creates a new font which is default font from model");
-            Logger.Instance.Debug($" > Signature: ({typeof(Font)}) DefaultFont()");
-
-            return CreateFont(FontModel.DefaultFont);
-        }
+        public static Font DefaultFont() => CreateFont(FontModel.DefaultFont);
     }
 }

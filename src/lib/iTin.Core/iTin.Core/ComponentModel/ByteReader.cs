@@ -1,9 +1,9 @@
 
+using System.Collections.ObjectModel;
+using System.Linq;
+
 namespace iTin.Core.ComponentModel
 {
-    using System.Collections.ObjectModel;
-    using System.Linq;
-
     /// <summary>
     /// Class 
     /// </summary>

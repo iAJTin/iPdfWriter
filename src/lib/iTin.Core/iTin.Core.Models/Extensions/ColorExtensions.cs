@@ -1,10 +1,10 @@
 
+using System.Drawing;
+using System.Globalization;
+using System.Text;
+
 namespace iTin.Core.Models.Design
 {
-    using System.Drawing;
-    using System.Globalization;
-    using System.Text;
-
     /// <summary>
     /// Static class than contains extension methods for structures of type <see cref="T:System.Drawing.Color"/>.
     /// </summary> 
@@ -24,6 +24,7 @@ namespace iTin.Core.Models.Design
             result.Append(value.R.ToString("x2", CultureInfo.InvariantCulture));
             result.Append(value.G.ToString("x2", CultureInfo.InvariantCulture));
             result.Append(value.B.ToString("x2", CultureInfo.InvariantCulture));
+
             return result.ToString();
         }
     }

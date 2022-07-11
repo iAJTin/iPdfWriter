@@ -1,13 +1,13 @@
 ﻿
+using System.Drawing;
+
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Utilities.Pdf.Design.Styles;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.Drawing;
-    
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Utilities.Pdf.Design.Styles;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-
     /// <summary>
     /// Specialization of the <see cref="ISystemTag"/> interface that represents the system tag that allows to replace the page number in a document when merging documents.
     /// </summary>
@@ -45,7 +45,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
             {
                 Tag = SystemTags.PageNumber,
                 Style = Style ?? PdfTextStyle.Default, 
-                TextOffset = TextOffset,
+                Offset = Offset,
                 UseTestMode = UseTestMode, 
                 ReplaceOptions = ReplaceOptions ?? ReplaceTextOptions.Default
             };
@@ -79,14 +79,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         public PdfTextStyle Style { get; set; }
         #endregion
 
-        #region [public] (PointF) TextOffset: Gets or sets a reference a point structure which represents the new text offset
+        #region [public] (PointF) Offset: Gets or sets a reference a point structure which represents the new text offset
         /// <summary>
         /// Gets or sets a reference a point structure which represents the new text offset. The default is <see cref="PointF.Empty"/>.
         /// </summary>
         /// <value>
         /// A <see cref="PointF"/> object that contains new text offset to apply.
         /// </value>
-        public PointF TextOffset { get; set; }
+        public PointF Offset { get; set; }
         #endregion
 
         #region [public] (YesNo) UseTestMode: Gets or sets a value that indicates whether the elements to be inserted are shown with a red border that identifies their position and size in order to validate that they are correct

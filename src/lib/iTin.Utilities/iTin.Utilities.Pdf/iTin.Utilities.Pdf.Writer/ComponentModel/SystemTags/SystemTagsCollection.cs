@@ -1,8 +1,8 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using System.Collections.ObjectModel;
-
     /// <summary>
     /// Represents a collection of system tags
     /// </summary>

@@ -1,8 +1,8 @@
 ﻿
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
-    using Replacement.Text;
-
     /// <summary>
     /// Defines a generic System Tag.
     /// </summary>
