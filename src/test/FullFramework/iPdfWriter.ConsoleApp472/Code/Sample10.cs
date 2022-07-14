@@ -1,30 +1,30 @@
 ﻿
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+
+using iTin.Utilities.Pdf.Writer;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+
 namespace iPdfWriter.Code
 {
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Drawing;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Utilities.Pdf.Design.Image;
-    using iTin.Utilities.Pdf.Design.Styles;
-
-    using iTin.Utilities.Pdf.Writer;
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
     /// <summary>
     /// Shows the use of save as zip a input with random name.
     /// </summary>
     internal static class Sample10
     {
         // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
         {
             {
                 "Center",
@@ -55,7 +55,7 @@ namespace iPdfWriter.Code
         };
 
         // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
         {
             {
                 "ReportTitle",
@@ -116,34 +116,34 @@ namespace iPdfWriter.Code
 
 
             // Inserts bar-chart image
-            using (var barGraph = PdfImage.FromFile("~/Resources/Sample-10/Images/bar-chart.png"))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#BAR-CHART#",
-                        UseTestMode = useTestMode,
-                        Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = barGraph
-                    }));
-            }
+            //using (var barGraph = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png"))
+            //{
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#BAR-CHART#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png")
+                }));
+            //}
 
-            // Inserts image
-            using (var image = PdfImage.FromFile("~/Resources/Sample-10/Images/image-1.jpg"))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#IMAGE1#",
-                        UseTestMode = useTestMode,
-                        Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Center"],
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                        Image = image
-                    }));
-            }
+            // Inserts bar-chart image
+            //using (var barGraph = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png"))
+            //{
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#IMAGE1#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Center"],
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+                    Image = PdfImage.FromFile("~/Resources/Sample-01/Images/image-1.jpg")
+                }));
+            //}
 
             #endregion
 

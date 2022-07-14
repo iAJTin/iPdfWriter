@@ -1,0 +1,13 @@
+﻿{
+  "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageStyle, iTin.Utilities.Pdf.Design",
+  "content": {
+    "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContent, iTin.Utilities.Pdf.Design",
+    "alignment": {
+      "$type": "iTin.Utilities.Pdf.Design.Styles.PdfImageContentAlignment, iTin.Utilities.Pdf.Design",
+      "horizontal": "Center"
+    },
+    "alternate-color": "Transparent"
+  },
+  "name": "Center",
+  "inherits": null
+}

@@ -1,31 +1,32 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Image;
+using iTin.Utilities.Pdf.Design.Styles;
+using iTin.Utilities.Pdf.Design.Table;
+
+using iTin.Utilities.Pdf.Writer;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+
 namespace iPdfWriter.Code
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Drawing;
-
-    using iTin.Core.ComponentModel;
-    using iTin.Core.Models.Design.Enums;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Utilities.Pdf.Design.Image;
-    using iTin.Utilities.Pdf.Design.Styles;
-    using iTin.Utilities.Pdf.Design.Table;
-    using iTin.Utilities.Pdf.Writer;
-    using iTin.Utilities.Pdf.Writer.ComponentModel;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-    using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
     /// <summary>
     /// Shows the use of text and image replacement in a pdf document.
     /// </summary>
     internal static class Sample13
     {
         // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new Dictionary<string, PdfImageStyle>
+        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
         {
             {
                 "Default",
@@ -43,7 +44,7 @@ namespace iPdfWriter.Code
         };
 
         // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new Dictionary<string, PdfTextStyle>
+        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
         {
             {
                 "MainTitle",
@@ -531,40 +532,37 @@ namespace iPdfWriter.Code
                             td {
                               padding: 6px;
                             }",
-                        config: new PdfTableConfig {HeightStrategy = TableHeightStrategy.Auto})
+                        config: new PdfTableConfig { HeightStrategy = TableHeightStrategy.Auto })
                 }));
 
             #endregion
 
             #region Section: Firmas
 
-            using (var sign1 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#FIRMA1#",
-                        UseTestMode = useTestMode,
-                        Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = sign1
-                    }));
-            }
+            //using (var sign1 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal))
+            //{
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#FIRMA1#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal)
+                }));
+            //}
 
-            using (var sign2 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma2.jpg").ScalePercent(90))
-            {
-                doc.Replace(new ReplaceText(
-                    new WithImageObject
-                    {
-                        Text = "#FIRMA2#",
-                        UseTestMode = useTestMode,
-                        Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
-                        ReplaceOptions = ReplaceTextOptions.Default,
-                        Image = sign2
-                    }));
-            }
+            doc.Replace(new ReplaceText(
+                new WithImageObject
+                {
+                    Text = "#FIRMA2#",
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = ImagesStylesTable["Default"],
+                    ReplaceOptions = ReplaceTextOptions.Default,
+                    Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma2.jpg").ScalePercent(90)
+                }));
 
             #endregion
 
@@ -577,6 +575,7 @@ namespace iPdfWriter.Code
             {
                 logger.Info("   > Error creating output result");
                 logger.Info($"     > Error: {result.Errors.AsMessages().ToStringBuilder()}");
+
                 return;
             }
 
@@ -593,11 +592,12 @@ namespace iPdfWriter.Code
                 logger.Info("   > Error while saving to disk");
                 logger.Info($"     > Error: {saveResult.Errors.AsMessages().ToStringBuilder()}");
                 logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
+
                 return;
             }
 
             logger.Info("   > Saved to disk correctly");
-            logger.Info("     > Path: ~/Output/Sample01/Sample-01.pdf");
+            logger.Info("     > Path: ~/Output/Sample13/Sample-13.pdf");
             logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
 
             #endregion
