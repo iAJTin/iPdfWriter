@@ -151,7 +151,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [JsonProperty("font")]
         public FontModel Font
         {
-            get => _font ?? (_font = FontModel.DefaultFont);
+            get => _font ??= FontModel.DefaultFont;
             set => _font = value;
         }
         #endregion

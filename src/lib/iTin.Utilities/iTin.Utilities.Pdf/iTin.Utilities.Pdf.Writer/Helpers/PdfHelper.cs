@@ -79,10 +79,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// </returns>
         public static Font CreateFont(FontModel font)
         {
-            if (font == null)
-            {
-                font = FontModel.DefaultFont;
-            }
+            font ??= FontModel.DefaultFont;
 
             int registeredFonts = FontFactory.RegisteredFonts.Count;
             if (registeredFonts <= 14)
@@ -107,11 +104,12 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
             }
 
             Font validFont;
-            var isFontRegistered = FontFactory.IsRegistered(font.Name);
+            var fontName = font.Name;
+            var isFontRegistered = FontFactory.IsRegistered(fontName);
             if (isFontRegistered)
             {
                 validFont = FontFactory.GetFont(
-                    font.Name,
+                    fontName,
                     BaseFont.IDENTITY_H,
                     BaseFont.EMBEDDED,
                     font.Size,

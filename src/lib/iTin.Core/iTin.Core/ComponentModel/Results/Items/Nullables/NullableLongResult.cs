@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableLongResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableLongResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableLongResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableLongResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableLongResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableLongResult CreateErroResult(string message, long? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableLongResult CreateErrorResult(string message, long? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableLongResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableLongResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableLongResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableLongResult CreateErrorResult(IResultError[] errors) =>
             new NullableLongResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableLongResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableLongResult CreateErroResult(IResultError[] errors, long? Result) =>
+        public new static NullableLongResult CreateErrorResult(IResultError[] errors, long? Result) =>
             new NullableLongResult
             {
                 Result = Result,

@@ -505,14 +505,9 @@ namespace iTin.Core.Models.Design
         /// </returns>
         private static bool IsValidFontName(string fontName)
         {
-            bool hasFamilies;
+            using var ifc = new InstalledFontCollection();
 
-            using (var ifc = new InstalledFontCollection())
-            {
-                hasFamilies = ifc.Families.Any(font => font.Name.Equals(fontName, StringComparison.Ordinal));
-            }
-
-            return hasFamilies;
+            return ifc.Families.Any(font => font.Name.Equals(fontName, StringComparison.Ordinal));
         }
         #endregion
 

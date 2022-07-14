@@ -90,23 +90,41 @@ namespace iPdfWriter
             logger.Info(" > Shows the use of text and image replacement");
             Sample13.Generate(logger, YesNo.No);
 
-            // 16. Shows the use of add an enumerable in a pdf document.
+            // 16. Shows the use of add an enumerable (render as html) in a pdf document.
             logger.Info("");
             logger.Info("> Start Pdf Sample 16");
-            logger.Info(" > Shows the use of add an enumerable in a pdf document");
+            logger.Info(" > Shows the use of add an enumerable (render as html) in a pdf document.");
             Sample16.Generate(logger, YesNo.No);
 
-            // 17. Shows the use of add a datatable in a pdf document.
-            logger.Info("");
-            logger.Info("> Start Pdf Sample 17");
-            logger.Info(" > Shows the use of add a datatable in a pdf document");
-            Sample17.Generate(logger, YesNo.No);
+            //// 17. Shows the use of add an enumerable (native render) in a pdf document.
+            //logger.Info("");
+            //logger.Info("> Start Pdf Sample 17");
+            //logger.Info(" > Shows the use of add an enumerable (native render) in a pdf document.");
+            //Sample17.Generate(logger, YesNo.No);
 
-            // 18. Shows the use of add a datatable in a pdf document.
+            // 18. Shows the use of add a datatable (render as html) in a pdf document.
             logger.Info("");
             logger.Info("> Start Pdf Sample 18");
-            logger.Info(" > Shows the use of text and image replacement with styles from file");
+            logger.Info(" > Shows the use of add a datatable (render as html) in a pdf document.");
             Sample18.Generate(logger, YesNo.No);
+
+            //// 19. Shows the use of add a datatable (native render) in a pdf document.
+            //logger.Info("");
+            //logger.Info("> Start Pdf Sample 19");
+            //logger.Info(" > Shows the use of add a datatable (native render) in a pdf document.");
+            //Sample19.Generate(logger, YesNo.No);
+
+            // 20. Shows the use of add a datatable in a pdf document.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 20");
+            logger.Info(" > Shows the use of text and image replacement with styles from file");
+            Sample20.Generate(logger, YesNo.No);
+
+            // 21. Shows the use of text and image replacement in a pdf document with custom font.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 21");
+            logger.Info(" > Shows the use of text and image replacement in a pdf document with custom font");
+            Sample21.Generate(logger, YesNo.No);
 
             logger.Info("");
             logger.Debug(">End Logging<");

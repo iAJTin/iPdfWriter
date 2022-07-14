@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Drawing;
 
-using iTin.Core;
 using iTin.Core.ComponentModel;
 using iTin.Core.Models.Design.Enums;
 
@@ -21,7 +20,7 @@ using iPdfWriter.ComponentModel;
 namespace iPdfWriter.Code
 {
     /// <summary>
-    /// Shows the use of add a datatable in a pdf document.
+    /// Shows the use of add an enumerable (native render) in a pdf document.
     /// </summary>
     internal static class Sample17
     {
@@ -45,7 +44,7 @@ namespace iPdfWriter.Code
 
             #region Replace actions
 
-            // Inserts a datatable object
+            // Inserts enumerable object
             doc.Replace(new ReplaceText(
                 new WithTableObject
                 {
@@ -54,7 +53,7 @@ namespace iPdfWriter.Code
                     Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
-                    Table = PdfTable.CreateFromDataTable(
+                    Table = PdfTable.CreateFromEnumerable(
                         new List<Person>
                         {
                             new Person {Name = "Name-01", Surname = "Surname-01"},
@@ -65,10 +64,7 @@ namespace iPdfWriter.Code
                             new Person {Name = "Name-06", Surname = "Surname-06"},
                             new Person {Name = "Name-07", Surname = "Surname-07"},
                             new Person {Name = "Name-08", Surname = "Surname-08"},
-                            new Person {Name = "Name-09", Surname = "Surname-09"},
-                            new Person {Name = "Name-10", Surname = "Surname-10"},
-                        }
-                        .ToDataTable<Person>("People"))
+                        })
                 }));
 
             #endregion
@@ -99,7 +95,7 @@ namespace iPdfWriter.Code
             }
 
             logger.Info("   > Saved to disk correctly");
-            logger.Info("     > Path: ~/Output/Sample17/Sample-17.pdf");
+            logger.Info("     > Path: ~/Output/Sample16/Sample-17.pdf");
             logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
 
             #endregion

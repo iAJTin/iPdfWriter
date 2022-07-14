@@ -75,9 +75,9 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region public static methods
 
-        #region [public] {static} (PdfTable) CreateFromEnumerable<Ti>(IEnumerable<Ti>, PdfTableConfig = null): Creates a PdfTable object from specified typed enumerable 
+        #region [public] {static} (PdfTable) CreateFromEnumerable<Ti>(IEnumerable<Ti>, PdfTextStyle, PdfTableConfig = null): Creates a PdfTable object from specified typed enumerable 
         /// <summary>
-        /// Creates a <see cref="PdfTable"/> object from specified typed enumerable.
+        /// Creates a <see cref="PdfTable"/> object from specified typed enumerable. Render the table as a native <strong>PDF</strong> table by using custom styles.
         /// </summary>
         /// <param name="data">A reference to input typed enumerable to convert.</param>
         /// <param name="styles">A reference to styles to use.</param>
@@ -85,7 +85,7 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <returns>
         /// A new <see cref="PdfPTable"/> instance that contains the table from specified typed enumerable.
         /// </returns>
-        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, PdfTextStyle styles = null, PdfTableConfig config = null)
+        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, PdfTextStyle styles, PdfTableConfig config = null)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
 
@@ -93,9 +93,27 @@ namespace iTin.Utilities.Pdf.Design.Table
         }
         #endregion
 
-        #region [public] {static} (PdfTable) CreateFromDataTable(DataTable, PdfTableConfig = null): Creates a PdfTable object from specified DataTable
+        #region [public] {static} (PdfTable) CreateFromEnumerable<Ti>(IEnumerable<Ti>, string = null, PdfTableConfig = null): Creates a PdfTable object from specified typed enumerable 
         /// <summary>
-        /// Creates a <see cref="PdfTable"/> object from specified <see cref="T:System.Data.DataTable"/>.
+        /// Creates a <see cref="PdfTable"/> object from specified typed enumerable. Render the table as an <strong>HTML</strong> table element using <strong>css</strong> styles.
+        /// </summary>
+        /// <param name="data">A reference to input typed enumerable to convert.</param>
+        /// <param name="css">A reference to css styles to apply.</param>
+        /// <param name="config">Table configuration reference.</param>
+        /// <returns>
+        /// A new <see cref="PdfPTable"/> instance that contains the table from specified typed enumerable.
+        /// </returns>
+        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, string css = null, PdfTableConfig config = null)
+        {
+            SentinelHelper.ArgumentNull(data, nameof(data));
+
+            return CreateFromDataTable(data.ToDataTable<Ti>(nameof(data)), css, config);
+        }
+        #endregion
+
+        #region [public] {static} (PdfTable) CreateFromDataTable(DataTable, PdfTextStyle, PdfTableConfig = null): Creates a PdfTable object from specified DataTable
+        /// <summary>
+        /// Creates a <see cref="PdfTable"/> object from specified <see cref="T:System.Data.DataTable"/>. Render the table as a native <strong>PDF</strong> table by using custom styles.
         /// </summary>
         /// <param name="data">A reference to input <see cref="T:System.Data.DataTable"/> to convert.</param>
         /// <param name="styles">A reference to styles to use.</param>
@@ -103,11 +121,29 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <returns>
         /// A new <see cref="PdfPTable"/> instance that contains the table from specified <see cref="T:System.Data.DataTable"/>.
         /// </returns>
-        public static PdfTable CreateFromDataTable(DataTable data, PdfTextStyle styles = null, PdfTableConfig config = null)
+        public static PdfTable CreateFromDataTable(DataTable data, PdfTextStyle styles, PdfTableConfig config = null)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
 
             return CreateFromHtml(data.ToHtmlTable(), css: default, config: config);
+        }
+        #endregion
+
+        #region [public] {static} (PdfTable) CreateFromDataTable(DataTable, PdfTableConfig = null): Creates a PdfTable object from specified DataTable
+        /// <summary>
+        /// Creates a <see cref="PdfTable"/> object from specified <see cref="T:System.Data.DataTable"/>. Render the table as an <strong>HTML</strong> table element using <strong>css</strong> styles.
+        /// </summary>
+        /// <param name="data">A reference to input <see cref="T:System.Data.DataTable"/> to convert.</param>
+        /// <param name="css">A reference to css styles to apply.</param>
+        /// <param name="config">Table configuration reference.</param>
+        /// <returns>
+        /// A new <see cref="PdfPTable"/> instance that contains the table from specified <see cref="T:System.Data.DataTable"/>.
+        /// </returns>
+        public static PdfTable CreateFromDataTable(DataTable data, string css = null, PdfTableConfig config = null)
+        {
+            SentinelHelper.ArgumentNull(data, nameof(data));
+
+            return CreateFromHtml(data.ToHtmlTable(), css: css, config: config);
         }
         #endregion
 

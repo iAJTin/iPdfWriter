@@ -9,6 +9,12 @@
   </PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Resources\Sample-21\Fonts\alex-brush\**" />
+	  <EmbeddedResource Remove="Resources\Sample-21\Fonts\alex-brush\**" />
+	  <None Remove="Resources\Sample-21\Fonts\alex-brush\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Models.Design\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core\iTin.Core.csproj" />
@@ -18,6 +24,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Output\" />
+	  <Folder Include="Output\Sample21\" />
 	</ItemGroup>
 
 </Project>

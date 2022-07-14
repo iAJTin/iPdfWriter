@@ -17,18 +17,18 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="BooleanResult"/> with specified detailed error.
         /// </returns>
-        public new static BooleanResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static BooleanResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="BooleanResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="BooleanResult"/> with specified detailed error.
         /// </returns>
-        public new static BooleanResult CreateErroResult(string message, bool Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static BooleanResult CreateErrorResult(string message, bool result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
 
         /// <summary>
         /// Returns a new <see cref="BooleanResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="BooleanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static BooleanResult CreateErroResult(IResultError[] errors) =>
+        public new static BooleanResult CreateErrorResult(IResultError[] errors) =>
             new BooleanResult
             {
                 Result = default,
@@ -49,14 +49,14 @@ namespace iTin.Core.ComponentModel.Results
         /// Returns a new <see cref="BooleanResult"/> with specified detailed errors collection.
         /// </summary>
         /// <param name="errors">A errors collection</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new invalid <see cref="BooleanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static BooleanResult CreateErroResult(IResultError[] errors, bool Result) =>
+        public new static BooleanResult CreateErrorResult(IResultError[] errors, bool result) =>
             new BooleanResult
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -89,14 +89,14 @@ namespace iTin.Core.ComponentModel.Results
         /// Creates a new <see cref="BooleanResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new <see cref="BooleanResult"/> instance for specified exception.
         /// </returns>
-        public new static BooleanResult FromException(Exception exception, bool Result) =>
+        public new static BooleanResult FromException(Exception exception, bool result) =>
             new BooleanResult
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

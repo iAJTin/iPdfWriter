@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableTimeSpanResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableTimeSpanResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableTimeSpanResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableTimeSpanResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableTimeSpanResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableTimeSpanResult CreateErroResult(string message, TimeSpan? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableTimeSpanResult CreateErrorResult(string message, TimeSpan? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableTimeSpanResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableTimeSpanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableTimeSpanResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableTimeSpanResult CreateErrorResult(IResultError[] errors) =>
             new NullableTimeSpanResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableTimeSpanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableTimeSpanResult CreateErroResult(IResultError[] errors, TimeSpan? Result) =>
+        public new static NullableTimeSpanResult CreateErrorResult(IResultError[] errors, TimeSpan? Result) =>
             new NullableTimeSpanResult
             {
                 Result = Result,

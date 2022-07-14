@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDecimalResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableDecimalResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableDecimalResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableDecimalResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDecimalResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableDecimalResult CreateErroResult(string message, decimal? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableDecimalResult CreateErrorResult(string message, decimal? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableDecimalResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDecimalResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableDecimalResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableDecimalResult CreateErrorResult(IResultError[] errors) =>
             new NullableDecimalResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDecimalResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableDecimalResult CreateErroResult(IResultError[] errors, decimal? Result) =>
+        public new static NullableDecimalResult CreateErrorResult(IResultError[] errors, decimal? Result) =>
             new NullableDecimalResult
             {
                 Result = Result,

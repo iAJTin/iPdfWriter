@@ -108,25 +108,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                                 continue;
                             }
 
-                            //var isEnumerable = replacementObject is WithEnumerableObject;
-                            //if (isEnumerable)
-                            //{
-                            //    var current = (WithEnumerableObject)replacementObject;
-                            //    current.Style ??= PdfTextStyle.Default;
-
-                            //    // Calculates new rectangle
-                            //    var r = BuildRectangleByStrategies(match, replacementObject.Text, strategy, cb, stringsList, replacementObject.ReplaceOptions);
-
-                            //    // Add table
-                            //    var table = new PdfPTable(1) { TotalWidth = r.Width - replacementObject.Offset.X };
-                            //    table.AddCell(PdfHelper.CreateCell(current.NewText, current.Style, replacementObject.UseTestMode));
-                            //    table.WriteSelectedRows(-1, -1, r.X + replacementObject.Offset.X, r.Y - replacementObject.Offset.Y, cb);
-
-                            //    cb.Fill();
-
-                            //    continue;
-                            //}
-
                             var isImage = replacementObject is WithImageObject;
                             if (isImage)
                             {

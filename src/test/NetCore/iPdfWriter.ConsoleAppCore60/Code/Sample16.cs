@@ -20,7 +20,7 @@ using iPdfWriter.ComponentModel;
 namespace iPdfWriter.Code
 {
     /// <summary>
-    /// Shows the use of add an enumerable in a pdf document.
+    /// Shows the use of add an enumerable (render as html) in a pdf document.
     /// </summary>
     internal static class Sample16
     {
@@ -54,19 +54,35 @@ namespace iPdfWriter.Code
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromEnumerable(
-                        new List<Person>
-                        {
-                            new Person {Name = "Name-01", Surname = "Surname-01"},
-                            new Person {Name = "Name-02", Surname = "Surname-02"},
-                            new Person {Name = "Name-03", Surname = "Surname-03"},
-                            new Person {Name = "Name-04", Surname = "Surname-04"},
-                            new Person {Name = "Name-05", Surname = "Surname-05"},
-                            new Person {Name = "Name-06", Surname = "Surname-06"},
-                            new Person {Name = "Name-07", Surname = "Surname-07"},
-                            new Person {Name = "Name-08", Surname = "Surname-08"},
-                            new Person {Name = "Name-09", Surname = "Surname-09"},
-                            new Person {Name = "Name-10", Surname = "Surname-10"},
-                        })
+                        data: 
+                            new List<Person>
+                            {
+                                new Person {Name = "Name-01", Surname = "Surname-01"},
+                                new Person {Name = "Name-02", Surname = "Surname-02"},
+                                new Person {Name = "Name-03", Surname = "Surname-03"},
+                                new Person {Name = "Name-04", Surname = "Surname-04"},
+                                new Person {Name = "Name-05", Surname = "Surname-05"},
+                                new Person {Name = "Name-06", Surname = "Surname-06"},
+                                new Person {Name = "Name-07", Surname = "Surname-07"},
+                                new Person {Name = "Name-08", Surname = "Surname-08"},
+                            },
+                        css: @"
+                            table { 
+                             border-spacing: 0px;
+                             border-collapse: collapse;  
+                            }
+
+                            tr {
+                              font-size: 9pt;
+                              font-family: Arial; 
+                              color: #AC1198;
+                              text-align: left;
+                              overflow: hidden;
+                            }
+
+                            td {
+                              padding: 6px;
+                            }")
                 }));
 
             #endregion

@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDateTimeResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableDateTimeResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableDateTimeResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableDateTimeResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDateTimeResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableDateTimeResult CreateErroResult(string message, DateTime? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableDateTimeResult CreateErrorResult(string message, DateTime? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableDateTimeResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDateTimeResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableDateTimeResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableDateTimeResult CreateErrorResult(IResultError[] errors) =>
             new NullableDateTimeResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableDateTimeResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableDateTimeResult CreateErroResult(IResultError[] errors, DateTime? Result) =>
+        public new static NullableDateTimeResult CreateErrorResult(IResultError[] errors, DateTime? Result) =>
             new NullableDateTimeResult
             {
                 Result = Result,

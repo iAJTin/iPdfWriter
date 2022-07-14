@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableIntegerResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableIntegerResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableIntegerResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableIntegerResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableIntegerResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableIntegerResult CreateErroResult(string message, int? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableIntegerResult CreateErrorResult(string message, int? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableIntegerResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableIntegerResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableIntegerResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableIntegerResult CreateErrorResult(IResultError[] errors) =>
             new NullableIntegerResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableIntegerResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableIntegerResult CreateErroResult(IResultError[] errors, int? Result) =>
+        public new static NullableIntegerResult CreateErrorResult(IResultError[] errors, int? Result) =>
             new NullableIntegerResult
             {
                 Result = Result,

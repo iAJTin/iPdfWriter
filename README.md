@@ -1219,7 +1219,7 @@ Basic steps, for more details please see [sample06.cs] file.
 
 ![Sample13AllPages][Sample13AllPages] 
 
-### Sample 11 - Show the use of add an enumerable in a pdf document
+### Sample 11 - Show the use of add an enumerable (render as HTML)in a pdf document
 
 Basic steps, for more details please see [sample16.cs] file.
 
@@ -1256,19 +1256,35 @@ Basic steps, for more details please see [sample16.cs] file.
             Style = PdfTableStyle.Default,
             ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
             Table = PdfTable.CreateFromEnumerable(
-                new List<Person>
-                {
-                    new Person {Name = "Name-01", Surname = "Surname-01"},
-                    new Person {Name = "Name-02", Surname = "Surname-02"},
-                    new Person {Name = "Name-03", Surname = "Surname-03"},
-                    new Person {Name = "Name-04", Surname = "Surname-04"},
-                    new Person {Name = "Name-05", Surname = "Surname-05"},
-                    new Person {Name = "Name-06", Surname = "Surname-06"},
-                    new Person {Name = "Name-07", Surname = "Surname-07"},
-                    new Person {Name = "Name-08", Surname = "Surname-08"},
-                    new Person {Name = "Name-09", Surname = "Surname-09"},
-                    new Person {Name = "Name-10", Surname = "Surname-10"},
-                })
+                data: 
+                    new List<Person>
+                    {
+                        new Person {Name = "Name-01", Surname = "Surname-01"},
+                        new Person {Name = "Name-02", Surname = "Surname-02"},
+                        new Person {Name = "Name-03", Surname = "Surname-03"},
+                        new Person {Name = "Name-04", Surname = "Surname-04"},
+                        new Person {Name = "Name-05", Surname = "Surname-05"},
+                        new Person {Name = "Name-06", Surname = "Surname-06"},
+                        new Person {Name = "Name-07", Surname = "Surname-07"},
+                        new Person {Name = "Name-08", Surname = "Surname-08"},
+                    },
+                css: @"
+                    table { 
+                        border-spacing: 0px;
+                        border-collapse: collapse;  
+                    }
+
+                    tr {
+                        font-size: 9pt;
+                        font-family: Arial; 
+                        color: #AC1198;
+                        text-align: left;
+                        overflow: hidden;
+                    }
+
+                    td {
+                        padding: 6px;
+                    }")
         }));
     ```
 4. Try to create pdf output result
@@ -1295,9 +1311,9 @@ Basic steps, for more details please see [sample16.cs] file.
 
 ![Sample16AllPages][Sample16AllPages] 
 
-### Sample 12 - Show the use of add an DataTable in a pdf document
+### Sample 12 - Show the use of add an DataTable (render as HTML)in a pdf document
 
-Basic steps, for more details please see [sample17.cs] file.
+Basic steps, for more details please see [sample18.cs] file.
 
 1. Defines a **Person** model
 
@@ -1316,7 +1332,7 @@ Basic steps, for more details please see [sample17.cs] file.
     var doc = new PdfInput
     {
         AutoUpdateChanges = true,
-        Input = "~/Resources/Sample-17/file-sample.pdf"
+        Input = "~/Resources/Sample-18/file-sample.pdf"
     };
     ```             
 
@@ -1332,20 +1348,36 @@ Basic steps, for more details please see [sample17.cs] file.
             Style = PdfTableStyle.Default,
             ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
             Table = PdfTable.CreateFromDataTable(
-                new List<Person>
-                {
-                    new Person {Name = "Name-01", Surname = "Surname-01"},
-                    new Person {Name = "Name-02", Surname = "Surname-02"},
-                    new Person {Name = "Name-03", Surname = "Surname-03"},
-                    new Person {Name = "Name-04", Surname = "Surname-04"},
-                    new Person {Name = "Name-05", Surname = "Surname-05"},
-                    new Person {Name = "Name-06", Surname = "Surname-06"},
-                    new Person {Name = "Name-07", Surname = "Surname-07"},
-                    new Person {Name = "Name-08", Surname = "Surname-08"},
-                    new Person {Name = "Name-09", Surname = "Surname-09"},
-                    new Person {Name = "Name-10", Surname = "Surname-10"},
-                }
-                .ToDataTable<Person>("People"))
+                data: 
+                    new List<Person>
+                    {
+                        new Person {Name = "Name-01", Surname = "Surname-01"},
+                        new Person {Name = "Name-02", Surname = "Surname-02"},
+                        new Person {Name = "Name-03", Surname = "Surname-03"},
+                        new Person {Name = "Name-04", Surname = "Surname-04"},
+                        new Person {Name = "Name-05", Surname = "Surname-05"},
+                        new Person {Name = "Name-06", Surname = "Surname-06"},
+                        new Person {Name = "Name-07", Surname = "Surname-07"},
+                        new Person {Name = "Name-08", Surname = "Surname-08"},
+                    }
+                    .ToDataTable<Person>("People"),
+                css: @"
+                    table { 
+                        border-spacing: 0px;
+                        border-collapse: collapse;  
+                    }
+
+                    tr {
+                        font-size: 9pt;
+                        font-family: Arial; 
+                        color: #AC1198;
+                        text-align: left;
+                        overflow: hidden;
+                    }
+
+                    td {
+                        padding: 6px;
+                    }")
         }));
     ```
 4. Try to create pdf output result
@@ -1360,7 +1392,7 @@ Basic steps, for more details please see [sample17.cs] file.
 5. Save pdf result to file
     
     ```csharp   
-    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample17/Sample-17" });
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample18/Sample-18" });
     if (!saveResult.Success)
     {
          // Handle errors                 
@@ -1370,11 +1402,11 @@ Basic steps, for more details please see [sample17.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample17AllPages][Sample17AllPages] 
+![Sample18AllPages][Sample18AllPages] 
 
 ### Sample 13 - Shows the use of text and image replacement with styles from file
 
-Basic steps, for more details please see [sample18.cs] file.
+Basic steps, for more details please see [sample20.cs] file.
 
 1. Creates Style file
 
@@ -1470,6 +1502,123 @@ Basic steps, for more details please see [sample18.cs] file.
 
    The result is the same as in sample 1.
 
+### Sample 14 - Shows how to work with fonts
+
+Basic steps, for more details please see [sample21.cs] file.
+
+1. Define the styles to use. notice that now the dictionary is of type **PdfBaseStyle**.
+              
+    ```csharp   
+    private static readonly Dictionary<string, PdfBaseStyle> StylesTable = new()
+    {
+        {
+            "ReportTitle",
+            new PdfTextStyle
+            {
+                Font =
+                {
+                    Name = "Pacifico",
+                    Size = 28.0f,
+                    Bold = YesNo.Yes,
+                    Italic = YesNo.Yes,
+                    Color = "Blue"
+                },
+                Content =
+                {
+                    Alignment =
+                    {
+                        Vertical = KnownVerticalAlignment.Center,
+                        Horizontal = KnownHorizontalAlignment.Center
+                    }
+                }
+            }
+        },
+        {
+            "Center",
+            new PdfImageStyle
+            {
+                Content =
+                {
+                    Alignment =
+                    {
+                        Horizontal = KnownHorizontalAlignment.Center
+                    }
+                }
+            }
+        },
+        {
+            "Default",
+            new PdfImageStyle
+            {
+                Content =
+                {
+                    Alignment =
+                    {
+                        Horizontal = KnownHorizontalAlignment.Left
+                    }
+                }
+            }
+        }
+    };
+
+2. Register font from file
+
+    ```csharp   
+    var registerResult = PdfFonts.RegisterFont("Pacifico", @"~Resources/Sample-21/Fonts/Pacifico/Pacifico.ttf");
+    if (!registerResult.Success)
+    {
+         // Handle errors                 
+    }
+    ```             
+
+3. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-21/file-sample.pdf"
+    };
+    ```             
+
+4. Replace **#TITLE#** tag with another text but using a style that is loaded from a file
+
+    ```csharp   
+    doc.Replace(new ReplaceText(
+        new WithTextObject
+        {
+            Text = "#TITLE#",
+            NewText = "Lorem ipsum",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = (PdfTextStyle) StylesTable["ReportTitle"],
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+        }));        
+    ```
+
+5. Try to create pdf output result
+
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+6. Save pdf result to file
+    
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample21/Sample-21" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+7. Output
+
+   ###### Below is an image showing the original pdf file and the result after applying the replacements described above
+
+![Sample21AllPages][Sample21AllPages] 
 
 # Documentation
 
@@ -1530,3 +1679,11 @@ My email address is
 
 [sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
 [Sample17AllPages]: ./assets/samples/sample17/sample17.png "sample17"
+
+[sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample18.cs
+[Sample18AllPages]: ./assets/samples/sample18/sample18.png "sample18"
+
+[sample20.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample20.cs
+
+[sample21.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample21.cs
+[Sample21AllPages]: ./assets/samples/sample21/sample21.png "sample21"

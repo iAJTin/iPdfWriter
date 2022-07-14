@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableBooleanResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableBooleanResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableBooleanResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableBooleanResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableBooleanResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableBooleanResult CreateErroResult(string message, bool? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableBooleanResult CreateErrorResult(string message, bool? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableBooleanResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableBooleanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableBooleanResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableBooleanResult CreateErrorResult(IResultError[] errors) =>
             new NullableBooleanResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableBooleanResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableBooleanResult CreateErroResult(IResultError[] errors, bool? Result) =>
+        public new static NullableBooleanResult CreateErrorResult(IResultError[] errors, bool? Result) =>
             new NullableBooleanResult
             {
                 Result = Result,

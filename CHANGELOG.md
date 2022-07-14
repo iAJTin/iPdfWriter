@@ -20,12 +20,14 @@ All notable changes to this project will be documented in this file.
 
  3. Added the ability to create a table from a typed enumerable and from a datatable 
     To do this, two new methods have been added to the **PdfTable** static class.
-    Adding **custom styles** for the table is **currently under development**
+    There are two overloads for each method, one to render the table applying **ccs** styles, 
+    this functionality is implemented and the other rendering the table natively, 
+    it is **currently under development**
      
 	| Method | Description |
 	|:------|:----------|
-	| PdfTable.CreateFromEnumerable(..) | please see [sample16.cs]|
-	| PdfTable.CreateFromDataTable(..) | please see [sample17.cs] |
+	| PdfTable.CreateFromEnumerable(..) | please see [sample16.cs], [sample17.cs] |
+	| PdfTable.CreateFromDataTable(..) | please see [sample18.cs], [sample19.cs] |
 
     Here is how to use them.
 
@@ -184,6 +186,8 @@ All notable changes to this project will be documented in this file.
 	| iTin.Core.Drawing | **1.0.0.2** | Drawing objects, extension, helpers, common constants |
 	| iTin.Core.IO | **1.0.0.2** | Common I/O calls |
 	| iTin.Core.IO.Compression | **1.0.0.2** | Compression library |
+    | iTin.Core.Interop.Shared | **1.0.0.2** | Generic Shared Interop Definitions |
+    | iTin.Core.Interop.Windows.Devices | **1.0.0.1** | Win32 Generic Interop Calls |
 	| iTin.Core.Models | **1.0.0.2** | Data models base |
 	| iTin.Core.Models.Design.Charting | **1.0.0.2** | Base charting models |
 	| iTin.Core.Models.Design.Styling | **1.0.0.2** | Base styling models |
@@ -289,4 +293,6 @@ All notable changes to this project will be documented in this file.
 [1.0.0]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.0
 
 [sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
-[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
+[sample17_.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
+[sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample18.cs
+[sample19_.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample19.cs

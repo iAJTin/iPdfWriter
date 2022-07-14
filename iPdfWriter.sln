@@ -77,6 +77,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iPdfWriter.ConsoleAppCore60
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iPdfWriter.ConsoleApp472", "src\test\FullFramework\iPdfWriter.ConsoleApp472\iPdfWriter.ConsoleApp472.csproj", "{9E48AB08-E88E-4A44-A646-972BAF139AD0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop", "iTin.Core.Interop", "{C6542900-9A07-406A-A162-648F95A18305}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Interop.Shared", "src\lib\iTin.Core\iTin.Core.Interop\iTin.Core.Interop.Shared\iTin.Core.Interop.Shared.csproj", "{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Shared", "iTin.Core.Interop.Shared", "{AF73276B-26B2-480A-9F1E-5A11C2ADCE6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Interop.Windows.Devices", "src\lib\iTin.Core\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.csproj", "{D05857D2-FBFB-4A55-8DFD-165D44349DAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Windows", "iTin.Core.Interop.Windows", "{62CDAD0B-7EB6-4945-8D25-B2928AD4AB31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Windows.Devices", "iTin.Core.Interop.Windows.Devices", "{F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +151,14 @@ Global
 		{9E48AB08-E88E-4A44-A646-972BAF139AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E48AB08-E88E-4A44-A646-972BAF139AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E48AB08-E88E-4A44-A646-972BAF139AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +199,12 @@ Global
 		{17D46FCC-A621-4127-BDAA-BE8A1D65E1ED} = {02113068-6B36-48FD-8235-7854FE46E369}
 		{7CAB31F7-6D2B-4A5A-BF78-140E3EE422F3} = {02113068-6B36-48FD-8235-7854FE46E369}
 		{9E48AB08-E88E-4A44-A646-972BAF139AD0} = {27AC7E7B-D79B-4709-B967-88EB06690929}
+		{C6542900-9A07-406A-A162-648F95A18305} = {E395D3DB-DAC6-48FF-9AE7-D073D4F8BF1B}
+		{1ADAA669-65F4-4649-9C84-C2A2ED1FA4A8} = {AF73276B-26B2-480A-9F1E-5A11C2ADCE6F}
+		{AF73276B-26B2-480A-9F1E-5A11C2ADCE6F} = {C6542900-9A07-406A-A162-648F95A18305}
+		{D05857D2-FBFB-4A55-8DFD-165D44349DAE} = {F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6}
+		{62CDAD0B-7EB6-4945-8D25-B2928AD4AB31} = {C6542900-9A07-406A-A162-648F95A18305}
+		{F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6} = {62CDAD0B-7EB6-4945-8D25-B2928AD4AB31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E253257-825E-40F1-9BD8-3624F02E7544}

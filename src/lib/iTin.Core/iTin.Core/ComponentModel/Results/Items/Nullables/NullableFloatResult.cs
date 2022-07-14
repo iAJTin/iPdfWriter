@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableFloatResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableFloatResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableFloatResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableFloatResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableFloatResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableFloatResult CreateErroResult(string message, float? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableFloatResult CreateErrorResult(string message, float? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableFloatResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableFloatResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableFloatResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableFloatResult CreateErrorResult(IResultError[] errors) =>
             new NullableFloatResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableFloatResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableFloatResult CreateErroResult(IResultError[] errors, float? Result) =>
+        public new static NullableFloatResult CreateErrorResult(IResultError[] errors, float? Result) =>
             new NullableFloatResult
             {
                 Result = Result,

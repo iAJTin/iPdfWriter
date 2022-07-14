@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -41,7 +40,7 @@ namespace iTin.Core.Models
 
         #region private static readonly members
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static readonly IEnumerable<LoadFileStrategyBase> LoadFileStrategies = new List<LoadFileStrategyBase>()
+        private static readonly IEnumerable<LoadFileStrategyBase> LoadFileStrategies = new List<LoadFileStrategyBase>
         {
             new LoadFileWithExtensionStrategy(),
             new LoadFileWithoutExtensionStrategy() 
@@ -127,7 +126,7 @@ namespace iTin.Core.Models
         /// <returns>
         /// A new model reference of type <b>T</b>.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null"/></exception>
         public static T Deserialize(string value, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.ArgumentNull(value, nameof(value));
@@ -152,7 +151,7 @@ namespace iTin.Core.Models
         /// <returns>
         /// A new model reference of type <b>T</b>.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1000:DoNotDeclareStaticMembersOnGenericTypes")]
+        /// <exception cref="ArgumentNullException"><paramref name="stream"/> is <see langword="null"/></exception>
         public static T Deserialize(Stream stream, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.ArgumentNull(stream, nameof(stream));
@@ -170,13 +169,17 @@ namespace iTin.Core.Models
         /// <param name="format">Input file format</param>
         /// <returns>
         /// A new reference that constains the model.
-        /// </returns>
+        /// </returns>        
+        /// <exception cref="ArgumentNullException"><paramref name="fileName"/> is <see langword="null"/></exception>
+        /// <exception cref="InvalidEnumArgumentException"><paramref name="format"/> is invalid</exception>
+        /// <exception cref="FileNotFoundException">Filename not found</exception>
+        /// <exception cref="XmlSchemaValidationException">Malformed file format</exception>
         public static T LoadFromFile(string fileName, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.ArgumentNull(fileName, nameof(fileName));
             SentinelHelper.IsEnumValid(format);
 
-            LoadFileResult targetLoadResult = null;
+            LoadFileResult targetLoadResult = default;
             foreach(var strategy in LoadFileStrategies)
             {
                 var loadResult = strategy.TryLoadFile(fileName, format);
@@ -188,11 +191,16 @@ namespace iTin.Core.Models
                 }
             }
 
-            string value;
+            if (targetLoadResult == default)
+            {
+                throw new FileNotFoundException(@"File not found", fileName);
+            }
+
             FileStream file = targetLoadResult.Result.Stream;
 
             try
-            {                
+            {
+                string value;
                 using (var reader = new StreamReader(file))
                 {
                     file = null;
@@ -235,6 +243,10 @@ namespace iTin.Core.Models
         /// <returns>
         /// A new reference that constains the model.
         /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="pathUri"/> is <see langword="null" /></exception>
+        /// <exception cref="InvalidEnumArgumentException"><paramref name="format"/> is invalid</exception>
+        /// <exception cref="FileNotFoundException">Filename not found</exception>
+        /// <exception cref="XmlSchemaValidationException">Malformed file format</exception>
         public static T LoadFromUri(Uri pathUri, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.ArgumentNull(pathUri, nameof(pathUri));
@@ -266,6 +278,8 @@ namespace iTin.Core.Models
         /// The type of the return value is <see cref="bool"/>, which contains the operation result
         /// </para>
         /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="fileName"/> is <see langword="null" /></exception>
+        /// <exception cref="InvalidEnumArgumentException"><paramref name="format"/> is invalid</exception>
         public virtual IResult SaveToFile(string fileName, KnownFileFormat format = KnownFileFormat.Xml, ModelSaveOptions options = null)
         {
             SentinelHelper.ArgumentNull(fileName, nameof(fileName));
@@ -302,17 +316,24 @@ namespace iTin.Core.Models
         /// <summary>
         /// Returns a <see cref="string"/> that contains current model serialized in a <b>Xml</b> or <b>Json</b> format. By default, if not specified, it will be saved in <b>Xml</b> format.
         /// </summary>
-        /// <param name="options">Output model save options</param>
+        /// <param name="options">Output model save options. If not specified uses <see cref="ModelSaveOptions.Default"/></param>
         /// <param name="format">Output file format</param>
         /// <returns>
         /// A <see cref="string"/> that contains serialized model.
         /// </returns>
+        /// <exception cref="InvalidEnumArgumentException"><paramref name="format"/> is invalid</exception>
         public virtual string Serialize(ModelSaveOptions options, KnownFileFormat format = KnownFileFormat.Xml)
         {
             SentinelHelper.IsEnumValid(format);
 
             string value;
             string result = string.Empty;
+
+            var safeOptions = options;
+            if (options == null)
+            {
+                safeOptions = ModelSaveOptions.Default;
+            }
 
             switch (format)
             {
@@ -325,7 +346,7 @@ namespace iTin.Core.Models
 
                         var serializer = new XmlSerializer(typeof(T));
                         using (var writer = new StreamWriter(stream))
-                        using (var xmlWriter = XmlWriter.Create(writer, new XmlWriterSettings { Indent = options.Indent }))
+                        using (var xmlWriter = XmlWriter.Create(writer, new XmlWriterSettings { Indent = safeOptions.Indent }))
                         {
                             serializer.Serialize(xmlWriter, this);
 
@@ -349,7 +370,7 @@ namespace iTin.Core.Models
                     value =
                         JsonConvert.SerializeObject(
                             this,
-                            options.Indent
+                            safeOptions.Indent
                                 ? Newtonsoft.Json.Formatting.Indented
                                 : Newtonsoft.Json.Formatting.None,
                             new JsonSerializerSettings

@@ -17,18 +17,18 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="LongResult"/> with specified detailed error.
         /// </returns>
-        public new static LongResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static LongResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="LongResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="LongResult"/> with specified detailed error.
         /// </returns>
-        public new static LongResult CreateErroResult(string message, long Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static LongResult CreateErrorResult(string message, long result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
 
         /// <summary>
         /// Returns a new <see cref="LongResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="LongResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static LongResult CreateErroResult(IResultError[] errors) =>
+        public new static LongResult CreateErrorResult(IResultError[] errors) =>
             new LongResult
             {
                 Result = default,
@@ -49,14 +49,14 @@ namespace iTin.Core.ComponentModel.Results
         /// Returns a new <see cref="LongResult"/> with specified detailed errors collection.
         /// </summary>
         /// <param name="errors">A errors collection</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new invalid <see cref="LongResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static LongResult CreateErroResult(IResultError[] errors, long Result) =>
+        public new static LongResult CreateErrorResult(IResultError[] errors, long result) =>
             new LongResult
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
@@ -64,14 +64,14 @@ namespace iTin.Core.ComponentModel.Results
         /// <summary>
         /// Returns a new success result.
         /// </summary>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new valid <see cref="LongResult"/>.
         /// </returns>
-        public new static LongResult CreateSuccessResult(long Result) =>
+        public new static LongResult CreateSuccessResult(long result) =>
             new LongResult
             {
-                Result = Result,
+                Result = result,
                 Success = true,
                 Errors = new List<IResultError>()
             };
@@ -89,14 +89,14 @@ namespace iTin.Core.ComponentModel.Results
         /// Creates a new <see cref="LongResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new <see cref="LongResult"/> instance for specified exception.
         /// </returns>
-        public new static LongResult FromException(Exception exception, long Result) =>
+        public new static LongResult FromException(Exception exception, long result) =>
             new LongResult
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

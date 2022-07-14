@@ -17,7 +17,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableByteResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableByteResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static NullableByteResult CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="NullableByteResult"/> with specified detailed error.
@@ -28,7 +28,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableByteResult"/> with specified detailed error.
         /// </returns>
-        public new static NullableByteResult CreateErroResult(string message, byte? Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public new static NullableByteResult CreateErrorResult(string message, byte? Result, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
 
         /// <summary>
         /// Returns a new <see cref="NullableByteResult"/> with specified detailed errors collection.
@@ -37,7 +37,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableByteResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableByteResult CreateErroResult(IResultError[] errors) =>
+        public new static NullableByteResult CreateErrorResult(IResultError[] errors) =>
             new NullableByteResult
             {
                 Result = default,
@@ -53,7 +53,7 @@ namespace iTin.Core.ComponentModel.Results
         /// <returns>
         /// A new invalid <see cref="NullableByteResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static NullableByteResult CreateErroResult(IResultError[] errors, byte? Result) =>
+        public new static NullableByteResult CreateErrorResult(IResultError[] errors, byte? Result) =>
             new NullableByteResult
             {
                 Result = Result,
