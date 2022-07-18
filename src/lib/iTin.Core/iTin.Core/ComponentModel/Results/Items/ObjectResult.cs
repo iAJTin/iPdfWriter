@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains an object result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ObjectResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ObjectResult CreateErrorResult(IResultError[] errors) =>
-            new ObjectResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ObjectResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ObjectResult CreateErrorResult(IResultError[] errors, object result) =>
-            new ObjectResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="ObjectResult"/>.
         /// </returns>
         public new static ObjectResult CreateSuccessResult(object result) =>
-            new ObjectResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="ObjectResult"/> instance for specified exception.
         /// </returns>
         public new static ObjectResult FromException(Exception exception, object result) =>
-            new ObjectResult
+            new()
             {
                 Result = result,
                 Success = false,

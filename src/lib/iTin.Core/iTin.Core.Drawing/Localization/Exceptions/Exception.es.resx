@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Error desconocido</value>
+  </data>
+  <data name="INVALID_COLOR" xml:space="preserve">
+    <value>Color inválido</value>
+  </data>
 </root>

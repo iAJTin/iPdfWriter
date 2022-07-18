@@ -1,15 +1,14 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+
+using iTin.Logging;
+
 namespace iTin.Core.Helpers
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
-    using System.Linq;
-
-    using Logging;
-
     /// <summary>
     /// Static class than contains methods for perform tests and validate data types and parameters.
     /// <para><strong>- Warning -</strong></para>

@@ -1,10 +1,10 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a <see cref="StringBuilder"/> result.
     /// </summary>
@@ -39,7 +39,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringBuilderResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringBuilderResult CreateErrorResult(IResultError[] errors) =>
-            new StringBuilderResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -55,7 +55,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringBuilderResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringBuilderResult CreateErrorResult(IResultError[] errors, StringBuilder result) =>
-            new StringBuilderResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -70,7 +70,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="StringBuilderResult"/>.
         /// </returns>
         public new static StringBuilderResult CreateSuccessResult(StringBuilder result) =>
-            new StringBuilderResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -95,7 +95,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="StringBuilderResult"/> instance for specified exception.
         /// </returns>
         public new static StringBuilderResult FromException(Exception exception, StringBuilder result) =>
-            new StringBuilderResult
+            new()
             {
                 Result = result,
                 Success = false,

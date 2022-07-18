@@ -1,10 +1,10 @@
 
+using System.Xml;
+
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System.Xml;
-
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for <see cref="T:System.Xml.XmlNode"/> objects.
     /// </summary> 

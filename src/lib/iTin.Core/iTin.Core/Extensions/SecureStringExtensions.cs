@@ -1,12 +1,12 @@
 ﻿
+using System;
+using System.Runtime.InteropServices;
+using System.Security;
+
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.Security;
-
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.Security.SecureString" />.
     /// </summary>

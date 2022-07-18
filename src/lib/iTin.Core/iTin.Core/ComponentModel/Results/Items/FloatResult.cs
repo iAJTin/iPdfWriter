@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a float result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="FloatResult"/> with specified detailed errors collection.
         /// </returns>
         public new static FloatResult CreateErrorResult(IResultError[] errors) =>
-            new FloatResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="FloatResult"/> with specified detailed errors collection.
         /// </returns>
         public new static FloatResult CreateErrorResult(IResultError[] errors, float result) =>
-            new FloatResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="FloatResult"/>.
         /// </returns>
         public new static FloatResult CreateSuccessResult(float result) =>
-            new FloatResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="FloatResult"/> instance for specified exception.
         /// </returns>
         public new static FloatResult FromException(Exception exception, float result) =>
-            new FloatResult
+            new()
             {
                 Result = result,
                 Success = false,

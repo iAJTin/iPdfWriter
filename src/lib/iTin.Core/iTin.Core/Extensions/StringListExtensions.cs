@@ -1,11 +1,11 @@
 ﻿
+using System.Collections.Generic;
+using System.Text;
+
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System.Collections.Generic;
-    using System.Text;
-
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for string List.
     /// </summary> 

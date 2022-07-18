@@ -1,13 +1,13 @@
 ﻿
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
+using System.Collections.Generic;
+using System.Text;
+
 using iTin.Core.ComponentModel.Enumerators;
 
 namespace iTin.Core
 {
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// Static class than contains extension methods for Arrays.
     /// </summary> 

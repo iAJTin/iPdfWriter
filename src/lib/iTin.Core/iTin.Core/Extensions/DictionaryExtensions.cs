@@ -1,8 +1,8 @@
 ﻿
+using System.Collections.Generic;
+
 namespace iTin.Core
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// Static class than contains extension methods for generic enumerable objects.
     /// </summary> 
@@ -19,11 +19,13 @@ namespace iTin.Core
         /// </returns>
         public static TValue GetOrAddNew<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key) where TValue : new()
         {
-            if (!source.TryGetValue(key, out TValue value))
+            if (source.TryGetValue(key, out var value))
             {
-                value = new TValue();
-                source.Add(key, value);
+                return value;
             }
+
+            value = new TValue();
+            source.Add(key, value);
 
             return value;
         }

@@ -1,23 +1,22 @@
 ﻿
-namespace iTin.Core
-{
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Security;
+using System.Text;
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
-    
-    using ComponentModel.Enumerators;
+
+using iTin.Core.ComponentModel.Enumerators;
 
 #endif
 
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Security;
-    using System.Text;
+using iTin.Logging;
 
-    using Logging;
-
+namespace iTin.Core
+{
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.String"/>.
     /// </summary> 

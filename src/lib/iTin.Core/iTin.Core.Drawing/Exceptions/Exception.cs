@@ -14,7 +14,7 @@ namespace iTin.Core.Drawing.Exceptions
     internal class Exception : System.Exception
     {
         internal static object Lock = new();
-        internal static ResourceManager generalExceptionResourceManager;
+        internal static ResourceManager InnerGeneralExceptionResourceManager;
 
         #region constructor/s
         /// <summary>
@@ -80,17 +80,17 @@ namespace iTin.Core.Drawing.Exceptions
         {
             get
             {
-                if (generalExceptionResourceManager != null)
+                if (InnerGeneralExceptionResourceManager != null)
                 {
-                    return generalExceptionResourceManager;
+                    return InnerGeneralExceptionResourceManager;
                 }
 
                 lock (Lock)
                 {
-                    generalExceptionResourceManager = new ResourceManager(Type.GetType("iTin.Core.Drawing.Localization.Exceptions.Exception"));
+                    InnerGeneralExceptionResourceManager = new ResourceManager(Type.GetType("iTin.Core.Drawing.Localization.Exceptions.Exception")!);
                 }
 
-                return generalExceptionResourceManager;
+                return InnerGeneralExceptionResourceManager;
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a boolean result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="BooleanResult"/> with specified detailed errors collection.
         /// </returns>
         public new static BooleanResult CreateErrorResult(IResultError[] errors) =>
-            new BooleanResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="BooleanResult"/> with specified detailed errors collection.
         /// </returns>
         public new static BooleanResult CreateErrorResult(IResultError[] errors, bool result) =>
-            new BooleanResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="BooleanResult"/>.
         /// </returns>
         public new static BooleanResult CreateSuccessResult(bool Result) =>
-            new BooleanResult
+            new()
             {
                 Result = Result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="BooleanResult"/> instance for specified exception.
         /// </returns>
         public new static BooleanResult FromException(Exception exception, bool result) =>
-            new BooleanResult
+            new()
             {
                 Result = result,
                 Success = false,

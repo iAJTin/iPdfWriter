@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace iTin.Core.ComponentModel
 {
     /// <summary>
-    /// Especifica una descripción para un elemento de tipo enumerado.
+    /// Specifies a description for an enumerated type element.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class EnumDescriptionAttribute : DescriptionAttribute

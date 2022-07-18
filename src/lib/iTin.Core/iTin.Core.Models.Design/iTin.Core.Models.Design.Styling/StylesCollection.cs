@@ -1,12 +1,11 @@
 ﻿
+using System;
+
+using iTin.Core.Helpers;
+using iTin.Core.Models.Collections;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-
-    using iTin.Core.Helpers;
-
-    using Collections;
-
     /// <summary>
     /// Defines a styles collection.
     /// </summary>

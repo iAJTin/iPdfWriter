@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a short result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ShortResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ShortResult CreateErrorResult(IResultError[] errors) =>
-            new ShortResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ShortResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ShortResult CreateErrorResult(IResultError[] errors, short result) =>
-            new ShortResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="ShortResult"/>.
         /// </returns>
         public new static ShortResult CreateSuccessResult(short result) =>
-            new ShortResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="ShortResult"/> instance for specified exception.
         /// </returns>
         public new static ShortResult FromException(Exception exception, short result) =>
-            new ShortResult
+            new()
             {
                 Result = result,
                 Success = false,

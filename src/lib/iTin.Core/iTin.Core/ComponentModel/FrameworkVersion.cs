@@ -1,19 +1,18 @@
 
-namespace iTin.Core.ComponentModel
-{
-
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
-    using System.Linq;
+using System.Linq;
 
 #else
 
-    using System;
+using System;
 
 #endif
 
 using System.Runtime.Versioning;
 
+namespace iTin.Core.ComponentModel
+{
     /// <summary>
     /// This class allows to obtain the .net framework folder for a specific version.
     /// </summary>
@@ -103,8 +102,8 @@ using System.Runtime.Versioning;
                 return $"netcoreapp{VersionNumber}";
             }
 
-            bool isUAP = VersionName.Contains("UniversalWindowsPlatform");
-            if (isUAP)
+            bool isUap = VersionName.Contains("UniversalWindowsPlatform");
+            if (isUap)
             {
                 return $"uap{VersionNumber}";
             }

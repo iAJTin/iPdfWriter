@@ -1,8 +1,8 @@
 ﻿
+using iTin.Logging;
+
 namespace iTin.Core.Helpers
 {
-    using Logging;
-
     /// <summary>
     /// Static class <b>Math</b> provides constants and static methods for conversion operations and other common mathematical functions.
     /// </summary>

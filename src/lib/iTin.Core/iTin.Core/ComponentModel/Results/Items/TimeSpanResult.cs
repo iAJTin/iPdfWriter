@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a timespan result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="TimeSpanResult"/> with specified detailed errors collection.
         /// </returns>
         public new static TimeSpanResult CreateErrorResult(IResultError[] errors) =>
-            new TimeSpanResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="TimeSpanResult"/> with specified detailed errors collection.
         /// </returns>
         public new static TimeSpanResult CreateErrorResult(IResultError[] errors, TimeSpan result) =>
-            new TimeSpanResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="TimeSpanResult"/>.
         /// </returns>
         public new static TimeSpanResult CreateSuccessResult(TimeSpan result) =>
-            new TimeSpanResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="TimeSpanResult"/> instance for specified exception.
         /// </returns>
         public new static TimeSpanResult FromException(Exception exception, TimeSpan result) =>
-            new TimeSpanResult
+            new()
             {
                 Result = result,
                 Success = false,

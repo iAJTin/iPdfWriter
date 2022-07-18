@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a datetime result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="DateTimeResult"/> with specified detailed errors collection.
         /// </returns>
         public new static DateTimeResult CreateErrorResult(IResultError[] errors) =>
-            new DateTimeResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="DateTimeResult"/> with specified detailed errors collection.
         /// </returns>
         public new static DateTimeResult CreateErrorResult(IResultError[] errors, DateTime result) =>
-            new DateTimeResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="DateTimeResult"/>.
         /// </returns>
         public new static DateTimeResult CreateSuccessResult(DateTime result) =>
-            new DateTimeResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="DateTimeResult"/> instance for specified exception.
         /// </returns>
         public new static DateTimeResult FromException(Exception exception, DateTime Result) =>
-            new DateTimeResult
+            new()
             {
                 Result = Result,
                 Success = false,

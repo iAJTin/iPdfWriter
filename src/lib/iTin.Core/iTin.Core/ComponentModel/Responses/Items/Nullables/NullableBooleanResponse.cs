@@ -26,7 +26,7 @@ namespace iTin.Core.ComponentModel.Responses
         /// A new invalid <see cref="NullableBooleanResponse"/> with specified detailed errors collection.
         /// </returns>
         public new static NullableBooleanResponse CreateErroResponse(IResponseError[] errors) =>
-            new NullableBooleanResponse
+            new()
             {
                 Value = default,
                 Success = false,
@@ -41,7 +41,7 @@ namespace iTin.Core.ComponentModel.Responses
         /// A new valid <see cref="NullableBooleanResponse"/>.
         /// </returns>
         public new static NullableBooleanResponse CreateSuccessResponse(bool? value) =>
-            new NullableBooleanResponse
+            new()
             {
                 Value = value,
                 Success = true,
@@ -56,7 +56,7 @@ namespace iTin.Core.ComponentModel.Responses
         /// A new <see cref="NullableBooleanResponse"/> instance for specified exception.
         /// </returns>
         public new static NullableBooleanResponse FromException(System.Exception exception) =>
-            new NullableBooleanResponse
+            new()
             {
                 Success = false,
                 Errors = new List<IResponseError> { new ResponseExceptionError { Exception = exception } }

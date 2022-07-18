@@ -83,11 +83,35 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Interop.Shared", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Shared", "iTin.Core.Interop.Shared", "{AF73276B-26B2-480A-9F1E-5A11C2ADCE6F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Interop.Windows.Devices", "src\lib\iTin.Core\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.csproj", "{D05857D2-FBFB-4A55-8DFD-165D44349DAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Interop.Windows.Devices.Graphics.Font", "src\lib\iTin.Core\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.Graphics.Font.csproj", "{D05857D2-FBFB-4A55-8DFD-165D44349DAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Windows", "iTin.Core.Interop.Windows", "{62CDAD0B-7EB6-4945-8D25-B2928AD4AB31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Interop.Windows.Devices", "iTin.Core.Interop.Windows.Devices", "{F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Hardware", "iTin.Core.Hardware", "{C19DE7D2-4CCF-459A-9230-791DA46B2E41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Hardware.Common", "iTin.Core.Hardware.Common", "{20663A24-AAC6-4337-9785-2122EC65278A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Hardware.Common", "src\lib\iTin.Core\iTin.Core.Hardware\iTin.Core.Hardware.Common\iTin.Core.Hardware.Common.csproj", "{CA0E221F-AF35-4DE4-8B94-65859366882E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Hardware.Linux", "iTin.Core.Hardware.Linux", "{DEBEBE86-6F2B-41B2-A71E-24233C4275E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Hardware.Linux.Devices.Graphics.Font", "src\lib\iTin.Core\iTin.Core.Hardware\iTin.Core.Hardware.Linux\iTin.Core.Hardware.Linux.Devices.Graphics.Font\iTin.Core.Hardware.Linux.Devices.Graphics.Font.csproj", "{D18D2AE4-6B70-424F-A695-344551887AD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Hardware.MacOS", "iTin.Core.Hardware.MacOS", "{59086FB7-B78C-4846-85A5-BD642E1492A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Hardware.MacOS.Devices.Graphics.Font", "src\lib\iTin.Core\iTin.Core.Hardware\iTin.Core.Hardware.MacOS\iTin.Core.Hardware.MacOS.Devices.Graphics.Font\iTin.Core.Hardware.MacOS.Devices.Graphics.Font.csproj", "{9A992312-3D31-4498-8A23-C447EE912D5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Core.Hardware.Windows", "iTin.Core.Hardware.Windows", "{47412F9B-E02B-44B2-9CEB-91C7BD63D60E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Core.Hardware.Windows.Devices.Graphics.Font", "src\lib\iTin.Core\iTin.Core.Hardware\iTin.Core.Hardware.Windows\iTin.Core.Hardware.Windows.Devices.Graphics.Font\iTin.Core.Hardware.Windows.Devices.Graphics.Font.csproj", "{08115440-1463-4C99-80FB-D2ACCDE48BCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Hardware", "iTin.Hardware", "{2CE9CC43-278C-4EF8-8BBE-FEF53FF2E9F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iTin.Hardware.Abstractions", "iTin.Hardware.Abstractions", "{FD4F48DE-9E3C-4C4E-AA19-B80153C2F03C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iTin.Hardware.Abstractions.Devices.Graphics.Font", "src\lib\iTin.Hardware\iTin.Hardware.Abstractions\iTin.Hardware.Abstractions.Devices.Graphics.Font\iTin.Hardware.Abstractions.Devices.Graphics.Font.csproj", "{6325220E-D995-4EF9-B9F6-FD30C4496412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +183,26 @@ Global
 		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D05857D2-FBFB-4A55-8DFD-165D44349DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA0E221F-AF35-4DE4-8B94-65859366882E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA0E221F-AF35-4DE4-8B94-65859366882E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA0E221F-AF35-4DE4-8B94-65859366882E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA0E221F-AF35-4DE4-8B94-65859366882E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18D2AE4-6B70-424F-A695-344551887AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18D2AE4-6B70-424F-A695-344551887AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18D2AE4-6B70-424F-A695-344551887AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18D2AE4-6B70-424F-A695-344551887AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A992312-3D31-4498-8A23-C447EE912D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A992312-3D31-4498-8A23-C447EE912D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A992312-3D31-4498-8A23-C447EE912D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A992312-3D31-4498-8A23-C447EE912D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08115440-1463-4C99-80FB-D2ACCDE48BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08115440-1463-4C99-80FB-D2ACCDE48BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08115440-1463-4C99-80FB-D2ACCDE48BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08115440-1463-4C99-80FB-D2ACCDE48BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6325220E-D995-4EF9-B9F6-FD30C4496412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6325220E-D995-4EF9-B9F6-FD30C4496412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6325220E-D995-4EF9-B9F6-FD30C4496412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6325220E-D995-4EF9-B9F6-FD30C4496412}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,6 +249,18 @@ Global
 		{D05857D2-FBFB-4A55-8DFD-165D44349DAE} = {F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6}
 		{62CDAD0B-7EB6-4945-8D25-B2928AD4AB31} = {C6542900-9A07-406A-A162-648F95A18305}
 		{F0E8FE5E-3F1F-4757-94F3-9EC0DFE020C6} = {62CDAD0B-7EB6-4945-8D25-B2928AD4AB31}
+		{C19DE7D2-4CCF-459A-9230-791DA46B2E41} = {E395D3DB-DAC6-48FF-9AE7-D073D4F8BF1B}
+		{20663A24-AAC6-4337-9785-2122EC65278A} = {C19DE7D2-4CCF-459A-9230-791DA46B2E41}
+		{CA0E221F-AF35-4DE4-8B94-65859366882E} = {20663A24-AAC6-4337-9785-2122EC65278A}
+		{DEBEBE86-6F2B-41B2-A71E-24233C4275E8} = {C19DE7D2-4CCF-459A-9230-791DA46B2E41}
+		{D18D2AE4-6B70-424F-A695-344551887AD1} = {DEBEBE86-6F2B-41B2-A71E-24233C4275E8}
+		{59086FB7-B78C-4846-85A5-BD642E1492A1} = {C19DE7D2-4CCF-459A-9230-791DA46B2E41}
+		{9A992312-3D31-4498-8A23-C447EE912D5C} = {59086FB7-B78C-4846-85A5-BD642E1492A1}
+		{47412F9B-E02B-44B2-9CEB-91C7BD63D60E} = {C19DE7D2-4CCF-459A-9230-791DA46B2E41}
+		{08115440-1463-4C99-80FB-D2ACCDE48BCA} = {47412F9B-E02B-44B2-9CEB-91C7BD63D60E}
+		{2CE9CC43-278C-4EF8-8BBE-FEF53FF2E9F6} = {ED996611-FCEC-4B5A-9C30-DF6AC5C178C1}
+		{FD4F48DE-9E3C-4C4E-AA19-B80153C2F03C} = {2CE9CC43-278C-4EF8-8BBE-FEF53FF2E9F6}
+		{6325220E-D995-4EF9-B9F6-FD30C4496412} = {FD4F48DE-9E3C-4C4E-AA19-B80153C2F03C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E253257-825E-40F1-9BD8-3624F02E7544}

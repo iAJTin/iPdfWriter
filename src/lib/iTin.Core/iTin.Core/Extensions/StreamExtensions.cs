@@ -1,15 +1,15 @@
 ﻿
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+using iTin.Core.Helpers;
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-
-    using Helpers;
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.IO.Stream" />.
     /// </summary> 

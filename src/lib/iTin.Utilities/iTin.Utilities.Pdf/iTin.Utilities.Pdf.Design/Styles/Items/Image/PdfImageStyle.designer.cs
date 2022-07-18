@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace iTin.Utilities.Pdf.Design.Styles
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]

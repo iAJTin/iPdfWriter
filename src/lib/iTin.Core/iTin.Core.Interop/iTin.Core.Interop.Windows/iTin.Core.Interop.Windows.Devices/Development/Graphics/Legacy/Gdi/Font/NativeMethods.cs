@@ -1,8 +1,10 @@
 ﻿
-namespace iTin.Core.Interop.Shared.Windows.Development.Graphics.Legacy.Gdi.Font
-{
-    using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
+using iTin.Core.Interop.Shared.Windows;
+
+namespace iTin.Core.Interop.Windows.Development.Graphics.Legacy.Gdi.Font
+{
     /// <summary>
     /// Functions that can be used to handle font.
     /// </summary>

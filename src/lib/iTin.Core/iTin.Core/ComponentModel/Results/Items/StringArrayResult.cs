@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a string array result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringArrayResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringArrayResult CreateErrorResult(IResultError[] errors) =>
-            new StringArrayResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringArrayResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringArrayResult CreateErrorResult(IResultError[] errors, string[] result) =>
-            new StringArrayResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="StringArrayResult"/>.
         /// </returns>
         public new static StringArrayResult CreateSuccessResult(string[] result) =>
-            new StringArrayResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="StringArrayResult"/> instance for specified exception.
         /// </returns>
         public new static StringArrayResult FromException(Exception exception, string[] result) =>
-            new StringArrayResult
+            new()
             {
                 Result = result,
                 Success = false,

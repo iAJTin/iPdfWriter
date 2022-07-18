@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
 namespace iTin.Core.ComponentModel.Results
-{
-    using System;
-    using System.Collections.Generic;
 
+{
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a byte result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ByteResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ByteResult CreateErrorResult(IResultError[] errors) =>
-            new ByteResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="ByteResult"/> with specified detailed errors collection.
         /// </returns>
         public new static ByteResult CreateErrorResult(IResultError[] errors, byte result) =>
-            new ByteResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="ByteResult"/>.
         /// </returns>
         public new static ByteResult CreateSuccessResult(byte result) =>
-            new ByteResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -89,14 +89,14 @@ namespace iTin.Core.ComponentModel.Results
         /// Creates a new <see cref="ByteResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="Result">Result Result</param>
+        /// <param name="result">Result Result</param>
         /// <returns>
         /// A new <see cref="ByteResult"/> instance for specified exception.
         /// </returns>
-        public new static ByteResult FromException(Exception exception, byte Result) =>
-            new ByteResult
+        public new static ByteResult FromException(Exception exception, byte result) =>
+            new()
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

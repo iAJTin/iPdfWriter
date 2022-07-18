@@ -1,18 +1,17 @@
 
-namespace iTin.Core
-{
-
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
     
     using System.Linq;
 
 #endif
 
-    using System;
-    using System.Globalization;
+using System;
+using System.Globalization;
 
-    using Logging;
-    
+using iTin.Logging;
+
+namespace iTin.Core
+{
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.DateTime" />.
     /// </summary> 

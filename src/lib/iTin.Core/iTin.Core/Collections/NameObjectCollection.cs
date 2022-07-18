@@ -124,15 +124,17 @@ namespace iTin.Core.Collections
         /// </summary>
         public int Find(string key)
         {
-            int retVal = -1;
+            var retVal = -1;
 
-            for (int i = 0; i < AllKeys.Length; i++)
+            for (var i = 0; i < AllKeys.Length; i++)
             {
-                if (AllKeys[i] == key)
+                if (AllKeys[i] != key)
                 {
-                    retVal = i;
-                    break;
+                    continue;
                 }
+
+                retVal = i;
+                break;
             }
 
             return retVal;
@@ -146,14 +148,14 @@ namespace iTin.Core.Collections
         /// </returns>
         public ArrayList ToArrayList()
         {
-            var deviceCollection = new ArrayList();
+            var items = new ArrayList();
 
             foreach (var device in Keys)
             {
-                deviceCollection.Add(BaseGet((string)device));
+                items.Add(BaseGet((string)device));
             }
 
-            return deviceCollection;
+            return items;
         }
 
         /// <summary>

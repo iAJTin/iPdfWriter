@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
    
    - Add support for the use of the **~** character in the **iTin.Core.IO** library
 
+   - **ByteReader** class rewritten to work with **Span** in net core projects.
+
  2. Add sample project for **net60**
 
  3. Added the ability to create a table from a typed enumerable and from a datatable 
@@ -87,6 +89,16 @@ All notable changes to this project will be documented in this file.
                 .ToDataTable<Person>("People"))
         }));
     ```
+
+
+ 4. Unify calls to handle font from file, currently this functionality is only available for Windows systems,
+    The logic of each platform is in its own assembly *iTin.Core.Hardware.**Target-System**.Devices.Graphics.Font*.
+
+    *Where:*
+
+    **Target-System**, it can be *Linux*, *Windows* or *MacOS* and the platform independent logic is found in the 
+    **iTin.Hardware.Abstractions.Devices.Graphics.Font** assembly, so that a call is made independent of the target platform and this 
+    assembly has the responsibility of managing the final call to the platform destination.
 
 ### Changed
 
@@ -184,14 +196,19 @@ All notable changes to this project will be documented in this file.
 	|:------|:------|:----------|
 	| iTin.Core | **2.0.0.4** | Base library containing various extensions, helpers, common constants |
 	| iTin.Core.Drawing | **1.0.0.2** | Drawing objects, extension, helpers, common constants |
+    | iTin.Core.Hardware.Common | **1.0.0.3** | Common Hardware Infrastructure |
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font | **1.0.0.0** | Linux Hardware Infrastructure |
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font | **1.0.0.0** | MacOS Hardware Infrastructure |
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font | **1.0.0.0** | Windows Hardware Infrastructure |
 	| iTin.Core.IO | **1.0.0.2** | Common I/O calls |
 	| iTin.Core.IO.Compression | **1.0.0.2** | Compression library |
     | iTin.Core.Interop.Shared | **1.0.0.2** | Generic Shared Interop Definitions |
-    | iTin.Core.Interop.Windows.Devices | **1.0.0.1** | Win32 Generic Interop Calls |
+    | iTin.Core.Interop.Windows.Devices | **1.0.0.0** | Win32 Generic Interop Calls |
 	| iTin.Core.Models | **1.0.0.2** | Data models base |
 	| iTin.Core.Models.Design.Charting | **1.0.0.2** | Base charting models |
 	| iTin.Core.Models.Design.Styling | **1.0.0.2** | Base styling models |
 	| iTin.Logging | **1.0.0.1** | Logging library |
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font | **1.0.0.0** | Generic Common Hardware Abstractions |
 	| iTin.Registry.Windows | **1.0.0.2** | Windows registry access |
 	| iTin.Utilities.Pdf.Design | **1.0.0.3** | Pdf design objects |
 	| iTin.Utilities.Pdf.Writer | **1.0.0.2** | Pdf Writer |

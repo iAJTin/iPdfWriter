@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a string result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringResult CreateErrorResult(IResultError[] errors) =>
-            new StringResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StringResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StringResult CreateErrorResult(IResultError[] errors, string result) =>
-            new StringResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="StringResult"/>.
         /// </returns>
         public new static StringResult CreateSuccessResult(string result) =>
-            new StringResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="StringResult"/> instance for specified exception.
         /// </returns>
         public new static StringResult FromException(Exception exception, string result) =>
-            new StringResult
+            new()
             {
                 Result = result,
                 Success = false,

@@ -16,7 +16,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
     {
         #region public static methods 
 
-        #region [public] {new} {static} (ReplaceResult) CreateErroResult(string, string = ""): Returns a new InsertResult with specified detailed error
+        #region [public] {static} (ReplaceResult) CreateErroResult(string, string = ""): Returns a new InsertResult with specified detailed error
         /// <summary>
         /// Returns a new <see cref="ReplaceResult"/> with specified detailed error.
         /// </summary>
@@ -25,10 +25,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// <returns>
         /// A new invalid <see cref="ReplaceResult"/> with specified detailed error.
         /// </returns>
-        public new static ReplaceResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public static ReplaceResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
         #endregion
 
-        #region [public] {new} {static} (ReplaceResult) CreateErroResult(IResultError[]): Returns a new InsertResult with specified detailed errors collection
+        #region [public] {static} (ReplaceResult) CreateErroResult(IResultError[]): Returns a new InsertResult with specified detailed errors collection
         /// <summary>
         /// Returns a new <see cref="ReplaceResult"/> with specified detailed errors collection.
         /// </summary>
@@ -36,7 +36,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// <returns>
         /// A new invalid <see cref="ReplaceResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static ReplaceResult CreateErroResult(IResultError[] errors) =>
+        public static ReplaceResult CreateErroResult(IResultError[] errors) =>
             new()
             {
                 Result = default,
@@ -45,18 +45,22 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
             };
         #endregion
 
+        #endregion
+
+        #region public static new methods 
+
         #region [public] {new} {static} (ReplaceResult) CreateSuccessResult(ReplaceResultData): Returns a new success result
         /// <summary>
         /// Returns a new success result.
         /// </summary>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <returns>
         /// A new valid <see cref="ReplaceResult"/>.
         /// </returns>
-        public new static ReplaceResult CreateSuccessResult(ReplaceResultData Result) =>
+        public new static ReplaceResult CreateSuccessResult(ReplaceResultData result) =>
             new()
             {
-                Result = Result,
+                Result = result,
                 Success = true,
                 Errors = new List<IResultError>()
             };
@@ -78,14 +82,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace
         /// Creates a new <see cref="InsertResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <returns>
         /// A new <see cref="ReplaceResult"/> instance for specified exception.
         /// </returns>
-        public new static ReplaceResult FromException(System.Exception exception, ReplaceResultData Result) =>
+        public new static ReplaceResult FromException(System.Exception exception, ReplaceResultData result) =>
             new()
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

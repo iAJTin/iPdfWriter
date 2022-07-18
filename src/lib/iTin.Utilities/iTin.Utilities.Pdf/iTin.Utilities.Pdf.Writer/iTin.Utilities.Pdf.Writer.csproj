@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.IO.Compression\iTin.Core.IO.Compression.csproj" />
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.Models\iTin.Core.Models.csproj" />
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core\iTin.Core.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Hardware\iTin.Hardware.Abstractions\iTin.Hardware.Abstractions.Devices.Graphics.Font\iTin.Hardware.Abstractions.Devices.Graphics.Font.csproj" />
     <ProjectReference Include="..\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
   </ItemGroup>
 

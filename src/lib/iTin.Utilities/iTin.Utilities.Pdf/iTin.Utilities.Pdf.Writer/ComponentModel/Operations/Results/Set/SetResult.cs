@@ -13,9 +13,9 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
     /// </summary>
     public class SetResult : ResultBase<SetResultData>
     {
-        #region public new static methods 
+        #region public static methods 
 
-        #region [public] {new} {static} (SetResult) CreateErroResult(string, string = ""): Returns a new result with specified detailed error
+        #region [public] {static} (SetResult) CreateErroResult(string, string = ""): Returns a new result with specified detailed error
         /// <summary>
         /// Returns a new <see cref="SetResult"/> with specified detailed error.
         /// </summary>
@@ -24,10 +24,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
         /// <returns>
         /// A new invalid <see cref="SetResult"/> with specified detailed error.
         /// </returns>
-        public new static SetResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public static SetResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
         #endregion
 
-        #region [public] {new} {static} (SetResult) CreateErroResult(IResultError[]): Returns a new result with specified detailed errors collection
+        #region [public] {static} (SetResult) CreateErroResult(IResultError[]): Returns a new result with specified detailed errors collection
         /// <summary>
         /// Returns a new <see cref="SetResult"/> with specified detailed errors collection.
         /// </summary>
@@ -35,7 +35,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
         /// <returns>
         /// A new invalid <see cref="SetResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static SetResult CreateErroResult(IResultError[] errors) =>
+        public static SetResult CreateErroResult(IResultError[] errors) =>
             new()
             {
                 Result = default,
@@ -44,49 +44,53 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
             };
         #endregion
 
-        #region [public] {new} {static} (SetResult) CreateErroResult(string, SetResultData, string = null): Returns a new result with specified detailed error
+        #region [public] {static} (SetResult) CreateErroResult(string, SetResultData, string = null): Returns a new result with specified detailed error
         /// <summary>
         /// Returns a new <see cref="SetResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="SetResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static SetResult CreateErroResult(string message, SetResultData Result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, Result);
+        public static SetResult CreateErroResult(string message, SetResultData result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
         #endregion
 
-        #region [public] {new} {static} (SetResult) CreateErroResult(IResultError[], SetResultData): Returns a new result with specified detailed errors collection
+        #region [public] {static} (SetResult) CreateErroResult(IResultError[], SetResultData): Returns a new result with specified detailed errors collection
         /// <summary>
         /// Returns a new <see cref="SetResult"/> with specified detailed errors collection.
         /// </summary>
         /// <param name="errors">A errors collection</param>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <returns>
         /// A new invalid <see cref="SetResult"/> with specified detailed errors collection.
         /// </returns>
-        public new static SetResult CreateErroResult(IResultError[] errors, SetResultData Result) =>
+        public static SetResult CreateErroResult(IResultError[] errors, SetResultData result) =>
             new()
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
         #endregion
 
+        #endregion
+
+        #region public new static methods 
+
         #region [public] {new} {static} (SetResult) CreateSuccessResult(SetResultData): Returns a new success result
         /// <summary>
         /// Returns a new success result.
         /// </summary>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <returns>
         /// A new valid <see cref="InsertResult"/>.
         /// </returns>
-        public new static SetResult CreateSuccessResult(SetResultData Result) =>
+        public new static SetResult CreateSuccessResult(SetResultData result) =>
             new()
             {
-                Result = Result,
+                Result = result,
                 Success = true,
                 Errors = new List<IResultError>()
             };
@@ -108,14 +112,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
         /// Creates a new <see cref="SetResult"/> instance from known exception.
         /// </summary>
         /// <param name="exception">Target exception.</param>
-        /// <param name="Result">Response Result</param>
+        /// <param name="result">Response Result</param>
         /// <returns>
         /// A new <see cref="SetResult"/> instance for specified exception.
         /// </returns>
-        public new static SetResult FromException(System.Exception exception, SetResultData Result) =>
+        public new static SetResult FromException(System.Exception exception, SetResultData result) =>
             new()
             {
-                Result = Result,
+                Result = result,
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };

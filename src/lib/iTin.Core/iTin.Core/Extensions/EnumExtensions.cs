@@ -1,16 +1,16 @@
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+
+using iTin.Core.ComponentModel;
+using iTin.Core.Helpers;
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Reflection;
-
-    using ComponentModel;
-    using Logging;
-    using Helpers;
-
     /// <summary>
     /// Static class than contains extension methods for items of type <see cref="T:System.Enum" />.
     /// </summary>

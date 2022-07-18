@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a double result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="DoubleResult"/> with specified detailed errors collection.
         /// </returns>
         public new static DoubleResult CreateErrorResult(IResultError[] errors) =>
-            new DoubleResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="DoubleResult"/> with specified detailed errors collection.
         /// </returns>
         public new static DoubleResult CreateErrorResult(IResultError[] errors, double result) =>
-            new DoubleResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="DoubleResult"/>.
         /// </returns>
         public new static DoubleResult CreateSuccessResult(double result) =>
-            new DoubleResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="DoubleResult"/> instance for specified exception.
         /// </returns>
         public new static DoubleResult FromException(Exception exception, double result) =>
-            new DoubleResult
+            new()
             {
                 Result = result,
                 Success = false,

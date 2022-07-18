@@ -1,10 +1,10 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a <see cref="Stream"/> result.
     /// </summary>
@@ -39,7 +39,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StreamResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StreamResult CreateErrorResult(IResultError[] errors) =>
-            new StreamResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -55,7 +55,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="StreamResult"/> with specified detailed errors collection.
         /// </returns>
         public new static StreamResult CreateErrorResult(IResultError[] errors, Stream result) =>
-            new StreamResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -70,7 +70,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="StreamResult"/>.
         /// </returns>
         public new static StreamResult CreateSuccessResult(Stream result) =>
-            new StreamResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -95,7 +95,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="StreamResult"/> instance for specified exception.
         /// </returns>
         public new static StreamResult FromException(Exception exception, Stream result) =>
-            new StreamResult
+            new()
             {
                 Result = result,
                 Success = false,

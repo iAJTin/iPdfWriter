@@ -10,9 +10,9 @@ using iTextSharp.text.pdf;
 
 using iTin.Core.ComponentModel;
 using iTin.Core.ComponentModel.Results;
+using iTin.Hardware.Abstractions.Devices.Graphics.Font;
 
 using iTinIO = iTin.Core.IO;
-using iTinInterop = iTin.Core.Interop.Shared.Windows.Development.Graphics.Legacy.Gdi;
 
 namespace iTin.Utilities.Pdf.Writer
 {
@@ -172,7 +172,7 @@ namespace iTin.Utilities.Pdf.Writer
                 if (!isRegisteredInWindows)
                 {
                     var path = iTinIO.Path.PathResolver(fontFullPath);
-                    var count = iTinInterop.Font.NativeMethods.AddFontResource(path);
+                    var count = FontOperations.Instance.AddFontResource(path);
                     if (count == 0)
                     {
                         return StringArrayResult.CreateErrorResult("Can not add font in windows");

@@ -1,8 +1,8 @@
 ﻿
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for objects of type <see cref="T:System.Boolean" />.
     /// </summary> 

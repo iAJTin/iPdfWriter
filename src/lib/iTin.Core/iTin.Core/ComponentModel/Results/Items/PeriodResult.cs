@@ -1,9 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace iTin.Core.ComponentModel.Results
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Specialization of the interface <see cref="ResultBase{T}" /> that contains a period result.
     /// </summary>
@@ -38,7 +38,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="PeriodResult"/> with specified detailed errors collection.
         /// </returns>
         public new static PeriodResult CreateErrorResult(IResultError[] errors) =>
-            new PeriodResult
+            new()
             {
                 Result = default,
                 Success = false,
@@ -54,7 +54,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new invalid <see cref="PeriodResult"/> with specified detailed errors collection.
         /// </returns>
         public new static PeriodResult CreateErrorResult(IResultError[] errors, Period result) =>
-            new PeriodResult
+            new()
             {
                 Result = result,
                 Success = false,
@@ -69,7 +69,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new valid <see cref="PeriodResult"/>.
         /// </returns>
         public new static PeriodResult CreateSuccessResult(Period result) =>
-            new PeriodResult
+            new()
             {
                 Result = result,
                 Success = true,
@@ -94,7 +94,7 @@ namespace iTin.Core.ComponentModel.Results
         /// A new <see cref="PeriodResult"/> instance for specified exception.
         /// </returns>
         public new static PeriodResult FromException(Exception exception, Period result) =>
-            new PeriodResult
+            new()
             {
                 Result = result,
                 Success = false,

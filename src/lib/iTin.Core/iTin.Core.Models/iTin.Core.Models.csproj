@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.csproj" />
+		<ProjectReference Include="..\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.Graphics.Font.csproj" />
 		<ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
 		<ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
 	</ItemGroup>

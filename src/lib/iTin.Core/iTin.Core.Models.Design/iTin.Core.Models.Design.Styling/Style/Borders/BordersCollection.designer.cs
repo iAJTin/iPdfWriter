@@ -1,14 +1,14 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using iTin.Core.Models.Collections;
+using iTin.Core.Models.Design.Enums;
+
 namespace iTin.Core.Models.Design.Styling
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using iTin.Core.Models.Collections;
-    using iTin.Core.Models.Design.Enums;
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]

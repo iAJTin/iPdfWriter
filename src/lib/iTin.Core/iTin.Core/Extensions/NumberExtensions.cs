@@ -1,12 +1,12 @@
 ﻿
+using System;
+
+using iTin.Core.Helpers;
+using iTin.Core.Helpers.Enumerations;
+using iTin.Logging;
+
 namespace iTin.Core
 {
-    using System;
-
-    using Helpers;
-    using Helpers.Enumerations;
-    using Logging;
-
     /// <summary>
     /// Static class than contains extension methods for <see cref="T:System.Byte" /> structure, <see cref="T:System.Int32" /> structure,
     /// <see cref="T:System.UInt32" /> structure, <see cref="T:System.Int64" /> structure, <see cref="T:System.UInt64" /> structure,
