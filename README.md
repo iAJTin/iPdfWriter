@@ -11,9 +11,9 @@
 
 # What is iPdfWriter?
 
-**iPdfWriter** is a lightweight implementation that allows modifying a **pdf** document totally or partially by replacing tags.
+**iPdfWriter** is a lightweight implementation that allows modifying a **pdf** document totally or partially by replacing tags. **Currently only works on Windows**
 
-The idea is to try to quickly and easily facilitate the task of filling in the 'typical' report file that the client wants to send by email with the data filled in from their erp, vertical application, custom development, etc... to which I am sure that you have faced each other at some point.
+The idea is to try to quickly and easily facilitate the task of filling in the 'typical' report file that the client wants to send by email with the data filled in from their erp, vertical application, custom development, etc... to which I am sure that you have faced each other at some point. 
 
 I hope it helps someone. :smirk:
 
