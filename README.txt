@@ -4,9 +4,109 @@ What is iPdfWriter?
 
 iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags
 
-
-Changes in this version 1.0.2
+Changes in this version 1.0.4
 =============================
+
+· Fixes
+  -----
+
+
+v1.0.3
+======
+
+· Fixes
+  -----
+
+    - Fixes an error that occurred when trying to load a style from file and this file does not have any extension.
+
+· Added
+  -----
+    
+    - Add support for netstandard2.1
+ 
+        - Add SplitEnumerator ref struct.
+   
+        - Add support for the use of the ~ character in the iTin.Core.IO library
+
+        - ByteReader class rewritten to work with Span in net core projects.
+
+    - Add sample project for net60
+
+    - Added the ability to create a table from a typed enumerable and from a datatable 
+        To do this, two new methods have been added to the PdfTable static class.
+        There are two overloads for each method, one to render the table applying **ccs** styles, this functionality is implemented and the other rendering the table natively, 
+        it is currently under development
+     
+        •—————————————————————————————————————————————————————————————————————————————————————————•
+        | Method                                Description                                       |
+        •—————————————————————————————————————————————————————————————————————————————————————————•
+        | PdfTable.CreateFromEnumerable(..)     please see [sample16.cs], [sample17.cs]           |
+        •—————————————————————————————————————————————————————————————————————————————————————————•
+        | PdfTable.CreateFromDataTable(..)      please see [sample18.cs], [sample19.cs]           |
+        •—————————————————————————————————————————————————————————————————————————————————————————•
+
+    - Unify calls to handle font from file, currently this functionality is only available for Windows systems, 
+      The logic of each platform is in its own assembly iTin.Core.Hardware.*Target-System*.Devices.Graphics.Font.
+
+        Where:
+        ------
+        Target-System, it can be Linux, Windows or MacOS and the platform independent logic is found in the iTin.Hardware.Abstractions.Devices.Graphics.Font assembly, 
+        so that a call is made independent of the target platform and this assembly has the responsibility of managing the final call to the platform destination.
+        
+    - Add ExtractPages method to PdfInput class for extract pages from an input.
+    - Add NumberOfPages method to PdfInput class, for get number of pages of an input.
+
+· Changed
+  -------
+
+    - The way to render the replacements has been rewritten to achieve higher processing speeds, now we should notice an improvement in general times when processing a file.
+  
+    - Renamed TextOffet, ImageOffset and TableOffset properties for Offset property. 
+
+    - Change license type to GNU
+
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | Library                                           Version   Description                                                           |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core                                         2.0.0.4   Base library containing various extensions, helpers, common constants |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Drawing                                 1.0.0.2   Drawing objects, extension, helpers, common constants                 |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Hardware.Common                         1.0.0.3   Common Hardware Infrastructure                                        |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font    1.0.0.0   Linux Hardware Infrastructure                                         |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font    1.0.0.0   MacOS Hardware Infrastructure                                         |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font  1.0.0.0   Windows Hardware Infrastructure                                       |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.IO                                      1.0.0.1   Common I/O calls                                                      |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.IO.Compression                          1.0.0.1   Compression library                                                   |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Interop.Shared                          1.0.0.2   Generic Shared Interop Definitions                                    |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Interop.Windows.Devices                 1.0.0.0   Win32 Generic Interop Calls                                           |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Models                                  1.0.0.2   Data models base                                                      |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Models.Design.Charting                  1.0.0.2   Base charting models                                                  |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Models.Design.Styling                   1.0.0.2   Base styling models                                                   |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Logging                                      1.0.0.1   Logging library                                                       |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font  1.0.0.0   Generic Common Hardware Abstractions                                  |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Registry.Windows                             1.0.0.2   Windows registry acces                                                |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Utilities.Pdf.Design                         1.0.0.3   Pdf design elements                                                   |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Utilities.Pdf.Writer                         1.0.0.2   Pdf writer                                                            |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+
+v1.0.2
+======
 
 · Critical
   --------
