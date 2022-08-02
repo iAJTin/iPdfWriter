@@ -22,8 +22,4 @@
 		<ProjectReference Include="..\..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\iTin.Utilities.Pdf.Writer.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Output\" />
-	</ItemGroup>
-
 </Project>

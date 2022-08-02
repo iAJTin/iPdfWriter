@@ -128,6 +128,18 @@ namespace iPdfWriter
             logger.Info(" > Shows the use of text and image replacement in a pdf document with custom font");
             Sample21.Generate(logger, YesNo.No);
 
+            // 22. Show how to extract pages from a pdf document.
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 22");
+            logger.Info(" > Show how to extract pages from a pdf document");
+            Sample22.Generate(logger);
+
+            // 23. Show how to extract pages from a pdf document by search text
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 23");
+            logger.Info(" > Show how to extract pages from a pdf document by search text");
+            Sample23.Generate();
+
             logger.Info("");
             logger.Debug(">End Logging<");
             Console.ReadKey();

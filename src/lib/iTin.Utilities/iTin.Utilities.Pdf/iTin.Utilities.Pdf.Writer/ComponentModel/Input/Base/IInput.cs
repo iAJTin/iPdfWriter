@@ -55,7 +55,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// </value>
         KnownInputType InputType { get; }
 
-
         /// <summary>
         /// Returns a new reference <see cref="OutputResult"/> that complies with what is indicated in its configuration object. By default, an <see cref="IInput"/> will not be zipped.
         /// </summary>
@@ -71,6 +70,24 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// </para>
         /// </returns>
         OutputResult CreateResult(OutputResultConfig config = null);
+
+        /// <summary>
+        /// Create a new <see cref="PdfInput"/> containing the selected pages.
+        /// </summary>
+        /// <param name="from">Start page</param>
+        /// <param name="to">End page. If is <see langword="null"/> the last page will be used</param>
+        /// <returns>
+        /// A new instance of <see cref="PdfInput"/> containing a document containing the specified pages.
+        /// </returns>
+        PdfInput ExtractPages(int from, int? to = null);
+
+        /// <summary>
+        /// Returns total pages of this <see cref="PdfInput"/>.
+        /// </summary>
+        /// <returns>
+        /// Total pages of this <see cref="PdfInput"/>.
+        /// </returns>
+        int NumberOfPages();
 
         /// <summary>
         /// Try to insert an element in a input.

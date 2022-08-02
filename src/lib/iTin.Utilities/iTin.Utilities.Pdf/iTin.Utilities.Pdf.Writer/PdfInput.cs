@@ -436,6 +436,60 @@ namespace iTin.Utilities.Pdf.Writer
         }
         #endregion
 
+        #region [public] (PdfInput) ExtractPages(int, int? = null): Create a new PdfInput containing the selected pages
+        /// <summary>
+        /// Create a new <see cref="PdfInput"/> containing the selected pages.
+        /// </summary>
+        /// <param name="from">Start page</param>
+        /// <param name="to">End page. If is <see langword="null"/> the last page will be used</param>
+        /// <returns>
+        /// A new instance of <see cref="PdfInput"/> containing a document containing the specified pages.
+        /// </returns>
+        public PdfInput ExtractPages(int from, int? to = null)
+        {
+            using var reader = new NativePdf.PdfReader(this.ToStream());
+            using var source = new Document(reader.GetPageSizeWithRotation(from));
+            using var target = new NativeIO.MemoryStream();
+            using var pdfCopyProvider = new NativePdf.PdfCopy(source, target);
+            source.Open();
+
+            var safeTo = to;
+            if (!to.HasValue)
+            {
+                safeTo = reader.NumberOfPages;
+            }
+
+            for (var i = from; i <= safeTo; i++)
+            {
+                var importedPage = pdfCopyProvider.GetImportedPage(reader, i);
+                pdfCopyProvider.AddPage(importedPage);
+            }
+
+            source.Close();
+            reader.Close();
+
+            return new PdfInput
+            {
+                Input = target.ToArray()
+            };
+        }
+        #endregion
+
+        #region [public] (int) NumberOfPages(): Returns total pages of this PdfInput
+        /// <summary>
+        /// Returns total pages of this <see cref="PdfInput"/>.
+        /// </summary>
+        /// <returns>
+        /// Total pages of this <see cref="PdfInput"/>.
+        /// </returns>
+        public int NumberOfPages()
+        {
+            using var reader = new NativePdf.PdfReader(ToStream());
+
+            return reader.NumberOfPages;
+        }
+        #endregion
+
         #region [public] (IEnumerable<PdfText>) SearchText(string): Search specified text into this input file
         /// <summary>
         /// Search specified text into this input file.

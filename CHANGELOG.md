@@ -100,6 +100,46 @@ All notable changes to this project will be documented in this file.
     **iTin.Hardware.Abstractions.Devices.Graphics.Font** assembly, so that a call is made independent of the target platform and this 
     assembly has the responsibility of managing the final call to the platform destination.
 
+ 5. Add **ExtractPages** method to **PdfInput** class for extract pages from an input.
+
+    ```csharp   
+    // Creates pdf file reference
+    var doc = new PdfInput
+    {
+        Input = "~/Resources/Sample-22/file-sample.pdf"
+    };
+
+    // Extract pages
+    var partialInput = doc.ExtractPages(1, 2);
+
+    // Create output result
+    var result = partialInput.CreateResult();
+    if (!result.Success)
+    {
+        // Handle errors
+    }
+
+    // Saves output result
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample22/Sample-22" });
+    if (!saveResult.Success)
+    {
+        // Handle errors
+    }
+    ```
+
+ 6. Add **NumberOfPages** method to **PdfInput** class, for get number of pages of an input.
+ 
+    ```csharp   
+    // Creates pdf file reference
+    var doc = new PdfInput
+    {
+        Input = "~/Resources/Sample-22/file-sample.pdf"
+    };
+
+    // Total pages of this reference document
+    var pages = doc.NumberOfPages();
+    ```
+
 ### Changed
 
   - The way to render the replacements has been rewritten to achieve higher processing speeds, now we should notice an improvement in general times when processing a file.
