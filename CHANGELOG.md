@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.3 - 
+## 1.0.4 - 
+
+### Fixes
+
+
+### Added
+
+
+### Changed
+
+
+## [1.0.3] - 2022-08-03
 
 ### Fixes
 
@@ -254,7 +265,7 @@ All notable changes to this project will be documented in this file.
 	| iTin.Utilities.Pdf.Writer | **1.0.0.2** | Pdf Writer |
 
 
-## [1.0.2] - 2022-24-06
+## [1.0.2] - 2022-06-24
 
 ## Critical
 
@@ -290,7 +301,7 @@ All notable changes to this project will be documented in this file.
 	| iTin.Utilities.Pdf.Design | **1.0.0.2** | Pdf design objects |
 	| iTin.Utilities.Pdf.Writer | 1.0.0.1 | Pdf Writer |
 
-## [1.0.1] - 2022-23-06
+## [1.0.1] - 2022-06-23
 
 ### Added
 
@@ -322,7 +333,7 @@ All notable changes to this project will be documented in this file.
 	| iTin.Utilities.Pdf.Design | **1.0.0.1** | Pdf design objects |
 	| iTin.Utilities.Pdf.Writer | **1.0.0.1** | Pdf Writer |
 
-## [1.0.0] - 2020-29-09
+## [1.0.0] - 2020-09-29
 
 ### Added
 
@@ -344,6 +355,7 @@ All notable changes to this project will be documented in this file.
 	|iTin.Utilities.Pdf.Design| 1.0.0 | Pdf design objects |
 	|iTin.Utilities.Pdf.Writer| 1.0.0 | Pdf Writer |
 
+[1.0.4]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
 [1.0.3]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.3
 [1.0.2]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.2
 [1.0.1]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.1
