@@ -15,7 +15,7 @@ namespace iPdfWriter.Code
             // Creates pdf file reference
             var doc = new PdfInput
             {
-                Input = "~/Resources/Sample-22/file-sample.pdf"
+                Input = "~/Resources/Sample-23/file-sample.pdf"
             };
 
             // Extract pages and save result
@@ -25,7 +25,7 @@ namespace iPdfWriter.Code
             for (var i = 0; i < matchesCount; i++)
             {
                 var currentMatch = matches[i];
-                int? to = currentMatch.Page; ;
+                int? to = currentMatch.Page;
 
                 var hasNextMatch = i != matchesCount - 1;
                 if (hasNextMatch)

@@ -140,6 +140,12 @@ namespace iPdfWriter
             logger.Info(" > Show how to extract pages from a pdf document by search text");
             Sample23.Generate();
 
+            // 24.Show how to extract text lines from a pdf document
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 24");
+            logger.Info(" > Show how to extract text lines from a pdf document");
+            Sample24.Generate(logger);
+
             logger.Info("");
             logger.Debug(">End Logging<");
             Console.ReadKey();

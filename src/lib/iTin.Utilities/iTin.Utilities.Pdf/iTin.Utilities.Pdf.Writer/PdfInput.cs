@@ -445,6 +445,9 @@ namespace iTin.Utilities.Pdf.Writer
         /// <returns>
         /// A new instance of <see cref="PdfInput"/> containing a document containing the specified pages.
         /// </returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="from"/> is less than one or is greater than the total number of pages of the document</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="to"/> is less than one or is greater than the total number of pages of the document</exception>
         public PdfInput ExtractPages(int from, int? to = null)
         {
             using var reader = new NativePdf.PdfReader(this.ToStream());
@@ -453,10 +456,22 @@ namespace iTin.Utilities.Pdf.Writer
             using var pdfCopyProvider = new NativePdf.PdfCopy(source, target);
             source.Open();
 
-            var safeTo = to;
-            if (!to.HasValue)
+            var pages = reader.NumberOfPages;
+            if (pages == 0)
             {
-                safeTo = reader.NumberOfPages;
+                throw new ArgumentException("Document has not pages");
+            }
+            
+            SentinelHelper.ArgumentOutOfRange(nameof(from), from, 1, pages);
+
+            var safeTo = to;
+            if (to.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(to), to.Value, 1, pages);
+            }
+            else
+            {
+                safeTo = pages;
             }
 
             for (var i = from; i <= safeTo; i++)
@@ -502,12 +517,12 @@ namespace iTin.Utilities.Pdf.Writer
         {
             var matchs = new List<PdfText>();
 
-            NativePdf.PdfReader pdfReader = new NativePdf.PdfReader(ToStream());
-            int count = pdfReader.NumberOfPages;
-            for (int page = 1; page <= count; page++)
+            var pdfReader = new NativePdf.PdfReader(ToStream());
+            var count = pdfReader.NumberOfPages;
+            for (var page = 1; page <= count; page++)
             {
                 NativePdfParser.ITextExtractionStrategy strategy = new NativePdfParser.SimpleTextExtractionStrategy();
-                string currentText = NativePdfParser.PdfTextExtractor.GetTextFromPage(pdfReader, page, strategy);
+                var currentText = NativePdfParser.PdfTextExtractor.GetTextFromPage(pdfReader, page, strategy);
                 currentText = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentText)));
 
                 var absolutePosition = currentText.IndexOf(text, StringComparison.OrdinalIgnoreCase);
@@ -521,6 +536,132 @@ namespace iTin.Utilities.Pdf.Writer
             
             return matchs;
         }
+        #endregion
+
+        #region [public] (IEnumerable<PdfTextLine>) TextLines(int? = null, int? = null, bool = true): Gets the lines of text for this PdfInput
+        /// <summary>
+        /// Gets the lines of text for this <see cref="PdfInput"/>, optionally you can set both the start and end pages and a value indicating whether blank lines are included in the result.
+        /// </summary>
+        /// <param name="fromPage">Defines start page. If a value is not set, it will default to 1</param>
+        /// <param name="toPage">Defines end page. If a value is not set, it will default to total document pages</param>
+        /// <param name="removeEmptyLines">Indicates whether blank lines are included in the result. By default they are not included</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="fromPage"/> is less than one or is greater than the total number of pages of the document</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="toPage"/> is less than one or is greater than the total number of pages of the document</exception>
+        public IEnumerable<PdfTextLine> TextLines(int? fromPage = null, int? toPage = null, bool removeEmptyLines = true)
+        {
+            var result = new List<PdfTextLine>();
+
+            using var reader = new NativePdf.PdfReader(ToStream());
+            using var stamper = new NativePdf.PdfStamper(reader, new NativeIO.MemoryStream());
+            var pages = reader.NumberOfPages;
+
+            if (pages == 0)
+            {
+                throw new ArgumentException("Document has not pages");
+            }
+
+            var safeFrom = fromPage;
+            if (fromPage.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(fromPage), fromPage.Value, 1, pages);
+            }
+            else
+            {
+                safeFrom = 1;
+            }
+
+            var safeTo = toPage;
+            if (toPage.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(toPage), toPage.Value, 1, pages);
+            }
+            else
+            {
+                safeTo = pages;
+            }
+
+            for (var page = safeFrom; page <= safeTo; page++)
+            {
+                var currentPage = page.Value;
+                var strategy = new LocationTextExtractionStrategy();
+                var cb = stamper.GetOverContent(currentPage);
+                
+                // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                // but i'm not sure if this could change in some cases.
+                strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                // because it triggers the process that will get all chunks from PDF into our strategy Object
+                var pageLines = 
+                    NativePdfParser.PdfTextExtractor.GetTextFromPage(reader, currentPage, strategy)
+                    .Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(text => new PdfTextLine(text, currentPage));
+
+                if (removeEmptyLines)
+                {
+                    pageLines = pageLines.Where(textLine => textLine.Text != " ");
+                }
+
+                result.AddRange(pageLines);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region [public] (IEnumerable<PdfTextLine>) TextLines(Func<PdfTextLine, bool>): Gets the lines of text for this PdfInput, filtered values based on a predicate
+        /// <summary>
+        /// Gets the lines of text for this <see cref="PdfInput"/>, filtered values based on a predicate.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentNullException">If <paramref name="predicate"/> is <see langword="null"/></exception>
+        public IEnumerable<PdfTextLine> TextLines(Func<PdfTextLine, bool> predicate)
+        {
+            SentinelHelper.ArgumentNull(predicate, nameof(predicate));
+
+            var result = new List<PdfTextLine>();
+
+            using var reader = new NativePdf.PdfReader(ToStream());
+            using var stamper = new NativePdf.PdfStamper(reader, new NativeIO.MemoryStream());
+
+            var pages = reader.NumberOfPages;
+            if (pages == 0)
+            {
+                throw new ArgumentException("Document has not pages");
+            }
+
+            for (var page = 1; page <= pages; page++)
+            {
+                var currePage = page;
+                var strategy = new LocationTextExtractionStrategy();
+                var cb = stamper.GetOverContent(currePage);
+
+                // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                // but i'm not sure if this could change in some cases.
+                strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                // because it triggers the process that will get all chunks from PDF into our strategy Object
+                var pageLines =
+                    NativePdfParser.PdfTextExtractor.GetTextFromPage(reader, currePage, strategy)
+                    .Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(text => new PdfTextLine(text, currePage));
+                
+                pageLines = pageLines.Where(predicate);
+
+                result.AddRange(pageLines);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #endregion

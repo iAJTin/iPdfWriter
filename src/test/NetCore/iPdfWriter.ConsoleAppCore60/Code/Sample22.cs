@@ -36,7 +36,7 @@ namespace iPdfWriter.Code
             #region Extract pages
 
             var partialInput = doc.ExtractPages(1, 2);
-            
+
             #endregion
 
             #region Create output result

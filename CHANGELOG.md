@@ -2,16 +2,83 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.4 - 
-
-### Fixes
-
+## [1.0.4] - 2022-08-04
 
 ### Added
 
+ 1. Add **TextLines** method to **PdfInput** class, for get the lines of text for an **PdfInput**, optionally you can set both the start and end pages and a value indicating whether blank lines are included in the result or uses a predicate for filtering
+ 
+    ```csharp   
+    // Creates pdf file reference
+    var doc = new PdfInput
+    {
+        Input = "~/Resources/Sample-24/file-sample.pdf"
+    };
+
+    // Extract text lines (Remove empty lines)
+    try
+    {
+        var textLines = doc.TextLines();
+
+        logger.Info("   > Document lines (Remove empty lines)");
+        logger.Info($"     > Count: {textLines.Count()}");
+    }
+    catch
+    {
+        logger.Info("   > Error while extract text lines");
+    }
+
+    // Extract text lines (Include empty lines)
+    try
+    {
+        var textLines = doc.TextLines(removeEmptyLines: false);
+
+        logger.Info("   > Document lines (Include empty lines)");
+        logger.Info($"     > Count: {textLines.Count()}");
+    }
+    catch
+    {
+        logger.Info("   > Error while extract text lines");
+    }
+
+    // Extract text lines (predicate)
+    try
+    {
+        var textLines = doc.TextLines(line => line.Text.Trim() == "#TITLE#");
+
+        logger.Info("   > Document lines (Predicate)");
+        logger.Info($"     > Count: {textLines.Count()}");
+    }
+    catch
+    {
+        logger.Info("   > Error while extract text lines");
+    }
+    ```
 
 ### Changed
 
+  - Library versions for this version
+  
+	| Library | Version | Description |
+	|:------|:------|:----------|
+	| iTin.Core | 2.0.0.4 | Base library containing various extensions, helpers, common constants |
+	| iTin.Core.Drawing | 1.0.0.2 | Drawing objects, extension, helpers, common constants |
+    | iTin.Core.Hardware.Common | 1.0.0.3 | Common Hardware Infrastructure |
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font | 1.0.0.0 | Linux Hardware Infrastructure |
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font | 1.0.0.0 | MacOS Hardware Infrastructure |
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font | 1.0.0.0 | Windows Hardware Infrastructure |
+	| iTin.Core.IO | 1.0.0.2 | Common I/O calls |
+	| iTin.Core.IO.Compression | 1.0.0.2 | Compression library |
+    | iTin.Core.Interop.Shared | 1.0.0.2 | Generic Shared Interop Definitions |
+    | iTin.Core.Interop.Windows.Devices | 1.0.0.0 | Win32 Generic Interop Calls |
+	| iTin.Core.Models | 1.0.0.2 | Data models base |
+	| iTin.Core.Models.Design.Charting | 1.0.0.2 | Base charting models |
+	| iTin.Core.Models.Design.Styling | 1.0.0.2 | Base styling models |
+	| iTin.Logging | 1.0.0.1 | Logging library |
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font | 1.0.0.0 | Generic Common Hardware Abstractions |
+	| iTin.Registry.Windows | 1.0.0.2 | Windows registry access |
+	| iTin.Utilities.Pdf.Design | **1.0.0.4** | Pdf design objects |
+	| iTin.Utilities.Pdf.Writer | **1.0.0.3** | Pdf Writer |
 
 ## [1.0.3] - 2022-08-03
 
