@@ -2,6 +2,98 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.5 - 
+
+### Added
+
+ 1. Add sample25, shows how to create a **PdfInput** from HTML code.
+
+    ```csharp   
+    // Creates pdf input from HTML
+    var doc = PdfInput.CreateFromHtml(
+        html: @"
+        <table border='1' cellspacing='0' cellpadding='6' style='width:100%'>
+          <tbody>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>&nbsp;</td>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+              <td>Lorem ipsum</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>1</td>
+              <td>In eleifend velit vitae libero sollicitudin euismod.</td>
+              <td>Lorem</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>2</td>
+              <td>Cras fringilla ipsum magna, in fringilla dui commodo a.</td>
+              <td>Lorem</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>3</td>
+              <td>LAliquam erat volutpat.</td>
+              <td>Lorem</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>4</td>
+              <td>Fusce vitae vestibulum velit. </td>
+              <td>Lorem</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+              <td>5</td>
+              <td>Etiam vehicula luctus fermentum.</td>
+              <td>Ipsum</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>");
+
+    // Create output result
+    var result = doc.CreateResult();
+    if (!result.Success)
+    {
+        // Handle errors
+    }
+
+    // Saves output result
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/SampleHtml/Sample-Html" });
+    if (!saveResult.Success)
+    {
+        // Handle errors
+    }
+    ```
+
+### Changed
+
+  - Library versions for this version
+  
+	| Library | Version | Description |
+	|:------|:------|:----------|
+	| iTin.Core | 2.0.0.4 | Base library containing various extensions, helpers, common constants |
+	| iTin.Core.Drawing | 1.0.0.2 | Drawing objects, extension, helpers, common constants |
+    | iTin.Core.Hardware.Common | 1.0.0.3 | Common Hardware Infrastructure |
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font | 1.0.0.0 | Linux Hardware Infrastructure |
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font | 1.0.0.0 | MacOS Hardware Infrastructure |
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font | 1.0.0.0 | Windows Hardware Infrastructure |
+	| iTin.Core.IO | 1.0.0.2 | Common I/O calls |
+	| iTin.Core.IO.Compression | 1.0.0.2 | Compression library |
+    | iTin.Core.Interop.Shared | 1.0.0.2 | Generic Shared Interop Definitions |
+    | iTin.Core.Interop.Windows.Devices | 1.0.0.0 | Win32 Generic Interop Calls |
+	| iTin.Core.Models | 1.0.0.2 | Data models base |
+	| iTin.Core.Models.Design.Charting | 1.0.0.2 | Base charting models |
+	| iTin.Core.Models.Design.Styling | 1.0.0.2 | Base styling models |
+	| iTin.Logging | 1.0.0.1 | Logging library |
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font | 1.0.0.0 | Generic Common Hardware Abstractions |
+	| iTin.Registry.Windows | 1.0.0.2 | Windows registry access |
+	| iTin.Utilities.Pdf.Design | **1.0.0.5** | Pdf design objects |
+	| iTin.Utilities.Pdf.Writer | **1.0.0.6** | Pdf Writer |
+
+
 ## [1.0.4] - 2022-08-04
 
 ### Added
@@ -422,6 +514,7 @@ All notable changes to this project will be documented in this file.
 	|iTin.Utilities.Pdf.Design| 1.0.0 | Pdf design objects |
 	|iTin.Utilities.Pdf.Writer| 1.0.0 | Pdf Writer |
 
+[1.0.5]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
 [1.0.4]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
 [1.0.3]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.3
 [1.0.2]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.2

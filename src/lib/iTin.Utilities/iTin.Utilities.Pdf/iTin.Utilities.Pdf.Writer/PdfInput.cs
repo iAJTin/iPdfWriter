@@ -369,46 +369,36 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public static PdfInput CreateFromHtml(string html, string css = null, Encoding encoding = null)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             byte[] bytes;
-            using (var ms = new NativeIO.MemoryStream())
+            using var ms = new NativeIO.MemoryStream();
+            using var document = new Document();
+            using var writer = NativePdf.PdfWriter.GetInstance(document, ms);
+            document.Open();
+
+            if (css == null)
             {
-                using (var document = new Document())
-                {
-                    using (var writer = NativePdf.PdfWriter.GetInstance(document, ms))
-                    {
-                        document.Open();
-
-                        if (css == null)
-                        {
-                            using (var htmlStream = new NativeIO.MemoryStream(Encoding.UTF8.GetBytes(html)))
-                            {
-                                iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, encoding ?? Encoding.UTF8);
-                            }
-                        }
-                        else
-                        {
-                            using (var cssStream = new NativeIO.MemoryStream(Encoding.UTF8.GetBytes(css)))
-                            {
-                                using (var htmlStream = new NativeIO.MemoryStream(Encoding.UTF8.GetBytes(html)))
-                                {
-                                    if (encoding == null)
-                                    {
-                                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, cssStream);
-                                    }
-                                    else
-                                    {
-                                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, encoding);
-                                    }
-                                }
-                            }
-                        }
-
-                        document.Close();
-                    }
-                }
-
-                bytes = ms.ToArray();
+                using var htmlStream = new NativeIO.MemoryStream(Encoding.Unicode.GetBytes(html));
+                iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, encoding ?? Encoding.Unicode);
             }
+            else
+            {
+                using var cssStream = new NativeIO.MemoryStream(Encoding.UTF8.GetBytes(css));
+                using var htmlStream = new NativeIO.MemoryStream(Encoding.UTF8.GetBytes(html));
+                if (encoding == null)
+                {
+                    iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, cssStream);
+                }
+                else
+                {
+                    iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlStream, encoding);
+                }
+            }
+
+            document.Close();
+
+            bytes = ms.ToArray();
 
             return new PdfInput { Input = bytes };
         }

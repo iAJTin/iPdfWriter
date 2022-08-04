@@ -85,11 +85,11 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <returns>
         /// A new <see cref="PdfPTable"/> instance that contains the table from specified typed enumerable.
         /// </returns>
-        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, PdfTextStyle styles, PdfTableConfig config = null)
+        public static PdfTable CreateFromEnumerable<TI>(IEnumerable<TI> data, PdfTextStyle styles, PdfTableConfig config = null)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
 
-            return CreateFromDataTable(data.ToDataTable<Ti>(nameof(data)), styles, config);
+            return CreateFromDataTable(data.ToDataTable<TI>(nameof(data)), styles, config);
         }
         #endregion
 
@@ -103,11 +103,11 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// <returns>
         /// A new <see cref="PdfPTable"/> instance that contains the table from specified typed enumerable.
         /// </returns>
-        public static PdfTable CreateFromEnumerable<Ti>(IEnumerable<Ti> data, string css = null, PdfTableConfig config = null)
+        public static PdfTable CreateFromEnumerable<TI>(IEnumerable<TI> data, string css = null, PdfTableConfig config = null)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
 
-            return CreateFromDataTable(data.ToDataTable<Ti>(nameof(data)), css, config);
+            return CreateFromDataTable(data.ToDataTable<TI>(nameof(data)), css, config);
         }
         #endregion
 

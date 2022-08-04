@@ -146,6 +146,12 @@ namespace iPdfWriter
             logger.Info(" > Show how to extract text lines from a pdf document");
             Sample24.Generate(logger);
 
+            // 25. Show how to creates a pdf input from html
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 25");
+            logger.Info(" > Show how to creates a pdf input from html");
+            Sample25.Generate(logger);
+
             logger.Info("");
             logger.Debug(">End Logging<");
             Console.ReadKey();
