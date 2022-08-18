@@ -22,6 +22,9 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Compile Remove="ComponentModel\Input\Actions\PdfInputInsertAction.cs" />
+    <Compile Remove="ComponentModel\Input\Actions\PdfInputReplaceAction.cs" />
+    <Compile Remove="ComponentModel\Input\Actions\PdfInputSetAction.cs" />
     <Compile Remove="ComponentModel\Operations\Items\Replace\ReplacementObject\Base\ReplacementBase.cs" />
     <Compile Remove="Helpers\ImageExtractor.cs" />
     <Compile Remove="PdfProcessCommands.cs" />

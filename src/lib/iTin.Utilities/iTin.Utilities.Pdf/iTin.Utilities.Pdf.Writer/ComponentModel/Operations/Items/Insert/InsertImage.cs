@@ -6,6 +6,7 @@ using System.IO;
 using iTin.Utilities.Pdf.Design.Image;
 using iTin.Utilities.Pdf.Design.Styles;
 
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
 
 using TextSharp = iTextSharp.text.pdf;

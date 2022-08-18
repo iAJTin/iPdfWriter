@@ -5,6 +5,7 @@ using System.IO;
 using iTin.Core.Helpers;
 using iTin.Core.Models.Design.Styling;
 
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
 
 namespace iTin.Utilities.Pdf.Writer.ComponentModel

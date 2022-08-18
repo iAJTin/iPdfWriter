@@ -11,13 +11,15 @@ Changes in this version 1.0.5
   -----
       - Add sample25, shows how to create a input from html code.
 
+      - Add sample26, shows how to add or modify pdf metadata information.
+
 · Changed
   -------
 
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | Library                                           Version   Description                                                           |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core                                         2.0.0.4   Base library containing various extensions, helpers, common constants |
+    | iTin.Core                                         2.0.0.5   Base library containing various extensions, helpers, common constants |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Core.Drawing                                 1.0.0.2   Drawing objects, extension, helpers, common constants                 |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•

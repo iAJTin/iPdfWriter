@@ -31,7 +31,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
     {
         #region public static methods
 
-        public static ReplaceResult TextReplacementsRender(IInput context)
+        public static ReplaceResult InsertsRender(IInput context)
         {
             var input = context.ToStream();
             var items = PdfInputCache.Cache.GetTextReplacements(context).ToList();
@@ -66,7 +66,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     foreach (var item in items)
                     {
                         ITextReplacement replacementObject = null;
-                        List<LocationTextExtractionStrategy.LocationTextResult> textMatchesFound = null;
+                        List<LocationTextExtractionStrategy.LocationTextResult> textMatchesFound;
 
                         var isSystemTag = item is ReplaceSystemTag;
                         if (!isSystemTag)
@@ -122,16 +122,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 
                                 if (replacementObject.UseTestMode == YesNo.Yes)
                                 {
-                                    using (Bitmap emptyImage = BitmapHelper.CreateEmptyBitmap(current.Image.Image.ScaledWidth + 1, current.Image.Image.ScaledHeight + 1, Color.LightGray))
-                                    using (Graphics g = Graphics.FromImage(emptyImage))
-                                    using (Canvas canvas = new(g))
-                                    {
-                                        canvas.DrawBorder(Color.Red);
+                                    using var emptyImage = BitmapHelper.CreateEmptyBitmap(current.Image.Image.ScaledWidth + 1, current.Image.Image.ScaledHeight + 1, Color.LightGray);
+                                    using var g = Graphics.FromImage(emptyImage);
+                                    using var canvas = new Canvas(g);
+                                    canvas.DrawBorder(Color.Red);
 
-                                        var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
-                                        testImage.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
-                                        cb.AddImage(testImage);
-                                    }
+                                    var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
+                                    testImage.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
+                                    cb.AddImage(testImage);
                                 }
                                 else
                                 {
@@ -263,7 +261,288 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     });
             }
         }
-        
+
+        public static ReplaceResult SetsRender(IInput context)
+        {
+            var input = context.ToStream();
+            var items = PdfInputCache.Cache.GetSets(context).ToList();
+
+            var outputStream = new NativeIO.MemoryStream();
+
+            try
+            {
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+                var info = reader.Info;
+
+                foreach (var item in items)
+                {
+                    var existAuthorKey = info.ContainsKey(item.Key);
+                    if (!existAuthorKey)
+                    {
+                        info.Add(item.Key, item.Value);
+                    }
+                    else
+                    {
+                        info[item.Key] = item.Value;
+                    }
+                }
+
+                stamper.MoreInfo = info;
+                stamper.Close();
+                reader.Close();
+
+                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = context,
+                    InputStream = input,
+                    OutputStream = new NativeIO.MemoryStream(outputStream.GetBuffer())
+                });
+            }
+            catch (Exception ex)
+            {
+                return ReplaceResult.FromException(
+                    ex,
+                    new ReplaceResultData
+                    {
+                        Context = context,
+                        InputStream = input,
+                        OutputStream = input
+                    });
+            }
+        }
+
+        public static ReplaceResult TextReplacementsRender(IInput context)
+        {
+            var input = context.ToStream();
+            var items = PdfInputCache.Cache.GetTextReplacements(context).ToList();
+
+            var outputStream = new NativeIO.MemoryStream();
+
+            try
+            {
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+
+                var pages = reader.NumberOfPages;
+                for (var page = 1; page <= pages; page++)
+                {
+                    var strategy = new LocationTextExtractionStrategy();
+                    var cb = stamper.GetOverContent(page);
+
+                    // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                    // but i'm not sure if this could change in some cases.
+                    strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                    strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                    // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                    // because it triggers the process that will get all chunks from PDF into our strategy Object
+                    var allStrings = PdfTextExtractor.GetTextFromPage(reader, page, strategy);
+                    var stringsList =
+                        allStrings
+                            .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                            .Where(entry => !string.IsNullOrEmpty(entry.Trim()))
+                            .ToList();
+
+                    foreach (var item in items)
+                    {
+                        ITextReplacement replacementObject = null;
+                        List<LocationTextExtractionStrategy.LocationTextResult> textMatchesFound;
+
+                        var isSystemTag = item is ReplaceSystemTag;
+                        if (!isSystemTag)
+                        {
+                            replacementObject = ((ReplaceText)item).ReplacementObject;
+                            textMatchesFound = strategy.GetExtendedTextLocations(replacementObject.Text, replacementObject.ReplaceOptions).ToList();
+                        }
+                        else
+                        {
+                            var replacementTagObject = ((ReplaceSystemTag)item).ReplacementObject;
+                            textMatchesFound = strategy.GetExtendedTextLocations(replacementTagObject.Tag.GetDescription(), replacementTagObject.ReplaceOptions).ToList();
+                        }
+
+                        // Text matches found contains all text with locations, so do whatever you want with it
+                        foreach (var match in textMatchesFound)
+                        {
+                            // Delete tag
+                            var bColor = BaseColor.WHITE;
+                            cb.SetColorFill(bColor);
+                            cb.Rectangle(match.Rect.Left, match.Rect.Bottom, match.Rect.Width, match.Rect.Height);
+                            cb.Fill();
+
+                            var isText = replacementObject is WithTextObject;
+                            if (isText)
+                            {
+                                var current = (WithTextObject)replacementObject;
+                                current.Style ??= PdfTextStyle.Default;
+
+                                // Calculates new rectangle
+                                var r = BuildRectangleByStrategies(match, replacementObject.Text, strategy, cb, stringsList, replacementObject.ReplaceOptions);
+
+                                // Add table
+                                var table = new PdfPTable(1) { TotalWidth = r.Width - replacementObject.Offset.X };
+                                table.AddCell(PdfHelper.CreateCell(current.NewText, current.Style, replacementObject.UseTestMode));
+                                table.WriteSelectedRows(-1, -1, r.X + replacementObject.Offset.X, r.Y - replacementObject.Offset.Y, cb);
+
+                                cb.Fill();
+
+                                continue;
+                            }
+
+                            var isImage = replacementObject is WithImageObject;
+                            if (isImage)
+                            {
+                                var current = (WithImageObject)replacementObject;
+                                current.Style ??= PdfImageStyle.Default;
+
+                                // Calculates new rectangle
+                                var r = BuildRectangleByStrategies(match, replacementObject.Text, current.Image.ScaledHeight, current.Image.ScaledWidth, strategy, cb, stringsList, replacementObject.ReplaceOptions);
+
+                                current.Image.Image.ScaleToFit(r.Width, r.Height);
+                                var dX = CalculatesHorizontalDelta(current.Style.Content.Alignment.Horizontal, r, current.Image.Image, replacementObject.Offset.X);
+
+                                if (replacementObject.UseTestMode == YesNo.Yes)
+                                {
+                                    using var emptyImage = BitmapHelper.CreateEmptyBitmap(current.Image.Image.ScaledWidth + 1, current.Image.Image.ScaledHeight + 1, Color.LightGray);
+                                    using var g = Graphics.FromImage(emptyImage);
+                                    using var canvas = new Canvas(g);
+                                    canvas.DrawBorder(Color.Red);
+
+                                    var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
+                                    testImage.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
+                                    cb.AddImage(testImage);
+                                }
+                                else
+                                {
+                                    current.Image.Image.SetVisualStyle(current.Style);
+                                    current.Image.Image.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
+                                    cb.AddImage(current.Image.Image);
+                                }
+
+                                continue;
+                            }
+
+                            var isTable = replacementObject is WithTableObject;
+                            if (isTable)
+                            {
+                                var current = (WithTableObject)replacementObject;
+
+                                // Calculates new rectangle
+                                var deltaY = CalculatesVerticalDelta(replacementObject.ReplaceOptions, match.Rect);
+                                var cellHeight = CalculatesCellHeight(match, replacementObject.Text, strategy, cb, stringsList, replacementObject.ReplaceOptions, deltaY);
+                                var r = BuildRectangleByStrategiesTable(match, replacementObject.Text, strategy, cb, stringsList, replacementObject.ReplaceOptions);
+
+                                // Width strategy to use
+                                var safeFixedWidth = current.FixedWidth;
+                                var useFixedWidth = !current.FixedWidth.Equals(-float.MinValue);
+                                if (useFixedWidth)
+                                {
+                                    if (current.FixedWidth > r.Width)
+                                    {
+                                        safeFixedWidth = r.Width;
+                                    }
+                                }
+                                else
+                                {
+                                    safeFixedWidth = r.Width;
+                                }
+
+                                // Creates aligned table by horizontal alignment value (this table contains the user table parameter)
+                                var outerBorderTable = new PdfPTable(1)
+                                {
+                                    TotalWidth = safeFixedWidth,
+                                    HorizontalAlignment = Element.ALIGN_LEFT
+                                };
+
+                                var outerCell = PdfHelper.CreateEmptyWithBorderCell(current.Style.Borders);
+                                outerCell.MinimumHeight = cellHeight;
+                                outerCell.VerticalAlignment = current.Style.Alignment.Vertical.ToVerticalTableAlignment();
+                                outerCell.BackgroundColor = new BaseColor(ColorHelper.GetColorFromString(current.Style.Content.Color));
+
+                                //table.Table.HorizontalAlignment = Element.ALIGN_LEFT;
+                                current.Table.Table.TotalWidth = safeFixedWidth - (outerCell.EffectivePaddingRight + outerCell.EffectivePaddingLeft) * 2;
+                                current.Table.Table.LockedWidth = true; // options.StartStrategy.Equals(StartLocationStrategy.LeftMargin) && options.EndStrategy.Equals(EndLocationStrategy.RightMargin);
+                                outerCell.AddElement(current.Table.Table);
+                                outerBorderTable.AddCell(outerCell);
+
+                                // Creates strategy table (for shows testmode rectangle)
+                                var useTestModeTable = new PdfPTable(1) { TotalWidth = safeFixedWidth };
+                                var useTestCell = PdfHelper.CreateEmptyCell(replacementObject.UseTestMode);
+
+                                if (current.Table.Configuration.HeightStrategy == TableHeightStrategy.Exact)
+                                {
+                                    useTestCell.FixedHeight = current.Table.Table.TotalHeight;
+                                }
+
+                                useTestCell.AddElement(outerBorderTable);
+                                useTestModeTable.AddCell(useTestCell);
+                                useTestModeTable.WriteSelectedRows(-1, -1, r.X + replacementObject.Offset.X, r.Y - replacementObject.Offset.Y - deltaY, cb);
+
+                                cb.Fill();
+
+                                continue;
+                            }
+
+                            if (isSystemTag)
+                            {
+                                var replacementTagObject = ((ReplaceSystemTag)item).ReplacementObject;
+
+                                var current = (WithSystemTagObject)replacementTagObject;
+                                current.Style ??= PdfTextStyle.Default;
+
+                                // Calculates new rectangle
+                                var r = BuildRectangleByStrategies(match, current.Tag.GetDescription(), strategy, cb, stringsList, replacementTagObject.ReplaceOptions);
+
+                                // Add table
+                                var table = new PdfPTable(1) { TotalWidth = r.Width - current.Offset.X };
+
+                                // New text
+                                string newText = string.Empty;
+                                switch (current.Tag)
+                                {
+                                    case SystemTags.PageNumber:
+                                        newText = page.ToString();
+                                        break;
+
+                                    case SystemTags.TotalPages:
+                                        newText = pages.ToString();
+                                        break;
+                                }
+
+                                table.AddCell(PdfHelper.CreateCell(newText, current.Style, current.UseTestMode));
+                                table.WriteSelectedRows(-1, -1, r.X + current.Offset.X, r.Y - current.Offset.Y, cb);
+                                cb.Fill();
+                            }
+                        }
+
+                        cb.Fill();
+                        cb.Stroke();
+                    }
+                }
+
+                stamper.Close();
+                reader.Close();
+
+                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = context,
+                    InputStream = input,
+                    OutputStream = new NativeIO.MemoryStream(outputStream.GetBuffer())
+                });
+            }
+            catch (Exception ex)
+            {
+                return ReplaceResult.FromException(
+                    ex,
+                    new ReplaceResultData
+                    {
+                        Context = context,
+                        InputStream = input,
+                        OutputStream = input
+                    });
+            }
+        }
+
         #endregion
 
         #region private static methods
@@ -284,7 +563,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
 
                 case StartLocationStrategy.PreviousElement:
-                    ComponentModel.LocationTextExtractionStrategy.LocationTextResult previousMatchReference = null;
+                    LocationTextExtractionStrategy.LocationTextResult previousMatchReference = null;
 
                     var index = -1;
                     for (var i = 0; i < allStrings.Count; i++)
@@ -337,7 +616,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
 
                 case EndLocationStrategy.NextElement:
-                    ComponentModel.LocationTextExtractionStrategy.LocationTextResult nextMatchReference = null;
+                    LocationTextExtractionStrategy.LocationTextResult nextMatchReference = null;
 
                     var index = -1;
                     string nextElementText = string.Empty;
@@ -420,7 +699,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
             }
 
-            return new System.Drawing.RectangleF(x, y, w, h);
+            return new RectangleF(x, y, w, h);
         }
         
         #endregion

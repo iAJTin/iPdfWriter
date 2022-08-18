@@ -68,13 +68,45 @@ All notable changes to this project will be documented in this file.
     }
     ```
 
+ 2. Add sample26, shows how to add or modify pdf metadata information
+ 
+    ```csharp   
+    // Creates pdf file reference
+    var doc = new PdfInput
+    {
+        Input = "~/Resources/Sample-26/file-sample.pdf"
+    };
+
+    // Set pdf metadata information
+    doc
+        .Set(new SetCreator { Value = "iPdfWriter" })
+        .Set(new SetTitle { Value = "Hello from iPdfWriter" })
+        .Set(new SetSubject { Value = "Subject changed from iPdfWriter" })
+        .Set(new SetAuthor { Value = "iPdfWriter" })
+        .Set(new SetKeywords { Value = "Samples, iPdfWriter, pdf" });
+
+    // Create output result
+    var result = doc.CreateResult();
+    if (!result.Success)
+    {
+        // Handle errors
+    }
+
+    // Saves output result
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample26/Sample-26" });
+    if (!saveResult.Success)
+    {
+        // Handle errors
+    }
+    ```
+
 ### Changed
 
   - Library versions for this version
   
 	| Library | Version | Description |
 	|:------|:------|:----------|
-	| iTin.Core | 2.0.0.4 | Base library containing various extensions, helpers, common constants |
+	| iTin.Core | **2.0.0.5** | Base library containing various extensions, helpers, common constants |
 	| iTin.Core.Drawing | 1.0.0.2 | Drawing objects, extension, helpers, common constants |
     | iTin.Core.Hardware.Common | 1.0.0.3 | Common Hardware Infrastructure |
     | iTin.Core.Hardware.Linux.Devices.Graphics.Font | 1.0.0.0 | Linux Hardware Infrastructure |

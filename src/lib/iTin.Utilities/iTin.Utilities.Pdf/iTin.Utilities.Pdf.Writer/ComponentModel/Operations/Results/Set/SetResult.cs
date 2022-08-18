@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using iTin.Core.ComponentModel;
 
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
 
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
@@ -163,49 +164,12 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set
         }
         #endregion
 
-        #region [public] (SetResult) Set(ISet, bool = true): Try to set an element in this input
-        /// <summary>
-        /// Try to set an element in this input.
-        /// </summary>
-        /// <param name="data">Reference to replaceable object information</param>
-        /// <param name="canSet">Determines if can set. Default is <b>true</b>.</param>
-        /// <returns>
-        /// Operation result.
-        /// </returns>
-        public SetResult Set(ISet data, bool canSet = true)
-        {
-            if (!canSet)
-            {
-                return data == null
-                    ? CreateErroResult("Missing data")
-                    : CreateSuccessResult(new SetResultData
-                    {
-                        Context = Result.Context,
-                        InputStream = Result.OutputStream,
-                        OutputStream = Result.OutputStream
-                    });
-            }
-
-            SetResult result = SetImplStrategy(data, Result.Context);
-
-            if (Result.Context.AutoUpdateChanges)
-            {
-                Result.Context.Input = result.Result.OutputStream;
-            }
-
-            return result;
-        }
-        #endregion
-
         #endregion
 
         #region private methods
 
         private InsertResult InsertImplStrategy(IInsert data, IInput context)
             => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
-
-        private SetResult SetImplStrategy(ISet data, IInput context)
-            => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         #endregion
     }

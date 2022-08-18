@@ -41,6 +41,62 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 
         #region public methods
 
+        #region [public] (void) AddInserts(IInput, IInsert): Add a collection of IInsert items for specified PdfInput key
+        /// <summary>
+        /// Add a collection of <see cref="IInsert"/> items for specified <see cref="PdfInput"/> key.
+        /// </summary>
+        /// <param name="key">Target <see cref="PdfInput"/>.</param>
+        /// <param name="data">Target <see cref="IInsert"/> item.</param>
+        public void AddInserts(IInput key, IInsert data)
+        {
+            var existKey = InsertsCacheDictionary.ContainsKey(key);
+            if (!existKey)
+            {
+                InsertsCacheDictionary.Add(key, data.Yield());
+            }
+            else
+            {
+                var currentKey = InsertsCacheDictionary[key];
+                var alreadyExistValue = currentKey.Contains(data);
+                if (!alreadyExistValue)
+                {
+                    var items = InsertsCacheDictionary[key].ToList();
+                    items.Add(data);
+                    InsertsCacheDictionary[key] = items;
+                }
+            }
+        }
+
+        #endregion
+
+        #region [public] (void) AddSets(IInput, ISet): Add a collection of ISet items for specified PdfInput key
+        /// <summary>
+        /// Add a collection of <see cref="IReplace"/> items for specified <see cref="PdfInput"/> key.
+        /// </summary>
+        /// <param name="key">Target <see cref="PdfInput"/>.</param>
+        /// <param name="data">Target <see cref="ISet"/> item.</param>
+        public void AddSets(IInput key, ISet data)
+        {
+            var existKey = SetsCacheDictionary.ContainsKey(key);
+            if (!existKey)
+            {
+                SetsCacheDictionary.Add(key, data.Yield());
+            }
+            else
+            {
+                var currentKey = SetsCacheDictionary[key];
+                var alreadyExistValue = currentKey.Contains(data);
+                if (!alreadyExistValue)
+                {
+                    var items = SetsCacheDictionary[key].ToList();
+                    items.Add(data);
+                    SetsCacheDictionary[key] = items;
+                }
+            }
+        }
+
+        #endregion
+
         #region [public] (void) AddTextReplacement(IInput, IReplace): Add a collection of IReplace items for specified PdfInput key
         /// <summary>
         /// Add a collection of <see cref="IReplace"/> items for specified <see cref="PdfInput"/> key.
@@ -69,6 +125,29 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 
         #endregion
 
+
+        #region [public] (bool) ExistInsertInput(IInput): 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key">Target <see cref="IInput"/>.</param>
+        /// <returns>
+        /// The collection of available <see cref="IInsert"/> items.
+        /// </returns>
+        public bool ExistInsertInput(IInput key) => InsertsCacheDictionary.ContainsKey(key);
+        #endregion
+
+        #region [public] (bool) ExistSetInput(IInput): 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key">Target <see cref="IInput"/>.</param>
+        /// <returns>
+        /// The collection of available <see cref="IReplace"/> items.
+        /// </returns>
+        public bool ExistSetInput(IInput key) => SetsCacheDictionary.ContainsKey(key);
+        #endregion
+
         #region [public] (bool) ExistTextReplacementInput(IInput): 
         /// <summary>
         /// 
@@ -78,6 +157,29 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
         /// The collection of available <see cref="IReplace"/> items.
         /// </returns>
         public bool ExistTextReplacementInput(IInput key) => TextReplacementsCacheDictionary.ContainsKey(key);
+        #endregion
+
+
+        #region [public] (IEnumerable<IInsert>) GetSets(IInput): 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key">Target <see cref="IInput"/>.</param>
+        /// <returns>
+        /// The collection of available <see cref="IInsert"/> items.
+        /// </returns>
+        public IEnumerable<IInsert> GetInserts(IInput key) => InsertsCacheDictionary[key];
+        #endregion
+
+        #region [public] (IEnumerable<ISet>) GetSets(IInput): 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key">Target <see cref="IInput"/>.</param>
+        /// <returns>
+        /// The collection of available <see cref="ISet"/> items.
+        /// </returns>
+        public IEnumerable<ISet> GetSets(IInput key) => SetsCacheDictionary[key];
         #endregion
 
         #region [public] (IEnumerable<IReplace>) GetTextReplacements(IInput): 

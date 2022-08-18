@@ -7,11 +7,9 @@ using iTin.Core.ComponentModel;
 using iTin.Core.ComponentModel.Results;
 
 using iTin.Utilities.Pdf.Design.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
 
-namespace iTin.Utilities.Pdf.Writer.ComponentModel
+namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 {
     /// <summary>
     /// Defines a generic input
@@ -93,27 +91,25 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         int NumberOfPages();
 
         /// <summary>
-        /// Try to insert an element in a input.
+        /// 
         /// </summary>
-        /// <param name="data">Reference to insertable object information</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="InsertResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="InsertResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        InsertResult Insert(IInsert data);
+        /// <param name="data"></param>
+        /// <returns></returns>
+        IPdfInputAction Insert(IInsert data);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        PdfInputReplaceAction Replace(IReplace data);
+        IPdfInputAction Replace(IReplace data);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        IPdfInputAction Set(ISet data);
 
         /// <summary>
         /// Saves this input into a file.

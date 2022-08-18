@@ -1,6 +1,8 @@
 ﻿
 using System.IO;
 
+using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
+
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
 {
     /// <summary>
