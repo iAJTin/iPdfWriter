@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 using iTin.Core.ComponentModel;
 
-using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
-
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
 {
     /// <summary>
@@ -124,51 +122,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };
         #endregion
-
-        #endregion
-
-        #region public methods 
-
-        #region [public] (InsertResult) Insert(IInsert, bool = true): Try to insert an element in this input
-        /// <summary>
-        /// Try to insert an element in this input.
-        /// </summary>
-        /// <param name="data">Reference to insertable object information</param>
-        /// <param name="canInsert">Determines if can insert. Default is <b>true</b>.</param>
-        /// <returns>
-        /// Operation result.
-        /// </returns>
-        public InsertResult Insert(IInsert data, bool canInsert = true)
-        {
-            if (!canInsert)
-            {
-                return data == null
-                    ? CreateErroResult("Missing data")
-                    : CreateSuccessResult(new InsertResultData
-                    {
-                        Context = Result.Context,
-                        InputStream = Result.OutputStream,
-                        OutputStream = Result.OutputStream
-                    });
-            }
-
-            InsertResult result = InsertImplStrategy(data, Result.Context);
-
-            if (Result.Context.AutoUpdateChanges)
-            {
-                Result.Context.Input = result.Result.OutputStream;
-            }
-
-            return result;
-        }
-        #endregion
-
-        #endregion
-
-        #region private methods
-
-        private InsertResult InsertImplStrategy(IInsert data, IInput context)
-            => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(Result.OutputStream, context);
 
         #endregion
     }

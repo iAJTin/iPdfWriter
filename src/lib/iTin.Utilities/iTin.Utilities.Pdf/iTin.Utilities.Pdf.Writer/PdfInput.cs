@@ -243,7 +243,7 @@ namespace iTin.Utilities.Pdf.Writer
         }
         #endregion
 
-        #region [public] (PdfInputSetAction) Set(ISet): 
+        #region [public] (IPdfInputAction) Set(ISet): 
         /// <summary>
         /// 
         /// </summary>
@@ -666,9 +666,9 @@ namespace iTin.Utilities.Pdf.Writer
         internal ReplaceResult ProcessInput()
         {
             ReplaceResult result;
-
+            
             // TextReplacements
-            var hasTextReplacementsItems = PdfInputCache.Cache.ExistTextReplacementInput(this);
+            var hasTextReplacementsItems = PdfInputCache.Cache.AnyTextReplacements(this);
             if (!hasTextReplacementsItems)
             {
                 var stream = ToStream();
@@ -691,10 +691,11 @@ namespace iTin.Utilities.Pdf.Writer
             }
 
             // Inserts
-            var hasInsertItems = PdfInputCache.Cache.ExistInsertInput(this);
+            var hasInsertItems = PdfInputCache.Cache.AnyInserts(this);
             if (hasInsertItems)
             {
                 result = PdfInputRender.InsertsRender(this);
+
                 if (AutoUpdateChanges)
                 {
                     Input = result.Result.OutputStream;
@@ -702,7 +703,7 @@ namespace iTin.Utilities.Pdf.Writer
             }
 
             // Sets
-            var hasSetItems = PdfInputCache.Cache.ExistSetInput(this);
+            var hasSetItems = PdfInputCache.Cache.AnySets(this);
             if (hasSetItems)
             {
                 result = PdfInputRender.SetsRender(this);

@@ -18,6 +18,9 @@ Changes in this version 1.0.5
       - A functionality has been added that allows to add a password to pdf file.
         For more information, please see please see sample27.cs
 
+      - A functionality has been added that allows to insert an image into a pdf file.
+        For more information, please see please see sample28.cs
+
 · Changed
   -------
 

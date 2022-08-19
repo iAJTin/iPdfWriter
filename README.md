@@ -1740,7 +1740,7 @@ Basic steps, for more details please see [sample26.cs] file.
 
    ###### Below is an image showing the result
 
-![Sample26][sample26] 
+    ![Sample26][sample26] 
 
 ### Sample 17 - Shows how to add a password to pdf file
 
@@ -1788,7 +1788,59 @@ Basic steps, for more details please see [sample27.cs] file.
 
    ###### Below is an image showing the result
 
-![Sample27][sample27] 
+    ![Sample27][sample27] 
+
+### Sample 18 - Shows how to insert an image into a pdf file
+
+Basic steps, for more details please see [sample28.cs] file.
+
+1. Load pdf file
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-28/file-sample.pdf"
+    };
+    ```             
+
+2. Insert actions
+    ```csharp   
+    doc.Insert(new InsertImage
+    {
+        Page = 1, 
+        UseTestMode = YesNo.No,
+        Offset = new PointF(450.0f, 200.0f),
+        Image = PdfImage.FromFile("~/Resources/Sample-28/Images/pirate.png")
+    });
+    ```             
+
+3. Try to create pdf output result
+     ```csharp   
+     var outputResult = doc.CreateResult();
+     if (!outputResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+
+4. Save result with **password** to file
+    ```csharp   
+    var saveResult = outputResult.Result.Action(new SaveToFile 
+    { 
+        Password = "iPdfWriter",
+        OutputPath = "~/Output/Sample28/Sample-28" 
+    });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+    ```
+
+5. Output
+
+   ###### Below is an image showing the result
+
+    ![Sample28][sample28] 
 
 # Documentation
 
@@ -1866,3 +1918,6 @@ My email address is
 
 [sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample27.cs
 [sample27]: ./assets/samples/sample27/sample27.png "sample27"
+
+[sample28.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample28.cs
+[sample28]: ./assets/samples/sample28/sample28.png "sample28"

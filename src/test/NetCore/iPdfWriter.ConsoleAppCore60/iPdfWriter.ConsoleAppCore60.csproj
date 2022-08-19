@@ -9,27 +9,11 @@
   </PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Resources\Sample-21\Fonts\alex-brush\**" />
-	  <EmbeddedResource Remove="Resources\Sample-21\Fonts\alex-brush\**" />
-	  <None Remove="Resources\Sample-21\Fonts\alex-brush\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Sample-01\._file-sample.docx" />
-	  <None Remove="Resources\Sample-01\._file-sample.fld" />
-	  <None Remove="Resources\Sample-01\._file-sample.html" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core.Models.Design\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Core\iTin.Core\iTin.Core.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
 		<ProjectReference Include="..\..\..\lib\iTin.Utilities\iTin.Utilities.Pdf\iTin.Utilities.Pdf.Writer\iTin.Utilities.Pdf.Writer.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Output\Sample27\" />
 	</ItemGroup>
 
 </Project>

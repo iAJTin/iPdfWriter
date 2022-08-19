@@ -6,14 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
- 1. The functionality of being able to create an instance of the **PdfInput** class from **HTML** code has been added. 
+ 1. The functionality of being able to create an instance of the **PdfInput** class from **HTML** code has been added.
     For more information, please see the **sample15** in [README.md] file
 
  2. A functionality has been added that allows to add or modify the metadata information of a **pdf** file.
     For more information, please see the **sample16** in [README.md] file
 
- 3. A functionality has been added that allows to add a **password** to **pdf** file. 
+ 3. A functionality has been added that allows to add a **password** to **pdf** file.
     For more information, please see the **sample17** in [README.md] file
+
+ 4. A functionality has been added that allows to insert an **image** into a **pdf** file.
+    For more information, please see the **sample18** in [README.md] file
 
 ### Changed
 

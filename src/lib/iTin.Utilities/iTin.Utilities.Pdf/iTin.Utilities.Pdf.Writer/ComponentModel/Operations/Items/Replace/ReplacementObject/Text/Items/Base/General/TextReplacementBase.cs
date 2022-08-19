@@ -19,7 +19,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text
         #region public properties
 
         #region [public] (ReplaceTextOptions) ReplaceOptions: Gets or sets a value that represents replace text options
-        /// <inheritdoc />
         /// <summary>
         /// Gets or sets a value that represents text replace options.
         /// </summary>

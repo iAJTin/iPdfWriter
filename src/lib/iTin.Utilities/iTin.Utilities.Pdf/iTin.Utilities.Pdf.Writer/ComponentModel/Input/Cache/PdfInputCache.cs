@@ -126,7 +126,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
         #endregion
 
 
-        #region [public] (bool) ExistInsertInput(IInput): 
+        #region [public] (bool) AnyInserts(IInput): 
         /// <summary>
         /// 
         /// </summary>
@@ -134,10 +134,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
         /// <returns>
         /// The collection of available <see cref="IInsert"/> items.
         /// </returns>
-        public bool ExistInsertInput(IInput key) => InsertsCacheDictionary.ContainsKey(key);
+        public bool AnyInserts(IInput key) => InsertsCacheDictionary.ContainsKey(key);
         #endregion
 
-        #region [public] (bool) ExistSetInput(IInput): 
+        #region [public] (bool) AnySets(IInput): 
         /// <summary>
         /// 
         /// </summary>
@@ -145,10 +145,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
         /// <returns>
         /// The collection of available <see cref="IReplace"/> items.
         /// </returns>
-        public bool ExistSetInput(IInput key) => SetsCacheDictionary.ContainsKey(key);
+        public bool AnySets(IInput key) => SetsCacheDictionary.ContainsKey(key);
         #endregion
 
-        #region [public] (bool) ExistTextReplacementInput(IInput): 
+        #region [public] (bool) AnyTextReplacements(IInput): 
         /// <summary>
         /// 
         /// </summary>
@@ -156,7 +156,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
         /// <returns>
         /// The collection of available <see cref="IReplace"/> items.
         /// </returns>
-        public bool ExistTextReplacementInput(IInput key) => TextReplacementsCacheDictionary.ContainsKey(key);
+        public bool AnyTextReplacements(IInput key) => TextReplacementsCacheDictionary.ContainsKey(key);
         #endregion
 
 
