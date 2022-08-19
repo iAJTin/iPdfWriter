@@ -1815,21 +1815,21 @@ Basic steps, for more details please see [sample28.cs] file.
     ```             
 
 3. Try to create pdf output result
-     ```csharp   
-     var outputResult = doc.CreateResult();
-     if (!outputResult.Success)
-     {
-         // Handle errors                 
-     }
-     ```
+    ```csharp   
+    var outputResult = doc.CreateResult();
+    if (!outputResult.Success)
+    {
+        // Handle errors                 
+    }
+    ```
 
-4. Save result with **password** to file
+4. Save result to file
     ```csharp   
     var saveResult = outputResult.Result.Action(new SaveToFile 
     { 
-        Password = "iPdfWriter",
         OutputPath = "~/Output/Sample28/Sample-28" 
     });
+
     if (!saveResult.Success)
     {
          // Handle errors                 
