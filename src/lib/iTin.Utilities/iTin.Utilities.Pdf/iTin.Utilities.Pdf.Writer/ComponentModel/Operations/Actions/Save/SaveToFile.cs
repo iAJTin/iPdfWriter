@@ -10,8 +10,9 @@ using iTin.Core.IO.Compression;
 
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
 
+using iTextSharp.text.pdf;
+
 using NativeIO = System.IO;
-using iTinIO = iTin.Core.IO;
 
 namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
 {
@@ -69,6 +70,16 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
         public string OutputPath { get; set; }
         #endregion
 
+        #region [public] (string) Password: Defines a password for this output file
+        /// <summary>
+        /// Defines a password for this output file.
+        /// </summary>
+        /// <value>
+        /// Password file.
+        /// </value>
+        public string Password { get; set; }
+        #endregion
+
         #region [public] (SaveOptions) SaveOptions: Defines file save options
         /// <summary>
         /// Defines file save options. Allows defining if the directory is created automatically if it does not exist.
@@ -89,10 +100,10 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
             {
                 return BooleanResult.NullResult;
             }
-
+            
             var safeOptions = SaveOptions ?? SaveOptions.Default;
             var outputExtension = data.Zipped ? ZipExtension : PdfExtension;
-            var normalizedPath = iTinIO.Path.PathResolver(OutputPath);
+            var normalizedPath = Path.PathResolver(OutputPath);
             var directoryName = NativeIO.Path.GetDirectoryName(normalizedPath);
             var filename = NativeIO.Path.GetFileName(normalizedPath);
             var filenameWithoutExtension = NativeIO.Path.GetFileNameWithoutExtension(filename);
@@ -101,30 +112,51 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save
 
             try
             {
+                var outputStreamToUse = GenerateOutputStream(data, Password);
                 var actionResult = BooleanResult.SuccessResult;
-                bool isMergedFile = data.Configuration is PdfObjectConfig;
+                var isMergedFile = data.Configuration is PdfObjectConfig;
                 if (isMergedFile)
                 {
                     var streamIsZipped = ((PdfObjectConfig)data.Configuration).AllowCompression;
                     actionResult.Success = data.Zipped
                         ? streamIsZipped
-                            ? data.UncompressOutputStream.Clone().TrySaveAsZip(PdfExtension, outPath).Success
-                            : data.UncompressOutputStream.Clone().SaveToFile(outPath, safeOptions).Success
-                        : data.OutputStream.Clone().SaveToFile(outPath, safeOptions).Success;
+                            ? outputStreamToUse.TrySaveAsZip(PdfExtension, outPath).Success
+                            : outputStreamToUse.SaveToFile(outPath, safeOptions).Success
+                        : outputStreamToUse.SaveToFile(outPath, safeOptions).Success;
                 }
                 else
                 {
-                    actionResult.Success = data.Zipped
-                        ? data.UncompressOutputStream.Clone().SaveToFile(outPath, safeOptions).Success
-                        : data.OutputStream.Clone().SaveToFile(outPath, safeOptions).Success;
+                    actionResult.Success = outputStreamToUse.SaveToFile(outPath, safeOptions).Success;
                 }
                 
                 return actionResult;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return BooleanResult.FromException(ex);
+                return BooleanResult.FromException(e);
             }
+        }
+
+        #endregion
+
+        #region private static methods
+        
+        private static NativeIO.Stream GenerateOutputStream(OutputResultData data, string password)
+        {
+            var resultStream = data.Zipped
+                ? data.UncompressOutputStream
+                : data.OutputStream;
+
+            if (string.IsNullOrEmpty(password))
+            {
+                return resultStream;
+            }
+
+            using var outputStream = new NativeIO.MemoryStream();
+            using var reader = new PdfReader(data.GetOutputStream());
+            PdfEncryptor.Encrypt(reader, outputStream, true, password, null, PdfWriter.ALLOW_SCREENREADERS);
+
+            return new NativeIO.MemoryStream(outputStream.GetBuffer()).Clone();
         }
 
         #endregion

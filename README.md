@@ -1620,6 +1620,176 @@ Basic steps, for more details please see [sample21.cs] file.
 
 ![Sample21AllPages][Sample21AllPages] 
 
+### Sample 15 - Shows how to create a new PdfInput instance from HTML code
+
+Basic steps, for more details please see [sample25.cs] file.
+
+1. Creates **PdfInput** from **HTML** code.
+    ```csharp   
+    var doc = PdfInput.CreateFromHtml(
+        html: @"
+        <table border='1' cellspacing='0' cellpadding='6' style='width:100%'>
+            <tbody>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>&nbsp;</td>
+                <td>Lorem ipsum</td>
+                <td>Lorem ipsum</td>
+                <td>Lorem ipsum</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>1</td>
+                <td>In eleifend velit vitae libero sollicitudin euismod.</td>
+                <td>Lorem</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>2</td>
+                <td>Cras fringilla ipsum magna, in fringilla dui commodo a.</td>
+                <td>Lorem</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>3</td>
+                <td>LAliquam erat volutpat.</td>
+                <td>Lorem</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>4</td>
+                <td>Fusce vitae vestibulum velit. </td>
+                <td>Lorem</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
+                <td>5</td>
+                <td>Etiam vehicula luctus fermentum.</td>
+                <td>Ipsum</td>
+                <td>&nbsp;</td>
+            </tr>
+            </tbody>
+        </table>");
+    ```   
+          
+2. Try to create pdf output result
+     ```csharp   
+     var result = doc.CreateResult();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+
+3. Save pdf result to file
+    ```csharp   
+    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample25/Sample-25" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+
+4. Output
+
+   ###### Below is an image showing the result
+
+![Sample25][sample25] 
+
+### Sample 16 - Shows how to add or modify the metadata information
+
+Basic steps, for more details please see [sample26.cs] file.
+
+1. Load pdf file
+
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-26/file-sample.pdf"
+    };
+    ```    
+
+ 2. Set metadata information
+    ```csharp   
+    doc
+        .Set(new SetCreator { Value = "iPdfWriter" })
+        .Set(new SetTitle { Value = "Hello from iPdfWriter" })
+        .Set(new SetSubject { Value = "Subject changed from iPdfWriter" })
+        .Set(new SetAuthor { Value = "iPdfWriter" })
+        .Set(new SetKeywords { Value = "Samples, iPdfWriter, pdf" });
+    ```
+        
+3. Try to create pdf output result
+     ```csharp   
+     var outputResult = doc.CreateResult();
+     if (!outputResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+
+4. Save pdf result to file   
+    ```csharp   
+    var saveResult = outputResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample26/Sample-26" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+
+5. Output
+
+   ###### Below is an image showing the result
+
+![Sample26][sample26] 
+
+### Sample 17 - Shows how to add a password to pdf file
+
+Basic steps, for more details please see [sample27.cs] file.
+
+1. Load pdf file
+    ```csharp   
+    var doc = new PdfInput
+    {
+        AutoUpdateChanges = true,
+        Input = "~/Resources/Sample-27/file-sample.pdf"
+    };
+    ```             
+2. Replace, insert or set actions
+    ```csharp   
+    //
+    // Replace, insert or set actions here!
+    //      
+    ```             
+
+3. Try to create pdf output result
+     ```csharp   
+     var outputResult = doc.CreateResult();
+     if (!outputResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+
+4. Save result with **password** to file
+    ```csharp   
+    var saveResult = outputResult.Result.Action(new SaveToFile 
+    { 
+        Password = "iPdfWriter",
+        OutputPath = "~/Output/Sample27/Sample-27" 
+    });
+
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+
+5. Output
+
+   ###### Below is an image showing the result
+
+![Sample27][sample27] 
+
 # Documentation
 
  - For **Writer** code documentation, please see next link [documentation].
@@ -1687,3 +1857,12 @@ My email address is
 
 [sample21.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample21.cs
 [Sample21AllPages]: ./assets/samples/sample21/sample21.png "sample21"
+
+[sample25.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample25.cs
+[sample25]: ./assets/samples/sample25/sample25.png "sample25"
+
+[sample26.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample26.cs
+[sample26]: ./assets/samples/sample26/sample26.png "sample26"
+
+[sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample27.cs
+[sample27]: ./assets/samples/sample27/sample27.png "sample27"

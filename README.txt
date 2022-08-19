@@ -9,9 +9,14 @@ Changes in this version 1.0.5
 
 · Added
   -----
-      - Add sample25, shows how to create a input from html code.
+      - The functionality of being able to create an instance of the PdfInput class from HTML code has been added.
+        For more information, please see sample25.cs
 
-      - Add sample26, shows how to add or modify pdf metadata information.
+      - A functionality has been added that allows to add or modify the metadata information of a pdf file.
+        For more information, please see please see sample26.cs
+
+      - A functionality has been added that allows to add a password to pdf file.
+        For more information, please see please see sample27.cs
 
 · Changed
   -------
