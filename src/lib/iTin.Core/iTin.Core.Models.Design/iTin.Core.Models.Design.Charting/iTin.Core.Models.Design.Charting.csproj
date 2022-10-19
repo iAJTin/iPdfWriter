@@ -22,8 +22,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
 		<ProjectReference Include="..\..\iTin.Core\iTin.Core.csproj" />
+		<ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
 		<ProjectReference Include="..\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
 	</ItemGroup>
 
