@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-using iTin.Core.Hardware.Common.Devices.Graphics;
+using iTin.Core.Hardware.Abstractions.Devices.Graphics;
 
 using Linux = iTin.Core.Hardware.Linux.Devices.Graphics.Font;
 using MacOS = iTin.Core.Hardware.MacOS.Devices.Graphics.Font;
@@ -21,7 +21,13 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
         private readonly IFontOperations _operations;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly Dictionary<OSPlatform, IFontOperations> _operationsTable;
+        private readonly Dictionary<OSPlatform, IFontOperations> _operationsTable =
+            new Dictionary<OSPlatform, IFontOperations>
+            {
+                { OSPlatform.Windows, new Windows.FontOperations() },
+                { OSPlatform.Linux, new Linux.FontOperations() },
+                { OSPlatform.OSX, new MacOS.FontOperations() }
+            };
         #endregion
 
         #region constructor/s
@@ -32,23 +38,11 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
         /// </summary>
         private FontOperations()
         {
-            _operationsTable = new Dictionary<OSPlatform, IFontOperations>
-            {
-                { OSPlatform.Windows, new Windows.FontOperations()},
-                { OSPlatform.Linux, new Linux.FontOperations()},
-                { OSPlatform.OSX, new MacOS.FontOperations()}
-            };
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                _operations = _operationsTable[OSPlatform.Windows];
-            }
-            else
-            {
-                _operations = RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+            _operations = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? _operationsTable[OSPlatform.Windows]
+                : RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
                     ? _operationsTable[OSPlatform.OSX]
                     : _operationsTable[OSPlatform.Linux];
-            }
         }
         #endregion
 
@@ -64,7 +58,6 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
         /// A <see cref="FontOperations"/> reference that contains <b>SMBIOS</b> operations.
         /// </value>
         public static FontOperations Instance { get; } = new FontOperations();
-
         #endregion
 
         #endregion

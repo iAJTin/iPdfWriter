@@ -1,5 +1,5 @@
 ﻿
-using iTin.Core.Hardware.Common.Devices.Graphics;
+using iTin.Core.Hardware.Abstractions.Devices.Graphics;
 
 namespace iTin.Core.Hardware.MacOS.Devices.Graphics.Font
 {

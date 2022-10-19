@@ -4,8 +4,8 @@ What is iPdfWriter?
 
 iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags
 
-Changes in this version 1.0.5
-=============================
+Changes in this version (v1.0.5)
+================================
 
 · Added
   -----
@@ -17,37 +17,39 @@ Changes in this version 1.0.5
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | Library                                           Version   Description                                                           |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core                                         2.0.0.4   Base library containing various extensions, helpers, common constants |
+    | iTin.Core                                         2.0.0.6   Base library containing various extensions, helpers, common constants |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Drawing                                 1.0.0.2   Drawing objects, extension, helpers, common constants                 |
+    | iTin.Core.Drawing                                 1.0.0.3   Drawing objects, extension, helpers, common constants                 |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Hardware.Common                         1.0.0.3   Common Hardware Infrastructure                                        |
+    | iTin.Core.Hardware.Abstractions                   1.0.0.0   Generic Common Hardware Abstractions                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Hardware.Linux.Devices.Graphics.Font    1.0.0.0   Linux Hardware Infrastructure                                         |
+    | iTin.Core.Hardware.Common                         1.0.0.5   Common Hardware Infrastructure                                        |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font    1.0.0.0   MacOS Hardware Infrastructure                                         |
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font    1.0.0.1   Linux Hardware Infrastructure                                         |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Hardware.Windows.Devices.Graphics.Font  1.0.0.0   Windows Hardware Infrastructure                                       |
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font    1.0.0.1   MacOS Hardware Infrastructure                                         |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.IO                                      1.0.0.1   Common I/O calls                                                      |
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font  1.0.0.1   Windows Hardware Infrastructure                                       |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Interop.Shared                          1.0.0.4   Generic Shared Interop Definitions                                    |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.Interop.Windows.Devices                 1.0.0.1   Win32 Generic Interop Calls                                           |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Core.IO                                      1.0.0.2   Common I/O calls                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Core.IO.Compression                          1.0.0.1   Compression library                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Interop.Shared                          1.0.0.2   Generic Shared Interop Definitions                                    |
+    | iTin.Core.Models                                  1.0.0.3   Data models base                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Interop.Windows.Devices                 1.0.0.0   Win32 Generic Interop Calls                                           |
+    | iTin.Core.Models.Design.Charting                  1.0.0.3   Base charting models                                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models                                  1.0.0.2   Data models base                                                      |
+    | iTin.Core.Models.Design.Styling                   1.0.0.3   Base styling models                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models.Design.Charting                  1.0.0.2   Base charting models                                                  |
+    | iTin.Logging                                      1.0.0.2   Logging library                                                       |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.Models.Design.Styling                   1.0.0.2   Base styling models                                                   |
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font  1.0.0.1   Generic Common Hardware Abstractions                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Logging                                      1.0.0.1   Logging library                                                       |
-    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Hardware.Abstractions.Devices.Graphics.Font  1.0.0.0   Generic Common Hardware Abstractions                                  |
-    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Registry.Windows                             1.0.0.2   Windows registry acces                                                |
+    | iTin.Registry.Windows                             1.0.0.3   Windows registry acces                                                |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Utilities.Pdf.Design                         1.0.0.5   Pdf design elements                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
@@ -56,14 +58,13 @@ Changes in this version 1.0.5
 
 
 v1.0.4
-=============================
+======
 
 · Added
   -----
 
     - Add TextLines method to PdfInput class for get the lines of text for an PdfInput, optionally you can set both the start and end pages and a value indicating whether blank lines are included in the result 
       or uses a predicate for filtering.
-
 
 · Changed
   -------

@@ -26,12 +26,13 @@ namespace iTin.Core.Hardware.Common
         /// Returns a new <see cref="QueryPropertyCollectionResult"/> with specified detailed error.
         /// </summary>
         /// <param name="message">Error message</param>
-        /// <param name="result">Result Result</param>
+        /// <param name="result">Result</param>
         /// <param name="code">Error code</param>
         /// <returns>
         /// A new invalid <see cref="QueryPropertyCollectionResult"/> with specified detailed error.
         /// </returns>
-        public static QueryPropertyCollectionResult CreateErroResult(string message, IEnumerable<PropertyItem> result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
+        public static QueryPropertyCollectionResult CreateErroResult(string message, IEnumerable<PropertyItem> result, string code = "") 
+            => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
 
         /// <summary>
         /// Returns a new <see cref="QueryPropertyCollectionResult"/> with specified detailed errors collection.

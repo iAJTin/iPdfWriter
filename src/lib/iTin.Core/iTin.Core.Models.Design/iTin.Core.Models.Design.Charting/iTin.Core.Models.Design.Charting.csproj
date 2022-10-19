@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net461;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Version>1.0.0.2</Version>
+		<Version>1.0.0.3</Version>
 		<Description>Base charting models</Description>
-		<Copyright>Copyright © 2020</Copyright>
+		<Copyright>Copyright © 2022</Copyright>
 		<PackageProjectUrl></PackageProjectUrl>
 		<PackageId>iTin.Core.Models.Design.Charting</PackageId>
 		<Company>iTin</Company>
@@ -15,10 +15,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
-	<ItemGroup>
-		<Compile Remove="BaseModel.cs" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

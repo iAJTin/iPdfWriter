@@ -1,5 +1,5 @@
 ﻿
-using iTin.Core.Hardware.Common.Devices.Graphics;
+using iTin.Core.Hardware.Abstractions.Devices.Graphics;
 using iTin.Core.Interop.Windows.Development.Graphics.Legacy.Gdi.Font;
 
 namespace iTin.Core.Hardware.Windows.Devices.Graphics.Font

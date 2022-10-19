@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using iTin.Core.ComponentModel;
+
 using iTin.Core.Hardware.Common.ComponentModel;
 
 namespace iTin.Core.Hardware.Common

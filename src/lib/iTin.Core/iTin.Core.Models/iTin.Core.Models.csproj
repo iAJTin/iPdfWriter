@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net461;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Version>1.0.0.2</Version>
-		<Description>Data models base</Description>
-		<Copyright>Copyright © 2020</Copyright>
+		<Version>1.0.0.3</Version>
+		<Description>Data Models Base</Description>
+		<Copyright>Copyright © 2022</Copyright>
 		<PackageProjectUrl></PackageProjectUrl>
 		<PackageId>iTin.Core.Models</PackageId>
 		<Company>iTin</Company>
@@ -22,9 +22,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
 		<ProjectReference Include="..\iTin.Core.Interop\iTin.Core.Interop.Windows\iTin.Core.Interop.Windows.Devices\iTin.Core.Interop.Windows.Devices.Graphics.Font.csproj" />
 		<ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
-		<ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
 	</ItemGroup>
 
 

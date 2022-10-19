@@ -40,7 +40,8 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// converted values.
         /// </returns>
-        public static IEnumerable<T> AsEnumType<T>(this IEnumerable<Enum> collection) where T : struct => collection.Select(item => item.AsEnumType<T>()).ToList();
+        public static IEnumerable<T> AsEnumType<T>(this IEnumerable<Enum> collection) where T : struct 
+            => collection.Select(item => item.AsEnumType<T>()).ToList();
 
         /// <summary>
         /// Returns the value of attribute of type <see cref="T:Syntec.Core.ComponentModel.EnumDescriptionAttribute"/> for this enum value. 
@@ -97,7 +98,8 @@ namespace iTin.Core.Hardware.Common
                 return null;
             }
 
-            if (Attribute.GetCustomAttribute(field, typeof(PropertyNameAttribute)) is PropertyNameAttribute attr)
+            PropertyNameAttribute attr = Attribute.GetCustomAttribute(field, typeof(PropertyNameAttribute)) as PropertyNameAttribute;
+            if (attr != null)
             {
                 return attr.Name;
             }
