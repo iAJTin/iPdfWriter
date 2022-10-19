@@ -150,6 +150,24 @@ namespace iPdfWriter
             logger.Info(" > Show how to creates a pdf input from html");
             Sample25.Generate(logger);
 
+            // 26. Generate sample 26 report
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 26");
+            logger.Info(" > Shows how to add or modify pdf metadata information");
+            Sample26.Generate(logger);
+
+            // 27. Generate sample 27 report
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 27");
+            logger.Info(" > Shows how to add a password to output file");
+            Sample27.Generate(logger);
+
+            // 28. Generate sample 28 report
+            logger.Info("");
+            logger.Info("> Start Pdf Sample 28");
+            logger.Info(" > Shows how to insert an image into document");
+            Sample28.Generate(logger, YesNo.Yes);
+
             logger.Info("");
             logger.Debug(">End Logging<");
             Console.ReadKey();

@@ -31,6 +31,137 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
     {
         #region public static methods
 
+        public static ReplaceResult InsertsRender(IInput context)
+        {
+            var input = context.ToStream();
+            var items = PdfInputCache.Cache.GetInserts(context).ToList();
+
+            var outputStream = new NativeIO.MemoryStream();
+
+            try
+            {
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+
+                var pages = reader.NumberOfPages;
+                for (var page = 1; page <= pages; page++)
+                {
+                    var currentPage = page;
+                    var itemsForPage = items.Where(i => i.Page == currentPage).ToList();
+                    var hasItems = itemsForPage.Any();
+                    if (!hasItems)
+                    {
+                        continue;
+                    }
+
+                    var cb = stamper.GetOverContent(currentPage);
+
+                    foreach (var item in itemsForPage)
+                    {
+                        var isInsertImage = item is InsertImage;
+                        if (isInsertImage)
+                        {
+                            var target = (InsertImage)item;
+                            if (target.Image == Design.Image.PdfImage.Null)
+                            {
+                                continue;
+                            }
+
+                            if (target.UseTestMode == YesNo.Yes)
+                            {
+                                using var emptyImage = BitmapHelper.CreateEmptyBitmap(target.Image.Image.ScaledWidth + 1, target.Image.Image.ScaledHeight + 1, Color.LightGray);
+                                using var g = Graphics.FromImage(emptyImage);
+                                using var canvas = new Canvas(g);
+                                canvas.DrawBorder(Color.Red);
+
+                                var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
+                                testImage.SetAbsolutePosition(target.Offset.X, target.Offset.Y);
+                                cb.AddImage(testImage);
+                            }
+                            else
+                            {
+                                target.Image.Image.SetAbsolutePosition(target.Offset.X, target.Offset.Y);
+                                cb.AddImage(target.Image.Image);
+                            }
+
+                            continue;
+                        }
+                    }
+                }
+
+                stamper.Close();
+                reader.Close();
+
+                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = context,
+                    InputStream = input,
+                    OutputStream = new NativeIO.MemoryStream(outputStream.GetBuffer())
+                });
+            }
+            catch (Exception ex)
+            {
+                return ReplaceResult.FromException(
+                    ex,
+                    new ReplaceResultData
+                    {
+                        Context = context,
+                        InputStream = input,
+                        OutputStream = input
+                    });
+            }
+        }
+
+        public static ReplaceResult SetsRender(IInput context)
+        {
+            var input = context.ToStream();
+            var items = PdfInputCache.Cache.GetSets(context).ToList();
+
+            var outputStream = new NativeIO.MemoryStream();
+
+            try
+            {
+                using var reader = new PdfReader(input);
+                using var stamper = new PdfStamper(reader, outputStream);
+                var info = reader.Info;
+
+                foreach (var item in items)
+                {
+                    var existAuthorKey = info.ContainsKey(item.Key);
+                    if (!existAuthorKey)
+                    {
+                        info.Add(item.Key, item.Value);
+                    }
+                    else
+                    {
+                        info[item.Key] = item.Value;
+                    }
+                }
+
+                stamper.MoreInfo = info;
+                stamper.Close();
+                reader.Close();
+
+                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = context,
+                    InputStream = input,
+                    OutputStream = new NativeIO.MemoryStream(outputStream.GetBuffer())
+                });
+            }
+            catch (Exception ex)
+            {
+                return ReplaceResult.FromException(
+                    ex,
+                    new ReplaceResultData
+                    {
+                        Context = context,
+                        InputStream = input,
+                        OutputStream = input
+                    });
+            }
+        }
+
         public static ReplaceResult TextReplacementsRender(IInput context)
         {
             var input = context.ToStream();
@@ -66,7 +197,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     foreach (var item in items)
                     {
                         ITextReplacement replacementObject = null;
-                        List<LocationTextExtractionStrategy.LocationTextResult> textMatchesFound = null;
+                        List<LocationTextExtractionStrategy.LocationTextResult> textMatchesFound;
 
                         var isSystemTag = item is ReplaceSystemTag;
                         if (!isSystemTag)
@@ -122,16 +253,14 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 
                                 if (replacementObject.UseTestMode == YesNo.Yes)
                                 {
-                                    using (Bitmap emptyImage = BitmapHelper.CreateEmptyBitmap(current.Image.Image.ScaledWidth + 1, current.Image.Image.ScaledHeight + 1, Color.LightGray))
-                                    using (Graphics g = Graphics.FromImage(emptyImage))
-                                    using (Canvas canvas = new(g))
-                                    {
-                                        canvas.DrawBorder(Color.Red);
+                                    using var emptyImage = BitmapHelper.CreateEmptyBitmap(current.Image.Image.ScaledWidth + 1, current.Image.Image.ScaledHeight + 1, Color.LightGray);
+                                    using var g = Graphics.FromImage(emptyImage);
+                                    using var canvas = new Canvas(g);
+                                    canvas.DrawBorder(Color.Red);
 
-                                        var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
-                                        testImage.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
-                                        cb.AddImage(testImage);
-                                    }
+                                    var testImage = iTextSharp.text.Image.GetInstance(emptyImage, ImageFormat.Png);
+                                    testImage.SetAbsolutePosition(r.X + dX, -replacementObject.Offset.Y + (r.Y - current.Image.Image.ScaledHeight));
+                                    cb.AddImage(testImage);
                                 }
                                 else
                                 {
@@ -263,7 +392,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     });
             }
         }
-        
+
         #endregion
 
         #region private static methods
@@ -284,7 +413,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
 
                 case StartLocationStrategy.PreviousElement:
-                    ComponentModel.LocationTextExtractionStrategy.LocationTextResult previousMatchReference = null;
+                    LocationTextExtractionStrategy.LocationTextResult previousMatchReference = null;
 
                     var index = -1;
                     for (var i = 0; i < allStrings.Count; i++)
@@ -337,7 +466,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
 
                 case EndLocationStrategy.NextElement:
-                    ComponentModel.LocationTextExtractionStrategy.LocationTextResult nextMatchReference = null;
+                    LocationTextExtractionStrategy.LocationTextResult nextMatchReference = null;
 
                     var index = -1;
                     string nextElementText = string.Empty;
@@ -420,7 +549,7 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
                     break;
             }
 
-            return new System.Drawing.RectangleF(x, y, w, h);
+            return new RectangleF(x, y, w, h);
         }
         
         #endregion
@@ -783,12 +912,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel.Input
 
             return value - (cb.PdfDocument.PageSize.Height - nextMatchReference.Rect.Bottom);
         }
-
-        #endregion
-
-        #region Enumerable
-
-        
 
         #endregion
 

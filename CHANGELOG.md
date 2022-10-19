@@ -6,67 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
- 1. Add sample25, shows how to create a **PdfInput** from HTML code.
+ 1. The functionality of being able to create an instance of the **PdfInput** class from **HTML** code has been added.
+    For more information, please see the **sample15** in [README.md] file
 
-    ```csharp   
-    // Creates pdf input from HTML
-    var doc = PdfInput.CreateFromHtml(
-        html: @"
-        <table border='1' cellspacing='0' cellpadding='6' style='width:100%'>
-          <tbody>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>&nbsp;</td>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-              <td>Lorem ipsum</td>
-            </tr>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>1</td>
-              <td>In eleifend velit vitae libero sollicitudin euismod.</td>
-              <td>Lorem</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>2</td>
-              <td>Cras fringilla ipsum magna, in fringilla dui commodo a.</td>
-              <td>Lorem</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>3</td>
-              <td>LAliquam erat volutpat.</td>
-              <td>Lorem</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>4</td>
-              <td>Fusce vitae vestibulum velit. </td>
-              <td>Lorem</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>
-              <td>5</td>
-              <td>Etiam vehicula luctus fermentum.</td>
-              <td>Ipsum</td>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
-        </table>");
+ 2. A functionality has been added that allows to add or modify the metadata information of a **pdf** file.
+    For more information, please see the **sample16** in [README.md] file
 
-    // Create output result
-    var result = doc.CreateResult();
-    if (!result.Success)
-    {
-        // Handle errors
-    }
+ 3. A functionality has been added that allows to add a **password** to **pdf** file.
+    For more information, please see the **sample17** in [README.md] file
 
-    // Saves output result
-    var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/SampleHtml/Sample-Html" });
-    if (!saveResult.Success)
-    {
-        // Handle errors
-    }
-    ```
+ 4. A functionality has been added that allows to insert an **image** into a **pdf** file.
+    For more information, please see the **sample18** in [README.md] file
 
 ### Changed
 
@@ -520,7 +470,13 @@ All notable changes to this project will be documented in this file.
 [1.0.1]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.1
 [1.0.0]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.0
 
+[README.md]: ./README.md
+
 [sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
 [sample17_.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
 [sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample18.cs
 [sample19_.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample19.cs
+[sample25.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample25.cs
+[sample26.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample26.cs
+[sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample27.cs
+

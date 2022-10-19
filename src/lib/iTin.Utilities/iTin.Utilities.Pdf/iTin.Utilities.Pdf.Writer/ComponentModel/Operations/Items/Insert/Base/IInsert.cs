@@ -1,10 +1,7 @@
 ﻿
 using System.Drawing;
-using System.IO;
 
-using iTin.Core.Models.Design.Styling;
-
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
+using iTin.Core.Models.Design.Enums;
 
 namespace iTin.Utilities.Pdf.Writer.ComponentModel
 {
@@ -30,47 +27,11 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         int Page { get; set; }
 
         /// <summary>
-        /// Gets or sets a reference to 
+        /// Gets or sets a value that indicates whether the elements to be inserted are shown with a red border that identifies their position and size in order to validate that they are correct. The default value is <see cref="YesNo.No"/>.
         /// </summary>
         /// <value>
-        /// A <see cref="BaseStyle"/> object that contains a reference to cell style
+        /// <see cref="YesNo.Yes"/> if works in mode test; otherwise <see cref="YesNo.No"/>.
         /// </value>
-        BaseStyle Style { get; set; }
-
-
-
-        /// <summary>
-        /// Try to execute the insert action.
-        /// </summary>
-        /// <param name="file">file input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="InsertResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="InsertResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        InsertResult Apply(string file, IInput context);
-
-        /// <summary>
-        /// Try to execute the inseert action.
-        /// </summary>
-        /// <param name="input">stream input</param>
-        /// <param name="context">Input context</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="InsertResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Value</b> property will contain the value; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return value is <see cref="InsertResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        InsertResult Apply(Stream input, IInput context);
+        public YesNo UseTestMode { get; set; }
     }
 }

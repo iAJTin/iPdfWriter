@@ -14,14 +14,11 @@ using iTin.Core.IO;
 using iTin.Utilities.Pdf.Design.Text;
 using iTin.Utilities.Pdf.Writer.ComponentModel;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
 using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set;
 
 using iTextSharp.text;
 
-using iTinIO = iTin.Core.IO;
 using NativeIO = System.IO;
 using NativePdf = iTextSharp.text.pdf;
 using NativePdfParser = iTextSharp.text.pdf.parser;
@@ -188,7 +185,7 @@ namespace iTin.Utilities.Pdf.Writer
                 configToApply = config;
                 configToApply.Filename = NativeIO.Path.ChangeExtension(
                     string.IsNullOrEmpty(config.Filename)
-                        ? iTinIO.File.GetUniqueTempRandomFile().Segments.LastOrDefault()
+                        ? File.GetUniqueTempRandomFile().Segments.LastOrDefault()
                         : config.Filename,
                     PdfExtension);
             }
@@ -206,7 +203,7 @@ namespace iTin.Utilities.Pdf.Writer
                         });
                 }
 
-                OutputResult zippedOutputResult = new[] { Clone() }.CreateJoinResult(new[] { configToApply.Filename });
+                var zippedOutputResult = new[] { Clone() }.CreateJoinResult(new[] { configToApply.Filename });
                 zippedOutputResult.Result.Configuration = configToApply;
 
                 return zippedOutputResult;
@@ -218,73 +215,46 @@ namespace iTin.Utilities.Pdf.Writer
         }
         #endregion
 
-        #region [public] (InsertResult) Insert(IInsert): Try to insert an element in this input
-        /// <summary>
-        /// Try to insert an element in this input.
-        /// </summary>
-        /// <param name="data">Reference to insertable object information</param>
-        /// <returns>
-        /// <para>
-        /// A <see cref="InsertResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return Result is <see cref="InsertResultData"/>, which contains the operation result
-        /// </para>
-        /// </returns>
-        public InsertResult Insert(IInsert data)
-        {
-            InsertResult result = InsertImplStrategy(data, this);
-
-            if (AutoUpdateChanges)
-            {
-                Input = result.Result.OutputStream;
-            }
-
-            return result;
-        }
-        #endregion
-
-        #region [public] (InputReplaceAction) Replace(IReplace): 
+        #region [public] (IPdfInputAction) Insert(IInsert): 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public PdfInputReplaceAction Replace(IReplace data)
+        public IPdfInputAction Insert(IInsert data)
         {
-            PdfInputCache.Cache.AddTextReplacement(this, data);
+            PdfInputCache.Cache.AddInserts(this, data);
 
-            return new PdfInputReplaceAction(this);
+            return new PdfInputAction(this);
         }
         #endregion
 
-        #region [public] (SetResult) Set(ISet): Try to set an element in this input
+        #region [public] (IPdfInputAction) Replace(IReplace): 
         /// <summary>
-        /// Try to set an element in this input.
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public IPdfInputAction Replace(IReplace data)
+        {
+            PdfInputCache.Cache.AddTextReplacement(this, data);
+
+            return new PdfInputAction(this);
+        }
+        #endregion
+
+        #region [public] (IPdfInputAction) Set(ISet): 
+        /// <summary>
+        /// 
         /// </summary>
         /// <param name="data">Reference to seteable object information</param>
         /// <returns>
-        /// <para>
-        /// A <see cref="SetResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
-        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
-        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
-        /// </para>
-        /// <para>
-        /// The type of the return Result is <see cref="SetResultData"/>, which contains the operation result
-        /// </para>
         /// </returns>
-        public SetResult Set(ISet data)
+        public IPdfInputAction Set(ISet data)
         {
-            SetResult result = SetImplStrategy(data, this);
+            PdfInputCache.Cache.AddSets(this, data);
 
-            if (AutoUpdateChanges)
-            {
-                Input = result.Result.OutputStream;
-            }
-
-            return result;
+            return new PdfInputAction(this);
         }
         #endregion
 
@@ -308,7 +278,7 @@ namespace iTin.Utilities.Pdf.Writer
         {
             try
             {
-                return ToStream().SaveToFile(iTinIO.Path.PathResolver(outputPath), options ?? SaveOptions.Default);
+                return ToStream().SaveToFile(Path.PathResolver(outputPath), options ?? SaveOptions.Default);
             }
             catch (Exception ex)
             {
@@ -329,7 +299,7 @@ namespace iTin.Utilities.Pdf.Writer
             switch (InputType)
             {
                 case KnownInputType.Filename:
-                    return new NativeIO.MemoryStream(NativeIO.File.ReadAllBytes(iTinIO.Path.PathResolver(TypeHelper.ToType<string>(Input))));
+                    return new NativeIO.MemoryStream(NativeIO.File.ReadAllBytes(Path.PathResolver(TypeHelper.ToType<string>(Input))));
 
                 case KnownInputType.ByteArray:
                     return new NativeIO.MemoryStream(TypeHelper.ToType<byte[]>(Input));
@@ -371,7 +341,6 @@ namespace iTin.Utilities.Pdf.Writer
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            byte[] bytes;
             using var ms = new NativeIO.MemoryStream();
             using var document = new Document();
             using var writer = NativePdf.PdfWriter.GetInstance(document, ms);
@@ -398,7 +367,7 @@ namespace iTin.Utilities.Pdf.Writer
 
             document.Close();
 
-            bytes = ms.ToArray();
+            var bytes = ms.ToArray();
 
             return new PdfInput { Input = bytes };
         }
@@ -696,38 +665,56 @@ namespace iTin.Utilities.Pdf.Writer
 
         internal ReplaceResult ProcessInput()
         {
-            var hasItem = PdfInputCache.Cache.ExistTextReplacementInput(this);
-            if (!hasItem)
+            ReplaceResult result;
+            
+            // TextReplacements
+            var hasTextReplacementsItems = PdfInputCache.Cache.AnyTextReplacements(this);
+            if (!hasTextReplacementsItems)
             {
                 var stream = ToStream();
 
-                return ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                result = ReplaceResult.CreateSuccessResult(new ReplaceResultData
                 {
                     Context = this,
                     InputStream = stream,
                     OutputStream = stream
                 });
             }
-
-            var result = PdfInputRender.TextReplacementsRender(this);
-
-            if (AutoUpdateChanges)
+            else
             {
-                Input = result.Result.OutputStream;
+                result = PdfInputRender.TextReplacementsRender(this);
+
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
+            }
+
+            // Inserts
+            var hasInsertItems = PdfInputCache.Cache.AnyInserts(this);
+            if (hasInsertItems)
+            {
+                result = PdfInputRender.InsertsRender(this);
+
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
+            }
+
+            // Sets
+            var hasSetItems = PdfInputCache.Cache.AnySets(this);
+            if (hasSetItems)
+            {
+                result = PdfInputRender.SetsRender(this);
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
             }
 
             return result;
         }
-
-        #endregion
-
-        #region private methods
-
-        private InsertResult InsertImplStrategy(IInsert data, IInput context)
-            => data == null ? InsertResult.CreateErroResult("Missing data") : data.Apply(ToStream(), context);
-
-        private SetResult SetImplStrategy(ISet data, IInput context)
-            => data == null ? SetResult.CreateErroResult("Missing data") : data.Apply(ToStream(), context);
 
         #endregion
     }
