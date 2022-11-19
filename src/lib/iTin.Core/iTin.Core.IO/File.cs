@@ -22,11 +22,14 @@ namespace iTin.Core.IO
     public static class File
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const string TempDirectoryName = "iTin";
+
         #endregion
 
         #region public static properties
+
         /// <summary>
         /// Gets the <b>iTin</b> temporary directory.
         /// </summary>
@@ -37,17 +40,17 @@ namespace iTin.Core.IO
         {
             get
             {
-                string tempFullPath = NativePath.GetTempPath();
-                string tempDirectory = NativePath.Combine(tempFullPath, TempDirectoryName);
+                var tempFullPath = NativePath.GetTempPath();
+                var tempDirectory = NativePath.Combine(tempFullPath, TempDirectoryName);
 
                 return tempDirectory;
             }
         }
+
         #endregion
 
         #region public static methods
 
-        #region [public] {static} (void) CleanOrCreateTemporaryDirectory(): Clean or create temporary work directory
         /// <summary>
         /// Clean or create temporary work directory.
         /// </summary>
@@ -58,8 +61,8 @@ namespace iTin.Core.IO
             Logger.Instance.Debug(" Clean or create temporary work directory");
             Logger.Instance.Debug(" > Signature: (void) CleanOrCreateTemporaryDirectory()");
 
-            string tempDirectory = TempDirectoryFullName;
-            bool existTempDirectory = NativeDirectory.Exists(tempDirectory);
+            var tempDirectory = TempDirectoryFullName;
+            var existTempDirectory = NativeDirectory.Exists(tempDirectory);
             if (existTempDirectory)
             {
                 try
@@ -77,9 +80,7 @@ namespace iTin.Core.IO
                 Logger.Instance.Debug("  > Temporary directory has been created");
             }
         }
-        #endregion
 
-        #region [public] {static} (void) CopyFiles(string, string, string, bool): Copies specified files from source to target directory
         /// <summary>
         /// Copies the files.
         /// </summary>
@@ -113,9 +114,7 @@ namespace iTin.Core.IO
 
             Logger.Instance.Debug($"  > Output: Has been copied correctly from {sourceDirectory} to {targetDirectory}");
         }
-        #endregion
 
-        #region [public] {static} (void) DeleteTemporaryOutputFiles(): Removes the directory and intermediates files
         /// <summary>
         /// Removes the directory and intermediates files.
         /// </summary>
@@ -126,9 +125,9 @@ namespace iTin.Core.IO
             Logger.Instance.Debug(" Removes the directory and intermediates files");
             Logger.Instance.Debug(" > Signature: (void) DeleteTemporaryOutputFiles()");
 
-            string tempDirectory = TempDirectoryFullName;
+            var tempDirectory = TempDirectoryFullName;
 
-            bool existTempDirectory = NativeDirectory.Exists(tempDirectory);
+            var existTempDirectory = NativeDirectory.Exists(tempDirectory);
             if (!existTempDirectory)
             {
                 Logger.Instance.Debug("  > Output: Nothing to do, temp directory not exist");
@@ -145,9 +144,7 @@ namespace iTin.Core.IO
             {
             }
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<string>) GetFiles(string, string, int): Returns a collection that contains all files in a folder with the specified criterial
         /// <summary>
         /// Returns a collection that contains all files in a folder with the specified criterial.
         /// </summary>
@@ -167,15 +164,15 @@ namespace iTin.Core.IO
             Logger.Instance.Debug($"   > criterial: {criterial}");
             Logger.Instance.Debug($"   > timeThreshold: {timeThreshold}");
 
-            Collection<string> files = new Collection<string>();
+            var files = new Collection<string>();
 
             Array.ForEach(
                 NativeDirectory.GetFiles(folder, criterial, NativeIO.SearchOption.TopDirectoryOnly),
                 file =>
                 {
-                    DateTime currentTime = DateTime.Now;
-                    DateTime lastWriteTime = NativeFile.GetLastWriteTime(file);
-                    double diff = currentTime.Subtract(lastWriteTime).TotalSeconds;
+                    var currentTime = DateTime.Now;
+                    var lastWriteTime = NativeFile.GetLastWriteTime(file);
+                    var diff = currentTime.Subtract(lastWriteTime).TotalSeconds;
                     if (diff >= timeThreshold)
                     {
                         files.Add(NativePath.GetFileName(file));
@@ -186,9 +183,7 @@ namespace iTin.Core.IO
 
             return files;
         }
-        #endregion
 
-        #region [public] {static} (Uri) GetUniqueTempRandomFile(): Returns a temp Uri
         /// <summary>
         /// Returns a temp <see cref="T:System.Uri"/>.
         /// </summary>
@@ -202,17 +197,15 @@ namespace iTin.Core.IO
             Logger.Instance.Debug($" Returns a temp {typeof(Uri)}");
             Logger.Instance.Debug($" > Signature: ({typeof(Uri)}) GetUniqueTempRandomFile()");
 
-            string tempPath = NativePath.GetTempPath();
-            string randomFileName = NativePath.GetRandomFileName();
-            string path = NativePath.Combine(tempPath, randomFileName);
+            var tempPath = NativePath.GetTempPath();
+            var randomFileName = NativePath.GetRandomFileName();
+            var path = NativePath.Combine(tempPath, randomFileName);
 
             Logger.Instance.Debug($"  > Output: {path}");
 
             return new Uri(path);
         }
-        #endregion
 
-        #region [public] {static} (bool) IsValidFileName(string): Determines whether specified filename is a valid name for a file
         /// <summary>
         /// Determines whether <paramref name="name"/> is a valid name for a file.
         /// </summary>
@@ -228,14 +221,12 @@ namespace iTin.Core.IO
             Logger.Instance.Debug($" > Signature: ({typeof(bool)}) IsValidFileName({typeof(string)})");
             Logger.Instance.Debug($"   > name: {name}");
 
-            bool result = NativePath.GetInvalidFileNameChars().All(c => !name.Contains(c.ToString(CultureInfo.InvariantCulture)));
+            var result = NativePath.GetInvalidFileNameChars().All(c => !name.Contains(c.ToString(CultureInfo.InvariantCulture)));
             Logger.Instance.Debug($"  > Output: {result}");
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<string>) GetFilesWithoutExtension(string, string, int): Returns a collection that contains all files without extension in a folder with the specified criterial
         /// <summary>
         /// Returns a collection that contains all files without extension in a folder with the specified criterial.
         /// </summary>
@@ -255,15 +246,15 @@ namespace iTin.Core.IO
             Logger.Instance.Debug($"   > criterial: {criterial}");
             Logger.Instance.Debug($"   > timeThreshold: {timeThreshold}");
 
-            Collection<string> files = new Collection<string>();
+            var files = new Collection<string>();
 
             Array.ForEach(
                 NativeDirectory.GetFiles(folder, criterial, NativeIO.SearchOption.TopDirectoryOnly),
                 file =>
                 {
-                    DateTime currentTime = DateTime.Now;
-                    DateTime lastWriteTime = NativeFile.GetLastWriteTime(file);
-                    double diff = currentTime.Subtract(lastWriteTime).TotalSeconds;
+                    var currentTime = DateTime.Now;
+                    var lastWriteTime = NativeFile.GetLastWriteTime(file);
+                    var diff = currentTime.Subtract(lastWriteTime).TotalSeconds;
                     if (diff >= timeThreshold)
                     {
                         files.Add(NativePath.GetFileNameWithoutExtension(file));
@@ -274,9 +265,7 @@ namespace iTin.Core.IO
 
             return files;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsUrl(string): Gets a value indicating whether the specified path is a web address
         /// <summary>
         /// Gets a value indicating whether the specified <b><paramref name="path" /></b> is a web address.
         /// </summary>
@@ -299,14 +288,12 @@ namespace iTin.Core.IO
                 return false;
             }
 
-            bool result = path.IndexOf("://", StringComparison.Ordinal) > 0;
+            var result = path.IndexOf("://", StringComparison.Ordinal) > 0;
             Logger.Instance.Debug($"  > Output: {result}");
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (Uri) ToUri(string): This method makes a valid URL from a given filename
         /// <summary>
         /// This method makes a valid URL from a given filename.
         /// </summary>
@@ -338,7 +325,6 @@ namespace iTin.Core.IO
                 return result;
             }
         }
-        #endregion
 
         #endregion
     }

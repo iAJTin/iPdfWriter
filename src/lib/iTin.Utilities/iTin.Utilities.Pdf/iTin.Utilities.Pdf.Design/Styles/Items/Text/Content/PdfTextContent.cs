@@ -18,27 +18,26 @@ namespace iTin.Utilities.Pdf.Design.Styles
     public partial class PdfTextContent
     {
         #region private field members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private PdfTextContentAlignment _alignment;
+
         #endregion
 
         #region public new readonly static properties
 
-        #region [public] {new} {static} (PdfTextContent) Default: Returns a new instance containing a default text content style settings
         /// <summary>
         /// Returns a new instance containing a default text content style settings.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTextContent"/> reference containing the default text content style settings.
         /// </value>
-        public new static PdfTextContent Default => new PdfTextContent();
-        #endregion
+        public new static PdfTextContent Default => new();
 
         #endregion
 
         #region public new readonly properties
 
-        #region [public] {new} (bool) AlignmentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -50,13 +49,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public new bool AlignmentSpecified => !Alignment.IsDefault;
-        #endregion
 
         #endregion
 
         #region public new properties
 
-        #region [public] {new} (PdfTextContentAlignment) Alignment: Gets or sets content distribution
         /// <summary>
         /// Gets or sets content distribution.
         /// </summary>
@@ -68,7 +65,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
         public new PdfTextContentAlignment Alignment
         {
-            get => _alignment ?? (_alignment = PdfTextContentAlignment.Default);
+            get => _alignment ??= PdfTextContentAlignment.Default;
             set
             {
                 if (value != null)
@@ -77,13 +74,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 }
             }
         }
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -91,14 +86,14 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public override bool IsDefault => base.IsDefault && Alignment.IsDefault;
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault && 
+            Alignment.IsDefault;
 
         #endregion
 
         #region public new methods
 
-        #region [public] {new} (PdfTextContent) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -113,13 +108,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return cloned;
         }
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) ApplyOptions(PdfTextContentOptions): Apply specified options to this alignment
         /// <summary>
         /// Apply specified options to this alignment.
         /// </summary>
@@ -157,9 +150,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Alignment.ApplyOptions(options.Alignment);
             #endregion
         }
-        #endregion
 
-        #region [public] {virtual} (void) Combine(PdfTextContent): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -175,7 +166,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             Alignment.Combine(reference.Alignment);
         }
-        #endregion
 
         #endregion
     }

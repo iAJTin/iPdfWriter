@@ -11,20 +11,23 @@ namespace iTin.Utilities.Pdf.Design.Table
     public sealed class PdfTableConfig : ICloneable
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const TableHeightStrategy DefaultHeightStrategy = TableHeightStrategy.Exact;
+
         #endregion
 
         #region public static members
+
         /// <summary>
         /// Defaults configuration. Transparent background is not used.
         /// </summary>
-        public static readonly PdfTableConfig Default = new PdfTableConfig();
+        public static readonly PdfTableConfig Default = new();
+
         #endregion
 
         #region constructor/s
 
-        #region [public] PdfTableConfig(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTableConfig"/> class.
         /// </summary>
@@ -32,7 +35,6 @@ namespace iTin.Utilities.Pdf.Design.Table
         {
             HeightStrategy = DefaultHeightStrategy;
         }
-        #endregion
 
         #endregion
 
@@ -42,7 +44,6 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -51,7 +52,6 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -61,7 +61,6 @@ namespace iTin.Utilities.Pdf.Design.Table
 
         #region public properties
 
-        #region [public] (TableHeightStrategy) HeightStrategy: Gets or sets a value that indicates the strategy to determine the height of the table to insert
         /// <summary>
         /// Gets or sets a value that indicates the strategy to determine the height of the table to insert. The default value is <see cref="TableHeightStrategy.Exact"/>.
         /// </summary>
@@ -70,36 +69,32 @@ namespace iTin.Utilities.Pdf.Design.Table
         /// </value>
         [DefaultValue(DefaultHeightStrategy)]
         public TableHeightStrategy HeightStrategy { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfTableConfig) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>
         /// A new object that is a copy of this instance.
         /// </returns>
-        public PdfTableConfig Clone() => (PdfTableConfig)MemberwiseClone();
-
-        #endregion
+        public PdfTableConfig Clone() => 
+            (PdfTableConfig)MemberwiseClone();
 
         #endregion
 
         #region public override methods
 
-        #region [public] {override} (string) ToString(): Returns a string than represents the current instance
         /// <summary>
         /// Returns a string that represents the current instance.
         /// </summary>
         /// <returns>
         /// A <see cref="string"/> than represents the current instance.
         /// </returns>
-        public override string ToString() => $"HeightStrategy = {HeightStrategy}";
-        #endregion
+        public override string ToString() => 
+            $"HeightStrategy = {HeightStrategy}";
 
         #endregion
     }

@@ -12,7 +12,6 @@ namespace iTin.Core
     /// </summary> 
     public static class GenericExtensions
     {
-        #region [public] {static} (T) If<T>(this T, Func<T, bool>, Func<T, T>): Executes a function if a given predicate is true
         /// <summary>
         /// Executes a function if a given predicate is <b>true</b>.
         /// </summary>
@@ -45,9 +44,7 @@ namespace iTin.Core
             Logger.Instance.Debug($"  > Output: {val}");
             return val;
         }
-        #endregion
 
-        #region [public] {static} (bool) In<T>(this T, T[]): Determines weather values are into list
         /// <summary>
         /// Determines weather values are into list.
         /// </summary>
@@ -71,9 +68,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (bool) In<T>(this T, IEnumerable<T>): Determines weather values are into list
         /// <summary>
         /// Determines weather values are into list.
         /// </summary>
@@ -83,7 +78,17 @@ namespace iTin.Core
         /// <returns>
         /// <b>true</b> if values are into list; Otherwise, <b>false</b>.
         /// </returns>
-        public static bool In<T>(this T source, IEnumerable<T> values) => source.In(values.ToArray());
-        #endregion
+        public static bool In<T>(this T source, IEnumerable<T> values) => 
+            source.In(values.ToArray());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="f"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <returns></returns>
+        public static TResult Pipe<T, TResult>(this T x, in Func<T, TResult> f) => f(x);
     }
 }

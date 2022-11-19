@@ -18,7 +18,6 @@ namespace iTin.Core
     /// </summary> 
     public static class ByteArrayExtensions
     {
-        #region [public] {static} (long) GetQuadrupleWord(this byte[], byte): Returns a quadriple Word from this array of bytes starting in start.
         /// <summary>
         /// Returns a <b>Quadriple Word</b> from this array of bytes starting in <paramref name="start"/>.
         /// </summary>
@@ -45,9 +44,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (MemoryStream) ToMemoryStream(this byte[]): Returns a MemoryStream from this byte array.
         /// <summary>
         /// Returns a <see cref="T:System.IO.MemoryStream"/> from this byte array.
         /// </summary>
@@ -70,9 +67,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) ToPrintableString(this byte[], Encoding = null): Returns a printable string from this byte array
         /// <summary>
         /// Returns a printable <see cref="string"/> from this byte array.
         /// </summary>
@@ -105,11 +100,9 @@ namespace iTin.Core
 
             return builder.ToString();
         }
-        #endregion
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
-        #region [public] {static} (int) GetDoubleWord(this byte[], byte): Returns a double Word from this array of bytes starting in start.
         /// <summary>
         /// Returns a <b>Double Word</b> from this array of bytes starting in <paramref name="start"/>.
         /// </summary>
@@ -142,9 +135,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (int) GetWord(this byte[], byte): Returns a Word from this array of bytes starting in start.
         /// <summary>
         /// Returns a <b>Word</b> from this array of bytes starting in <paramref name="start"/>. ( { a, b, n, n + 1, ...}, n ) => (n + 1, n)
         /// </summary>
@@ -174,11 +165,9 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
 #else
 
-        #region [public] {static} (int) GetDoubleWord(this byte[], byte): Returns a double Word from this array of bytes starting in start.
         /// <summary>
         /// Returns a <b>Double Word</b> from this array of bytes starting in <paramref name="start"/>.
         /// </summary>
@@ -205,9 +194,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (int) GetWord(this byte[], byte): Returns a Word from this array of bytes starting in start.
         /// <summary>
         /// Returns a <b>Word</b> from this array of bytes starting in <paramref name="start"/>. ( { a, b, n, n + 1, ...}, n ) => (n + 1, n)
         /// </summary>
@@ -234,11 +221,9 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
 #endif
 
-        #region [public] {static} (byte[]) Swap(this byte[]): Returns an array of bytes by exchanging bytes.
         /// <summary>
         /// Returns an array of bytes by exchanging bytes.
         /// </summary>
@@ -267,6 +252,5 @@ namespace iTin.Core
 
             return data;
         }
-        #endregion
     }
 }

@@ -20,7 +20,8 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// A new invalid <see cref="QueryPropertyResult"/> with specified detailed error.
         /// </returns>
-        public static QueryPropertyResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public new static QueryPropertyResult CreateErrorResult(string message, string code = "") => 
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
         /// <summary>
         /// Returns a new <see cref="QueryPropertyResult"/> with specified detailed error.
@@ -31,7 +32,8 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// A new invalid <see cref="QueryPropertyResult"/> with specified detailed error.
         /// </returns>
-        public static QueryPropertyResult CreateErroResult(string message, PropertyItem result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
+        public new static QueryPropertyResult CreateErrorResult(string message, PropertyItem result, string code = "") => 
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
 
         /// <summary>
         /// Returns a new <see cref="QueryPropertyResult"/> with specified detailed errors collection.
@@ -40,7 +42,7 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// A new invalid <see cref="QueryPropertyResult"/> with specified detailed errors collection.
         /// </returns>
-        public static QueryPropertyResult CreateErroResult(IResultError[] errors) =>
+        public new static QueryPropertyResult CreateErrorResult(IResultError[] errors) =>
             new QueryPropertyResult
             {
                 Result = default,
@@ -56,7 +58,7 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// A new invalid <see cref="QueryPropertyResult"/> with specified detailed errors collection.
         /// </returns>
-        public static QueryPropertyResult CreateErroResult(IResultError[] errors, PropertyItem result) =>
+        public new static QueryPropertyResult CreateErrorResult(IResultError[] errors, PropertyItem result) =>
             new QueryPropertyResult
             {
                 Result = result,
@@ -86,7 +88,8 @@ namespace iTin.Core.Hardware.Common
         /// <returns>
         /// A new <see cref="QueryPropertyResult"/> instance for specified exception.
         /// </returns>
-        public new static QueryPropertyResult FromException(System.Exception exception) => FromException(exception, default);
+        public new static QueryPropertyResult FromException(System.Exception exception) => 
+            FromException(exception, default);
 
         /// <summary>
         /// Creates a new <see cref="QueryPropertyResult"/> instance from known exception.

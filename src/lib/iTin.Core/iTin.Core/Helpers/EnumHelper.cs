@@ -25,11 +25,11 @@ namespace iTin.Core.Helpers
                 return null;
             }
 
-            return
-                Enum
-                    .GetValues(t)
-                    .Cast<Enum>()
-                    .FirstOrDefault(item => string.Equals(item.GetDescription(), descriptionEnum, StringComparison.InvariantCultureIgnoreCase));
+            return Enum
+                .GetValues(t)
+                .Cast<Enum>()
+                .FirstOrDefault(item => 
+                    string.Equals(item.GetDescription(), descriptionEnum, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>
@@ -60,7 +60,10 @@ namespace iTin.Core.Helpers
         public static IEnumerable<string> CreateListFromEnumDescriptionAttributes<T>() where T : struct
         {
             Type t = typeof(T);
-            return !t.IsEnum ? null : Enum.GetValues(t).Cast<Enum>().Select(item => item.GetDescription()).ToList();
+
+            return !t.IsEnum 
+                ? null 
+                : Enum.GetValues(t).Cast<Enum>().Select(item => item.GetDescription()).ToList();
         }
 
         /// <summary>
@@ -69,10 +72,8 @@ namespace iTin.Core.Helpers
         /// <returns>
         /// A new <see cref="T:System.Collections.Generic.IEnumerable{string}" /> that contains enum values of enumerated type.
         /// </returns>
-        public static IEnumerable<string> CreateListFromEnumValues<T>() where T : struct
-        {
-            return Enum.GetNames(typeof(T)).ToList();
-        }
+        public static IEnumerable<string> CreateListFromEnumValues<T>() where T : struct => 
+            Enum.GetNames(typeof(T)).ToList();
 
         /// <summary>
         /// Returns a <see cref="T:System.Collections.Generic.IEnumerable{int}" /> that contains enum values of enumerated type as integer values.
@@ -80,9 +81,7 @@ namespace iTin.Core.Helpers
         /// <returns>
         /// A new <see cref="T:System.Collections.Generic.IEnumerable{int}" /> that contains enum values of enumerated type as integer values.
         /// </returns>
-        public static IEnumerable<int> CreateListFromEnumValuesValues<T>()
-        {
-            return  Enum.GetValues(typeof(T)).Cast<int>().ToList();
-        }       
+        public static IEnumerable<int> CreateListFromEnumValuesValues<T>() => 
+            Enum.GetValues(typeof(T)).Cast<int>().ToList();
     }
 }

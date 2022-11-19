@@ -10,6 +10,7 @@ using iTextSharp.text.pdf;
 
 using iTin.Core.ComponentModel;
 using iTin.Core.ComponentModel.Results;
+
 using iTin.Hardware.Abstractions.Devices.Graphics.Font;
 
 using iTinIO = iTin.Core.IO;
@@ -22,15 +23,16 @@ namespace iTin.Utilities.Pdf.Writer
     public static class PdfFonts
     {
         #region public static readonly members
+
         /// <summary>
         /// 
         /// </summary>
         public static readonly Dictionary<string, Font> Fonts = new();
+
         #endregion
 
         #region public static members
 
-        #region [public] {static} (StringArrayResult) RegisterFont(string, string): Returns a new StringArrayResult reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered
         /// <summary>
         /// Returns a new <see cref="StringArrayResult"/> reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered.
         /// </summary>
@@ -66,9 +68,7 @@ namespace iTin.Utilities.Pdf.Writer
             return result;
 
         }
-        #endregion
 
-        #region [public] {static} (StringArrayResult) RegisterFonts(string[], string[]): Returns a new StringArrayResult reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered
         /// <summary>
         /// Returns a new <see cref="StringArrayResult"/> reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered.
         /// </summary>
@@ -111,7 +111,6 @@ namespace iTin.Utilities.Pdf.Writer
                 ? StringArrayResult.CreateSuccessResult((string[])installedFontNames.ToArray().Clone())
                 : StringArrayResult.CreateErrorResult((IResultError[])notInstalledFontErrors.ToArray().Clone());
         }
-        #endregion
 
         #endregion
 

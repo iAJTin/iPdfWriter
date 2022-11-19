@@ -16,17 +16,15 @@ namespace iTin.Core
     /// </summary> 
     public static class EnumerableExtensions
     {
-        #region [public] {static} (IEnumerable<string>) AsHexadecimal(This IEnumerable<byte>): Returns the target enumerable of bytes as hexadecimal representation
         /// <summary>
         /// Returns the target enumerable of bytes as hexadecimal representation.
         /// </summary>
         /// <returns>
         /// An new <see cref="IEnumerable{T}" /> where <b>T</b> is a <see cref="string"/> typed from <see cref="IEnumerable"/> of bytes.
         /// </returns>
-        public static IEnumerable<string> AsHexadecimal(this IEnumerable<byte> value) => new ReadOnlyCollection<string>(value.Select(item => $"{item:x2}").ToList());
-        #endregion
+        public static IEnumerable<string> AsHexadecimal(this IEnumerable<byte> value) 
+            => new ReadOnlyCollection<string>(value.Select(item => $"{item:x2}").ToList());
 
-        #region [public] {static} (IEnumerable<double?>) Average>(this IEnumerable<IEnumerable<int>>): Computes the average for all series
         /// <summary>
         /// Computes the average for all series.
         /// </summary>
@@ -45,9 +43,7 @@ namespace iTin.Core
 
             return averages;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<float?>) Average>(this IEnumerable<IEnumerable<float>>): Computes the average for all series
         /// <summary>
         /// Computes the average for all series.
         /// </summary>
@@ -66,9 +62,7 @@ namespace iTin.Core
 
             return averages;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<double?>) Average>(this IEnumerable<IEnumerable<long>>): Computes the average for all series
         /// <summary>
         /// Computes the average for all series.
         /// </summary>
@@ -87,9 +81,7 @@ namespace iTin.Core
 
             return averages;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T> Clone<T>(this IEnumerable<T>) where T : ICloneable: Clones collection
         /// <summary>
         /// Clones collection
         /// </summary>
@@ -104,11 +96,18 @@ namespace iTin.Core
             Logger.Instance.Debug($" > Signature: ({typeof(IEnumerable<T>)}) Clone<{typeof(T)}>(this {typeof(IEnumerable<T>)}) where {typeof(T)} : {typeof(ICloneable)}");
             Logger.Instance.Debug($"   > collection: {collection}");
 
-            return collection.Select(item => (T)item.Clone()).ToList();
+            return collection.Select(item => (T) item.Clone());
         }
-        #endregion
 
-        #region [public] {static} (List<T>) ExchangeElement<T>(this IEnumerable<T>, T, int): Moves specified item to new position
+        /// <summary>
+        /// Returns an empty enumerable if <paramref name="data"/> is <b>null</b>
+        /// </summary>
+        /// <typeparam name="T">Type of collection</typeparam>
+        /// <param name="data">The sequence.</param>
+        /// <returns>If data is <b>null</b> returns an empty IEnumerable&lt;T&gt;; Otherwise returns <paramref name="data"/> value.</returns>
+        public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T> data) => 
+            data ?? Enumerable.Empty<T>();
+
         /// <summary>
         /// Moves specified item to new position.
         /// </summary>
@@ -155,9 +154,7 @@ namespace iTin.Core
 
             return list;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) Extract<T>(this IEnumerable<T>, byte): Extracts the specified sequence
         /// <summary>
         /// Extracts the specified sequence.
         /// </summary>
@@ -178,9 +175,7 @@ namespace iTin.Core
 
             return sequence.Skip(start);
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) Extract<T>(this IEnumerable<T>, byte, byte): Extracts the specified sequence
         /// <summary>
         /// Extracts the specified sequence.
         /// </summary>
@@ -199,14 +194,11 @@ namespace iTin.Core
             Logger.Instance.Debug($"   > start: {start}");
             Logger.Instance.Debug($"   > lenght: {lenght}");
 
-            return
-                 sequence
-                    .Skip(start)
-                    .TakeWhile((element, index) => index < lenght);
+            return sequence
+                .Skip(start)
+                .TakeWhile((element, index) => index < lenght);
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) Extract<T>(this IEnumerable<T>, byte, int): Extracts the specified sequence
         /// <summary>
         /// Extracts the specified sequence.
         /// </summary>
@@ -225,14 +217,11 @@ namespace iTin.Core
             Logger.Instance.Debug($"   > start: {start}");
             Logger.Instance.Debug($"   > lenght: {lenght}");
 
-            return
-                sequence
-                    .Skip(start)
-                    .TakeWhile((element, index) => index < lenght);
+            return sequence
+                .Skip(start)
+                .TakeWhile((element, index) => index < lenght);
         }
-        #endregion
 
-        #region [public] {static} (List<T>) ForEach<T>(this IEnumerable<T>, Action<T>): Executes an action for every item in the collection
         /// <summary>
         /// Executes an action for every item in the collection.
         /// </summary>
@@ -253,9 +242,7 @@ namespace iTin.Core
                 action(item);
             }
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) GetDuplicates<T>(this IEnumerable<T>): Executes an action for every item in the collection
         /// <summary>
         /// Gets the duplicates.
         /// </summary>
@@ -288,9 +275,7 @@ namespace iTin.Core
                 }
             }
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) GetDuplicates<T>(this IEnumerable<T>): Executes an action for every item in the collection
         /// <summary>
         /// Determines whether this instance has duplicates.
         /// </summary>
@@ -310,9 +295,7 @@ namespace iTin.Core
             IEnumerable<T> duplicates = source.GetDuplicates();
             return duplicates.Any();
         }
-        #endregion
 
-        #region [public] {static} (bool) IsNullOrEmpty<T>(this IEnumerable<T>): Indicates whether the specified IEnumerable collection is null or empty
         /// <summary>
         /// Indicates whether the specified IEnumerable collection is null or empty.
         /// </summary>
@@ -321,10 +304,9 @@ namespace iTin.Core
         /// <returns>
         /// <b>true</b> if the IEnumerable is null or empty; otherwise, <b>false</b>.
         /// </returns>
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T> items) => items == null || !items.Any();
-        #endregion
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> items) => 
+            items == null || !items.Any();
 
-        #region [public] {static} (Dictionary<TFirstKey, Dictionary<TSecondKey, TValue>>) Pivot<TSource, TFirstKey, TSecondKey, TValue>)(this IEnumerable<TSource>, Func<TSource, TFirstKey>, Func<TSource, TSecondKey>, Func<IEnumerable<TSource>, TValue>): Pivots the specified first key selector
         /// <summary>
         /// Pivots the specified first key selector.
         /// </summary>
@@ -366,9 +348,7 @@ namespace iTin.Core
 
             return retVal;
         }
-        #endregion
 
-        #region [public] {static} (DataTable) ToDataTable<T>(This IEnumerable, string): Creates a new datatable from an IEnumerable type
         /// <summary>
         /// Creates a new datatable from an <see cref="T:System.Collections.IEnumerable"/>.
         /// </summary>
@@ -408,9 +388,7 @@ namespace iTin.Core
 
             return table;
         }
-        #endregion
 
-        #region [public] {static} (Dictionary<TKey, List<TValue>>) ToDictionary<TKey, TValue>(This IEnumerable<IGrouping<TKey, TValue>>): Performs a test on the method argument, and throws an exception of type ArgumentNullException with specified error message if is null
         /// <summary>
         /// Converts an enumeration of groupings into a Dictionary of those groupings.
         /// </summary>
@@ -428,9 +406,7 @@ namespace iTin.Core
 
             return groupings.ToDictionary(group => group.Key, group => group.ToList());
         }
-        #endregion
 
-        #region [public] {static} (ObservableCollection<T>) ToObservableCollection<T>(This IEnumerable<T>): Creates a new observable collection from an IEnumerable
         /// <summary>
         /// Creates a new observable collection from an <see cref="T:System.Collections.IEnumerable"/>.
         /// </summary>
@@ -448,9 +424,7 @@ namespace iTin.Core
 
             return new ObservableCollection<T>(source);
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<T>) Yield<T>)(this T): Wraps this object instance into an IEnumerable<T> consisting of a single item
         /// <summary>
         /// Wraps this object instance into an <see cref="IEnumerable{T}"/> consisting of a single item.
         /// </summary>
@@ -463,6 +437,5 @@ namespace iTin.Core
         {
             yield return item;
         }
-        #endregion
     }
 }

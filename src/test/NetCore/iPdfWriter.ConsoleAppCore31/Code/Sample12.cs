@@ -1,22 +1,20 @@
 ﻿
+using iTin.Core.ComponentModel;
+using iTin.Core.Models;
+using iTin.Core.Models.Design.Enums;
+using iTin.Core.Models.Design.Styling;
+
+using iTin.Logging.ComponentModel;
+
+using iTin.Utilities.Pdf.Design.Styles;
+
 namespace iPdfWriter.Code
 {
-    using iTin.Core.ComponentModel;
-
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Core.Models;
-    using iTin.Core.Models.Design.Enums;
-    using iTin.Core.Models.Design.Styling;
-
-    using iTin.Utilities.Pdf.Design.Styles;
-
     /// <summary>
     /// Shows the use of how serialize and deserialize text, image and table styles.
     /// </summary>
     internal static class Sample12
     {
-        // Generates document
         public static void Generate(ILogger logger)
         {
             #region image style
@@ -28,8 +26,8 @@ namespace iPdfWriter.Code
                 Name = "ImageStyle",
                 Borders =
                 {
-                    new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
-                    new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+                    new BaseBorder { Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right },
+                    new BaseBorder { Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top }
                 },
                 Content =
                 {
@@ -40,8 +38,8 @@ namespace iPdfWriter.Code
                     },
                     Properties = new Properties
                     {
-                        new Property {Name = "p001", Value = "v001"},
-                        new Property {Name = "p002", Value = "v002"}
+                        new() { Name = "p001", Value = "v001" },
+                        new() { Name = "p002", Value = "v002" }
                     }
                 }
             };
@@ -101,8 +99,8 @@ namespace iPdfWriter.Code
                 },
                 Borders =
                 {
-                    new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
-                    new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+                    new BaseBorder { Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right },
+                    new BaseBorder { Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top }
                 },
                 Content =
                 {
@@ -114,8 +112,8 @@ namespace iPdfWriter.Code
                     },
                     Properties = new Properties
                     {
-                        new Property {Name = "p001", Value = "v001"},
-                        new Property {Name = "p002", Value = "v002"}
+                        new() { Name = "p001", Value = "v001" },
+                        new() { Name = "p002", Value = "v002" }
                     }
                 }
             };
@@ -172,8 +170,8 @@ namespace iPdfWriter.Code
                 },
                 Borders =
                 {
-                    new BaseBorder {Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right},
-                    new BaseBorder {Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top}
+                    new BaseBorder { Color = "Red", Show = YesNo.Yes, Position = KnownBorderPosition.Right },
+                    new BaseBorder { Color = "Yellow", Show = YesNo.Yes, Position = KnownBorderPosition.Top }
                 },
                 Content =
                 {
@@ -181,8 +179,8 @@ namespace iPdfWriter.Code
                     Show = YesNo.Yes,
                     Properties = new Properties
                     {
-                        new Property {Name = "p001", Value = "v001"},
-                        new Property {Name = "p002", Value = "v002"}
+                        new() { Name = "p001", Value = "v001" },
+                        new() { Name = "p002", Value = "v002" }
                     }
                 }
             };

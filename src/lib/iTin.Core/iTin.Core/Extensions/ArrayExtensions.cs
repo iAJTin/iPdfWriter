@@ -14,7 +14,6 @@ namespace iTin.Core
     {
         #region public static methods
 
-        #region [public] {static} (T[]) Append<T>(this T[], T): Add the element to the end of the array
         /// <summary>
         /// Add the element to the end of the array.
         /// </summary>
@@ -24,10 +23,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns a new array that contains the new element at the end.
         /// </returns>
-        public static T[] Append<T>(this T[] array, T item) => InsertAt(array, array.Length, item);
-        #endregion
+        public static T[] Append<T>(this T[] array, T item) =>
+            InsertAt(array, array.Length, item);
 
-        #region [public] {static} (T[]) Append<T>(this T[], T[]): Add an array of elements to the end of the array
         /// <summary>
         /// Add an array of elements to the end of the array.
         /// </summary>
@@ -37,10 +35,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns a new array that contains the new elements array at the end.
         /// </returns>
-        public static T[] Append<T>(this T[] array, T[] items) => InsertAt(array, array.Length, items);
-        #endregion
+        public static T[] Append<T>(this T[] array, T[] items) => 
+            InsertAt(array, array.Length, items);
 
-        #region [public] {static} (T[]) Copy<T>(this T[], int, int): Copy a set of elements from an array from the indicated position and length
         /// <summary>
         /// Copy a set of elements from an array from the indicated position and length.
         /// </summary>
@@ -75,9 +72,7 @@ namespace iTin.Core
             Array.Copy(array, start, newArray, 0, length);
             return newArray;
         }
-        #endregion
 
-        #region [public] {static} (T[]) InsertAt<T>(this T[], int, T): Insert an element in the array at the indicated position
         /// <summary>
         /// Insert an element in the array at the indicated position.
         /// </summary>
@@ -112,9 +107,7 @@ namespace iTin.Core
             newArray[position] = item;
             return newArray;
         }
-        #endregion
 
-        #region [public] {static} (T[]) InsertAt<T>(this T[], int, T[]): Insert an array of elements in the array from the indicated position
         /// <summary>
         /// Insert an array of elements in the array from the indicated position.
         /// </summary>
@@ -149,9 +142,7 @@ namespace iTin.Core
             items.CopyTo(newArray, position);
             return newArray;
         }
-        #endregion
 
-        #region [public] {static} (T[]) RemoveAt<T>(this T[], int): Remove an element from an array from the indicated position
         /// <summary>
         /// Remove an element from an array from the indicated position
         /// </summary>
@@ -161,10 +152,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns a new array that does not contain the indicated element.
         /// </returns>
-        public static T[] RemoveAt<T>(this T[] array, int position) => RemoveAt(array, position, 1);
-        #endregion
+        public static T[] RemoveAt<T>(this T[] array, int position) => 
+            RemoveAt(array, position, 1);
 
-        #region [public] {static} (T[]) RemoveAt<T>(this T[], int, int): Remove an array of elements from an array from the indicated position and length
         /// <summary>
         /// Remove an array of elements from an array from the indicated position and length.
         /// </summary>
@@ -203,9 +193,7 @@ namespace iTin.Core
 
             return newArray;
         }
-        #endregion
 
-        #region [public] {static} (T[]) ReplaceAt<T>(this T[], int, T): Replace an element in the array at the indicated position
         /// <summary>
         /// Replace an element in the array at the indicated position.
         /// </summary>
@@ -231,9 +219,7 @@ namespace iTin.Core
             newArray[position] = item;
             return newArray;
         }
-        #endregion
 
-        #region [public] {static} (T[]) ReplaceAt<T>(this T[], int, int, T[]): Replace an element in the array at the indicated position
         /// <summary>
         /// Replace a set of elements in the array at the indicated position.
         /// </summary>
@@ -245,10 +231,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns a new array that contains the new array content.
         /// </returns>
-        public static T[] ReplaceAt<T>(this T[] array, int position, int length, T[] items) => InsertAt(RemoveAt(array, position, length), position, items);
-        #endregion
+        public static T[] ReplaceAt<T>(this T[] array, int position, int length, T[] items) => 
+            InsertAt(RemoveAt(array, position, length), position, items);
 
-        #region [public] {static} (IEnumerable<T[]>) SliceArray<T>(this T[], int): Slice array
         /// <summary>
         /// Slice array
         /// </summary>
@@ -283,17 +268,14 @@ namespace iTin.Core
 
             return target.ToList();
         }
-        #endregion
 
         #endregion
 
         #region internal static methods
 
-        #region [internal] {static} (void) ReverseContents<T>(this T[]);
-        internal static void ReverseContents<T>(this T[] array) => ReverseContents(array, 0, array.Length);
-        #endregion
+        internal static void ReverseContents<T>(this T[] array) => 
+            ReverseContents(array, 0, array.Length);
 
-        #region [internal] {static} (void) ReverseContents<T>(this T[], int, int): 
         internal static void ReverseContents<T>(this T[] array, int start, int count)
         {
             int end = start + count - 1;
@@ -304,7 +286,6 @@ namespace iTin.Core
                 array[j] = tmp;
             }
         }
-        #endregion
 
         #endregion
     }

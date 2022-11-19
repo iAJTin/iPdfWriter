@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>iTin.Utilities.Pdf.Writer</RootNamespace>
+    <AssemblyName>iTin.Utilities.Pdf.Writer.NetCore.Extensions</AssemblyName>
+    <PackageId>iTin.Utilities.Pdf.Writer.NetCore.Extensions</PackageId>
+    <Version>1.0.0.0</Version>
+    <Authors>iTin</Authors>
+    <Company>iTin</Company>
+    <Product>iTin.Utilities.Pdf.Writer.NetCore.Extensions</Product>
+    <Description>Contains PdfInput class extensions for netcore apps</Description>
+    <Copyright>Copyright © 2022</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.IO\iTin.Core.IO.csproj" />
+    <ProjectReference Include="..\..\iTin.Utilities.Abstractions\iTin.Utilities.Writer.Abstractions.csproj" />
+    <ProjectReference Include="..\iTin.Utilities.Pdf.Writer.AspNetCore\iTin.Utilities.Pdf.Writer.AspNetCore.csproj" />
+    <ProjectReference Include="..\iTin.Utilities.Pdf.Writer\iTin.Utilities.Pdf.Writer.csproj" />
+  </ItemGroup>
+
+</Project>

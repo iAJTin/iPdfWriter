@@ -17,7 +17,6 @@ namespace iTin.Core.Drawing
     /// </summary> 
     public static class ImageExtensions
     {
-        #region [public] {static} (Image) AdjustBrightness(this Image, int): Adjusts the brightness of Image
         /// <summary>
         /// Adjusts the brightness of <see cref="Image"/>.
         /// </summary>
@@ -106,10 +105,8 @@ namespace iTin.Core.Drawing
             imgAgtEmp1.Dispose();
             return imgAgtEmp2;
         }
-        #endregion
 
 
-        #region [public] {static} (Image) ApplyEffect(this Image, IEffect): Returns a new image with the specified effect
         /// <summary>
         /// Returns a new <see cref="Image"/> with the specified effect.
         /// </summary>
@@ -122,28 +119,23 @@ namespace iTin.Core.Drawing
         {
             SentinelHelper.ArgumentNull(image, nameof(image));
 
-            Image imageWithEffect;
-            using (var bmp = new Bitmap(image.Width, image.Height))
-            using (var graphics = Graphics.FromImage(bmp))
-            {
-                bmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-                graphics.DrawImage(
-                    image,
-                    new Rectangle(0, 0, bmp.Width, bmp.Height),
-                    0,
-                    0,
-                    bmp.Width,
-                    bmp.Height,
-                    GraphicsUnit.Pixel,
-                    effect.Apply());
-                imageWithEffect = (Image)bmp.Clone();
-            }
+            using var bmp = new Bitmap(image.Width, image.Height);
+            using var graphics = Graphics.FromImage(bmp);
+            bmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+            graphics.DrawImage(
+                image,
+                new Rectangle(0, 0, bmp.Width, bmp.Height),
+                0,
+                0,
+                bmp.Width,
+                bmp.Height,
+                GraphicsUnit.Pixel,
+                effect.Apply());
+            var imageWithEffect = (Image)bmp.Clone();
 
             return imageWithEffect;
         }
-        #endregion
 
-        #region [public] {static} (Image) ApplyEffect(this Image, EffectType): Returns a new Image with the specified effect
         /// <summary>
         /// Returns a new <see cref="Image"/> with the specified effect.
         /// </summary>
@@ -156,28 +148,23 @@ namespace iTin.Core.Drawing
         {
             SentinelHelper.ArgumentNull(image, nameof(image));
 
-            Image imageWithEffect;
-            using (var bmp = new Bitmap(image.Width, image.Height))
-            using (var graphics = Graphics.FromImage(bmp))
-            {
-                bmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-                graphics.DrawImage(
-                    image,
-                    new Rectangle(0, 0, bmp.Width, bmp.Height),
-                    0,
-                    0,
-                    bmp.Width,
-                    bmp.Height,
-                    GraphicsUnit.Pixel,
-                    ImageHelper.GetImageAttributesFromEffect(effect));
-                imageWithEffect = (Image)bmp.Clone();
-            }
+            using var bmp = new Bitmap(image.Width, image.Height);
+            using var graphics = Graphics.FromImage(bmp);
+            bmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+            graphics.DrawImage(
+                image,
+                new Rectangle(0, 0, bmp.Width, bmp.Height),
+                0,
+                0,
+                bmp.Width,
+                bmp.Height,
+                GraphicsUnit.Pixel,
+                ImageHelper.GetImageAttributesFromEffect(effect));
+            var imageWithEffect = (Image)bmp.Clone();
 
             return imageWithEffect;
         }
-        #endregion
 
-        #region [public] {static} (Image) ApplyEffects(this Image, IEffect[]): Returns a new Image with the specified effects
         /// <summary>
         /// Returns a new Image with the specified effects.
         /// </summary>
@@ -191,12 +178,10 @@ namespace iTin.Core.Drawing
             SentinelHelper.ArgumentNull(image, nameof(image));
             SentinelHelper.ArgumentNull(effects, nameof(effects));
 
-            Image imageWithEffect = (Image)image.Clone();
+            var imageWithEffect = (Image)image.Clone();
             return effects.Aggregate(imageWithEffect, (current, effect) => current.ApplyEffect(effect));
         }
-        #endregion
 
-        #region [public] {static} (Image) ApplyEffects(this Image, EffectType[]): Returns a new Image with the specified effects
         /// <summary>
         /// Returns a new Image with the specified effects.
         /// </summary>
@@ -210,13 +195,11 @@ namespace iTin.Core.Drawing
             SentinelHelper.ArgumentNull(image, nameof(image));
             SentinelHelper.ArgumentNull(effects, nameof(effects));
 
-            Image imageWithEffect = (Image)image.Clone();
+            var imageWithEffect = (Image)image.Clone();
             return effects.Aggregate(imageWithEffect, (current, e) => current.ApplyEffect(e));
         }
-        #endregion
 
 
-        #region [public] {static} (byte[]) AsByteArray(this Image): Converts an image as png into byte array
         /// <summary>
         /// Converts an <see cref="Image"/> as png into byte array.
         /// </summary>
@@ -224,10 +207,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Byte array.
         /// </returns>
-        public static byte[] AsByteArray(this Image image) => image.AsByteArray(ImageFormat.Png);
-        #endregion
+        public static byte[] AsByteArray(this Image image) => 
+            image.AsByteArray(ImageFormat.Png);
 
-        #region [public] {static} (byte[]) AsByteArray(this Image, ImageFormat): Converts an image with specified format into byte array
         /// <summary>
         /// Converts an <see cref="Image" /> into byte array.
         /// </summary>
@@ -236,11 +218,10 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Byte array.
         /// </returns>
-        public static byte[] AsByteArray(this Image image, ImageFormat format) => image.AsStream(format).AsByteArray();
-        #endregion
+        public static byte[] AsByteArray(this Image image, ImageFormat format) => 
+            image.AsStream(format).AsByteArray();
 
 
-        #region [public] {static} (Stream) AsStream(this Image): Returns a stream which represents the input image as png image format
         /// <summary>
         /// Returns a <see cref="Stream"/> which represents the input <see cref="Image"/> as png image format.
         /// </summary>
@@ -248,10 +229,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Stream.
         /// </returns>
-        public static Stream AsStream(this Image image) => image.AsStream(ImageFormat.Png);
-        #endregion
+        public static Stream AsStream(this Image image) => 
+            image.AsStream(ImageFormat.Png);
 
-        #region [public] {static} (Stream) AsStream(this Image, ImageFormat): Returns a stream which represents the input image with specified image format
         /// <summary>
         /// Returns a <see cref="Stream"/> which represents the input <see cref="Image"/> with specified image format.
         /// </summary>
@@ -262,15 +242,13 @@ namespace iTin.Core.Drawing
         /// </returns>
         public static Stream AsStream(this Image image, ImageFormat format)
         {
-            MemoryStream stream = new MemoryStream();
+            var stream = new MemoryStream();
             image.Save(stream, format);
             stream.Seek(0, SeekOrigin.Begin);
             return stream;
         }
-        #endregion
 
 
-        #region [public] {static} (Image) Flip(this Image, KnownFlipStyle): Returns a new image rotated by the specified orientation
         /// <summary>
         /// Returns a new <see cref="Image"/> rotated by the specified orientation.
         /// </summary>
@@ -310,10 +288,8 @@ namespace iTin.Core.Drawing
 
             return flipImage;
         }
-        #endregion
 
 
-        #region [public] {static} (Image) Rotate(this Image, KnownOrientation): Returns a new image rotated according to the specified orientation
         /// <summary>
         /// Returns a new <see cref="Image"/> rotated according to the specified orientation.
         /// </summary>
@@ -329,7 +305,7 @@ namespace iTin.Core.Drawing
                 return null;
             }
 
-            Image rotatedImage = (Image)image.Clone();
+            var rotatedImage = (Image)image.Clone();
             switch (orientation)
             {
                 case Orientation.Left:
@@ -351,28 +327,24 @@ namespace iTin.Core.Drawing
 
             return rotatedImage;
         }
-        #endregion
 
 
-        #region [public] {static} (Image) ScalePercent(this Image, float): Returns a new scaled image to a certain percentage
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> to a certain percentage
         /// </summary>
         /// <param name="image">Image to scale</param>
         /// <param name="percent">the scaling percentage</param>
-        public static Image ScalePercent(this Image image, float percent) => image.ScalePercent(percent, percent);
-        #endregion
+        public static Image ScalePercent(this Image image, float percent) => 
+            image.ScalePercent(percent, percent);
 
-        #region [public] {static} (Image) ScalePercent(this Image, SizeF): Returns a new image scaled to a certain percentage
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> to a certain percentage
         /// </summary>
         /// <param name="image">Image to scale</param>
         /// <param name="size">the scaling percentage of the width and height</param>
-        public static Image ScalePercent(this Image image, SizeF size) => image.ScalePercent(size.Width, size.Height);
-        #endregion
+        public static Image ScalePercent(this Image image, SizeF size) => 
+            image.ScalePercent(size.Width, size.Height);
 
-        #region [public] {static} (Image) ScalePercent(this Image, float, float): Returns a new image scaled to a certain percentage
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> to a certain percentage
         /// </summary>
@@ -421,11 +393,11 @@ namespace iTin.Core.Drawing
             int destHeight = (int)(sourceHeight * nPercent);
 
 
-            Bitmap bmPhoto = new Bitmap((int)percentX, (int)percentY, PixelFormat.Format24bppRgb);
+            var bmPhoto = new Bitmap((int)percentX, (int)percentY, PixelFormat.Format24bppRgb);
 
             bmPhoto.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            var grPhoto = Graphics.FromImage(bmPhoto);
             grPhoto.Clear(Color.Black);
             grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
@@ -439,28 +411,24 @@ namespace iTin.Core.Drawing
 
             return bmPhoto;
         }
-        #endregion
 
 
-        #region [public] {static} (Image) ScaleToFit(this Image, float): Returns a new scaled image so that it fits a certain width and height
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> so that it fits a certain width and height.
         /// </summary>
         /// <param name="image">Image to scale</param>
         /// <param name="percent">the scaling percentage</param>
-        public static Image ScaleToFit(this Image image, float percent) => image.ScalePercent(percent, percent);
-        #endregion
+        public static Image ScaleToFit(this Image image, float percent) => 
+            image.ScalePercent(percent, percent);
 
-        #region [public] {static} (Image) ScaleToFit(this Image, SizeF): Returns a new scaled image so that it fits a certain width and height
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> so that it fits a certain width and height.
         /// </summary>
         /// <param name="image">Image to scale</param>
         /// <param name="size">the width to fit</param>
-        public static Image ScaleToFit(this Image image, SizeF size) => image.ScalePercent(size.Width, size.Height);
-        #endregion
+        public static Image ScaleToFit(this Image image, SizeF size) => 
+            image.ScalePercent(size.Width, size.Height);
 
-        #region [public] {static} (Image) ScaleToFit(this Image, float, float): Returns a new scaled image so that it fits a certain width and height
         /// <summary>
         /// Returns a new scaled <see cref="Image"/> so that it fits a certain width and height.
         /// </summary>
@@ -480,7 +448,7 @@ namespace iTin.Core.Drawing
                 float yRatio = height / image.Height;
                 float ratio = Math.Min(xRatio, yRatio);
 
-                SizeF newSize =
+                var newSize =
                     new SizeF(
                         Math.Min(width, (float)Math.Round(image.Width * ratio, MidpointRounding.AwayFromZero)),
                         Math.Min(height, (float)Math.Round(image.Height * ratio, MidpointRounding.AwayFromZero)));
@@ -489,8 +457,8 @@ namespace iTin.Core.Drawing
                 image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 image.RotateFlip(RotateFlipType.Rotate180FlipNone);
 
-                Bitmap newImage = new Bitmap((int)newSize.Width, (int)newSize.Height);
-                using (Graphics g = Graphics.FromImage(newImage))
+                var newImage = new Bitmap((int)newSize.Width, (int)newSize.Height);
+                using (var g = Graphics.FromImage(newImage))
                 {
                     g.SmoothingMode = SmoothingMode.HighQuality;
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -505,10 +473,8 @@ namespace iTin.Core.Drawing
                 return image;
             }
         }
-        #endregion
 
 
-        #region [public] {static} (string) ToBase64(this Image): Converts an image as png into a base64 string       
         /// <summary>
         /// Converts an <see cref="Image"/> as png into a base64 string 
         /// </summary>
@@ -516,10 +482,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// A <see cref="String"/> which represents an <see cref="Image"/>.
         /// </returns>
-        public static string ToBase64(this Image image) => image.ToBase64(ImageFormat.Png);
-        #endregion
+        public static string ToBase64(this Image image) =>
+            image.ToBase64(ImageFormat.Png);
            
-        #region [public] {static} (string) ToBase64(this Image, ImageFormat): Converts an image into a base64 string       
         /// <summary>
         /// Converts an <see cref="Image"/> into a base64 string 
         /// </summary>
@@ -530,17 +495,13 @@ namespace iTin.Core.Drawing
         /// </returns>
         public static string ToBase64(this Image image, ImageFormat format)
         {
-            using (Stream stream = image.AsStream(format))
-            {
-                byte[] bytes = stream.AsByteArray();
+            using var stream = image.AsStream(format);
+            var bytes = stream.AsByteArray();
 
-                return Convert.ToBase64String(bytes);                
-            }
+            return Convert.ToBase64String(bytes);
         }
-        #endregion
 
 
-        #region [public] {static} (Brush) ToBrush(this Image, RectangleF, ImageStyle): Returns a drawing brush oriented vertically upwards from a reference image without applying an effect specifying the style
         /// <summary>
         /// Returns a drawing <see cref="Brush"/> oriented vertically upwards from a reference image without applying an effect specifying the style.
         /// </summary>
@@ -550,10 +511,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Returns a <see cref="Brush"/> object reference that represents the drawing brush.
         /// </returns>
-        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style) => ToBrush(image, rect, style, Orientation.Top);
-        #endregion
+        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style) => 
+            ToBrush(image, rect, style, Orientation.Top);
 
-        #region [public] {static} (Brush) ToBrush(this Image, RectangleF, ImageStyle, string, EffectType): Returns a drawing brush oriented vertically upwards from a reference image specifying a style and an effect
         /// <summary>
         /// Returns a drawing <see cref="Brush"/> oriented vertically upwards from a reference image specifying a style and an effect.
         /// </summary>
@@ -564,10 +524,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Returns a <see cref="Brush"/> object reference that represents the drawing brush.
         /// </returns>
-        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, EffectType effect) => ToBrush(image, rect, style, effect, Orientation.Top);
-        #endregion
+        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, EffectType effect) => 
+            ToBrush(image, rect, style, effect, Orientation.Top);
 
-        #region [public] {static} (Brush) ToBrush(this Image, RectangleF, ImageStyle, Orientation): Returns a brush to draw from a reference image specifying the orientation and style
         /// <summary>
         /// Returns a <see cref="Brush"/> to draw from a reference image specifying the orientation and style.
         /// </summary>
@@ -578,10 +537,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Returns a <see cref="Brush"/> object reference that represents the drawing brush.
         /// </returns>
-        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, Orientation orientation) => ToBrush(image, rect, style, EffectType.None, orientation);
-        #endregion
+        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, Orientation orientation) => 
+            ToBrush(image, rect, style, EffectType.None, orientation);
 
-        #region [public] {static} (Brush) ToBrush(this Image, RectangleF, ImageStyle, EffectType, Orientation): Returns a brush to draw from a reference image specifying the orientation, style and effect.
         /// <summary>
         /// Returns a <see cref="Brush"/> to draw from a reference image specifying the orientation, style and effect.
         /// </summary>
@@ -593,10 +551,9 @@ namespace iTin.Core.Drawing
         /// <returns>
         /// Returns a <see cref="Brush"/> object reference that represents the drawing brush.
         /// </returns>
-        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, EffectType effect, Orientation orientation) => ToBrush(image, rect, style, effect, orientation, SmoothingModeEx.HighQuality);
-        #endregion
+        public static Brush ToBrush(this Image image, RectangleF rect, ImageStyle style, EffectType effect, Orientation orientation) => 
+            ToBrush(image, rect, style, effect, orientation, SmoothingModeEx.HighQuality);
 
-        #region [public] {static} (Brush) ToBrush(this Image, RectangleF, ImageStyle, EffectType, Orientation, SmoothingModeEx): Returns a brush to draw from a reference image specifying the orientation, quality, style and effect
         /// <summary>
         /// Returns a <see cref="Brush"/> to draw from a reference image specifying the orientation, quality, style and effect.
         /// </summary>
@@ -619,13 +576,13 @@ namespace iTin.Core.Drawing
             Brush brush;
             TextureBrush tempTextureBrush = null;
 
-            Image texture = image.Rotate(orientation).ApplyEffect(effect);
-            using (var bitmap = new Bitmap(texture.Width, texture.Height))
-            using (var graphics = Graphics.FromImage(bitmap))
+            var texture = image.Rotate(orientation).ApplyEffect(effect);
+            using var bitmap = new Bitmap(texture.Width, texture.Height);
+            using var graphics = Graphics.FromImage(bitmap);
             using (new Smoothing(graphics, quality))
             {
-                Rectangle dstRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-                Rectangle srcRect = new Rectangle(Point.Empty, texture.Size);
+                var dstRect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+                var srcRect = new Rectangle(Point.Empty, texture.Size);
                 graphics.DrawImage(texture, dstRect, srcRect, GraphicsUnit.Pixel);
 
                 try
@@ -693,6 +650,5 @@ namespace iTin.Core.Drawing
 
             return brush;
         }
-        #endregion
     }
 }

@@ -18,11 +18,13 @@ namespace iTin.Utilities.Pdf.Design.Styles
     public partial class PdfBaseStyle : IPdfStyle, ICombinable<PdfBaseStyle>
     {
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private BaseContent _content;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private BordersCollection _borders;
+
         #endregion
 
         #region interfaces
@@ -31,7 +33,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -40,7 +41,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -50,13 +50,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (object) ICombinable<IStyle>.Combine(IStyle): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference style</param>
         void ICombinable<IStyle>.Combine(IStyle reference) => Combine((PdfBaseStyle)reference);
-        #endregion
 
         #endregion
 
@@ -66,13 +64,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (object) ICombinable<IPdfStyle>.Combine(IPdfStyle): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference style</param>
         void ICombinable<IPdfStyle>.Combine(IPdfStyle reference) => Combine((PdfBaseStyle)reference);
-        #endregion
 
         #endregion
 
@@ -82,13 +78,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (object) ICombinable<PdfBaseStyle>.Combine(PdfBaseStyle): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference style</param>
         void ICombinable<PdfBaseStyle>.Combine(PdfBaseStyle reference) => Combine(reference);
-        #endregion
 
         #endregion
 
@@ -98,7 +92,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (IBorders) IStyle.Borders: Gets or sets the collection of border properties
         /// <summary>
         /// Gets or sets the collection of border properties.
         /// </summary>
@@ -111,9 +104,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             get => _borders;
             set => _borders = (BordersCollection)value;
         }
-        #endregion
 
-        #region (IContent) IStyle.Content: Gets or sets the collection of border properties
         /// <summary>
         /// Gets or sets the content of style
         /// </summary>
@@ -126,9 +117,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             get => _content;
             set => _content = (BaseContent)value;
         }
-        #endregion
 
-        #region (bool) IStyle.IsEmpty: Gets a value indicating whether this style is an empty style
         /// <summary>
         /// Gets a value indicating whether this style is an empty style.
         /// </summary>
@@ -137,17 +126,13 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// </value>        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         bool IStyle.IsEmpty => IsDefault;
-        #endregion
 
-        #region (void) IStyle.SetOwner(IOwner): Sets the element that owns this
         /// <summary>
         /// Sets the element that owns this <see cref="IStyle"/>.
         /// </summary>
         /// <param name="reference">Reference to owner.</param>
         void IStyle.SetOwner(IOwner reference) => SetOwner((IPdfStyles)reference);
-        #endregion
 
-        #region (string) IStyle.Name: Gets or sets the name of the style
         /// <summary>
         /// Gets or sets the name of the style.
         /// </summary>
@@ -157,9 +142,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         string IStyle.Name { get => Name; set => Name = value; }
 
-        #endregion
-
-        #region (string) IStyle.Inherits: Gets or sets the name of parent style
         /// <summary>
         /// Gets or sets the name of parent style.
         /// </summary>
@@ -169,9 +151,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         string IStyle.Inherits { get => Inherits; set => Inherits = value; }
 
-        #endregion
-
-        #region (bool) IStyle.IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -180,13 +159,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         bool IStyle.IsDefault => IsDefault;
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (IStyle) TryGetInheritStyle(): Try gets a reference to inherit model
         /// <summary>
         /// Try gets a reference to inherit model.
         /// </summary>
@@ -194,7 +171,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// An inherit style.
         /// </returns>
         public IStyle TryGetInheritStyle() => InheritStyle;
-        #endregion
 
         #endregion
 
@@ -204,7 +180,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (IPdfStyles) IPdfStyle.Owner: Sets the element that owns this
         /// <summary>
         /// Gets the element that owns this <see cref="IPdfStyle"/>.
         /// </summary>
@@ -213,21 +188,17 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         IPdfStyles IPdfStyle.Owner => Owner;
-        #endregion
 
-        #region (void) IPdfStyle.SetOwner(IPdfStyles): Sets the element that owns this
         /// <summary>
         /// Sets the element that owns this <see cref="IPdfStyle"/>.
         /// </summary>
         /// <param name="reference">Reference to owner.</param>
         void IPdfStyle.SetOwner(IPdfStyles reference) => SetOwner(reference);
-        #endregion
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (IPdfStyles) Owner: Gets the element that owns this
         /// <summary>
         /// Gets the element that owns this <see cref="IPdfStyle"/>.
         /// </summary>
@@ -239,13 +210,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public IPdfStyles Owner { get; private set; }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) Name: Gets or sets the name of the style
         /// <summary>
         /// Gets or sets the name of the style.
         /// </summary>
@@ -255,9 +224,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlAttribute]
         public string Name { get; set; }
 
-        #endregion
-
-        #region [public] (string) Inherits: Gets or sets the name of parent style
         /// <summary>
         /// Gets or sets the name of parent style.
         /// </summary>
@@ -270,11 +236,8 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #endregion
 
-        #endregion
-
         #region public override properties
 
-        #region [public] {overide} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -286,7 +249,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Content.IsDefault &&
             Borders.IsDefault &&
             string.IsNullOrEmpty(Inherits);
-        #endregion
 
         #endregion
 
@@ -296,7 +258,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (IOwner) IStyle.Owner: Gets the element that owns this
         /// <summary>
         /// Gets the element that owns this <see cref="IStyle"/>.
         /// </summary>
@@ -305,7 +266,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         IOwner IStyle.Owner => Owner;
-        #endregion
 
         #endregion
 
@@ -315,7 +275,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (DocXBaseStyle) Default: Returns a new instance containing a default base style
         /// <summary>
         /// Returns a new instance containing a default base style.
         /// </summary>
@@ -332,23 +291,19 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 return @default;
             }
         }
-        #endregion
 
-        #region [public] {static} (PdfBaseStyle) Empty: Returns a new instance containing an empty style
         /// <summary>
         /// Returns a new instance containing an empty style.
         /// </summary>
         /// <value>
         /// A <see cref="PdfBaseStyle"/> reference containing an empty style settings.
         /// </value>
-        public static PdfBaseStyle Empty => new PdfBaseStyle();
-        #endregion
+        public static PdfBaseStyle Empty => new();
 
         #endregion
 
         #region public virtual readonly properties
 
-        #region [public] {virtual} (bool) BordersSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -359,10 +314,9 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlIgnore]
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public virtual bool BordersSpecified => !Borders.IsDefault;
-        #endregion
+        public virtual bool BordersSpecified => 
+            !Borders.IsDefault;
 
-        #region [public] {virtual} (bool) ContentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -373,14 +327,13 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlIgnore]
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public virtual bool ContentSpecified => !Content.IsDefault;
-        #endregion
+        public virtual bool ContentSpecified =>
+            !Content.IsDefault;
 
         #endregion
 
         #region public properties
 
-        #region [public] (BordersCollection) Borders: Gets or sets the collection of border properties
         /// <summary>
         /// Gets or sets the collection of border properties.
         /// </summary>
@@ -391,12 +344,10 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [JsonProperty("borders")]
         public BordersCollection Borders
         {
-            get => _borders ?? (_borders = new BordersCollection(this));
+            get => _borders ??= new BordersCollection(this);
             set => _borders = value;
         }
-        #endregion
 
-        #region [public] (BaseContent) Content: Gets or sets a reference to the content model
         /// <summary>
         /// Gets or sets a reference to the content model.
         /// </summary>
@@ -408,16 +359,14 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public BaseContent Content
         {
-            get => _content ?? (_content = new BaseContent());
+            get => _content ??= new BaseContent();
             set => _content = value;
         }
-        #endregion
 
         #endregion
 
         #region private properties
 
-        #region [private] (PdfBaseStyle) InheritStyle: Gets a reference to inherit model
         /// <summary>
         /// Gets a reference to inherit model.
         /// </summary>
@@ -427,28 +376,28 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlIgnore]
         [JsonIgnore]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private PdfBaseStyle InheritStyle => Owner == null ? Empty : (PdfBaseStyle)Owner.GetBy(Inherits);
-        #endregion
+        private PdfBaseStyle InheritStyle => 
+            Owner == null 
+                ? Empty 
+                : (PdfBaseStyle)Owner.GetBy(Inherits);
 
         #endregion
 
         #region public static methods
 
-        #region [public] {static} (string) GenerateRandomStyleName(): Returns a random style name
         /// <summary>
         /// Returns a random style name.
         /// </summary>
         /// <returns>
         /// A new style name.
         /// </returns>
-        public static string GenerateRandomStyleName() => BaseStyle.GenerateRandomStyleName();
-        #endregion
+        public static string GenerateRandomStyleName() => 
+            BaseStyle.GenerateRandomStyleName();
 
         #endregion
 
         #region public methods
 
-        #region [public] (DocXBaseStyle) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -464,20 +413,17 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return styleCloned;
         }
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) Combine(PdfBaseStyle): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
-        public virtual void Combine(PdfBaseStyle reference) => Combine(reference, true);
-        #endregion
+        public virtual void Combine(PdfBaseStyle reference) => 
+            Combine(reference, true);
 
-        #region [public] {virtual} (void) Combine(PdfBaseStyle, bool): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -508,13 +454,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Borders.Combine(reference.Borders);
             Content.Combine(reference.Content);
         }
-        #endregion
 
         #endregion
 
         #region internal methods
 
-        #region [internal] (void) SetOwner(IPdfStyles): Sets the element that owns this
         /// <summary>
         /// Sets the element that owns this <see cref="IPdfStyle"/>.
         /// </summary>
@@ -523,7 +467,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         {
             Owner = reference;
         }
-        #endregion
 
         #endregion
     }

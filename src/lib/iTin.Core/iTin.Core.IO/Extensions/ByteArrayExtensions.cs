@@ -1,6 +1,10 @@
 ﻿
+using System.Threading;
+using System.Threading.Tasks;
 using iTin.Core.ComponentModel;
+
 using iTin.Core.Helpers;
+
 using iTin.Logging;
 
 namespace iTin.Core.IO
@@ -32,6 +36,31 @@ namespace iTin.Core.IO
             Logger.Instance.Debug($"   > filename: {filename}");
 
             return data.ToMemoryStream().SaveToFile(filename);
+        }
+
+        /// <summary>
+        /// Saves this byte array into file asynchronously.
+        /// </summary>
+        /// <param name="data">Data to save.</param>
+        /// <param name="filename">Destination file.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A <see cref="IResult"/> object that contains the operation result
+        /// </returns>
+        public static async Task<IResult> SaveToFileAsync(this byte[] data, string filename, CancellationToken cancellationToken = default)
+        {
+            Logger.Instance.Debug("");
+            Logger.Instance.Debug($" Assembly: {typeof(ByteArrayExtensions).Assembly.GetName().Name}, v{typeof(ByteArrayExtensions).Assembly.GetName().Version}, Namespace: {typeof(ByteArrayExtensions).Namespace}, Class: {nameof(ByteArrayExtensions)}");
+            Logger.Instance.Debug(" Saves this byte array into file");
+            Logger.Instance.Debug($" > Signature: ({typeof(IResult)}) SaveToFile(this {typeof(byte[])}, {typeof(string)})");
+
+            SentinelHelper.ArgumentNull(data, nameof(data));
+            Logger.Instance.Debug($"   > data: {data.Length} byte(s) [{data[0]} {data[1]} {data[2]} ...]");
+
+            SentinelHelper.IsTrue(string.IsNullOrEmpty(filename));
+            Logger.Instance.Debug($"   > filename: {filename}");
+
+            return await data.ToMemoryStream().SaveToFileAsync(filename, cancellationToken: cancellationToken);
         }
     }
 }

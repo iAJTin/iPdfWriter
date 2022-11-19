@@ -19,7 +19,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region constructor/s
 
-        #region [public] PdfTextContentOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTextContentOptions"/> class.
         /// </summary>
@@ -29,7 +28,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Show = null;
             Alignment = null;
         }
-        #endregion
 
         #endregion
 
@@ -39,7 +37,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -48,7 +45,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -58,21 +54,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (PdfTextContentOptions) Default: Returns a new instance containing the set of available settings to model an existing PdfTextContent instance
         /// <summary>
         /// Returns a new instance containing the set of available settings to model an existing <see cref="PdfTextContent"/> instance.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTextContentOptions"/> reference containing set of default options.
         /// </value>
-        public static PdfTextContentOptions Default => new PdfTextContentOptions();
-        #endregion
+        public static PdfTextContentOptions Default => new();
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (bool) AlignmentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -84,13 +77,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool AlignmentSpecified => Alignment != null;
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (PdfTextContentAlignmentOptions) Alignment: Gets or sets a value that defines style table alignment in an existing PdfTextContent instance.
         /// <summary>
         /// Gets or sets a value that defines style table alignment in an existing <see cref="PdfTextContent"/> instance.
         /// </summary>
@@ -100,9 +91,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlElement]
         [JsonProperty("alignment")]
         public PdfTextContentAlignmentOptions Alignment { get; set; }
-        #endregion
 
-        #region [public] (string) Color: Gets or sets the preferred content color in an existing PdfTableContent instance
         /// <summary>
         /// Gets or sets the preferred content color in an existing <see cref="PdfTableContent"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -112,9 +101,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlAttribute]
         [JsonProperty("color")]
         public string Color { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) Show: Gets or sets a value that indicates whether an existing PdfTableContent instance is displayed
         /// <summary>
         /// Gets or sets a value that indicates whether an existing <see cref="PdfTableContent"/> instance is displayed. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -124,13 +111,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlAttribute]
         [JsonProperty("show")]
         public YesNo? Show { get; set; }
-        #endregion
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -138,14 +123,16 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => base.IsDefault && Color == null && Show == null && Alignment == null;
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault && 
+            Color == null && 
+            Show == null && 
+            Alignment == null;
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfTextContentOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -163,7 +150,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return cloned;
         } 
-        #endregion
 
         #endregion
     }

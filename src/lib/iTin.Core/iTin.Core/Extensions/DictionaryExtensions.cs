@@ -39,8 +39,8 @@ namespace iTin.Core
         /// <param name="key"></param>
         /// <returns>
         /// </returns>
-        public static TValue Find<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source, TKey key)
-            => !source.TryGetValue(key, out var value) ? default : value;
+        public static TValue Find<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source, TKey key) => 
+            !source.TryGetValue(key, out var value) ? default : value;
 
         /// <summary>
         /// 
@@ -51,10 +51,8 @@ namespace iTin.Core
         /// <param name="second"></param>
         /// <returns>
         /// </returns>
-        public static bool DictionaryEqual<TKey, TValue>(
-            this IDictionary<TKey, TValue> first,
-            IDictionary<TKey, TValue> second)
-            => first.DictionaryEqual(second, null);
+        public static bool DictionaryEqual<TKey, TValue>(this IDictionary<TKey, TValue> first, IDictionary<TKey, TValue> second) => 
+            first.DictionaryEqual(second, null);
 
         /// <summary>
         /// 
@@ -66,12 +64,9 @@ namespace iTin.Core
         /// <param name="valueComparer"></param>
         /// <returns>
         /// </returns>
-        public static bool DictionaryEqual<TKey, TValue>(
-            this IDictionary<TKey, TValue> first,
-            IDictionary<TKey, TValue> second,
-            IEqualityComparer<TValue> valueComparer)
+        public static bool DictionaryEqual<TKey, TValue>(this IDictionary<TKey, TValue> first, IDictionary<TKey, TValue> second, IEqualityComparer<TValue> valueComparer)
         {
-            if (first == second)
+            if (Equals(first, second))
             {
                 return true;
             }

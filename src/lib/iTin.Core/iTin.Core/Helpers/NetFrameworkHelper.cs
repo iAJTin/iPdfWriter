@@ -26,7 +26,9 @@ namespace iTin.Core.Helpers
             Logger.Instance.Debug($" Returns an {typeof(string)} that contains full path to current assembly");
             Logger.Instance.Debug($" > Signature: ({typeof(string)}) GetAssemblyFrameworkVersion({typeof(Assembly)})");
 
-            var frameworkAttribute = (TargetFrameworkAttribute)assembly.GetCustomAttributes(typeof(TargetFrameworkAttribute), false).SingleOrDefault();
+            var frameworkAttribute = (TargetFrameworkAttribute) assembly
+                .GetCustomAttributes(typeof(TargetFrameworkAttribute), false)
+                .SingleOrDefault();
 
             return new FrameworkVersion(frameworkAttribute);
         }

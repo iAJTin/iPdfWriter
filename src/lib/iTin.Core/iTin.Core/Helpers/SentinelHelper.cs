@@ -17,7 +17,6 @@ namespace iTin.Core.Helpers
     /// </summary>
     public static class SentinelHelper
     {
-        #region [public] {static} (void) ArgumentNull<T>(T, string): Performs a test on the method argument, and throws an exception of type ArgumentNullException if is null
         /// <summary>
         /// Performs a check against an argument, and throws a ArgumentNullException if it is null.
         /// </summary>
@@ -28,9 +27,7 @@ namespace iTin.Core.Helpers
         {
             ArgumentNull(value, parameterName, string.Empty);
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentNull<T>(T, string, string): Performs a test on the method argument, and throws an exception of type ArgumentNullException with specified error message if is null
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="ArgumentNullException"/> with specified error message if is <strong>null</strong>.
         /// </summary>
@@ -60,9 +57,7 @@ namespace iTin.Core.Helpers
 
             throw new ArgumentNullException(parameterName, message);
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentLessThan<T>(string, T, T): Performs a test on the method argument, and throws an exception of type ArgumentOutOfRangeException if less than the specified threshold
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="ArgumentOutOfRangeException"/> if less than the specified threshold.
         /// </summary>
@@ -92,9 +87,7 @@ namespace iTin.Core.Helpers
 
             Logger.Instance.Debug($"  > Output: pass");
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentGreaterThan<T>(string, T, T): Performs a test on the method argument, and throws an exception of type ArgumentOutOfRangeException if greater than the specified threshold
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="ArgumentOutOfRangeException"/> if greater than the specified threshold.
         /// </summary>
@@ -124,9 +117,7 @@ namespace iTin.Core.Helpers
 
             Logger.Instance.Debug($"  > Output: pass!");
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentNotFinite<T>(string, float): Performs a check against a method argument, and throws a NotFiniteNumberException if it is not a finite number eg NaN, PositiveInfinity or NegetiveInfinity
         /// <summary>
         /// Performs a check against a method argument, and throws a <exception cref="NotFiniteNumberException"/>  if it is not a finite number eg NaN, PositiveInfinity or NegetiveInfinity.
         /// </summary>
@@ -150,9 +141,7 @@ namespace iTin.Core.Helpers
 
             Logger.Instance.Debug($"  > Output: pass!");
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentOutOfRange<T>(string, T, T, T): Performs a test on the method argument, and throws an exception of type ArgumentOutOfRangeException if is over the maximum specified, or is less than the specified minimum value.
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="ArgumentOutOfRangeException"/>
         /// if is over the maximum specified, or is less than the specified minimum value.
@@ -168,9 +157,7 @@ namespace iTin.Core.Helpers
         {
             ArgumentOutOfRange(parameter, argument, min, max, string.Empty);
         }
-        #endregion
 
-        #region [public] {static} (void) ArgumentOutOfRange<T>(string, T, T, T, string): Performs a test on the method argument, and throws an exception of type ArgumentOutOfRangeException if is over the maximum specified, or is less than the specified minimum value
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="ArgumentOutOfRangeException"/> if is over the maximum specified, or is less than the specified minimum value.
         /// </summary>
@@ -208,9 +195,7 @@ namespace iTin.Core.Helpers
 
             throw new ArgumentNullException(parameter, message);
         }
-        #endregion
 
-        #region [public] {static} (bool) IsEnumValid<T>(T): Performs a test on the method argument
         /// <summary>
         /// Performs a test on the method argument.
         /// </summary>
@@ -222,9 +207,7 @@ namespace iTin.Core.Helpers
         /// <exception cref="ArgumentException">If <paramref name="value"/> isn't an enumerated type.</exception>
         /// <exception cref="InvalidEnumArgumentException">If <paramref name="value"/> not part of the enumeration.</exception>
         public static bool IsEnumValid<T>(T value) where T : struct => IsEnumValid(value, false);
-        #endregion
 
-        #region [public] {static} (bool) IsEnumValid<T>(T, bool): Performs a test on the method argument, if testOnly is false throws an exception of type InvalidEnumArgumentException if the specified value doesn't belong to enumeration
         /// <summary>
         /// Performs a test on the method argument, if <paramref name="testOnly"/> is <strong>false</strong> throws an exception of type <exception cref="InvalidEnumArgumentException"/> if the specified value doesn't belong to enumeration.
         /// </summary>
@@ -269,9 +252,7 @@ namespace iTin.Core.Helpers
 
             return true;
         }
-        #endregion
 
-        #region [public] {static} (void) IsFalse(bool): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is false
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="InvalidOperationException"/> if the specified expression is <strong>false</strong>.
         /// </summary>
@@ -282,9 +263,7 @@ namespace iTin.Core.Helpers
         {
             IsFalse(expression, string.Empty);
         }
-        #endregion
 
-        #region [public] {static} (void) IsFalse(bool, string): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is false
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="InvalidOperationException"/> if the specified expression is <strong>false</strong>.
         /// </summary>
@@ -313,9 +292,7 @@ namespace iTin.Core.Helpers
 
             throw new InvalidOperationException(message); 
         }
-        #endregion
 
-        #region [public] {static} (void) IsFalse(bool, Exception): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is true
         /// <summary>
         /// Performs a test on the method argument, and throws an specified exception if the specified expression is <strong>false</strong>.
         /// </summary>
@@ -344,9 +321,7 @@ namespace iTin.Core.Helpers
 
             throw new InvalidOperationException();
         }
-        #endregion
 
-        #region [public] {static} (void) IsTrue(bool): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is true
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="InvalidOperationException" /> if the specified expression is <strong>true</strong>.
         /// </summary>
@@ -357,9 +332,7 @@ namespace iTin.Core.Helpers
         {
             IsTrue(expression, string.Empty);
         }
-        #endregion
 
-        #region [public] {static} (void) IsTrue(bool, string): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is true
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type <exception cref="InvalidOperationException" /> if the specified expression is <strong>true</strong>.
         /// </summary>
@@ -388,9 +361,7 @@ namespace iTin.Core.Helpers
 
             throw new ArgumentException(message);
         }
-        #endregion
 
-        #region [public] {static} (void) IsTrue(bool, Exception): Performs a test on the method argument, and throws an exception of type InvalidOperationException if the specified expression is true
         /// <summary>
         /// Performs a test on the method argument, and throws an specified exception if the specified expression is <strong>true</strong>.
         /// </summary>
@@ -419,9 +390,7 @@ namespace iTin.Core.Helpers
 
             throw new ArgumentException();
         }
-        #endregion
 
-        #region [public] {static} (string) NotEmpty(string): Performs a test on the method argument, and throws an exception of type ArgumentException if the specified value is empty.
         /// <summary>
         /// Performs a test on the method argument, and throws an exception of type ArgumentException if the specified value is empty.
         /// </summary>
@@ -439,9 +408,7 @@ namespace iTin.Core.Helpers
 
             return value;
         }
-        #endregion
 
-        #region [public] {static} (T) PassThroughNonNull<T>(T): Performs a test on the method argument, if not null is returned, otherwise throws an ArgumentNullException type
         /// <summary>
         /// Performs a test on the method argument, if not null is returned, otherwise throws an <exception cref="ArgumentNullException" /> type.
         /// </summary>
@@ -455,9 +422,7 @@ namespace iTin.Core.Helpers
             ArgumentNull(argument, nameof(argument));
             return argument;
         }
-        #endregion
 
-        #region [public] {static} (void) NotNullOrWhiteSpace(string, string): Ensures that the target value is not null, empty, or whitespace
         /// <summary>
         /// Ensures that the target value is not null, empty, or whitespace.
         /// </summary>
@@ -478,6 +443,5 @@ namespace iTin.Core.Helpers
                 throw new ArgumentException(@"Must not be empty or whitespace.", parameterName);
             }
         }
-        #endregion
     }
 }

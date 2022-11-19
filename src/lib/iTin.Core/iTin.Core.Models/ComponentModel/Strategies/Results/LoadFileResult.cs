@@ -11,7 +11,6 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
     /// </summary>
     public class LoadFileResult : ResultBase<LoadFileResultData>
     {
-        #region [public] {static} (LoadFileResult) CreateErroResult(string, string = ""): Returns a new result with specified detailed error
         /// <summary>
         /// Returns a new <see cref="LoadFileResult"/> with specified detailed error.
         /// </summary>
@@ -20,10 +19,9 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
         /// <returns>
         /// A new invalid <see cref="LoadFileResult"/> with specified detailed error.
         /// </returns>
-        public static LoadFileResult CreateErroResult(string message, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } });
-        #endregion
+        public new static LoadFileResult CreateErrorResult(string message, string code = "") =>
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
 
-        #region [public] {static} (LoadFileResult) CreateErroResult(IResultError[]): Returns a new result with specified detailed errors collection
         /// <summary>
         /// Returns a new <see cref="LoadFileResult"/> with specified detailed errors collection.
         /// </summary>
@@ -31,16 +29,14 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
         /// <returns>
         /// A new invalid <see cref="LoadFileResult"/> with specified detailed errors collection.
         /// </returns>
-        public static LoadFileResult CreateErroResult(IResultError[] errors) =>
+        public new static LoadFileResult CreateErrorResult(IResultError[] errors) =>
             new()
             {
                 Result = default,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
-        #endregion
 
-        #region [public] {static} (LoadFileResult) CreateErroResult(string, LoadFileResultData, string = null): Returns a new result with specified detailed error
         /// <summary>
         /// Returns a new <see cref="LoadFileResult"/> with specified detailed error.
         /// </summary>
@@ -50,10 +46,9 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
         /// <returns>
         /// A new invalid <see cref="LoadFileResult"/> with specified detailed errors collection.
         /// </returns>
-        public static LoadFileResult CreateErroResult(string message, LoadFileResultData result, string code = "") => CreateErroResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
-        #endregion
+        public new static LoadFileResult CreateErrorResult(string message, LoadFileResultData result, string code = "") =>
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, result);
 
-        #region [public] {static} (LoadFileResult) CreateErroResult(IResultError[], LoadFileResultData): Returns a new result with specified detailed errors collection
         /// <summary>
         /// Returns a new <see cref="LoadFileResult"/> with specified detailed errors collection.
         /// </summary>
@@ -62,16 +57,14 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
         /// <returns>
         /// A new invalid <see cref="LoadFileResult"/> with specified detailed errors collection.
         /// </returns>
-        public static LoadFileResult CreateErroResult(IResultError[] errors, LoadFileResultData result) =>
+        public new static LoadFileResult CreateErrorResult(IResultError[] errors, LoadFileResultData result) =>
             new()
             {
                 Result = result,
                 Success = false,
                 Errors = (IResultError[])errors.Clone()
             };
-        #endregion
 
-        #region [public] {new} {static} (LoadFileResult) CreateSuccessResult(LoadFileResultData): Returns a new success result
         /// <summary>
         /// Returns a new success result.
         /// </summary>
@@ -86,9 +79,7 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
                 Success = true,
                 Errors = new List<IResultError>()
             };
-        #endregion
 
-        #region [public] {new} {static} (LoadFileResult) FromException(Exception): Creates a new result instance from known exception
         /// <summary>
         /// Creates a new <see cref="LoadFileResult"/> instance from known exception.
         /// </summary>
@@ -96,10 +87,9 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
         /// <returns>
         /// A new <see cref="LoadFileResult"/> instance for specified exception.
         /// </returns>
-        public new static LoadFileResult FromException(System.Exception exception) => FromException(exception, default);
-        #endregion
+        public new static LoadFileResult FromException(System.Exception exception) => 
+            FromException(exception, default);
 
-        #region [public] {new} {static} (LoadFileResult) FromException(Exception, LoadFileResultData): Creates a new result instance from known exception
         /// <summary>
         /// Creates a new <see cref="LoadFileResult"/> instance from known exception.
         /// </summary>
@@ -115,6 +105,5 @@ namespace iTin.Core.Models.ComponentModel.Strategies.Result
                 Success = false,
                 Errors = new List<IResultError> { new ResultExceptionError { Exception = exception } }
             };
-        #endregion
     }
 }

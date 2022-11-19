@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFrameworks>net461;netcoreapp3.1;net60</TargetFrameworks>
+	  <TargetFrameworks>net461;netcoreapp3.1;net60</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -22,10 +22,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Remove="ComponentModel\Input\Actions\PdfInputInsertAction.cs" />
-    <Compile Remove="ComponentModel\Input\Actions\PdfInputReplaceAction.cs" />
-    <Compile Remove="ComponentModel\Input\Actions\PdfInputSetAction.cs" />
-    <Compile Remove="ComponentModel\Operations\Items\Replace\ReplacementObject\Base\ReplacementBase.cs" />
     <Compile Remove="Helpers\ImageExtractor.cs" />
     <Compile Remove="PdfProcessCommands.cs" />
   </ItemGroup>
@@ -41,7 +37,9 @@
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.IO.Compression\iTin.Core.IO.Compression.csproj" />
     <ProjectReference Include="..\..\..\iTin.Core\iTin.Core.Models\iTin.Core.Models.csproj" />
-    <ProjectReference Include="..\..\..\iTin.Hardware\iTin.Hardware.Abstractions\iTin.Hardware.Abstractions.Devices.Graphics.Font\iTin.Hardware.Abstractions.Devices.Graphics.Font.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Hardware\iTin.Hardware.Abstractions.Devices.Graphics.Font\iTin.Hardware.Abstractions.Devices.Graphics.Font.csproj" />
+    <ProjectReference Include="..\..\..\iTin.Mail\iTin.Mail.Smtp.Net\iTin.Mail.Smtp.Net.csproj" />
+    <ProjectReference Include="..\..\iTin.Utilities.Abstractions\iTin.Utilities.Writer.Abstractions.csproj" />
     <ProjectReference Include="..\iTin.Utilities.Pdf.Design\iTin.Utilities.Pdf.Design.csproj" />
   </ItemGroup>
 

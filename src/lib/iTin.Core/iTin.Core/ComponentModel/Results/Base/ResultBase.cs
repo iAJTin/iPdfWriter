@@ -1,10 +1,10 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace iTin.Core.ComponentModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// Specialization of the interface <see cref="IResult{T}"/><br/>
     /// Base class that serves to defines a result.
@@ -21,7 +21,8 @@ namespace iTin.Core.ComponentModel
         protected ResultBase()
         {
             Success = false;
-            Errors = new List<ResultError>();
+            Errors = Enumerable.Empty<IResultError>();
+            Warnings = Enumerable.Empty<IResultWarning>();
         }
         #endregion
 
@@ -61,7 +62,7 @@ namespace iTin.Core.ComponentModel
         /// <value>
         /// <b>true</b> if last operation has warnings; otherwise, <b>false</b>.
         /// </value>
-        public bool HasWarnings => Warnings != null && Warnings.Any();
+        public bool HasWarnings => !Warnings.IsNullOrEmpty();
 
         #endregion
 
@@ -126,7 +127,8 @@ namespace iTin.Core.ComponentModel
         /// <returns>
         /// A new invalid <see cref="ResultBase{T}"/> with specified detailed error.
         /// </returns>
-        public static ResultBase<T> CreateErrorResult(string message, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
+        public static ResultBase<T> CreateErrorResult(string message, string code = "") => 
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } });
         #endregion
 
         #region [public] {static} (ResultBase<T>) CreateErrorResult(IResultError[]): Returns a new result with specified detailed errors collection
@@ -138,7 +140,7 @@ namespace iTin.Core.ComponentModel
         /// A new invalid <see cref="ResultBase{T}"/> with specified detailed errors collection.
         /// </returns>
         public static ResultBase<T> CreateErrorResult(IResultError[] errors) =>
-            new ResultBase<T>
+            new()
             {
                 Result = default,
                 Success = false,
@@ -156,7 +158,8 @@ namespace iTin.Core.ComponentModel
         /// <returns>
         /// A new valid <see cref="ResultBase{T}"/>.
         /// </returns>
-        public static ResultBase<T> CreateErrorResult(string message, T value, string code = "") => CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, value);
+        public static ResultBase<T> CreateErrorResult(string message, T value, string code = "") => 
+            CreateErrorResult(new IResultError[] { new ResultError { Code = code, Message = message } }, value);
         #endregion
 
         #region [public] {static} (ResultBase<T>) CreateErrorResult(IResultError[], T): Returns a new result with specified detailed errors collection
@@ -169,7 +172,7 @@ namespace iTin.Core.ComponentModel
         /// A new invalid <see cref="ResultBase{T}"/> with specified detailed errors collection.
         /// </returns>
         public static ResultBase<T> CreateErrorResult(IResultError[] errors, T value) =>
-            new ResultBase<T>
+            new()
             {
                 Result = value,
                 Success = false,
@@ -186,7 +189,7 @@ namespace iTin.Core.ComponentModel
         /// A new valid <see cref="ResultBase{T}"/>.
         /// </returns>
         public static ResultBase<T> CreateSuccessResult(T value) =>
-            new ResultBase<T>
+            new()
             {
                 Result = value,
                 Success = true,
@@ -202,7 +205,8 @@ namespace iTin.Core.ComponentModel
         /// <returns>
         /// A new <see cref="ResultBase{T}"/> instance for specified exception.
         /// </returns>
-        public static ResultBase<T> FromException(Exception exception) => FromException(exception, default);
+        public static ResultBase<T> FromException(Exception exception) => 
+            FromException(exception, default);
         #endregion
 
         #region [public] {static} (ResultBase<T>) FromException(Exception, T): Creates a new instance from known exception
@@ -215,7 +219,7 @@ namespace iTin.Core.ComponentModel
         /// A new <see cref="ResultBase{T}"/> instance for specified exception.
         /// </returns>
         public static ResultBase<T> FromException(Exception exception, T value) =>
-            new ResultBase<T>
+            new()
             {
                 Result = value,
                 Success = false,
@@ -235,7 +239,8 @@ namespace iTin.Core.ComponentModel
         /// <returns>
         /// A <see cref="string"/> than represents the current object.
         /// </returns>
-        public override string ToString() => $"Success = {Success}, HasWarnings = {HasWarnings}";
+        public override string ToString() => 
+            $"Success = {Success}, HasWarnings = {HasWarnings}";
         #endregion
 
         #endregion

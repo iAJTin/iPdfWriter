@@ -5,7 +5,7 @@ using iTin.Core.ComponentModel;
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
@@ -18,8 +18,10 @@ namespace iPdfWriter.Code
         public static void Generate(ILogger logger)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region Creates pdf input
@@ -194,6 +196,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample25/Sample-25" });
+            
             var ts = sw.Elapsed;
             sw.Stop();
 

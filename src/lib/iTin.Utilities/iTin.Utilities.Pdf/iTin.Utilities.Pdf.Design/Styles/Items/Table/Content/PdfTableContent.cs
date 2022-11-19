@@ -15,21 +15,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region public new readonly static properties
 
-        #region [public] {new} {static} (PdfTableContent) Returns a new instance containing a default table content style settings
         /// <summary>
         /// Returns a new instance containing a default table content style settings.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTableContent"/> reference containing the default table content style settings.
         /// </value>
-        public new static PdfTableContent Default => new PdfTableContent();
-        #endregion
+        public new static PdfTableContent Default => new();
 
         #endregion
 
         #region public override properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -38,13 +35,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public override bool IsDefault => base.IsDefault;
-        #endregion
 
         #endregion
 
         #region public new methods
 
-        #region [public] {new} (PdfTableContent) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -58,13 +53,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return cloned;
         }
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) ApplyOptions(PdfTableContentOptions): Apply specified options to this content
         /// <summary>
         /// Apply specified options to this content.
         /// </summary>
@@ -98,9 +91,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             }
             #endregion
         }
-        #endregion
 
-        #region [public] {virtual} (void) Combine(PdfTableContent): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -114,7 +105,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             base.Combine(reference);
         }
-        #endregion
 
         #endregion
     }

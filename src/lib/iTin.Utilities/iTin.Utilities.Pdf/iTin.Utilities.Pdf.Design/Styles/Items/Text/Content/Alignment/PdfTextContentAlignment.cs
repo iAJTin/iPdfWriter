@@ -18,18 +18,21 @@ namespace iTin.Utilities.Pdf.Design.Styles
     public partial class PdfTextContentAlignment
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const KnownVerticalAlignment DefaultVerticalAlignment = KnownVerticalAlignment.Center;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private KnownVerticalAlignment _vertical;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] PdfTextContentAlignment(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTextContentAlignment"/> class.
         /// </summary>
@@ -37,28 +40,23 @@ namespace iTin.Utilities.Pdf.Design.Styles
         {
             Vertical = DefaultVerticalAlignment;
         }
-        #endregion
 
         #endregion
 
         #region public new static properties
 
-        #region [public] {new} {static} (PdfTextContentAlignment) Returns a new instance containing default text content alignment style settings
         /// <summary>
         /// Returns a new instance containing default text content alignment style settings.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTextContentAlignment"/> reference containing the default text content alignment settings.
         /// </value>
-        public new static PdfTextContentAlignment Default => new PdfTextContentAlignment();
-
-        #endregion
+        public new static PdfTextContentAlignment Default => new();
 
         #endregion
 
         #region public properties
 
-        #region [public] (KnownVerticalAlignment) Vertical: Gets or sets vertical alignment.
         /// <summary>
         /// Gets or sets vertical alignment. The default is <see cref="KnownVerticalAlignment.Center"/>.
         /// </summary>
@@ -77,13 +75,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 _vertical = value;
             }
         }
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -91,14 +87,14 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => base.IsDefault && Vertical.Equals(DefaultVerticalAlignment);
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault && 
+            Vertical.Equals(DefaultVerticalAlignment);
 
         #endregion
 
         #region public new methods
 
-        #region [public] {new} (XlsxCellContentAlignment) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -106,13 +102,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         public new PdfTextContentAlignment Clone() => (PdfTextContentAlignment)MemberwiseClone();
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) ApplyOptions(PdfTextContentAlignmentOptions): Apply specified options to this content
         /// <summary>
         /// Apply specified options to this content.
         /// </summary>
@@ -146,9 +140,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             }
             #endregion
         }
-        #endregion
 
-        #region [public] {virtual} (void) Combine(PdfTextContentAlignment): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -167,7 +159,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 Vertical = reference.Vertical;
             }
         }
-        #endregion
 
         #endregion
     }

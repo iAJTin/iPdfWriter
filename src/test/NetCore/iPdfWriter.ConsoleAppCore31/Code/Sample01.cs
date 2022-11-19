@@ -1,5 +1,4 @@
 ﻿
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -9,85 +8,28 @@ using iTin.Core.Models.Design.Enums;
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Design.Image;
-using iTin.Utilities.Pdf.Design.Styles;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
+    using ComponentModel.Helpers;
+
     /// <summary>
     /// Shows the use of text and image replacement in a pdf document.
     /// </summary>
     internal static class Sample01
     {
-        // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
-        {
-            {
-                "Center",
-                new PdfImageStyle
-                {
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
-                    }
-                }
-            },
-            {
-                "Default",
-                new PdfImageStyle
-                {
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Horizontal = KnownHorizontalAlignment.Left
-                        }
-                    }
-                }
-            }
-        };
-
-        // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
-        {
-            {
-                "ReportTitle",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 28.0f,
-                        Bold = YesNo.Yes,
-                        Italic = YesNo.Yes,
-                        Color = "Blue"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
-                    }
-                }
-            },
-        };
-
-
-        // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region Creates pdf file reference
@@ -110,7 +52,7 @@ namespace iPdfWriter.Code
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty,
-                    Style = TextStylesTable["ReportTitle"],
+                    Style = StylesHelper.Sample01.TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }))
                 // bar-chart image
@@ -120,7 +62,7 @@ namespace iPdfWriter.Code
                         Text = "#BAR-CHART#",
                         UseTestMode = useTestMode,
                         Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
+                        Style = StylesHelper.Sample01.ImagesStylesTable["Default"],
                         ReplaceOptions = ReplaceTextOptions.Default,
                         Image = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png")
                     }))
@@ -131,7 +73,7 @@ namespace iPdfWriter.Code
                         Text = "#IMAGE1#",
                         UseTestMode = useTestMode,
                         Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Center"],
+                        Style = StylesHelper.Sample01.ImagesStylesTable["Center"],
                         ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
                         Image = PdfImage.FromFile("~/Resources/Sample-01/Images/image-1.jpg")
                     }));
@@ -153,6 +95,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+            
             var ts = sw.Elapsed;
             sw.Stop();
 

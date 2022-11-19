@@ -3,6 +3,9 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 
+using iTin.Core.ComponentModel;
+using iTin.Core.ComponentModel.Results;
+
 namespace iTin.Core
 {
     /// <summary>
@@ -17,23 +20,23 @@ namespace iTin.Core
         /// <returns>
         /// <b>true</b> if specified <see cref="Uri"/> is accessible; otherwise <b>false</b>.
         /// </returns>
-        public static bool IsAccessible(this Uri uri)
+        public static IResult IsAccessible(this Uri uri)
         {
             if (uri == null)
             {
-                return false;
+                return BooleanResult.CreateErrorResult("url can not be null");
             }
 
             try
             {
                 var request = WebRequest.Create(uri);
-                var response = request.GetResponse();
+                _ = request.GetResponse();
 
-                return true;
+                return BooleanResult.SuccessResult;
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                return BooleanResult.FromException(e);
             }
         }
 
@@ -45,23 +48,23 @@ namespace iTin.Core
         /// <returns>
         /// <b>true</b> if specified <see cref="Uri"/> is accessible; otherwise <b>false</b>.
         /// </returns>
-        public static async Task<bool> IsAccessibleAsync(this Uri uri)
+        public static async Task<IResult> IsAccessibleAsync(this Uri uri)
         {
             if (uri == null)
             {
-                return false;
+                return BooleanResult.CreateErrorResult("url can not be null");
             }
 
             try
             {
                 var request = WebRequest.Create(uri);
-                var response = await request.GetResponseAsync();
+                _ = await request.GetResponseAsync();
 
-                return true;
+                return BooleanResult.SuccessResult;
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                return BooleanResult.FromException(e);
             }
         }
     }

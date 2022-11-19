@@ -85,7 +85,7 @@ namespace iTin.Core.Helpers
         /// <param name="options">Run Program options</param>
         public static void RunProgram(string program, string arguments, RunProgramOptions options = null)
         {
-            RunProgramOptions safeOptions = options;
+            var safeOptions = options;
             if (options == null)
             {
                 safeOptions = RunProgramOptions.Default;
@@ -94,6 +94,7 @@ namespace iTin.Core.Helpers
             ProcessStartInfo startInfo = new ProcessStartInfo(program, arguments) { UseShellExecute = safeOptions.UseShellExecute };
             using (Process.Start(startInfo))
             {
+                // Nothing to do
             }
 
             if (safeOptions.SleepTime > 0)
@@ -108,7 +109,8 @@ namespace iTin.Core.Helpers
         /// <param name="program">Program name</param>
         /// <param name="arguments">Program arguments</param>
         /// <param name="options">Run Program options</param>
-        public static void RunProgram(WinProgram program, string arguments, RunProgramOptions options = null) => RunProgram(program.GetDescription(), arguments, options ?? RunProgramOptions.Default);
+        public static void RunProgram(WinProgram program, string arguments, RunProgramOptions options = null) =>
+            RunProgram(program.GetDescription(), arguments, options ?? RunProgramOptions.Default);
 
         /// <summary>
         /// Runs specified program with parameters.
@@ -146,10 +148,10 @@ namespace iTin.Core.Helpers
             process.Start();
             while (!process.StandardOutput.EndOfStream)
             {
-                builder.AppendLine(process.StandardOutput.ReadLine());
+                builder.AppendLine(await process.StandardOutput.ReadLineAsync());
             }
 
-            return await Task.FromResult(builder);
+            return builder;
         }
     }
 }

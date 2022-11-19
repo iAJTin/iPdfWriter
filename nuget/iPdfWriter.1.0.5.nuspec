@@ -26,16 +26,36 @@
 				<dependency id="Microsoft.Win32.Registry" version="5.0.0"/>
 				<dependency id="Microsoft.Windows.Compatibility" version="6.0.0"/>
 			</group>
-			<group targetFramework=".NETCoreApp3.1">
-				<dependency id="iTextSharp" version="5.5.13.3"/>
-				<dependency id="itextsharp.xmlworker" version="5.5.13.3"/>
-				<dependency id="itextsharp.xtra" version="5.5.13.3"/>
-				<dependency id="DotNetZip" version="1.16.0"/>
-				<dependency id="Newtonsoft.Json" version="13.0.1"/>
-				<dependency id="System.Drawing.Common" version="6.0.0"/>
-				<dependency id="Microsoft.Win32.Registry" version="5.0.0"/>
-				<dependency id="Microsoft.Windows.Compatibility" version="6.0.0"/>
-			</group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="iTextSharp" version="5.5.13.3"/>
+        <dependency id="itextsharp.xmlworker" version="5.5.13.3"/>
+        <dependency id="itextsharp.xtra" version="5.5.13.3"/>
+        <dependency id="DotNetZip" version="1.16.0"/>
+        <dependency id="Newtonsoft.Json" version="13.0.1"/>
+        <dependency id="System.Drawing.Common" version="6.0.0"/>
+        <dependency id="Microsoft.Win32.Registry" version="5.0.0"/>
+        <dependency id="Microsoft.Windows.Compatibility" version="6.0.0"/>
+      </group>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="iTextSharp" version="5.5.13.3"/>
+        <dependency id="itextsharp.xmlworker" version="5.5.13.3"/>
+        <dependency id="itextsharp.xtra" version="5.5.13.3"/>
+        <dependency id="DotNetZip" version="1.16.0"/>
+        <dependency id="Newtonsoft.Json" version="13.0.1"/>
+        <dependency id="System.Drawing.Common" version="6.0.0"/>
+        <dependency id="Microsoft.Win32.Registry" version="5.0.0"/>
+        <dependency id="Microsoft.Windows.Compatibility" version="6.0.0"/>
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="iTextSharp" version="5.5.13.3"/>
+        <dependency id="itextsharp.xmlworker" version="5.5.13.3"/>
+        <dependency id="itextsharp.xtra" version="5.5.13.3"/>
+        <dependency id="DotNetZip" version="1.16.0"/>
+        <dependency id="Newtonsoft.Json" version="13.0.1"/>
+        <dependency id="System.Drawing.Common" version="6.0.0"/>
+        <dependency id="Microsoft.Win32.Registry" version="5.0.0"/>
+        <dependency id="Microsoft.Windows.Compatibility" version="6.0.0"/>
+      </group>
       <group targetFramework="net60">
         <dependency id="iTextSharp" version="5.5.13.3"/>
         <dependency id="itextsharp.xmlworker" version="5.5.13.3"/>

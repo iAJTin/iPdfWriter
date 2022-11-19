@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
+using System.Threading.Tasks;
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
@@ -22,7 +23,6 @@ namespace iTin.Core
     /// </summary> 
     public static class StringExtensions
     {
-        #region [public] {static} (bool) AsBoolean(this string): Tries to convert the value specified in its boolean equivalent value. Defaults value is false
         /// <summary>
         /// <para>Tries to convert the value specified in its boolean equivalent value. Default value is <b>false</b>.</para>
         /// <para>Supported values are: "true", "false", "yes", "no", "si", "on", "off", "t", "f", "y", "n", "1", "0".</para>
@@ -106,9 +106,7 @@ namespace iTin.Core
             Logger.Instance.Error("Value is not a boolean value", ex);
             throw ex;
         }
-        #endregion
 
-        #region [public] {static} (Stream) AsStream(this string, Encoding = null): Returns a new stream from target string encoding by specified encoding type. If is null uses defaults encoding
         /// <summary>
         /// Returns a new <see cref="T:System.IO.Stream"/> from target <see cref="T:System.String"/> encoding by specified encoding type. If is <b>null</b> uses defaults encoding.
         /// If is <b>null</b> uses default encoding.
@@ -127,9 +125,9 @@ namespace iTin.Core
             Logger.Instance.Debug($"   > target: {target}");
             Logger.Instance.Debug($"   > encoding: {encoding}");
 
-            MemoryStream stream = new MemoryStream();
-            StreamWriter writer = new StreamWriter(stream, encoding ?? Encoding.Default);
-            writer.Write(target);
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream, encoding ?? Encoding.Default);
+            writer.WriteAsync(target);
             writer.Flush();
             stream.Position = 0;
 
@@ -137,9 +135,7 @@ namespace iTin.Core
 
             return stream;
         }
-        #endregion
 
-        #region [public] {static} (string) FromBase64(this string, Encoding = null): Decodes the input string in base64 using specified encoding
         /// <summary>
         /// Decodes the input <see cref="T:System.String"/> in base64 using specified encoding, if not specified by default the <b>UTF8</b> encoding is used.
         /// </summary>
@@ -170,9 +166,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (bool) HasValue(this string): Determines whether this value has a value
         /// <summary>
         /// Determines whether this value has a value.
         /// </summary>
@@ -193,9 +187,7 @@ namespace iTin.Core
 
             return hasValue;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsBoolean(this string): Determines whether this value is a boolean value
         /// <summary>
         /// <para>Determines whether this value is a boolean value.</para>
         /// <para>Supported values are: "true", "false", "yes", "no", "on", "off", "si", "t", "f", "y", "n", "1", "0".</para>
@@ -277,9 +269,7 @@ namespace iTin.Core
             Logger.Instance.Debug("  > Output: False");
             return false;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsCaseInsensitiveEqual(this string, string): Determines whether this instance and another specified System.String object have the same value
         /// <summary>
         /// Determines whether this instance and another specified System.String object have the same value.
         /// </summary>
@@ -302,9 +292,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsCaseSensitiveEqual(this string, string): Determines whether this instance and another specified System.String object have the same value
         /// <summary>
         /// Determines whether this instance and another specified System.String object have the same value.
         /// </summary>
@@ -327,9 +315,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsNullValue(this string): Determines whether string value is null
         /// <summary>
         /// Determines whether string value is <b>null</b> (<b>Nothing</b> in Visual Basic) value.
         /// </summary>
@@ -350,9 +336,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsNumeric(this string): Determines whether the specified value is a numeric value
         /// <summary>
         /// Determines whether the specified value is a numeric value.
         /// </summary>
@@ -373,9 +357,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) Left(this string, int): Returns a string containing a specified number of characters from the left side of a string
         /// <summary>
         /// Returns a string containing a specified number of characters from the left side of a string.
         /// </summary>
@@ -398,9 +380,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) Mid(this string, int, int): Returns a string that contains a specified number of characters from the specified position
         /// <summary>
         /// Returns a string that contains a specified number of characters from the specified position.
         /// </summary>
@@ -425,9 +405,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) RemoveControlCharacters(this string): Remove control chars from input string
         /// <summary>
         /// Remove control chars from input string.
         /// </summary>
@@ -435,10 +413,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns input string without control chars.
         /// </returns>
-        public static string RemoveControlCharacters(this string input) => new(input.Where(c => !char.IsControl(c)).ToArray());
-        #endregion
+        public static string RemoveControlCharacters(this string input) => 
+            new(input.Where(c => !char.IsControl(c)).ToArray());
 
-        #region [public] {static} (string) Reverse(this string): Returns a string that contains the value of value parameter reversed
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that contains the value of <paramref name="value"/> parameter reversed.
         /// </summary>
@@ -462,9 +439,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) Right(this string, int): Returns a string that contains a specified number of characters from the right side of a string
         /// <summary>
         /// Returns a string that contains a specified number of characters from the right side of a string.
         /// </summary>
@@ -487,9 +462,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) ToBase64(this string, Encoding = null): Encodes the input string in base64 using specified encoding
         /// <summary>
         /// Encodes the input <see cref="T:System.String"/> in base64 using specified encoding, if not specified by default the <b>UTF8</b> encoding is used.
         /// </summary>
@@ -520,9 +493,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (byte[]) ToByteArray(this string, Encoding = null): Converts string to byte array with specified encoding
         /// <summary>
         /// Converts string to byte array with specified encoding.
         /// </summary>
@@ -558,9 +529,7 @@ namespace iTin.Core
                 return null;
             }
         }
-        #endregion
 
-        #region [public] {static} (bool) ToCamelCase(this string): Returns a string that contains input string as camel case format
         /// <summary>
         /// Returns a string that contains input string as camel case format.
         /// </summary>
@@ -581,9 +550,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (T) ToEnum<T>(this string, T = default): Converts string to enum object
         /// <summary>
         /// Converts string to enum object
         /// </summary>
@@ -619,9 +586,7 @@ namespace iTin.Core
                 return defaultValue;
             }
         }
-        #endregion
 
-        #region [public] {static} (T) ToEnumByDescription<T>(this string): Converts string to enum object by emun description attribute
         /// <summary>
         /// Converts string to enum object by emun description attribute.
         /// </summary>
@@ -652,9 +617,7 @@ namespace iTin.Core
             Logger.Instance.Debug($"  > Output: {result}");
             return result;
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<string>) ToListWithSeparator(this string, char): Returns a new list of strings splitted with specified char
         /// <summary>
         /// Returns a new list of strings splitted with specified char
         /// </summary>
@@ -663,10 +626,9 @@ namespace iTin.Core
         /// <returns>
         /// Returns a new <see cref="IEnumerable{T}"/>.
         ///  </returns>
-        public static IEnumerable<string> ToListWithSeparator(this string value, char separator) => value.ToListWithSeparator(new[] { separator });
-        #endregion
+        public static IEnumerable<string> ToListWithSeparator(this string value, char separator) => 
+            value.ToListWithSeparator(new[] { separator });
 
-        #region [public] {static} (IEnumerable<string>) ToListWithSeparator(this string, char[]): Returns a new list of strings splitted with specified chars
         /// <summary>
         /// Returns a new list of strings splitted with specified chars
         /// </summary>
@@ -689,9 +651,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (SecureString) ToSecureString(this string): Converts a string into a secure string
         /// <summary>
         /// Converts a string into a "SecureString"
         /// </summary>
@@ -717,9 +677,7 @@ namespace iTin.Core
 
             return secureString;
         }
-        #endregion
 
-        #region [public] {static} (string) UpperCaseFirstLetter(this string): Uppers the case first letter
         /// <summary>
         /// Uppers the case first letter.
         /// </summary>
@@ -748,7 +706,6 @@ namespace iTin.Core
 
             return new string(array);
         }
-        #endregion
 
 #if NETSTANDARD2_1 || NET5_0_OR_GREATER
 
@@ -766,7 +723,6 @@ namespace iTin.Core
         /// <param name="str"></param>
         /// <returns></returns>
         public static SplitEnumerator SplitLines(this string str) => new SplitEnumerator(str, new[] {'\r', '\n'});
-    }
 
 #else
         /// <summary>
@@ -774,10 +730,38 @@ namespace iTin.Core
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string[] SplitLines(this string str)
-            => str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-    }
+        public static string[] SplitLines(this string str) => str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
 #endif
 
+
+    /// <summary>
+    /// Returns a new <see cref="T:System.IO.Stream"/> from target <see cref="T:System.String"/> encoding by specified encoding type. If is <b>null</b> uses defaults encoding.
+    /// If is <b>null</b> uses default encoding.
+    /// </summary>
+    /// <param name="target">Target string.</param>
+    /// <param name="encoding">The character encoding to use.</param>
+    /// <returns>
+    /// A new <see cref="T:System.IO.Stream"/> from target string.
+    /// </returns>
+    public static async Task<Stream> AsStreamAsync(this string target, Encoding encoding = null)
+    {
+        Logger.Instance.Debug("");
+        Logger.Instance.Debug($" Assembly: {typeof(StringExtensions).Assembly.GetName().Name}, v{typeof(StringExtensions).Assembly.GetName().Version}, Namespace: {typeof(StringExtensions).Namespace}, Class: {nameof(StringExtensions)}");
+        Logger.Instance.Debug($" Returns a new {typeof(Stream)} from target {typeof(string)}");
+        Logger.Instance.Debug($" > Signature: ({typeof(Task<Stream>)}) AsStreamAsync(this {typeof(string)}, {typeof(Encoding)} = null)");
+        Logger.Instance.Debug($"   > target: {target}");
+        Logger.Instance.Debug($"   > encoding: {encoding}");
+
+        var stream = new MemoryStream();
+        var writer = new StreamWriter(stream, encoding ?? Encoding.Default);
+        await writer.WriteAsync(target);
+        await writer.FlushAsync();
+        stream.Position = 0;
+
+        Logger.Instance.Debug($" > Output: {stream.Length} byte(s)");
+
+        return stream;
+    }
+    }
 }

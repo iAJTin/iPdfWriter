@@ -12,22 +12,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region public new static properties
 
-        #region [public] {new} {static} (PdfImageContentAlignment) Default: Returns a new instance containing default image content alignment style settings
         /// <summary>
         /// Returns a new instance containing default image content alignment style settings.
         /// </summary>
         /// <value>
         /// A <see cref="PdfImageContentAlignment"/> reference containing the default image content alignment settings.
         /// </value>
-        public new static PdfImageContentAlignment Default => new PdfImageContentAlignment();
-
-        #endregion
+        public new static PdfImageContentAlignment Default => new();
 
         #endregion
 
         #region public new methods
 
-        #region [public] {new} (PdfImageContentAlignment) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -35,13 +31,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         public new PdfImageContentAlignment Clone() => (PdfImageContentAlignment)MemberwiseClone();
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) ApplyOptions(PdfImageContentAlignmentOptions): Apply specified options to this content
         /// <summary>
         /// Apply specified options to this content.
         /// </summary>
@@ -66,9 +60,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
             }
             #endregion
         }
-        #endregion
 
-        #region [public] {virtual} (void) Combine(PdfImageContentAlignment): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -82,7 +74,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             base.Combine(reference);
         }
-        #endregion
 
         #endregion
     }

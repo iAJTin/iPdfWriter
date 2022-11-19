@@ -18,7 +18,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region constructor/s
 
-        #region [public] PdfTableStyleOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTableStyleOptions"/> class.
         /// </summary>
@@ -27,7 +26,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Content = PdfTableContentOptions.Default;
             Alignment = PdfTableAlignmentOptions.Default;
         }
-        #endregion
 
         #endregion
 
@@ -37,7 +35,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -46,7 +43,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -56,21 +52,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (PdfTableStyleOptions) Default: Returns a new instance containing the set of available settings to model an existing PdfTableStyle instance
         /// <summary>
         /// Returns a new instance containing the set of available settings to model an existing <see cref="PdfTableStyle"/> instance.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTableStyleOptions"/> reference containing set of default options.
         /// </value>
-        public static PdfTableStyleOptions Default => new PdfTableStyleOptions();
-        #endregion
+        public static PdfTableStyleOptions Default => new();
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (bool) AlignmentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -82,9 +75,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool AlignmentSpecified => Alignment != null;
-        #endregion
 
-        #region [public] (bool) ContentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -96,13 +87,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool ContentSpecified => Content != null;
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (PdfTableAlignmentOptions) Alignment: Gets or sets a value that defines style table alignment in an existing PdfTableStyle instance.
         /// <summary>
         /// Gets or sets a value that defines style table alignment in an existing <see cref="PdfTableStyle"/> instance.
         /// </summary>
@@ -112,9 +101,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlElement]
         [JsonProperty("alignment")]
         public PdfTableAlignmentOptions Alignment { get; set; }
-        #endregion
 
-        #region [public] (PdfTableContentOptions) Content: Gets or sets a value that defines style table content in an existing PdfTableStyle instance.
         /// <summary>
         /// Gets or sets a value that defines style table content in an existing <see cref="PdfTableStyle"/> instance.
         /// </summary>
@@ -124,13 +111,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlElement]
         [JsonProperty("content")]
         public PdfTableContentOptions Content { get; set; }
-        #endregion
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -138,14 +123,15 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => base.IsDefault && Alignment == null && Content == null;
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault && 
+            Alignment == null && 
+            Content == null;
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfTableStyleOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -168,7 +154,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return cloned;
         } 
-        #endregion
 
         #endregion
     }

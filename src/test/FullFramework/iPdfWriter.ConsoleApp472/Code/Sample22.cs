@@ -2,10 +2,11 @@
 using System.Diagnostics;
 
 using iTin.Core.ComponentModel;
+
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
@@ -14,7 +15,6 @@ namespace iPdfWriter.Code
     /// </summary>
     internal static class Sample22
     {
-        // Generates partial document(s)
         public static void Generate(ILogger logger)
         {
             #region Initialize timer
@@ -36,7 +36,7 @@ namespace iPdfWriter.Code
             #region Extract pages
 
             var partialInput = doc.ExtractPages(1, 2);
-            
+
             #endregion
 
             #region Create output result
@@ -54,6 +54,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample22/Sample-22" });
+            
             var ts = sw.Elapsed;
             sw.Stop();
 

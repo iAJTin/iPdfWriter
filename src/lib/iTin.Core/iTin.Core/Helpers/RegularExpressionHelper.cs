@@ -30,7 +30,6 @@ namespace iTin.Core.Helpers
 
         #region public static methods
 
-        #region [public] {static} (bool) IsNumeric(string): Determines whether value parameter is a valid integer number
         /// <summary>
         /// Determines whether <paramref name="value" /> is a numeric value.is a valid integer number.
         /// </summary>
@@ -47,9 +46,7 @@ namespace iTin.Core.Helpers
 
             return match;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsValidGuid(string): Determines whether value parameter is valid guid
         /// <summary>
         /// Converts the string representation of a Guid to its Guid 
         /// equivalent. A return value indicates whether the operation 
@@ -68,9 +65,7 @@ namespace iTin.Core.Helpers
 
             return match;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsValidIpAddress(string): Determines whether value parameter is valid ip address
         /// <summary>
         /// Determines whether <paramref name="value" /> is valid ip address.
         /// </summary>
@@ -88,9 +83,7 @@ namespace iTin.Core.Helpers
 
             return match;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsValidEmailAddress(string): Determines whether value parameter is valid mail address
         /// <summary>
         /// Determines whether <paramref name="value" /> is valid mail address.
         /// </summary>
@@ -107,9 +100,7 @@ namespace iTin.Core.Helpers
 
             return match;
         }
-        #endregion
 
-        #region [public] {static} (bool) IsValidPath(string): Determines whether value parameter is a valid path
         /// <summary>
         /// Determines whether <paramref name="value" /> is a valid path.
         /// </summary>
@@ -126,7 +117,6 @@ namespace iTin.Core.Helpers
 
             return match;
         }
-        #endregion
 
         #endregion
     }

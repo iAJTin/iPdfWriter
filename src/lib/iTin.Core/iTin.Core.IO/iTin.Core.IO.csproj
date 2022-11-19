@@ -18,7 +18,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\iTin.Registry\iTin.Registry.Windows\iTin.Registry.Windows.csproj" />
-		<ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using iTin.Core.IO.Compression;
 using iTin.Core.Helpers;
 
 using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Output;
+
+using iTin.Utilities.Writer.Abstractions.Operations.Results;
+using System.Threading;
 
 namespace iTin.Utilities.Pdf.Writer
 {
@@ -19,7 +22,6 @@ namespace iTin.Utilities.Pdf.Writer
     {
         #region public static methods
 
-        #region [public] {static} (IEnumerable<PdfInput>) Clone(this IEnumerable<PdfInput>): Clones the specified items
         /// <summary>
         /// Clones the specified items.
         /// </summary>
@@ -27,14 +29,12 @@ namespace iTin.Utilities.Pdf.Writer
         /// <returns>IEnumerable&lt;PdfInput&gt;.</returns>
         public static IEnumerable<PdfInput> Clone(this IEnumerable<PdfInput> items)
         {
-            IList<PdfInput> elementList = items as IList<PdfInput> ?? items.ToList();
+            var elementList = items as IList<PdfInput> ?? items.ToList();
             SentinelHelper.ArgumentNull(elementList, nameof(elementList));
 
-            return elementList.Select(element => element.Clone()).ToList();
+            return elementList.Select(element => element.Clone());
         }
-        #endregion
 
-        #region [public] {static} (OutputResult) CreateJoinResult(this IEnumerable<PdfInput>, IEnumerable<string>): Returns a new OutputResult reference thats represents a one unique zip stream that contains the same entries in items but compressed individually using the names in filenames list
         /// <summary>
         /// Returns a new <see cref="T:iTin.Utilities.Pdf.ComponentModel.OutputResult" /> reference thats represents a one <b>unique zip stream</b> that contains the same entries in <param ref="items"/> 
         /// but compressed individually using the name in <param ref="filenames"/>.         
@@ -58,7 +58,7 @@ namespace iTin.Utilities.Pdf.Writer
                 zippedStream.Position = 0;
                 return
                     OutputResult.CreateSuccessResult(
-                        new OutputResultData
+                        new PdfOutputResultData
                         {
                             Zipped = true,
                             Configuration = null,
@@ -70,9 +70,7 @@ namespace iTin.Utilities.Pdf.Writer
                 return OutputResult.FromException(e);
             }
         }
-        #endregion
 
-        #region [public] {static} (IEnumerable<OutputResult>) ToOutputResults(this IEnumerable<IEnumerable<PdfInput>>): Merges every entry list in multiInputItems parameter into a unique OutputResult item
         /// <summary>
         /// Merges every entry list in <paramref name="multiInputItems"/> parameter into a unique <see cref="OutputResult"/> item.
         /// </summary>
@@ -87,23 +85,60 @@ namespace iTin.Utilities.Pdf.Writer
 
             return multiInputItems
                 .Select(items =>new PdfObject(new PdfObjectConfig { AllowCompression = false, CompressionThreshold = 0.1f }) { Items = items })
-                .Select(pdfObject => pdfObject.TryMergeInputs()).ToList();
+                .Select(pdfObject => pdfObject.TryMergeInputs());
         }
-        #endregion
 
         #endregion
+
+
+        /// <summary>
+        /// Returns a new <see cref="T:iTin.Utilities.Pdf.ComponentModel.OutputResult" /> reference thats represents a one <b>unique zip stream</b> that contains the same entries in <param ref="items"/> 
+        /// but compressed individually using the name in <param ref="filenames"/>.         
+        /// </summary>
+        /// <param name="items">Items</param>
+        /// <param name="filenames">Item filenames.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A <see cref="T:iTin.Core.ComponentModel.OutputResult" /> reference that contains action result.
+        /// </returns>
+        public static async Task<OutputResult> CreateJoinResultAsync(this IEnumerable<PdfInput> items, IEnumerable<string> filenames, CancellationToken cancellationToken = default)
+        {
+            var elementList = items as IList<PdfInput> ?? items.ToList();
+            SentinelHelper.ArgumentNull(elementList, nameof(elementList));
+
+            var filenameList = filenames as IList<string> ?? filenames.ToList();
+            SentinelHelper.ArgumentNull(filenameList, nameof(filenameList));
+
+            try
+            {
+                var zippedStream = await elementList.ToStreamEnumerable().AsZipStreamAsync(filenameList, cancellationToken);
+                zippedStream.Position = 0;
+                return
+                    OutputResult.CreateSuccessResult(
+                        new PdfOutputResultData
+                        {
+                            Zipped = true,
+                            Configuration = null,
+                            UncompressOutputStream = zippedStream
+                        });
+            }
+            catch (Exception e)
+            {
+                return OutputResult.FromException(e);
+            }
+        }
+
+
 
         #region private static methods
 
-        #region [private] {static} (IEnumerable<Stream>) ToStreamEnumerable(this IEnumerable<PdfInput>): Converts the enumerated type PdfInput to enumerated streams
         private static IEnumerable<Stream> ToStreamEnumerable(this IEnumerable<PdfInput> items)
         {
-            IList<PdfInput> elementList = items as IList<PdfInput> ?? items.ToList();
+            var elementList = items as IList<PdfInput> ?? items.ToList();
             SentinelHelper.ArgumentNull(elementList, nameof(elementList));
 
             return elementList.Select(item => item.Clone().ToStream());
         }
-        #endregion
 
         #endregion
     }

@@ -24,7 +24,7 @@ namespace iTin.Core.Helpers
             Logger.Instance.Debug($" Returns an {typeof(Uri)} that contains full path to current assembly");
             Logger.Instance.Debug($" > Signature: ({typeof(Uri)}) GetFullAssemblyUri()");
 
-            Uri result = new Uri(Assembly.GetCallingAssembly().CodeBase);
+            var result = new Uri(Assembly.GetCallingAssembly().CodeBase);
             Logger.Instance.Debug($" > Output: {result}");
 
             return result;

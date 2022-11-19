@@ -198,8 +198,9 @@ namespace iTin.Core.Helpers
         #endregion
 
         #region private static methods
+
         /// <summary>
-        /// Obtiene un valor que indica si el bit indicado está activado.
+        /// Gets a value indicating whether the indicated bit is on.
         /// </summary>
         private static readonly Func<long, int, bool> BitBit = (a, b) => (a & (1 << b)) == 1 << b;
 

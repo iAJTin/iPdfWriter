@@ -13,7 +13,6 @@ namespace iTin.Core
     /// </summary> 
     public static class TimeSpanExtensions
     {
-        #region [public] {static} (TimeSpan) TotalTime(this IEnumerable<TimeSpan>): Returns total time
         /// <summary>
         /// Returns total time.
         /// </summary>
@@ -34,9 +33,7 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
 
-        #region [public] {static} (string) ToShortFormat(this TimeSpan): Converts a TimeSpan object into dd'd' HH'h' MM'm' ss's' or HH'h' MM'm' ss's' or MM'm' ss's' string
         /// <summary>
         /// Converts a <see cref="T:System.TimeSpan" /> object into <b>dd'd' HH'h' MM'm' ss's'</b> or <b>HH'h' MM'm' ss's'</b> or <b>MM'm' ss's'</b> string.
         /// </summary>
@@ -57,6 +54,5 @@ namespace iTin.Core
 
             return result;
         }
-        #endregion
     }
 }

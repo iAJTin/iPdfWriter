@@ -15,7 +15,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region constructor/s
 
-        #region [public] PdfStylesCollection(): Initializes a new instance of the class
         /// <inheritdoc/>
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfStylesCollection"/> class.
@@ -23,9 +22,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         public PdfStylesCollection() : base(null)
         {
         }
-        #endregion
 
-        #region [public] PdfStylesCollection(object): Initializes a new instance of the class
         /// <inheritdoc/>
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfStylesCollection"/> class.
@@ -34,7 +31,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         public PdfStylesCollection(object parent) : base(parent)
         {
         }
-        #endregion
 
         #endregion
 
@@ -44,7 +40,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -53,7 +48,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -63,7 +57,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (IStyle) IStyles.GetBy(string): Returns specified style by name
         /// <summary>
         /// Returns specified style by name.
         /// </summary>
@@ -72,7 +65,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A <see cref="IStyle"/> reference.
         /// </returns>
         IStyle IStyles.GetBy(string value) => GetBy(value);
-        #endregion
 
         #endregion
 
@@ -82,7 +74,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region explicit
 
-        #region (IPdfStyle) IPdfStyles.GetBy(string): Returns specified style by name
         /// <summary>
         /// Returns specified style by name.
         /// </summary>
@@ -91,7 +82,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A <see cref="IStyle"/> reference.
         /// </returns>
         IPdfStyle IPdfStyles.GetBy(string value) => GetBy(value);
-        #endregion
 
         #endregion
 
@@ -101,7 +91,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region protected override methods
 
-        #region [protected] {override} (PdfBaseStyle) GetBy(string): Returns the element specified
         /// <inheritdoc />
         /// <summary>
         /// Returns the element specified.
@@ -121,9 +110,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return style ?? PdfBaseStyle.Default;
         }
-        #endregion
 
-        #region [protected] {override} (void) SetOwner(PdfBaseStyle): Sets this collection as the owner of the specified item
         /// <inheritdoc />
         /// <summary>
         /// Sets this collection as the owner of the specified item.
@@ -135,13 +122,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             item.SetOwner(this);
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfStylesCollection) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -149,7 +134,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         public PdfStylesCollection Clone() => CopierHelper.DeepCopy(this);
-        #endregion
 
         #endregion
     }

@@ -22,12 +22,12 @@ namespace iTin.Core
         {
             SentinelHelper.ArgumentNull(input, nameof(input));
 
-            StringBuilder html = new StringBuilder();
+            var html = new StringBuilder();
             html.Append("<table>");
 
             // add header row
             html.Append("<tr>");
-            for (int i = 0; i < input.Columns.Count; i++)
+            for (var i = 0; i < input.Columns.Count; i++)
             {
                 html.AppendFormat("<td>{0}</td>", input.Columns[i].ColumnName);
             }
@@ -35,7 +35,7 @@ namespace iTin.Core
             html.Append("</tr>");
 
             // add rows
-            for (int i = 0; i < input.Rows.Count; i++)
+            for (var i = 0; i < input.Rows.Count; i++)
             {
                 html.Append("<tr>");
                 for (var j = 0; j < input.Columns.Count; j++)

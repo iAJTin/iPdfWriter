@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Writer;
@@ -10,7 +12,6 @@ namespace iPdfWriter.Code
     /// </summary>
     internal static class Sample24
     {
-        // Generates partial document(s)
         public static void Generate(ILogger logger)
         {
             // Creates pdf file reference

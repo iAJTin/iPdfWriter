@@ -12,7 +12,6 @@ namespace iPdfWriter.Code
     /// </summary>
     internal static class Sample24
     {
-        // Generates partial document(s)
         public static void Generate(ILogger logger)
         {
             // Creates pdf file reference

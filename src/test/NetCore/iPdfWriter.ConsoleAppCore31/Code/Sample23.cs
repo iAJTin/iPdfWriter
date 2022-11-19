@@ -2,7 +2,7 @@
 using System.Linq;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
@@ -11,7 +11,6 @@ namespace iPdfWriter.Code
     /// </summary>
     internal static class Sample23
     {
-        // Generates partial document(s)
         public static void Generate()
         {
             // Creates pdf file reference
@@ -27,7 +26,7 @@ namespace iPdfWriter.Code
             for (var i = 0; i < matchesCount; i++)
             {
                 var currentMatch = matches[i];
-                int? to = currentMatch.Page; ;
+                int? to = currentMatch.Page;
 
                 var hasNextMatch = i != matchesCount - 1;
                 if (hasNextMatch)

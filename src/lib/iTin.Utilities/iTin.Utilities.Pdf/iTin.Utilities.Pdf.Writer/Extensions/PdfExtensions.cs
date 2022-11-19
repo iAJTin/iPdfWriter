@@ -16,7 +16,7 @@ namespace iTin.Utilities.Pdf.Writer
     /// <summary>
     /// Static class than contains common extension methods for objects of the namespace <see cref="N:iTextSharp.text.pdf"/>.
     /// </summary>
-    static class PdfExtensions
+    internal static class PdfExtensions
     {
         #region public static methods
 

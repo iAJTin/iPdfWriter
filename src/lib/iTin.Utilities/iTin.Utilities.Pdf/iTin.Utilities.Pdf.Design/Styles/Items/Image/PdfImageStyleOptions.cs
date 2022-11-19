@@ -18,7 +18,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region constructor/s
 
-        #region [public] PdfImageStyleOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfImageStyleOptions"/> class.
         /// </summary>
@@ -26,7 +25,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         {
             Content = PdfImageContentOptions.Default;
         }
-        #endregion
 
         #endregion
 
@@ -36,7 +34,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -45,7 +42,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -55,21 +51,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (PdfImageStyleOptions) Default: Returns a new instance containing the set of available settings to model an existing PdfImageStyle instance
         /// <summary>
         /// Returns a new instance containing the set of available settings to model an existing <see cref="PdfImageStyle"/> instance.
         /// </summary>
         /// <value>
         /// A <see cref="PdfImageStyleOptions"/> reference containing set of default options.
         /// </value>
-        public static PdfImageStyleOptions Default => new PdfImageStyleOptions();
-        #endregion
+        public static PdfImageStyleOptions Default => new();
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (bool) ContentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -81,13 +74,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [Browsable(false)]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool ContentSpecified => Content != null;
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (PdfImageContentOptions) Content: Gets or sets a value that defines an image style in an existing PdfImageStyle instance
         /// <summary>
         /// Gets or sets a value that defines an image style in an existing <see cref="PdfImageStyle"/> instance.
         /// </summary>
@@ -97,13 +88,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlElement]
         [JsonProperty("content")]
         public PdfImageContentOptions Content { get; set; }
-        #endregion
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -111,14 +100,14 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => base.IsDefault && Content == null;
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault &&
+            Content == null;
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfImageStyleOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -136,7 +125,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
             return cloned;
         } 
-        #endregion
 
         #endregion
     }

@@ -12,7 +12,6 @@ namespace iTin.Core
     /// </summary> 
     public static class ReadOnlyCollectionExtensions
     {
-        #region [public] {static} (int) GetDoubleWord(this ReadOnlyCollection<byte>, byte): Returns a double Word from this array of bytes starting in start
         /// <summary>
         /// Gets a <b>Double Word</b> from this array of bytes.
         /// </summary>
@@ -24,13 +23,10 @@ namespace iTin.Core
         public static int GetDoubleWord(this ReadOnlyCollection<byte> data, byte start)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
-            //SentinelHelper.IsTrue(start + 3 > data.Length);
             
             return data[start] | data[start + 1] << 8 | data[start + 2] << 16 | data[start + 3] << 24;
         }
-        #endregion
 
-        #region [public] {static} (long) GetQuadrupleWord(this ReadOnlyCollection<byte>, byte): Returns a quadriple Word from this array of bytes starting in start
         /// <summary>
         /// Returns a <b>Quadriple Word</b> from this array of bytes starting in <paramref name="start"/>.
         /// </summary>
@@ -42,13 +38,10 @@ namespace iTin.Core
         public static long GetQuadrupleWord(this ReadOnlyCollection<byte> data, byte start)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
-            //SentinelHelper.IsTrue(start + 7 > data.Length);
 
             return data.GetDoubleWord(start) | data.GetDoubleWord((byte) (start + 4)) << 32;
         }
-        #endregion
 
-        #region [public] {static} (int) GetWord(this ReadOnlyCollection<byte>, byte): Returns a Word from this array of bytes starting in start
         /// <summary>
         /// Gets a <b>Word</b> from this array of bytes. ( { a, b, n, n + 1, ...}, n ) => (n + 1, n)
         /// </summary>
@@ -60,13 +53,10 @@ namespace iTin.Core
         public static int GetWord(this ReadOnlyCollection<byte> data, byte start)
         {
             SentinelHelper.ArgumentNull(data, nameof(data));
-            //SentinelHelper.IsTrue(start + 1 > data.Length);
 
             return data[start] | data[start + 1] << 8;
         }
-        #endregion
 
-        #region [public] {static} (ReadOnlyCollection<byte>) Extract(this ReadOnlyCollection<byte>, byte, byte): Returns a byte array as a result of extracting n bytes of the specified array from a position
         /// <summary>
         /// Returns a byte array as a result of extracting n bytes of the specified array from a position.
         /// </summary>
@@ -84,6 +74,5 @@ namespace iTin.Core
 
             return new ReadOnlyCollection<byte>((byte[])subArray.Clone());
         }
-        #endregion
     }
 }

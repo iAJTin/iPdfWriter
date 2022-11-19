@@ -7,6 +7,7 @@ using System.Reflection;
 
 using iTin.Core.ComponentModel;
 using iTin.Core.Helpers;
+
 using iTin.Logging;
 
 namespace iTin.Core
@@ -133,10 +134,9 @@ namespace iTin.Core
             string candidate = items.GetNextObject(value.ToString());
             bool isLastItem = string.IsNullOrEmpty(candidate);
 
-            T result = 
-                isLastItem
-                    ? EnumHelper.CreateEnumTypeFromStringValue<T>(items.First())
-                    : EnumHelper.CreateEnumTypeFromStringValue<T>(candidate);
+            T result = isLastItem
+                ? EnumHelper.CreateEnumTypeFromStringValue<T>(items.First())
+                : EnumHelper.CreateEnumTypeFromStringValue<T>(candidate);
 
             Logger.Instance.Debug($" > Output: {result}");
 
@@ -163,10 +163,9 @@ namespace iTin.Core
             string candidate = items.GetPrevObject(value.ToString());
             bool isFirstItem = string.IsNullOrEmpty(candidate);
 
-            T result =
-                isFirstItem
-                    ? EnumHelper.CreateEnumTypeFromStringValue<T>(items.Last())
-                    : EnumHelper.CreateEnumTypeFromStringValue<T>(candidate);
+            T result = isFirstItem
+                ? EnumHelper.CreateEnumTypeFromStringValue<T>(items.Last())
+                : EnumHelper.CreateEnumTypeFromStringValue<T>(candidate);
 
             Logger.Instance.Debug($" > Output: {result}");
 

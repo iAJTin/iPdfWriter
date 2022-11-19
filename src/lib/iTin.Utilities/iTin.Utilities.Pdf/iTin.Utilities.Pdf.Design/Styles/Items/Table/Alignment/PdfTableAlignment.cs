@@ -20,18 +20,21 @@ namespace iTin.Utilities.Pdf.Design.Styles
     public partial class PdfTableAlignment : ICombinable<PdfTableAlignment>, ICloneable
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const KnownVerticalAlignment DefaulVerticalAlignment = KnownVerticalAlignment.Top;
+
         #endregion
 
         #region private field members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private KnownVerticalAlignment _vertical;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] PdfTableAlignment(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTableAlignment"/> class.
         /// </summary>
@@ -39,7 +42,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         {
             Vertical = DefaulVerticalAlignment;
         }
-        #endregion
 
         #endregion
 
@@ -49,7 +51,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region private methods
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -58,7 +59,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -68,7 +68,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) Combine(PdfTableAlignment): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -85,7 +84,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 Vertical = reference.Vertical;
             }
         }
-        #endregion
 
         #endregion
 
@@ -95,21 +93,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (PdfTableAlignment) Returns a new instance containing default table alignment settings
         /// <summary>
         /// Returns a new instance containing default default table alignment settings.
         /// </summary>
         /// <value>
         /// A <see cref="PdfTableAlignment"/> reference containing the default table alignment settings.
         /// </value>
-        public static PdfTableAlignment Default => new PdfTableAlignment();
-        #endregion
+        public static PdfTableAlignment Default => new();
 
         #endregion
 
         #region public properties
 
-        #region [public] (KnownVerticalAlignment) Vertical: Gets or sets vertical table alignment
         /// <summary>
         /// Gets or sets vertical table alignment. The default is <see cref="KnownVerticalAlignment.Top"/>.
         /// </summary>
@@ -128,13 +123,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
                 _vertical = value;
             }
         }
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -142,14 +135,14 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public override bool IsDefault => base.IsDefault && Vertical.Equals(DefaulVerticalAlignment);
-        #endregion
+        public override bool IsDefault =>
+            base.IsDefault &&
+            Vertical.Equals(DefaulVerticalAlignment);
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfTableAlignment) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -157,13 +150,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         public PdfTableAlignment Clone() => (PdfTableAlignment)MemberwiseClone();
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] (void) ApplyOptions(PdfTableAlignmentOptions): Apply specified options to this alignment
         /// <summary>
         /// Apply specified options to this alignment.
         /// </summary>
@@ -188,7 +179,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
             }
             #endregion
         }
-        #endregion
 
         #endregion
     }

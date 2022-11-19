@@ -13,7 +13,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
     /// <summary>
     /// Contains common helper methods for Portable Document Format (pdf format).
     /// </summary>
-    static class PdfHelper
+    internal static class PdfHelper
     {
         /// <summary>
         /// Creates a new cell with the visual style defined in the model.
@@ -68,7 +68,7 @@ namespace iTin.Utilities.Pdf.Writer.Helpers
         /// <returns>
         /// A new <see cref="PdfPCell"/> with visual style defined in the model.
         /// </returns>
-        public static PdfPCell CreateEmptyWithoutBorderCell() => new PdfPCell {BorderWidth = 0.0f};
+        public static PdfPCell CreateEmptyWithoutBorderCell() => new() {BorderWidth = 0.0f};
 
         /// <summary>
         /// Creates a new font from model.

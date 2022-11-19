@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
     <ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
   </ItemGroup>
 

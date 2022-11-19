@@ -75,7 +75,8 @@ namespace iTin.Core.Helpers
             return ret;
         }
 
-        private class ExclusiveSynchronizationContext : SynchronizationContext
+
+        private sealed class ExclusiveSynchronizationContext : SynchronizationContext
         {
             private bool done;
             public Exception InnerException { get; set; }

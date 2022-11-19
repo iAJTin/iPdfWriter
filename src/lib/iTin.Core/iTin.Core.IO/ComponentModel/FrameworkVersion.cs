@@ -20,7 +20,6 @@ namespace iTin.Core.IO
     {
         #region constructor
 
-        #region [internal] FrameworkVersion(TargetFrameworkAttribute): Initialize a new instance of the class
         /// <summary>
         /// Initialize a new instance of the <see cref="T:iTin.Core.Drawing.Clipping" /> class.
         /// </summary>
@@ -45,13 +44,11 @@ namespace iTin.Core.IO
 
 #endif
         }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) VersionName: Gets a framework version name
         /// <summary>
         /// Gets a framework version name.
         /// </summary>
@@ -59,9 +56,7 @@ namespace iTin.Core.IO
         /// Version name.
         /// </value>
         public string VersionName { get; }
-        #endregion
 
-        #region [public] (string) VersionNumber: Gets a framework version number
         /// <summary>
         /// Gets a framework version number.
         /// </summary>
@@ -69,13 +64,11 @@ namespace iTin.Core.IO
         /// Version number.
         /// </value>
         public string VersionNumber { get; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (string) RuntimeOutputFolder(): Returns runtime output folder for this version name and number
         /// <summary>
         /// Returns runtime output folder for this version name and number.
         /// </summary>
@@ -139,21 +132,19 @@ namespace iTin.Core.IO
 
             return string.Empty;
         }
-        #endregion
 
         #endregion
 
         #region public override methods
 
-        #region [public] {override} (string) ToString(): Returns a string that represents the current instance
         /// <summary>
         /// Returns a string that represents the current instance.
         /// </summary>
         /// <returns>
         /// A <see cref="string"/> that represents the current object.
         /// </returns>
-        public override string ToString() => $"VersionName = \"{VersionName}\", VersionNumber = {VersionNumber}";
-        #endregion
+        public override string ToString() => 
+            $"VersionName = \"{VersionName}\", VersionNumber = {VersionNumber}";
 
         #endregion
     }

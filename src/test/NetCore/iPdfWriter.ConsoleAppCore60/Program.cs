@@ -4,12 +4,12 @@ using iTin.Core.Models.Design.Enums;
 using iTin.Logging;
 using iTin.Logging.ComponentModel;
 
-using iPdfWriter.Code;
-using iPdfWriter.ComponentModel;
-
 namespace iPdfWriter
 {
-    static class Program
+    using Code;
+    using ComponentModel;
+
+    internal static class Program
     {
         static void Main(string[] args)
         {
@@ -166,7 +166,7 @@ namespace iPdfWriter
             logger.Info("");
             logger.Info("> Start Pdf Sample 28");
             logger.Info(" > Shows how to insert an image into document");
-            Sample28.Generate(logger, YesNo.Yes);
+            Sample28.Generate(logger, YesNo.No);
 
             logger.Info("");
             logger.Debug(">End Logging<");

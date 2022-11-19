@@ -39,7 +39,7 @@ namespace iTin.Core.Models.ComponentModel.Strategies
                     {
                         Stream = new FileStream(parsedFilenamePath, FileMode.Open, FileAccess.Read)
                     })
-                : LoadFileResult.CreateErroResult("File not found");
+                : LoadFileResult.CreateErrorResult("File not found");
         }
     }
 }

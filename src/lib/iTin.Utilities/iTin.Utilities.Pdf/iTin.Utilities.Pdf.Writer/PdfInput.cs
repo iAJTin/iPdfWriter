@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using iTextSharp.text;
 
 using iTin.Core;
 using iTin.Core.ComponentModel;
@@ -12,12 +15,20 @@ using iTin.Core.Helpers;
 using iTin.Core.IO;
 
 using iTin.Utilities.Pdf.Design.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Input;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace;
 
-using iTextSharp.text;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Pdf.Writer.Config;
+using iTin.Utilities.Pdf.Writer.Input;
+using iTin.Utilities.Pdf.Writer.Operations.Insert;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Output;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Set;
+using iTin.Utilities.Pdf.Writer.TextStrategy;
+
+using iTin.Utilities.Writer.Abstractions.Config;
+using iTin.Utilities.Writer.Abstractions.Input;
+using iTin.Utilities.Writer.Abstractions.Operations.Results;
 
 using NativeIO = System.IO;
 using NativePdf = iTextSharp.text.pdf;
@@ -28,18 +39,19 @@ namespace iTin.Utilities.Pdf.Writer
     /// <summary>
     /// Represents a pdf file.
     /// </summary>
-    /// <seealso cref="IInput"/>
+    /// <seealso cref="IPdfInput"/>
     /// <seealso cref="ICloneable"/>
-    public sealed class PdfInput : IInput, ICloneable
+    public sealed class PdfInput : IPdfInput, ICloneable
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const string PdfExtension = "pdf";
+
         #endregion
 
         #region constructor/s
 
-        #region [public] PdfInput(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfInput"/> class.
         /// </summary>
@@ -48,7 +60,6 @@ namespace iTin.Utilities.Pdf.Writer
             AutoUpdateChanges = false;
             DeletePhysicalFilesAfterMerge = true;
         }
-        #endregion
 
         #endregion
 
@@ -56,9 +67,8 @@ namespace iTin.Utilities.Pdf.Writer
 
         #region ICloneable
 
-        #region private methods
+        #region explicit
 
-        #region [private] (object) ICloneable.Clone(): Create a new object that is a copy of the current instance
         /// <inheritdoc/>
         /// <summary>
         /// Create a new object that is a copy of the current instance.
@@ -67,17 +77,27 @@ namespace iTin.Utilities.Pdf.Writer
         /// A new <see cref="object"/> that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
         #endregion
 
-        #region IInput
+        #region IPdfInput
+
+        #region explict
+
+        /// <summary>
+        /// Gets input type.
+        /// </summary>
+        /// <Result>
+        /// An Result of enumeration <see cref="KnownInputType"/> indicating type of the input.
+        /// </Result>
+        Enum IInput.InputType => InputType;
+
+        #endregion
 
         #region public properties
 
-        #region [public] (bool) AutoUpdateChanges: Gets or sets a Result indicating whether automatic updates for changes
         /// <summary>
         /// Gets or sets a Result indicating whether automatic updates for changes.
         /// </summary>
@@ -85,9 +105,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// <b>true</b> if automatic update changes; otherwise, <b>false</b>.
         /// </Result>
         public bool AutoUpdateChanges { get; set; }
-        #endregion
 
-        #region [public] (bool) DeletePhysicalFilesAfterMerge: Gets or sets a Result indicating whether delete physical files after merge
         /// <summary>
         /// Gets or sets a Result indicating whether delete physical files after merge.
         /// </summary>
@@ -95,9 +113,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// <b>true</b> if delete physical files after merge; otherwise, <b>false</b>.
         /// </Result>
         public bool DeletePhysicalFilesAfterMerge { get; set; }
-        #endregion
 
-        #region [public] (int) Index: Gets or sets a Result that contains input index
         /// <summary>
         /// Gets or sets a Result that contains input index.
         /// </summary>
@@ -105,9 +121,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// A <see cref="int"/> that contains input index.
         /// </Result>
         public int Index { get; set; }
-        #endregion
 
-        #region [public] (object) Input: Gets or sets the input object
         /// <summary>
         /// Gets or sets the input object.
         /// </summary>
@@ -115,9 +129,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// The input.
         /// </Result>
         public object Input { get; set; }
-        #endregion
 
-        #region [public] (KnownInputType) InputType: Gets the input type
         /// <summary>
         /// Gets input type.
         /// </summary>
@@ -154,13 +166,11 @@ namespace iTin.Utilities.Pdf.Writer
 
             }
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (OutputResult) CreateResult(OutputResultConfig = null): Returns a new reference OutputResult that complies with what is indicated in its configuration object. By default, this PdfInput will not be zipped
         /// <summary>
         /// Returns a new reference <see cref="OutputResult"/> that complies with what is indicated in its configuration object. By default, this <see cref="PdfInput"/> will not be zipped.
         /// </summary>
@@ -172,14 +182,14 @@ namespace iTin.Utilities.Pdf.Writer
         /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
         /// </para>
         /// <para>
-        /// The type of the return Result is <see cref="OutputResultData"/>, which contains the operation result
+        /// The type of the return Result is <see cref="PdfOutputResultData"/>, which contains the operation result
         /// </para>
         /// </returns>
-        public OutputResult CreateResult(OutputResultConfig config = null)
+        public OutputResult CreateResult(IOutputResultConfig config = null)
         {
             ProcessInput();
 
-            var configToApply = OutputResultConfig.Default;
+            IOutputResultConfig configToApply = PdfOutputResultConfig.Default;
             if (config != null)
             {
                 configToApply = config;
@@ -195,16 +205,16 @@ namespace iTin.Utilities.Pdf.Writer
                 if (!configToApply.Zipped)
                 {
                     return OutputResult.CreateSuccessResult(
-                        new OutputResultData
+                        new PdfOutputResultData
                         {
                             Zipped = false,
-                            Configuration = configToApply,
+                            Configuration = (IPdfObjectConfig) configToApply,
                             UncompressOutputStream = Clone().ToStream()
                         });
                 }
 
                 var zippedOutputResult = new[] { Clone() }.CreateJoinResult(new[] { configToApply.Filename });
-                zippedOutputResult.Result.Configuration = configToApply;
+                ((PdfOutputResultData)zippedOutputResult.Result).Configuration = (IPdfObjectConfig)configToApply;
 
                 return zippedOutputResult;
             }
@@ -213,9 +223,7 @@ namespace iTin.Utilities.Pdf.Writer
                 return OutputResult.FromException(e);
             }
         }
-        #endregion
 
-        #region [public] (IPdfInputAction) Insert(IInsert): 
         /// <summary>
         /// 
         /// </summary>
@@ -227,9 +235,7 @@ namespace iTin.Utilities.Pdf.Writer
 
             return new PdfInputAction(this);
         }
-        #endregion
 
-        #region [public] (IPdfInputAction) Replace(IReplace): 
         /// <summary>
         /// 
         /// </summary>
@@ -241,9 +247,7 @@ namespace iTin.Utilities.Pdf.Writer
 
             return new PdfInputAction(this);
         }
-        #endregion
 
-        #region [public] (IPdfInputAction) Set(ISet): 
         /// <summary>
         /// 
         /// </summary>
@@ -256,9 +260,7 @@ namespace iTin.Utilities.Pdf.Writer
 
             return new PdfInputAction(this);
         }
-        #endregion
 
-        #region [public] (IResult) SaveToFile(string, SaveOptions = null): Saves this input into a file
         /// <summary>
         /// Saves this input into a file.
         /// </summary>
@@ -285,9 +287,7 @@ namespace iTin.Utilities.Pdf.Writer
                 return BooleanResult.FromException(ex);
             }
         }
-        #endregion
 
-        #region [public] (NativeIO.Stream) ToStream(): Convert this input into a stream object
         /// <summary>
         /// Convert this input into a stream object.
         /// </summary>
@@ -305,10 +305,10 @@ namespace iTin.Utilities.Pdf.Writer
                     return new NativeIO.MemoryStream(TypeHelper.ToType<byte[]>(Input));
 
                 case KnownInputType.PdfInput:
-                    return TypeHelper.ToType<PdfInput>(Input).CreateResult().Result.UncompressOutputStream;
+                    return ((PdfOutputResultData)TypeHelper.ToType<PdfInput>(Input).CreateResult().Result).UncompressOutputStream;
 
                 case KnownInputType.Stream:
-                    NativeIO.Stream stream = TypeHelper.ToType<NativeIO.Stream>(Input);
+                    var stream = TypeHelper.ToType<NativeIO.Stream>(Input);
                     stream.Position = 0;
                     return stream;
 
@@ -317,7 +317,129 @@ namespace iTin.Utilities.Pdf.Writer
                     return null;
             }
         }
-        #endregion    
+
+        #endregion
+
+        #region public async methods
+
+        /// <summary>
+        /// Returns a new reference <see cref="OutputResult"/> that complies with what is indicated in its configuration object. By default, this <see cref="PdfInput"/> will not be zipped.
+        /// </summary>
+        /// <param name="config">The output result configuration.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// <para>
+        /// A <see cref="OutputResult"/> reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
+        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
+        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
+        /// </para>
+        /// <para>
+        /// The type of the return Result is <see cref="PdfOutputResultData"/>, which contains the operation result
+        /// </para>
+        /// </returns>
+        public async Task<OutputResult> CreateResultAsync(IOutputResultConfig config = null, CancellationToken cancellationToken = default)
+        {
+            await ProcessInputAsync(cancellationToken);
+
+            IOutputResultConfig configToApply = PdfOutputResultConfig.Default;
+            if (config != null)
+            {
+                configToApply = config;
+                configToApply.Filename = NativeIO.Path.ChangeExtension(
+                    string.IsNullOrEmpty(config.Filename)
+                        ? File.GetUniqueTempRandomFile().Segments.LastOrDefault()
+                        : config.Filename,
+                    PdfExtension);
+            }
+
+            try
+            {
+                if (!configToApply.Zipped)
+                {
+                    return OutputResult.CreateSuccessResult(
+                        new PdfOutputResultData
+                        {
+                            Zipped = false,
+                            Configuration = (IPdfObjectConfig)configToApply,
+                            UncompressOutputStream = await (await CloneAsync(cancellationToken)).ToStreamAsync(cancellationToken)
+                        });
+                }
+
+                var zippedOutputResult = await new[] { await CloneAsync(cancellationToken) }.CreateJoinResultAsync(new[] { configToApply.Filename }, cancellationToken);
+                ((PdfOutputResultData)zippedOutputResult.Result).Configuration = (IPdfObjectConfig)configToApply;
+
+                return zippedOutputResult;
+            }
+            catch (Exception e)
+            {
+                return OutputResult.FromException(e);
+            }
+        }
+
+        /// <summary>
+        /// Saves this input into a file asynchronously.
+        /// </summary>
+        /// <param name="outputPath">The output path. The use of the <b>~</b> character is allowed to indicate relative paths, and you can also use <b>UNC</b> path.</param>
+        /// <param name="options">Save options</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// <para>
+        /// A <see cref="BooleanResult"/> which implements the <see cref="IResult"/> interface reference that contains the result of the operation, to check if the operation is correct, the <b>Success</b>
+        /// property will be <b>true</b> and the <b>Result</b> property will contain the Result; Otherwise, the the <b>Success</b> property
+        /// will be false and the <b>Errors</b> property will contain the errors associated with the operation, if they have been filled in.
+        /// </para>
+        /// <para>
+        /// The type of the return Result is <see cref="bool"/>, which contains the operation result
+        /// </para>
+        /// </returns>
+        public async Task<IResult> SaveToFileAsync(string outputPath, SaveOptions options = null, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await (await ToStreamAsync(cancellationToken)).SaveToFileAsync(Path.PathResolver(outputPath), options ?? SaveOptions.Default, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                return BooleanResult.FromException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Convert this input into a stream object.
+        /// </summary>
+        /// <returns>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// A <see cref="NativeIO.Stream"/> that represents this input file.
+        /// </returns>
+        public async Task<NativeIO.Stream> ToStreamAsync(CancellationToken cancellationToken = default)
+        {
+            switch (InputType)
+            {
+                case KnownInputType.Filename:
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+                    return new NativeIO.MemoryStream(await NativeIO.File.ReadAllBytesAsync(Path.PathResolver(TypeHelper.ToType<string>(Input)), cancellationToken));
+#elif NETCOREAPP3_1
+                    return new NativeIO.MemoryStream(await NativeIO.File.ReadAllBytesAsync(Path.PathResolver(TypeHelper.ToType<string>(Input)), cancellationToken));
+#else
+                    return await Task.FromResult(new NativeIO.MemoryStream(NativeIO.File.ReadAllBytes(Path.PathResolver(TypeHelper.ToType<string>(Input)))));
+#endif
+                case KnownInputType.ByteArray:
+                    return await Task.FromResult(new NativeIO.MemoryStream(TypeHelper.ToType<byte[]>(Input)));
+
+                case KnownInputType.PdfInput:
+                    return ((PdfOutputResultData)(await TypeHelper.ToType<PdfInput>(Input).CreateResultAsync(cancellationToken: cancellationToken)).Result).UncompressOutputStream;
+
+                case KnownInputType.Stream:
+                    var stream = TypeHelper.ToType<NativeIO.Stream>(Input);
+                    stream.Position = 0;
+                    return await Task.FromResult(stream);
+
+                default:
+                case KnownInputType.NotSupported:
+                    return await Task.FromResult((NativeIO.Stream)null);
+            }
+        }
 
         #endregion
 
@@ -327,7 +449,6 @@ namespace iTin.Utilities.Pdf.Writer
 
         #region public static methods
 
-        #region [public] {static} (PdfInput) CreateFromHtml(string, string = null, Encoding = null): Creates a new PdfInput object from HTML code
         /// <summary>
         /// Creates a new <see cref="PdfInput"/> object from <b>HTML</b> code.
         /// </summary>
@@ -371,13 +492,11 @@ namespace iTin.Utilities.Pdf.Writer
 
             return new PdfInput { Input = bytes };
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfInput) Clone(): Create a new object that is a copy of the current instance
         /// <summary>
         /// Create a new object that is a copy of the current instance.
         /// </summary>
@@ -386,16 +505,14 @@ namespace iTin.Utilities.Pdf.Writer
         /// </returns>
         public PdfInput Clone()
         {
-            PdfInput clonned = (PdfInput)MemberwiseClone();
+            var clonned = (PdfInput)MemberwiseClone();
 
-            NativeIO.Stream innerStream = ToStream().Clone();
+            var innerStream = ToStream().Clone();
             clonned.Input = innerStream;
 
             return clonned;
         }
-        #endregion
 
-        #region [public] (PdfInput) ExtractPages(int, int? = null): Create a new PdfInput containing the selected pages
         /// <summary>
         /// Create a new <see cref="PdfInput"/> containing the selected pages.
         /// </summary>
@@ -409,7 +526,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// <exception cref="ArgumentOutOfRangeException">If <paramref name="to"/> is less than one or is greater than the total number of pages of the document</exception>
         public PdfInput ExtractPages(int from, int? to = null)
         {
-            using var reader = new NativePdf.PdfReader(this.ToStream());
+            using var reader = new NativePdf.PdfReader(ToStream());
             using var source = new Document(reader.GetPageSizeWithRotation(from));
             using var target = new NativeIO.MemoryStream();
             using var pdfCopyProvider = new NativePdf.PdfCopy(source, target);
@@ -447,9 +564,7 @@ namespace iTin.Utilities.Pdf.Writer
                 Input = target.ToArray()
             };
         }
-        #endregion
 
-        #region [public] (int) NumberOfPages(): Returns total pages of this PdfInput
         /// <summary>
         /// Returns total pages of this <see cref="PdfInput"/>.
         /// </summary>
@@ -462,9 +577,7 @@ namespace iTin.Utilities.Pdf.Writer
 
             return reader.NumberOfPages;
         }
-        #endregion
 
-        #region [public] (IEnumerable<PdfText>) SearchText(string): Search specified text into this input file
         /// <summary>
         /// Search specified text into this input file.
         /// </summary>
@@ -495,9 +608,7 @@ namespace iTin.Utilities.Pdf.Writer
             
             return matchs;
         }
-        #endregion
 
-        #region [public] (IEnumerable<PdfTextLine>) TextLines(int? = null, int? = null, bool = true): Gets the lines of text for this PdfInput
         /// <summary>
         /// Gets the lines of text for this <see cref="PdfInput"/>, optionally you can set both the start and end pages and a value indicating whether blank lines are included in the result.
         /// </summary>
@@ -570,9 +681,6 @@ namespace iTin.Utilities.Pdf.Writer
             return result;
         }
 
-        #endregion
-
-        #region [public] (IEnumerable<PdfTextLine>) TextLines(Func<PdfTextLine, bool>): Gets the lines of text for this PdfInput, filtered values based on a predicate
         /// <summary>
         /// Gets the lines of text for this <see cref="PdfInput"/>, filtered values based on a predicate.
         /// </summary>
@@ -623,41 +731,262 @@ namespace iTin.Utilities.Pdf.Writer
 
         #endregion
 
+        #region public async methods
+
+        /// <summary>
+        /// Create a new <see cref="PdfInput"/> asynchronously containing the selected pages.
+        /// </summary>
+        /// <param name="from">Start page</param>
+        /// <param name="to">End page. If is <see langword="null"/> the last page will be used</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A new instance of <see cref="PdfInput"/> containing a document containing the specified pages.
+        /// </returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="from"/> is less than one or is greater than the total number of pages of the document</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="to"/> is less than one or is greater than the total number of pages of the document</exception>
+        public async Task<PdfInput> ExtractPagesAsync(int from, int? to = null, CancellationToken cancellationToken = default)
+        {
+            using var reader = new NativePdf.PdfReader(await ToStreamAsync(cancellationToken));
+            using var source = new Document(reader.GetPageSizeWithRotation(from));
+            using var target = new NativeIO.MemoryStream();
+            using var pdfCopyProvider = new NativePdf.PdfCopy(source, target);
+            source.Open();
+
+            var pages = reader.NumberOfPages;
+            if (pages == 0)
+            {
+                throw new ArgumentException("Document has not pages");
+            }
+
+            SentinelHelper.ArgumentOutOfRange(nameof(from), from, 1, pages);
+
+            var safeTo = to;
+            if (to.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(to), to.Value, 1, pages);
+            }
+            else
+            {
+                safeTo = pages;
+            }
+
+            for (var i = from; i <= safeTo; i++)
+            {
+                var importedPage = pdfCopyProvider.GetImportedPage(reader, i);
+                pdfCopyProvider.AddPage(importedPage);
+            }
+
+            source.Close();
+            reader.Close();
+
+            return new PdfInput
+            {
+                Input = target.ToArray()
+            };
+        }
+
+        /// <summary>
+        /// Returns total pages of this <see cref="PdfInput"/> asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// Total pages of this <see cref="PdfInput"/>.
+        /// </returns>
+        public async Task<int> NumberOfPagesAsync(CancellationToken cancellationToken = default)
+        {
+            using var reader = new NativePdf.PdfReader(await ToStreamAsync(cancellationToken));
+
+            return reader.NumberOfPages;
+        }
+
+        /// <summary>
+        /// Search asynchronously specified text into this input file.
+        /// </summary>
+        /// <param name="text">Text to search.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// A <see cref="PdfText"/> list of matches. 
+        /// </returns>
+        public async Task<IEnumerable<PdfText>> SearchTextAsync(string text, CancellationToken cancellationToken = default)
+        {
+            var matchs = new List<PdfText>();
+
+            var pdfReader = new NativePdf.PdfReader(await ToStreamAsync(cancellationToken));
+            var count = pdfReader.NumberOfPages;
+            for (var page = 1; page <= count; page++)
+            {
+                NativePdfParser.ITextExtractionStrategy strategy = new NativePdfParser.SimpleTextExtractionStrategy();
+                var currentText = NativePdfParser.PdfTextExtractor.GetTextFromPage(pdfReader, page, strategy);
+                currentText = Encoding.UTF8.GetString(Encoding.Convert(Encoding.Default, Encoding.UTF8, Encoding.Default.GetBytes(currentText)));
+
+                var absolutePosition = currentText.IndexOf(text, StringComparison.OrdinalIgnoreCase);
+                if (absolutePosition != -1)
+                {
+                    matchs.Add(new PdfText(text, page, absolutePosition));
+                }
+            }
+
+            pdfReader.Close();
+
+            return matchs;
+        }
+
+        /// <summary>
+        /// Gets the lines of text for this <see cref="PdfInput"/> asynchronously, optionally you can set both the start and end pages and a value indicating whether blank lines are included in the result.
+        /// </summary>
+        /// <param name="fromPage">Defines start page. If a value is not set, it will default to 1</param>
+        /// <param name="toPage">Defines end page. If a value is not set, it will default to total document pages</param>
+        /// <param name="removeEmptyLines">Indicates whether blank lines are included in the result. By default they are not included</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="fromPage"/> is less than one or is greater than the total number of pages of the document</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If <paramref name="toPage"/> is less than one or is greater than the total number of pages of the document</exception>
+        public async Task<IEnumerable<PdfTextLine>> TextLinesAsync(int? fromPage = null, int? toPage = null, bool removeEmptyLines = true, CancellationToken cancellationToken = default)
+        {
+            var result = new List<PdfTextLine>();
+
+            using var reader = new NativePdf.PdfReader(await ToStreamAsync(cancellationToken: cancellationToken));
+            using var stamper = new NativePdf.PdfStamper(reader, new NativeIO.MemoryStream());
+            var pages = reader.NumberOfPages;
+
+            if (pages == 0)
+            {
+                throw new ArgumentException("Document has not pages");
+            }
+
+            var safeFrom = fromPage;
+            if (fromPage.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(fromPage), fromPage.Value, 1, pages);
+            }
+            else
+            {
+                safeFrom = 1;
+            }
+
+            var safeTo = toPage;
+            if (toPage.HasValue)
+            {
+                SentinelHelper.ArgumentOutOfRange(nameof(toPage), toPage.Value, 1, pages);
+            }
+            else
+            {
+                safeTo = pages;
+            }
+
+            for (var page = safeFrom; page <= safeTo; page++)
+            {
+                var currentPage = page.Value;
+                var strategy = new LocationTextExtractionStrategy();
+                var cb = stamper.GetOverContent(currentPage);
+
+                // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                // but i'm not sure if this could change in some cases.
+                strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                // because it triggers the process that will get all chunks from PDF into our strategy Object
+                var pageLines =
+                    NativePdfParser.PdfTextExtractor.GetTextFromPage(reader, currentPage, strategy)
+                    .Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(text => new PdfTextLine(text, currentPage));
+
+                if (removeEmptyLines)
+                {
+                    pageLines = pageLines.Where(textLine => textLine.Text != " ");
+                }
+
+                result.AddRange(pageLines);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the lines of text for this <see cref="PdfInput"/> asynchronously, filtered values based on a predicate.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="ArgumentException">If document has no pages</exception>
+        /// <exception cref="ArgumentNullException">If <paramref name="predicate"/> is <see langword="null"/></exception>
+        public async Task<IEnumerable<PdfTextLine>> TextLinesAsync(Func<PdfTextLine, bool> predicate, CancellationToken cancellationToken = default)
+        {
+            SentinelHelper.ArgumentNull(predicate, nameof(predicate));
+
+            var result = new List<PdfTextLine>();
+
+            using var reader = new NativePdf.PdfReader(await ToStreamAsync(cancellationToken));
+            using var stamper = new NativePdf.PdfStamper(reader, new NativeIO.MemoryStream());
+
+            var pages = reader.NumberOfPages;
+            if (pages == 0)
+            {
+                throw new ArgumentException("Document has not pages");
+            }
+
+            for (var page = 1; page <= pages; page++)
+            {
+                var currePage = page;
+                var strategy = new LocationTextExtractionStrategy();
+                var cb = stamper.GetOverContent(currePage);
+
+                // Send some data contained in PdfContentByte, looks like the first is always cero for me and the second 100, 
+                // but i'm not sure if this could change in some cases.
+                strategy.UndercontentCharacterSpacing = cb.CharacterSpacing;
+                strategy.UndercontentHorizontalScaling = cb.HorizontalScaling;
+
+                // It's not really needed to get the text back, but we have to call this line ALWAYS,
+                // because it triggers the process that will get all chunks from PDF into our strategy Object
+                var pageLines =
+                    NativePdfParser.PdfTextExtractor.GetTextFromPage(reader, currePage, strategy)
+                    .Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(text => new PdfTextLine(text, currePage));
+
+                pageLines = pageLines.Where(predicate);
+
+                result.AddRange(pageLines);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region public override methods
 
-        #region [public] {override} (string) ToString(): Returns a string than represents the current object.
         /// <summary>
         /// Returns a string that represents the current data type.
         /// </summary>
         /// <returns>
         /// A <see cref="string"/> than represents the current object.
         /// </returns>
-        public override string ToString()
-        {
-            switch (InputType)
+        public override string ToString() =>
+            InputType switch
             {
-                case KnownInputType.Filename:
-                    return $"Index={Index}, Input='{Input}', Type={InputType}, Updatable={AutoUpdateChanges}";
+                KnownInputType.Filename => 
+                    $"Index={Index}, Input='{Input}', Type={InputType}, Updatable={AutoUpdateChanges}",
 
-                case KnownInputType.PdfInput:
-                    return $"Index={Index}, Input='PdfInput', Type={InputType}, Updatable={AutoUpdateChanges}";
+                KnownInputType.PdfInput => 
+                    $"Index={Index}, Input='PdfInput', Type={InputType}, Updatable={AutoUpdateChanges}",
+                
+                KnownInputType.Stream => 
+                    $"Index={Index}, Input='Stream', Type={InputType}, Updatable={AutoUpdateChanges}",
+                
+                KnownInputType.ByteArray => 
+                    $"Index={Index}, Input='Byte[]', Type={InputType}, Updatable={AutoUpdateChanges}",
+                
+                KnownInputType.NotSupported => 
+                    "Input type not supported",
 
-                case KnownInputType.Stream:
-                    return $"Index={Index}, Input='Stream', Type={InputType}, Updatable={AutoUpdateChanges}";
-
-                case KnownInputType.ByteArray:
-                    return $"Index={Index}, Input='Byte[]', Type={InputType}, Updatable={AutoUpdateChanges}";
-
-                case KnownInputType.NotSupported:
-                    return "Input type not supported";
-
-                default:
-                    return $"Index={Index}, Type={InputType}, Updatable={AutoUpdateChanges}";
-            }
-        }
-        #endregion
+                _ => 
+                    $"Index={Index}, Type={InputType}, Updatable={AutoUpdateChanges}"
+            };
 
         #endregion
 
@@ -717,12 +1046,79 @@ namespace iTin.Utilities.Pdf.Writer
         }
 
         #endregion
+
+        #region internal async methods
+
+        internal async Task<PdfInput> CloneAsync(CancellationToken cancellationToken = default)
+        {
+            var clonned = (PdfInput)MemberwiseClone();
+
+            var innerStream = await (await ToStreamAsync(cancellationToken)).CloneAsync(cancellationToken);
+            clonned.Input = innerStream;
+
+            return clonned;
+        }
+
+        internal async Task<ReplaceResult> ProcessInputAsync(CancellationToken cancellationToken = default)
+        {
+            ReplaceResult result;
+
+            // TextReplacements
+            var hasTextReplacementsItems = PdfInputCache.Cache.AnyTextReplacements(this);
+            if (!hasTextReplacementsItems)
+            {
+                var stream = await ToStreamAsync(cancellationToken);
+
+                result = ReplaceResult.CreateSuccessResult(new ReplaceResultData
+                {
+                    Context = this,
+                    InputStream = stream,
+                    OutputStream = stream
+                });
+            }
+            else
+            {
+                result = PdfInputRender.TextReplacementsRender(this);
+
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
+            }
+
+            // Inserts
+            var hasInsertItems = PdfInputCache.Cache.AnyInserts(this);
+            if (hasInsertItems)
+            {
+                result = PdfInputRender.InsertsRender(this);
+
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
+            }
+
+            // Sets
+            var hasSetItems = PdfInputCache.Cache.AnySets(this);
+            if (hasSetItems)
+            {
+                result = PdfInputRender.SetsRender(this);
+                if (AutoUpdateChanges)
+                {
+                    Input = result.Result.OutputStream;
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
 
-///// <summary>
-///// 
-///// </summary>
-///// <returns></returns>
-//public IEnumerable<System.Drawing.Image> ExtractImages() 
-//    => ImageExtractor.ExtractImages(ToStream().AsByteArray());
+//// <summary>
+//// 
+//// </summary>
+//// <returns></returns>
+////public IEnumerable<System.Drawing.Image> ExtractImages() 
+////    => ImageExtractor.ExtractImages(ToStream().AsByteArray());

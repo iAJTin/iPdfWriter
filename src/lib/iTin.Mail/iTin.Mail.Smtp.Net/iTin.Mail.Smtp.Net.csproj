@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>1.0.0.0</Version>
+    <Description>Native smpt mail implementation</Description>
+    <Copyright>Copyright © 2022</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>iTin.Mail.Smtp.Net</PackageId>
+    <Company>iTin</Company>
+    <Product>iTin.Mail.Smtp.Net</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core\iTin.Core.csproj" />
+  </ItemGroup>
+
+</Project>

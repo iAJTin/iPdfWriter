@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PdfBaseStyle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:q1="http://schemas.iTin.com/pdf/style/v1.0" xsi:type="q1:PdfTextStyle" Name="ReportTitle">
+  <q1:Font Name="Arial" Size="28" Color="Blue" Bold="Yes" Italic="Yes" />
+  <q1:Content AlternateColor="Transparent">
+    <q1:Alignment Horizontal="Center" />
+  </q1:Content>
+</PdfBaseStyle>

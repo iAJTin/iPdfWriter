@@ -17,6 +17,6 @@ namespace iTin.Utilities.Pdf.Writer.ComponentModel
         /// <summary>
         /// Output file type as zip
         /// </summary>
-        Zip,
+        Zip
     }
 }

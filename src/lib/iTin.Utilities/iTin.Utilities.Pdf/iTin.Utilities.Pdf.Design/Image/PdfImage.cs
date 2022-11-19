@@ -27,7 +27,6 @@ namespace iTin.Utilities.Pdf.Design.Image
     {
         #region public static readonly members
 
-        #region [public] {static} (PdfImage) Null: Gets a reference indicating that this instance is not valid
         /// <summary>
         /// Gets a reference indicating that this instance is not valid.
         /// </summary>
@@ -35,7 +34,6 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="PdfImage"/> reference.
         /// </value>
         public static readonly PdfImage Null = new() { IsValid = false};
-        #endregion
 
         #endregion
         
@@ -60,16 +58,13 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region constructor/s
 
-        #region [internal] PdfImage(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfImage"/> class.
         /// </summary>
         internal PdfImage()
         {
         }
-        #endregion
 
-        #region [internal] PdfImage(string, PdfImageConfig = null): Initializes a new instance of the class with a image path and optional image configuration
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfImage"/> class with a image path and optional image configuration.
         /// </summary>
@@ -93,9 +88,7 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             IsValid = true;
         }
-        #endregion
 
-        #region [internal] PdfImage(NativeImage, PdfImageConfig = null): Initializes a new instance of the class from image with optional image configuration
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfImage"/> class from image with optional image configuration.
         /// </summary>
@@ -118,13 +111,11 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             IsValid = true;
         }
-        #endregion
 
         #endregion
 
         #region finalizer
 
-        #region [~] PdfImage(): Finalizer
         /// <summary>
         /// Finalizer
         /// </summary>
@@ -132,7 +123,6 @@ namespace iTin.Utilities.Pdf.Design.Image
         {
             Dispose(false);
         }
-        #endregion
 
         #endregion
 
@@ -142,7 +132,6 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region public methods
 
-        #region [public] (void) Dispose(): Clean managed resources
         /// <summary>
         /// Clean managed resources
         /// </summary>
@@ -151,7 +140,6 @@ namespace iTin.Utilities.Pdf.Design.Image
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
 
         #endregion
 
@@ -161,7 +149,6 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region public methods
 
-        #region [public] (bool) Equals(PdfImage): Indicates whether the current object is equal to another object of the same type
         /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
@@ -170,9 +157,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <b>true</b> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <b>false</b>.
         /// </returns>
         public bool Equals(PdfImage other) => other != null && other.Equals((object)this);
-        #endregion
 
-        #region [public] {override} (bool) Equals(object): Returns a value that indicates whether this class is equal to another
         /// <summary>
         /// Returns a value that indicates whether this class is equal to another
         /// </summary>
@@ -192,7 +177,6 @@ namespace iTin.Utilities.Pdf.Design.Image
                 other.IsValid == IsValid && 
                 other.ToString().Equals(ToString());
         }
-        #endregion
 
         #endregion
 
@@ -202,7 +186,6 @@ namespace iTin.Utilities.Pdf.Design.Image
 
         #region public readonly properties
 
-        #region [public] (PdfImageConfig) Configuration: Gets a reference to image configuration information
         /// <summary>
         /// Gets a reference to image configuration information.
         /// </summary>
@@ -210,9 +193,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="PdfImageConfig"/> that contains the configuration information.
         /// </value>
         public PdfImageConfig Configuration { get; }
-        #endregion
 
-        #region [public] (NativePdfImage) Image: Gets a reference to pdf image object
         /// <summary>
         /// Gets a reference to pdf image object.
         /// </summary>
@@ -220,9 +201,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="iTextSharp.text.Image"/> object that contains a reference to pdf image object.
         /// </value>
         public NativePdfImage Image { get; private set; }
-        #endregion
 
-        #region [public] (bool) IsValid: Gets or sets a value indicating whether the current instance is valid
         /// <summary>
         /// Gets or sets a value indicating whether the current instance is valid.
         /// </summary>
@@ -230,19 +209,15 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <b>true</b> if current instance is valid; otherwise <b>false</b>.
         /// </value>
         public bool IsValid { get; private set; }
-        #endregion
 
-        #region [public] (NativeImage) OriginalImage: Gets a reference to original image
         /// <summary>
         /// Gets a reference to original image.
         /// </summary>
         /// <value>
-        /// A <see cref="System.Drawing.Image"/> object that contains a reference to pdf image object.
+        /// A <see cref="T:System.Drawing.Image"/> object that contains a reference to pdf image object.
         /// </value>
         public NativeImage OriginalImage { get; private set; }
-        #endregion
 
-        #region [public] (Uri) Path: Gets a reference to image uri
         /// <summary>
         /// Gets a reference to image uri.
         /// </summary>
@@ -250,19 +225,15 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="Uri"/> that contains the image uri.
         /// </value>
         public Uri Path { get; private set; }
-        #endregion
 
-        #region [public] (NativeImage) ProcessedImage: Gets a reference to the original image after it has been processed
         /// <summary>
         /// Gets a reference to the original image after it has been processed.
         /// </summary>
         /// <value>
-        /// A <see cref="System.Drawing.Image"/> object that contains a reference to pdf image object.
+        /// A <see cref="T:System.Drawing.Image"/> object that contains a reference to pdf image object.
         /// </value>
         public NativeImage ProcessedImage { get; private set; }
-        #endregion
 
-        #region [public] (float) ScaledHeight: Gets a value containing scaled height of this image
         /// <summary>
         /// Gets a value containing scaled height of this image.
         /// </summary>
@@ -270,9 +241,7 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="float"/> containing scaled height of this image.
         /// </value>
         public float ScaledHeight { get; private set; }
-        #endregion
 
-        #region [public] (float) ScaledWidth: Gets a value containing scaled width of this image
         /// <summary>
         /// Gets a value containing scaled width of this image.
         /// </summary>
@@ -280,13 +249,11 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// A <see cref="float"/> containing scaled width of this image.
         /// </value>
         public float ScaledWidth { get; private set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfImage) ApplyEffects(EffectType[]): Apply effects image to this instance
         /// <summary>
         /// Apply effects image to this instance.
         /// </summary>
@@ -306,7 +273,7 @@ namespace iTin.Utilities.Pdf.Design.Image
                 return this;
             }
 
-            NativeImage image = 
+            var image = 
                 Configuration.Effects == null
                     ? NativeImage.FromStream(OriginalImage.AsStream())
                     : NativeImage.FromStream(OriginalImage.ApplyEffects(Configuration.Effects).AsStream());
@@ -316,9 +283,7 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return this;
         }
-        #endregion
 
-        #region [public] (PdfImage) ScalePercent(float): Scale the image to a certain percentage
         /// <summary>
         /// Scale the image to a certain percentage.
         /// </summary>
@@ -326,10 +291,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// Returns this instance scaled to percent value.
         /// </returns>
-        public PdfImage ScalePercent(float percent) => ScalePercent(percent, percent);
-        #endregion
+        public PdfImage ScalePercent(float percent) => 
+            ScalePercent(percent, percent);
 
-        #region [public] (PdfImage) ScalePercent(SizeF): Scale the width and height of an image to a certain percentage
         /// <summary>
         /// Scale the width and height of an image to a certain percentage.
         /// </summary>
@@ -337,10 +301,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// Returns this instance scaled to percent value.
         /// </returns>
-        public PdfImage ScalePercent(SizeF size) => ScalePercent(size.Width, size.Height);
-        #endregion
+        public PdfImage ScalePercent(SizeF size) => 
+            ScalePercent(size.Width, size.Height);
 
-        #region [public] (PdfImage) ScalePercent(float, float): Scale the width and height of an image to a certain percentage
         /// <summary>
         /// Scale the width and height of an image to a certain percentage.
         /// </summary>
@@ -366,9 +329,7 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return this;
         }
-        #endregion
 
-        #region [public] (PdfImage) ScaleTo(float, ScaleStrategy = ScaleStrategy.Auto): Scale this image proportionally until at most indicate the value
         /// <summary>
         /// Scale this image proportionally until at most indicate the value of the parameter <paramref name="maxSize"/>, if the value is less than or equal to zero it returns the raw image.
         /// </summary>
@@ -424,9 +385,7 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return this;
         }
-        #endregion
 
-        #region [public] (PdfImage) ScaleToFit(NativePdfRectangle): Scales this image so to the dimensions of the rectangle
         /// <summary>
         /// Scales the images to the dimensions of the rectangle.
         /// </summary>
@@ -434,10 +393,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// Returns this instance scaled.
         /// </returns>
-        public PdfImage ScaleToFit(NativePdfRectangle rectangle) => ScaleToFit(rectangle.Width, rectangle.Height);
-        #endregion
+        public PdfImage ScaleToFit(NativePdfRectangle rectangle) => 
+            ScaleToFit(rectangle.Width, rectangle.Height);
 
-        #region [public] (PdfImage) ScaleToFit(SizeF): Scales this image so to the dimensions of the size
         /// <summary>
         /// Scales the images to the dimensions of the size.
         /// </summary>
@@ -445,10 +403,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// Returns this instance scaled to percent value.
         /// </returns>
-        public PdfImage ScaleToFit(SizeF size) => ScaleToFit(size.Width, size.Height);
-        #endregion
+        public PdfImage ScaleToFit(SizeF size) => 
+            ScaleToFit(size.Width, size.Height);
 
-        #region [public] (PdfImage) ScaleToFit(float, float): Scales this image so that it fits a certain width and height
         /// <summary>
         /// Scales this image so that it fits a certain width and height.
         /// </summary>
@@ -485,13 +442,11 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return this;
         }
-        #endregion
 
         #endregion
 
         #region public static methods
 
-        #region [public] {static} (PdfImage) FromByteArray(byte[], PdfImageConfig = null): Creates a new PdfImage object from specified byte array, format and optional image effect collection
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from specified byte array, format and optional image effect collection.
         /// </summary>
@@ -500,10 +455,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromByteArray(byte[] array, PdfImageConfig configuration = null) => FromStream(array.ToMemoryStream(), configuration);
-        #endregion
+        public static PdfImage FromByteArray(byte[] array, PdfImageConfig configuration = null) => 
+            FromStream(array.ToMemoryStream(), configuration);
 
-        #region [public] {static} (PdfImage) FromFile(string, PdfImageConfig = null) Creates a new PdfImage object from specified image path and optional image configuration
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from specified image path and optional image configuration.
         /// </summary>
@@ -512,10 +466,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromFile(string imagePath, PdfImageConfig configuration = null) => new(imagePath, configuration);
-        #endregion
+        public static PdfImage FromFile(string imagePath, PdfImageConfig configuration = null) => 
+            new(imagePath, configuration);
 
-        #region [public] {static} (PdfImage) FromImage(NativeImage, PdfImageConfig = null): Creates a new PdfImage object from specified image, format and optional image effect collection
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from specified image, format and optional image effect collection.
         /// </summary>
@@ -524,10 +477,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromImage(NativeImage image, PdfImageConfig configuration = null) => new(image, configuration);
-        #endregion
+        public static PdfImage FromImage(NativeImage image, PdfImageConfig configuration = null) => 
+            new(image, configuration);
 
-        #region [public] {static} (PdfImage) FromStream(Stream, PdfImageConfig = null): Creates a new PdfImage object from specified stream, format and optional image effect collection
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from specified stream, format and optional image effect collection.
         /// </summary>
@@ -536,11 +488,9 @@ namespace iTin.Utilities.Pdf.Design.Image
         /// <returns>
         /// A new <see cref="PdfImage"/> reference represents image.
         /// </returns>
-        public static PdfImage FromStream(Stream stream, PdfImageConfig configuration = null) => FromImage(NativeImage.FromStream(stream), configuration);
+        public static PdfImage FromStream(Stream stream, PdfImageConfig configuration = null) => 
+            FromImage(NativeImage.FromStream(stream), configuration);
 
-        #endregion
-
-        #region [public] {static} (PdfImage) FromUri(Uri imageUri, PdfImageConfig = null, int = 5000): Creates a new PdfImage object from specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from the specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image.
         /// If the process of getting the image fails or the uri is wrong, <b>null</b> is returned.
@@ -557,8 +507,8 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             PdfImage result = Null;
 
-            bool uriIsAccesible = imageUri.IsAccessible();
-            if (!uriIsAccesible)
+            var uriIsAccesibleResult = imageUri.IsAccessible();
+            if (!uriIsAccesibleResult.Success)
             {
                 return result;
             }
@@ -589,13 +539,11 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return result;
         }
-        #endregion
 
         #endregion
 
         #region public static async methods
 
-        #region [public] {static} {async} (Task<PdfImage>) FromUriAsync(Uri imageUri, PdfImageConfig = null, int = 5000): Creates a new PdfImage object from specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image
         /// <summary>
         /// Creates a new <see cref="PdfImage"/> object from the specified uri with the specified format, optionally you can also specify a collection of effects to apply to the image.
         /// If the process of getting the image fails or the uri is wrong, <b>null</b> is returned.
@@ -612,8 +560,8 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             PdfImage result = Null;
 
-            bool uriIsAccesible = await imageUri.IsAccessibleAsync();
-            if (!uriIsAccesible)
+            var uriIsAccesibleResult = await imageUri.IsAccessibleAsync();
+            if (!uriIsAccesibleResult.Success)
             {
                 return result;
             }
@@ -645,31 +593,30 @@ namespace iTin.Utilities.Pdf.Design.Image
 
             return result;
         }
-        #endregion
 
         #endregion
 
         #region public override methods
 
-        #region [public] {override} (int) GetHashCode(): Returns a value that represents the hash code for this class
         /// <summary>
         /// Returns a value that represents the hash code for this class.
         /// </summary>
         /// <returns>
         /// Hash code for this class.
         /// </returns>
-        public override int GetHashCode() => ToString().GetHashCode();
-        #endregion
+        public override int GetHashCode() => 
+            ToString().GetHashCode();
 
-        #region [public] {override} (string) ToString(): Returns a string than represents the current object.
         /// <summary>
         /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>
         /// A <see cref="string"/> that represents this instance.
         /// </returns>
-        public override string ToString() => Image == null ? string.Empty : Image.ToString();
-        #endregion
+        public override string ToString() => 
+            Image == null 
+                ? string.Empty
+                : Image.ToString();
 
         #endregion
 

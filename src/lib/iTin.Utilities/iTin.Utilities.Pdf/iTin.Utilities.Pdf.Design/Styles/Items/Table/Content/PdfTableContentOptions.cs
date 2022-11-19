@@ -17,7 +17,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
     {
         #region constructor/s
 
-        #region [public] PdfTableContentOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="PdfTableContentOptions"/> class.
         /// </summary>
@@ -26,7 +25,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
             Color = null;
             Show = null;
         }
-        #endregion
 
         #endregion
 
@@ -36,7 +34,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -45,7 +42,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -55,21 +51,18 @@ namespace iTin.Utilities.Pdf.Design.Styles
 
         #region public static properties
 
-        #region [public] {static} (PdfTableContentOptions) Default: Gets a reference that contains the set of available settings to model an existing PdfTableContent instance
         /// <summary>
         /// Gets a reference that contains the set of available settings to model an existing <see cref="PdfTableContent"/> instance.
         /// </summary>
         /// <value>
         /// Set of default options.
         /// </value>
-        public static PdfTableContentOptions Default => new PdfTableContentOptions();
-        #endregion
+        public static PdfTableContentOptions Default => new();
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -77,14 +70,15 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => base.IsDefault && Color == null && Show == null;
-        #endregion
+        public override bool IsDefault => 
+            base.IsDefault && 
+            Color == null && 
+            Show == null;
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) Color: Gets or sets the preferred content color in an existing PdfTableContent instance
         /// <summary>
         /// Gets or sets the preferred content color in an existing <see cref="PdfTableContent"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -94,9 +88,7 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlAttribute]
         [JsonProperty("color")]
         public string Color { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) Show: Gets or sets a value that indicates whether an existing PdfTableContent instance is displayed
         /// <summary>
         /// Gets or sets a value that indicates whether an existing <see cref="PdfTableContent"/> instance is displayed. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -106,13 +98,11 @@ namespace iTin.Utilities.Pdf.Design.Styles
         [XmlAttribute]
         [JsonProperty("show")]
         public YesNo? Show { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (PdfTableContentOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -120,7 +110,6 @@ namespace iTin.Utilities.Pdf.Design.Styles
         /// A new object that is a copy of this instance.
         /// </returns>
         public PdfTableContentOptions Clone() => (PdfTableContentOptions)MemberwiseClone();
-        #endregion
 
         #endregion
     }
