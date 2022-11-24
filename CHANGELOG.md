@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.5 - 
+## 1.0.6 -
+
+### Added
+
+
+
+## [1.0.5] - 2022-11-24
 
 ### Added
 
@@ -470,7 +476,8 @@ All notable changes to this project will be documented in this file.
 	|iTin.Utilities.Pdf.Design| 1.0.0 | Pdf design objects |
 	|iTin.Utilities.Pdf.Writer| 1.0.0 | Pdf Writer |
 
-[1.0.5]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
+[1.0.6]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.6
+[1.0.5]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.5
 [1.0.4]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
 [1.0.3]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.3
 [1.0.2]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.2
