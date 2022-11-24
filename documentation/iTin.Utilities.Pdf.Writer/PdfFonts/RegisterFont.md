@@ -1,13 +1,21 @@
 # PdfFonts.RegisterFont method
 
+Returns a new StringArrayResult reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered.
+
 ```csharp
-public static void RegisterFont(string fontName, string fontFullPath)
+public static StringArrayResult RegisterFont(string fontName, string fontFullPath)
 ```
 
 | parameter | description |
 | --- | --- |
-| fontName | Font name |
-| fontFullPath | Full path to font file |
+| fontName | The font name. |
+| fontFullPath | The target full path to font filename. The use of the ~ character is allowed to indicate relative paths. |
+
+## Return Value
+
+A StringArrayResult reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Result property will contain the Result; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
+
+The type of the return is a string Array, which contains the operation result.
 
 ## See Also
 

@@ -1,7 +1,6 @@
 ﻿
 using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 
 using iTin.Core.ComponentModel;
 using iTin.Core.Models.Design.Enums;
@@ -14,92 +13,27 @@ using iTin.Utilities.Pdf.Design.Table;
 
 using iTin.Utilities.Pdf.Writer;
 using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
+using iTin.Utilities.Pdf.Writer.SystemTag;
 
 namespace iPdfWriter.Code
 {
+    using ComponentModel.Helpers;
+
     /// <summary>
     /// Shows the use of <b>System Tags</b> such as page number of a document and the use of merge of several entries to compose a complete document.
     /// </summary>
     internal static class Sample05
     {
-        // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
-        {
-            {
-                "Header",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Verdana",
-                        Size = 8.0f,
-                        Bold = YesNo.No,
-                        Color = "Gray"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Left
-                        }
-                    }
-                }
-            },
-            {
-                "PageNumber",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Verdana",
-                        Size = 8.0f,
-                        Bold = YesNo.No,
-                        Color = "Gray"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Right
-                        }
-                    }
-                }
-            },
-            {
-                "ReportTitle",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 28.0f,
-                        Bold = YesNo.Yes,
-                        Italic = YesNo.Yes,
-                        Color = "Blue"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
-                    }
-                }
-            },
-        };
-
-
-        // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region page-1
@@ -119,7 +53,7 @@ namespace iPdfWriter.Code
                     NewText = "Lorem ipsum",
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty,
-                    Style = TextStylesTable["ReportTitle"],
+                    Style = StylesHelper.Sample05.TextStylesTable["ReportTitle"],
                     ReplaceOptions = ReplaceTextOptions.AccordingToMargins
                 }))
             // bar-chart image
@@ -153,7 +87,7 @@ namespace iPdfWriter.Code
                     Offset = PointF.Empty,
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
-                    Table = PdfTable.CreateFromHtml(GenerateHtmlDatatable())
+                    Table = PdfTable.CreateFromHtml(HtmlDataHelper.GenerateHtmlDatatable())
                 }));
 
             #endregion
@@ -199,7 +133,7 @@ namespace iPdfWriter.Code
                 {
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty,
-                    Style = TextStylesTable["PageNumber"],
+                    Style = StylesHelper.Sample05.TextStylesTable["PageNumber"],
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin
                 }
             };
@@ -211,7 +145,7 @@ namespace iPdfWriter.Code
                 {
                     Text = "#HEADER-TEXT#",
                     NewText = "Report Name - Lorem ipsum dolor",
-                    Style = TextStylesTable["Header"],
+                    Style = StylesHelper.Sample05.TextStylesTable["Header"],
                     ReplaceOptions = ReplaceTextOptions.FromLeftMarginToNextElement,
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty
@@ -219,14 +153,14 @@ namespace iPdfWriter.Code
             };
 
             // Defines merge configuration, includes tags, global replacements and allow compress the merged output 
-            var files = new PdfObject(new PdfObjectConfig { Tags = systemTags , GlobalReplacements = globalReplacements })
+            var files = new PdfObject(new PdfObjectConfig { Tags = systemTags, GlobalReplacements = globalReplacements })
             {
                 Items = new List<PdfInput>
                 {
-                    new PdfInput {Index = 0, Input = page1},
-                    new PdfInput {Index = 1, Input = page2},
-                    new PdfInput {Index = 2, Input = page3},
-                    new PdfInput {Index = 3, Input = page4},
+                    new() { Index = 0, Input = page1 },
+                    new() { Index = 1, Input = page2 },
+                    new() { Index = 2, Input = page3 },
+                    new() { Index = 3, Input = page4 }
                 }
             };
 
@@ -245,6 +179,7 @@ namespace iPdfWriter.Code
 
             // Saves merged result to disk
             var saveResult = mergeResult.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample05/Sample-05" });
+           
             var ts = sw.Elapsed;
             sw.Stop();
 
@@ -262,56 +197,6 @@ namespace iPdfWriter.Code
             logger.Info($"   > Elapsed time: {ts.Hours:00}:{ts.Minutes:00}:{ts.Seconds:00}.{ts.Milliseconds / 10:00}");
 
             #endregion
-        }
-
-
-        // Generates html table
-        private static string GenerateHtmlDatatable()
-        {
-            var result = new StringBuilder();
-
-            result.AppendLine($"<table border='1' cellspacing='0' cellpadding='6' style='width:100%'>");
-            result.AppendLine($" <tbody>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($"    <td>Lorem ipsum</td>");
-            result.AppendLine($"    <td>Lorem ipsum</td>");
-            result.AppendLine($"    <td>Lorem ipsum</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>1</td>");
-            result.AppendLine($"    <td>In eleifend velit vitae libero sollicitudin euismod.</td>");
-            result.AppendLine($"    <td>Lorem</td>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>2</td>");
-            result.AppendLine($"    <td>Cras fringilla ipsum magna, in fringilla dui commodo a.</td>");
-            result.AppendLine($"    <td>Lorem</td>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>3</td>");
-            result.AppendLine($"    <td>LAliquam erat volutpat.</td>");
-            result.AppendLine($"    <td>Lorem</td>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>4</td>");
-            result.AppendLine($"    <td>Fusce vitae vestibulum velit. </td>");
-            result.AppendLine($"    <td>Lorem</td>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine($"  <tr style='font-size:10.5pt; font-family:Arial; color:#404040; text-align: left;'>");
-            result.AppendLine($"    <td>5</td>");
-            result.AppendLine($"    <td>Etiam vehicula luctus fermentum.</td>");
-            result.AppendLine($"    <td>Ipsum</td>");
-            result.AppendLine($"    <td>&nbsp;</td>");
-            result.AppendLine($" </tr>");
-            result.AppendLine(" </tbody>");
-            result.AppendLine("</table>");
-
-            return result.ToString();
         }
     }
 }

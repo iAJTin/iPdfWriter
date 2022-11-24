@@ -31,7 +31,7 @@ namespace iTin.Core.IO.Compression
         /// A <see cref="IResult"/> than contains zipped file.
         /// </returns>
         public static IResult TrySaveAsZip(this byte[] item, string itemExtension, string outputPath) => 
-            new[] {item}.TrySaveAsZip(itemExtension, outputPath);
+            item.Yield().TrySaveAsZip(itemExtension, outputPath);
 
         /// <summary>
         /// Try to Create a zip file with specified elements.
@@ -58,7 +58,7 @@ namespace iTin.Core.IO.Compression
                 }
 
                 var outputDirectoryName = NativeIO.Path.GetDirectoryName(outputPath);
-                var di = NativeIO.Directory.CreateDirectory(outputDirectoryName);
+                _ = NativeIO.Directory.CreateDirectory(outputDirectoryName!);
 
                 using (var zip = new ZipFile(outputPath))
                 {
@@ -100,7 +100,7 @@ namespace iTin.Core.IO.Compression
         /// A <see cref="NativeIO.Stream"/> than contains zipped file.
         /// </returns>
         public static NativeIO.Stream ToZipStream(this byte[] item) =>
-            new[] {item}.ToZipStream();
+            item.Yield().ToZipStream();
 
         /// <summary>
         /// Returns a stream with with specified element compressed
@@ -171,7 +171,7 @@ namespace iTin.Core.IO.Compression
         /// A <see cref="IResult"/> than contains zipped file.
         /// </returns>
         public static async Task<IResult> TrySaveAsZipAsync(this byte[] item, string itemExtension, string outputPath, CancellationToken cancellationToken = default) =>
-            await new[] { item }.TrySaveAsZipAsync(itemExtension, outputPath, cancellationToken);
+            await item.Yield().TrySaveAsZipAsync(itemExtension, outputPath, cancellationToken);
 
         /// <summary>
         /// Try to Create asynchronously a zip file with specified elements.
@@ -199,7 +199,7 @@ namespace iTin.Core.IO.Compression
                 }
 
                 var outputDirectoryName = NativeIO.Path.GetDirectoryName(outputPath);
-                var di = NativeIO.Directory.CreateDirectory(outputDirectoryName);
+                _ = NativeIO.Directory.CreateDirectory(outputDirectoryName!);
 
                 using (var zip = new ZipFile(outputPath))
                 {
@@ -242,7 +242,7 @@ namespace iTin.Core.IO.Compression
         /// A <see cref="NativeIO.Stream"/> than contains zipped file.
         /// </returns>
         public static async Task<NativeIO.Stream> ToZipStreamAsync(this byte[] item, CancellationToken cancellationToken = default) =>
-            await new[] { item }.ToZipStreamAsync(cancellationToken);
+            await item.Yield().ToZipStreamAsync(cancellationToken);
 
         /// <summary>
         /// Returns a stream with with specified element compressed asynchronously.

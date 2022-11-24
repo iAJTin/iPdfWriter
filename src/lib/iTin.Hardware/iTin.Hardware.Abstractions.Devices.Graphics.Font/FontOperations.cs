@@ -17,6 +17,7 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
     public class FontOperations
     {
         #region private readonly members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly IFontOperations _operations;
 
@@ -28,11 +29,11 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
                 { OSPlatform.Linux, new Linux.FontOperations() },
                 { OSPlatform.OSX, new MacOS.FontOperations() }
             };
+
         #endregion
 
         #region constructor/s
 
-        #region [private] FontOperations(): Prevents a default instance of this class
         /// <summary>
         /// Prevents a default instance of the <see cref="FontOperations"/> class from being created.
         /// </summary>
@@ -44,13 +45,11 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
                     ? _operationsTable[OSPlatform.OSX]
                     : _operationsTable[OSPlatform.Linux];
         }
-        #endregion
 
         #endregion
 
         #region public static readonly properties
 
-        #region [public] {static} (FontOperations) Instance: Gets an unique instance of this class
         /// <summary>
         /// Gets an unique instance of this class.
         /// </summary>
@@ -58,13 +57,11 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
         /// A <see cref="FontOperations"/> reference that contains <b>SMBIOS</b> operations.
         /// </value>
         public static FontOperations Instance { get; } = new FontOperations();
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (int) AddFontResource(ISmbiosConnectOptions = null): Try to register a font from file
         /// <summary>
         /// Try to register a <strong>Font</strong> from file.
         /// </summary>
@@ -73,7 +70,6 @@ namespace iTin.Hardware.Abstractions.Devices.Graphics.Font
         /// A 
         /// </returns>
         public int AddFontResource(string fullPath) => _operations.AddFontResource(fullPath);
-        #endregion
 
         #endregion
     }

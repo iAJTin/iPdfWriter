@@ -1,6 +1,4 @@
 ﻿
-using System.Linq;
-
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Writer;

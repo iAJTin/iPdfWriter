@@ -21,18 +21,21 @@ namespace iTin.Core.Models.Design.Charting
     public partial class BaseChart : IChart
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const YesNo DefaultShow = YesNo.Yes;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private YesNo _show;
+
         #endregion
 
         #region constructor/s
 
-        #region [protected] BaseChart(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseChart"/> class.
         /// </summary>
@@ -40,7 +43,6 @@ namespace iTin.Core.Models.Design.Charting
         {
             Show = DefaultShow;
         }
-        #endregion
 
         #endregion
 
@@ -50,19 +52,16 @@ namespace iTin.Core.Models.Design.Charting
 
         #region explicit
 
-        #region (void) IChart.SetOwner(ICharts): Sets the element that owns this
         /// <summary>
         /// Sets the element that owns this <see cref="IChart"/>.
         /// </summary>
         /// <param name="reference">Reference to owner.</param>
         void IChart.SetOwner(ICharts reference) => SetOwner(reference);
-        #endregion
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (ICharts) Owner: Gets the element that owns this
         /// <summary>
         /// Gets the element that owns this <see cref="IChart"/>.
         /// </summary>
@@ -73,13 +72,11 @@ namespace iTin.Core.Models.Design.Charting
         [XmlIgnore]
         [Browsable(false)]
         public ICharts Owner { get; private set; }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) Name: Gets or sets the name of the chart
         /// <summary>
         /// Gets or sets the name of the chart.
         /// </summary>
@@ -89,9 +86,6 @@ namespace iTin.Core.Models.Design.Charting
         [XmlAttribute]
         public string Name { get; set; }
 
-        #endregion
-
-        #region [public] (YesNo) Show: Gets or sets a value that determines whether to display the border
         /// <summary>
         /// Gets or sets a value that determines whether to display the chart. The default is <see cref="YesNo.Yes"/>.
         /// </summary>
@@ -109,13 +103,11 @@ namespace iTin.Core.Models.Design.Charting
                 _show = value;
             }
         }
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {overide} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -125,7 +117,6 @@ namespace iTin.Core.Models.Design.Charting
         public override bool IsDefault =>
             base.IsDefault &&
             Show.Equals(DefaultShow);
-        #endregion
 
         #endregion
 
@@ -135,7 +126,6 @@ namespace iTin.Core.Models.Design.Charting
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -144,7 +134,6 @@ namespace iTin.Core.Models.Design.Charting
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -154,13 +143,11 @@ namespace iTin.Core.Models.Design.Charting
 
         #region explicit
 
-        #region (object) ICombinable<IChart>.Combine(IChart): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference style</param>
         void ICombinable<IChart>.Combine(IChart reference) => Combine((BaseChart)reference);
-        #endregion
 
         #endregion
 
@@ -170,36 +157,32 @@ namespace iTin.Core.Models.Design.Charting
 
         #region public static properties
 
-        #region [public] {static} (BaseChart) Default: Gets a default chart
         /// <summary>
         /// Gets a default chart.
         /// </summary>
         /// <value>
         /// A default chart.
         /// </value>
-        public static BaseChart Default => new BaseChart();
-        #endregion
+        public static BaseChart Default => new();
 
         #endregion
 
         #region public static methods
 
-        #region [public] {static} (string) GenerateRandomChartName(): Returns a random graph name
         /// <summary>
         /// Returns a random graph name.
         /// </summary>
         /// <returns>
         /// A new graph name.
         /// </returns>
-        public static string GenerateRandomChartName() 
-            => Path.ChangeExtension(IO.File.GetUniqueTempRandomFile().Segments.Last(), string.Empty).Replace(".", string.Empty);
-        #endregion
+        public static string GenerateRandomChartName() => 
+            Path.ChangeExtension(IO.File.GetUniqueTempRandomFile().Segments.Last(), string.Empty)
+                .Replace(".", string.Empty);
 
         #endregion
 
         #region public methods
 
-        #region [public] (BaseChart) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -215,13 +198,11 @@ namespace iTin.Core.Models.Design.Charting
 
             return cloned;
         }
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) Combine(BaseChart): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -241,13 +222,11 @@ namespace iTin.Core.Models.Design.Charting
             //Borders.Combine(reference.Borders);
             //Content.Combine(reference.Content);
         }
-        #endregion
 
         #endregion
 
         #region internal methods
 
-        #region [internal] (void) SetOwner(ICharts): Sets the element that owns this
         /// <summary>
         /// Sets the element that owns this <see cref="IChart"/>.
         /// </summary>
@@ -256,7 +235,6 @@ namespace iTin.Core.Models.Design.Charting
         {
             Owner = reference;
         }
-        #endregion
 
         #endregion
     }

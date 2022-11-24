@@ -6,10 +6,6 @@ Gets or sets the pdf input list.
 public IEnumerable<PdfInput> Items { get; set; }
 ```
 
-## Property Value
-
-The items.
-
 ## See Also
 
 * class [PdfInput](../PdfInput.md)

@@ -16,7 +16,6 @@ namespace iTin.Core.Models.Design.Options
     {
         #region constructor/s
 
-        #region [public] TitleOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="ShadowOptions"/> class.
         /// </summary>
@@ -26,7 +25,6 @@ namespace iTin.Core.Models.Design.Options
             Color = null;
             Offset = null;
         }
-        #endregion
 
         #endregion
 
@@ -36,7 +34,6 @@ namespace iTin.Core.Models.Design.Options
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -45,7 +42,6 @@ namespace iTin.Core.Models.Design.Options
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -55,21 +51,18 @@ namespace iTin.Core.Models.Design.Options
 
         #region public static properties
 
-        #region [public] {static} (ShadowOptions) Default: Gets a reference that contains the set of available settings to model an existing Shadow instance
         /// <summary>
         /// Gets a reference that contains the set of available settings to model an existing <see cref="Shadow"/> instance.
         /// </summary>
         /// <value>
         /// Set of default options.
         /// </value>
-        public static ShadowOptions Default => new ShadowOptions();
-        #endregion
+        public static ShadowOptions Default => new();
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -77,14 +70,15 @@ namespace iTin.Core.Models.Design.Options
         /// <value>
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
-        public override bool IsDefault => Color == null && Show == null && Offset == null;
-        #endregion
+        public override bool IsDefault => 
+            Color == null && 
+            Show == null && 
+            Offset == null;
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) Color: Gets or sets the preferred back color in an existing FontModel instance
         /// <summary>
         /// Gets or sets the preferred color in an existing <see cref="Shadow"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -94,9 +88,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("color")]
         public string Color { get; set; }
-        #endregion
 
-        #region [public] (int?) Offset: Gets or sets a value that contains the shadow shift, expressed in pixels in an existing ShadowModel instance
         /// <summary>
         /// Gets or sets a value that contains the shadow shift, expressed in pixels in an existing <see cref="Shadow"/> instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -106,9 +98,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("offset")]
         public int? Offset { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) Show: Gets or sets a value that indicates whether an existing TitleModel instance is displayed
         /// <summary>
         /// Gets or sets a value that indicates whether an existing. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -118,19 +108,16 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("show")]
         public YesNo? Show { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (ShadowOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
         public ShadowOptions Clone() => (ShadowOptions)MemberwiseClone();
-        #endregion
 
         #endregion
     }

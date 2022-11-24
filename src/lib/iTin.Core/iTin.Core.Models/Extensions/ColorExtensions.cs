@@ -8,7 +8,7 @@ namespace iTin.Core.Models.Design
     /// <summary>
     /// Static class than contains extension methods for structures of type <see cref="T:System.Drawing.Color"/>.
     /// </summary> 
-    static class ColorExtensions
+    internal static class ColorExtensions
     {
         /// <summary>
         /// Gets the hexadecimal encoding of a color.

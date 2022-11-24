@@ -247,7 +247,17 @@ namespace iTin.Core.Models.Design.Helpers
 
             if (value.StartsWith("sc#", StringComparison.Ordinal))
             {
+
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+                value = value[4..];
+
+#else
+
                 value = value.Substring(4);
+
+#endif
+
                 valueArray = value.Split(' ');
             }
 

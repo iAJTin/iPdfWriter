@@ -17,7 +17,7 @@ using NativeDirectory = System.IO.Directory;
 namespace iTin.Core.IO
 {
     /// <summary>
-    /// 
+    /// Class for basic file management routines such as Delete, GetFiles, Temp folder, etc.
     /// </summary>
     public static class File
     {

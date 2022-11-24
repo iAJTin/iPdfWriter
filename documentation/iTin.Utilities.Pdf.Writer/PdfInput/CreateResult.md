@@ -1,9 +1,9 @@
 # PdfInput.CreateResult method
 
-Returns a new reference [`OutputResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md) that complies with what is indicated in its configuration object. By default, this [`PdfInput`](../PdfInput.md) will not be zipped.
+Returns a new reference OutputResult that complies with what is indicated in its configuration object. By default, this [`PdfInput`](../PdfInput.md) will not be zipped.
 
 ```csharp
-public OutputResult CreateResult(OutputResultConfig config = null)
+public OutputResult CreateResult(IOutputResultConfig config = null)
 ```
 
 | parameter | description |
@@ -12,14 +12,12 @@ public OutputResult CreateResult(OutputResultConfig config = null)
 
 ## Return Value
 
-A [`OutputResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md) reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Value property will contain the value; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
+A OutputResult reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Result property will contain the Result; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
 
-The type of the return value is [`OutputResultData`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResultData.md), which contains the operation result
+The type of the return Result is [`PdfOutputResultData`](../../iTin.Utilities.Pdf.Writer.Operations.Result.Output/PdfOutputResultData.md), which contains the operation result
 
 ## See Also
 
-* class [OutputResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md)
-* class [OutputResultConfig](../../iTin.Utilities.Pdf.Writer.ComponentModel/OutputResultConfig.md)
 * class [PdfInput](../PdfInput.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)
 

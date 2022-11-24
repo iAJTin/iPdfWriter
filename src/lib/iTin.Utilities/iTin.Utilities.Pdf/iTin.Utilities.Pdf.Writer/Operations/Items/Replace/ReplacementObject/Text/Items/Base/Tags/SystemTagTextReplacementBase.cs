@@ -14,7 +14,7 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
     /// </summary>
     public abstract class SystemTagTextReplacementBase : ISystemTagTextReplacement
     {
-        #region interface
+        #region interfaces
 
         #region IReplacement
 

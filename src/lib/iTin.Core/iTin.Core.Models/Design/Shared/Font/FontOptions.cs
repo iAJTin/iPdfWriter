@@ -16,7 +16,6 @@ namespace iTin.Core.Models.Design.Options
     {
         #region constructor/s
 
-        #region [public] FontOptions(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="FontOptions"/> class.
         /// </summary>
@@ -30,7 +29,6 @@ namespace iTin.Core.Models.Design.Options
             IsScalable = null;
             Underline = null;
         }
-        #endregion
 
         #endregion
 
@@ -40,7 +38,6 @@ namespace iTin.Core.Models.Design.Options
 
         #region private methods
 
-        #region [private] (object) Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -49,7 +46,6 @@ namespace iTin.Core.Models.Design.Options
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -59,21 +55,18 @@ namespace iTin.Core.Models.Design.Options
 
         #region public static properties
 
-        #region [public] {static} (FontOptions) Default: Gets a reference that contains the set of available settings to model an existing FontModel
         /// <summary>
         /// Gets a reference that contains the set of available settings to model an existing <see cref="FontModel"/>.
         /// </summary>
         /// <value>
         /// A <see cref="FontOptions"/> reference containing the set of available settings.
         /// </value>
-        public static FontOptions Default => new FontOptions();
-        #endregion
+        public static FontOptions Default => new();
 
         #endregion
 
         #region public override readonly properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -89,13 +82,11 @@ namespace iTin.Core.Models.Design.Options
             Italic == null &&
             IsScalable == null &&
             Underline == null;
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (YesNo?) Bold: Gets or sets a value indicating whether bold style is applied in an existing FontModel instance
         /// <summary>
         /// Gets or sets a value indicating whether bold style is applied in an existing <see cref="FontModel"/> instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -105,9 +96,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("bold")]
         public YesNo? Bold { get; set; }
-        #endregion
 
-        #region [public] (string) Color: Gets or sets the preferred font color in an existing FontModel instance
         /// <summary>
         /// Gets or sets the preferred font color in an existing <see cref="FontModel"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -117,9 +106,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("color")]
         public string Color { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) IsScalable: Gets or sets a value indicating whether a existing FontModel instance is scalable
         /// <summary>
         /// Gets or sets a value indicating whether a existing <see cref="FontModel"/> instance is scalable.
         /// </summary>
@@ -129,9 +116,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("isScalable")]
         public YesNo? IsScalable { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) Italic: Gets or sets a value indicating whether italic style is applied in an existing FontModel instance
         /// <summary>
         /// Gets or sets a value indicating whether italic style is applied in an existing <see cref="FontModel"/> instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -141,9 +126,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("italic")]
         public YesNo? Italic { get; set; }
-        #endregion
 
-        #region [public] (string) Name: Gets or sets the preferred font name in an existing FontModel instance
         /// <summary>
         /// Gets or sets the preferred font name in an existing <see cref="FontModel"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -153,9 +136,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("name")]
         public string Name { get; set; }
-        #endregion
 
-        #region [public] (float?) Size: Gets or sets preferred font size in an existing FontModel instance
         /// <summary>
         /// Gets or sets the preferred font size in an existing <see cref="FontModel"/>" instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -165,9 +146,7 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("size")]
         public float? Size { get; set; }
-        #endregion
 
-        #region [public] (YesNo?) Underline: Gets or sets a value indicating whether underline style is applied in an existing FontModel instance
         /// <summary>
         /// Gets or sets a value indicating whether underline style is applied in an existing <see cref="FontModel"/> instance. The default value is <b>(null)</b>, Nothing in Visual Basic.
         /// </summary>
@@ -177,13 +156,11 @@ namespace iTin.Core.Models.Design.Options
         [XmlAttribute]
         [JsonProperty("underline")]
         public YesNo? Underline { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (FontOptions) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -191,7 +168,6 @@ namespace iTin.Core.Models.Design.Options
         /// A new object that is a copy of this instance.
         /// </returns>
         public FontOptions Clone() => (FontOptions)MemberwiseClone();
-        #endregion
 
         #endregion
     }

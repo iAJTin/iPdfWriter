@@ -17,6 +17,7 @@ namespace iTin.Core.Drawing
     public class Canvas : IDisposable
     {
         #region private readonly members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Rectangle _rect;
 
@@ -28,33 +29,35 @@ namespace iTin.Core.Drawing
               
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly float _rotation;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool _isDisposed;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] Canvas(Graphics): Initialize a new instance of the class
         /// <summary>
         /// Initialize a new instance of the <see cref="Canvas"/> class.
         /// </summary>
         /// <param name="graphics">Surface <see cref="T:System.Drawing.Graphics"/> on which to draw.</param>
-        public Canvas(Graphics graphics) : this(graphics, Orientation.Top) { }
-        #endregion
+        public Canvas(Graphics graphics) : this(graphics, Orientation.Top)
+        {
+        }
 
-        #region [public] Canvas(Graphics, Orientation): Initialize a new instance of the class by setting the orientation
         /// <summary>
         /// Initialize a new instance of the <see cref="Canvas"/> class by setting the orientation.
         /// </summary>
         /// <param name="graphics">Surface <see cref="T:System.Drawing.Graphics"/> on which to draw.</param>
         /// <param name="orientation">One of the values in the enumeration <see cref="ComponentModel.Orientation"/> that represents the orientation.</param>
-        public Canvas(Graphics graphics, Orientation orientation) : this(graphics, SentinelHelper.PassThroughNonNull(graphics).VisibleClipBounds, orientation) { }
-        #endregion
+        public Canvas(Graphics graphics, Orientation orientation) : this(graphics, SentinelHelper.PassThroughNonNull(graphics).VisibleClipBounds, orientation)
+        {
+        }
 
-        #region [public] Canvas(Graphics, RectangleF): Initializes a new instance of the class by setting the drawing region in the specified rectangle
         /// <summary>
         /// Initializes a new instance of the <see cref="Canvas"/> class by setting the drawing region in the specified rectangle
         /// </summary>
@@ -63,9 +66,7 @@ namespace iTin.Core.Drawing
         public Canvas(Graphics graphics, RectangleF rect) : this(graphics, Rectangle.Ceiling(rect), Orientation.Top)
         {
         }
-        #endregion
 
-        #region [public] Canvas(Graphics, RectangleF, Orientation): Initializes a new instance of the class by setting the orientation and drawing region in the specified rectangle
         /// <summary>
         /// Initializes a new instance of the <see cref="Canvas"/> class by setting the orientation and drawing region in the specified rectangle.
         /// </summary>
@@ -75,9 +76,7 @@ namespace iTin.Core.Drawing
         public Canvas(Graphics graphics, RectangleF rect, Orientation orientation) : this(graphics, Rectangle.Ceiling(rect), orientation)
         {
         }
-        #endregion
 
-        #region [private] Canvas(Graphics, Rectangle, Orientation): Initializes a new instance of the class by setting the orientation and drawing region in the specified rectangle
         /// <summary>
         /// Initializes a new instance of the <see cref="Canvas"/> class by setting the orientation and drawing region in the specified rectangle.
         /// </summary>
@@ -88,7 +87,7 @@ namespace iTin.Core.Drawing
         {
             var safeGraphics = SentinelHelper.PassThroughNonNull(graphics);
 
-            bool isValidRect = rect.IsValid();
+            var isValidRect = rect.IsValid();
             if (!isValidRect)
             {
                 return;
@@ -142,13 +141,11 @@ namespace iTin.Core.Drawing
                 safeGraphics.RotateTransform(_rotation);
             }
         }
-        #endregion
 
         #endregion
 
         #region finalizer
 
-        #region [~] Canvas(): Finalizes an instance of this class
         /// <summary>
         /// Finalizes an instance of the <see cref="Canvas"/> class. Clean only unmanaged resources.
         /// </summary>
@@ -156,7 +153,6 @@ namespace iTin.Core.Drawing
         {
             Dispose(false);
         }
-        #endregion
 
         #endregion
 
@@ -166,7 +162,6 @@ namespace iTin.Core.Drawing
 
         #region public methods
 
-        #region [public] (void) Dispose(): Free managed resources
         /// <summary>
         /// Free managed resources.
         /// </summary>
@@ -175,7 +170,6 @@ namespace iTin.Core.Drawing
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
 
         #endregion
 
@@ -185,7 +179,6 @@ namespace iTin.Core.Drawing
 
         #region public properties
 
-        #region [public] (Graphics) Graphics: Gets a reference to the drawing surface adapted to the indicated orientation.
         /// <summary>
         /// Gets a reference to the drawing surface adapted to the indicated orientation.
         /// </summary>
@@ -193,9 +186,7 @@ namespace iTin.Core.Drawing
         /// Surface <see cref="T: System.Drawing.Graphics" /> adapted an orientation in which to draw.
         /// </value>
         public Graphics Graphics { get; }
-        #endregion
 
-        #region [public] (Orientation) Orientation: Gets a value that represents the orientation of this drawing surface
         /// <summary>
         /// Gets a value that represents the orientation of this drawing surface.
         /// </summary>
@@ -203,9 +194,7 @@ namespace iTin.Core.Drawing
         /// One of the values in the enumeration <see cref = "T:iTin.Core.Drawing.Orientation" /> that represents the orientation.
         /// </value>
         public Orientation Orientation { get; }
-        #endregion
 
-        #region [public] (Rectangle) Rectangle: Gets a Rectangle structure that represents the drawing region.
         /// <summary>
         /// Gets a <see cref="T:System.Drawing.Rectangle"/> structure that represents the drawing region.
         /// </summary>
@@ -213,30 +202,26 @@ namespace iTin.Core.Drawing
         /// A <see cref="T:System.Drawing.Rectangle" /> structure that represents the drawing region.
         /// </value>
         public Rectangle Rectangle => _rect;
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) DrawBorder(Brush): Draw the perimeter of a rectangle with the specified brush
         /// <summary>
         /// Draw the perimeter of a rectangle with the specified brush.
         /// </summary>
         /// <param name="brush">A <see cref="Brush"/> that represents the brush to be used.</param>
-        public void DrawBorder(Brush brush) => DrawBorder(brush, new Rectangle(_rect.Location, new Size(_rect.Width - 1, _rect.Bottom - 1)));
-        #endregion
+        public void DrawBorder(Brush brush) => 
+            DrawBorder(brush, new Rectangle(_rect.Location, new Size(_rect.Width - 1, _rect.Bottom - 1)));
 
-        #region [public] (void) DrawBorder(Brush, RectangleF): Draw the perimeter of a rectangle with the specified brush
         /// <summary>
         /// Draw the perimeter of a rectangle with the specified brush.
         /// </summary>
         /// <param name="brush">A <see cref="Brush"/> reference that represents the brush to be used.</param>
         /// <param name="rect">A <see cref="RectangleF"/> structure that represents the rectangle in which to paint.</param>
-        public void DrawBorder(Brush brush, RectangleF rect) => DrawBorder(brush, rect, SmoothingModeEx.HighQuality);
-        #endregion
+        public void DrawBorder(Brush brush, RectangleF rect) =>
+            DrawBorder(brush, rect, SmoothingModeEx.HighQuality);
 
-        #region [public] (void) DrawBorder(Brush, RectangleF, SmoothingModeEx): Draw the perimeter of a rectangle with the specified brush
         /// <summary>
         /// Draw the perimeter of a rectangle with the specified brush.
         /// </summary>
@@ -251,17 +236,14 @@ namespace iTin.Core.Drawing
                 Graphics.DrawRectangle(p, Rectangle.Ceiling(rect.DeflateInOne())); //);Rectangle.Ceiling(rect));
             }
         }
-        #endregion
 
-        #region [public] (void) DrawBorder(Color): Draw the perimeter of a rectangle using a solid color
         /// <summary>
         /// Draw the perimeter of a rectangle using a solid color.
         /// </summary>
         /// <param name="color">A <see cref="Color"/> structure that represents the color of the rectangle.</param>
-        public void DrawBorder(Color color) => DrawBorder(color, new Rectangle(_rect.Location, new Size(_rect.Width - 1, _rect.Bottom - 1)));
-        #endregion
+        public void DrawBorder(Color color) => 
+            DrawBorder(color, new Rectangle(_rect.Location, new Size(_rect.Width - 1, _rect.Bottom - 1)));
 
-        #region [public] (void) DrawBorder(Color, RectangleF): Draw the perimeter of a rectangle using a solid color
         /// <summary>
         /// Draw the perimeter of a rectangle using a solid color.
         /// </summary>
@@ -282,9 +264,7 @@ namespace iTin.Core.Drawing
                 tempBrush?.Dispose();
             }
         }
-        #endregion
 
-        #region [public] (void) DrawBorder(Pen, GraphicsPath): Draw the perimeter of the figure with the default color and quality
         /// <summary>
         /// Draw the perimeter of the figure with the default color and quality.
         /// </summary>
@@ -293,10 +273,9 @@ namespace iTin.Core.Drawing
         /// <remarks>
         /// The rendering quality used to draw is <see cref="SmoothingModeEx.HighQuality" />.
         /// </remarks>
-        public void DrawBorder(Pen pen, GraphicsPath shape) => DrawBorder(pen, shape, SmoothingModeEx.HighQuality);
-        #endregion
+        public void DrawBorder(Pen pen, GraphicsPath shape) => 
+            DrawBorder(pen, shape, SmoothingModeEx.HighQuality);
 
-        #region [public] (void) DrawBorder(Pen, GraphicsPath, SmoothingModeEx): Draw the perimeter of the figure with the specified color and quality
         /// <summary>
         /// Draw the perimeter of the figure with the specified color and quality.
         /// </summary>
@@ -310,38 +289,33 @@ namespace iTin.Core.Drawing
                 Graphics.DrawPath(pen, shape);
             }
         }
-        #endregion
 
-        #region [public] (void) DrawImage(Image, ContentAlignment): Draw an image at the specified position
         /// <summary>
         /// Draw an image at the specified position.
         /// </summary>
         /// <param name="image">An <see cref="Image"/> reference that represents the image to be drawn.</param>
         /// <param name="alignment">One of the values of <see cref="ContentAlignment"/> that represents the type of alignment.</param>
-        public void DrawImage(Image image, ContentAlignment alignment) => DrawImage(image, _rect, alignment, string.Empty, EffectType.None);
-        #endregion
+        public void DrawImage(Image image, ContentAlignment alignment) => 
+            DrawImage(image, _rect, alignment, string.Empty, EffectType.None);
 
-        #region [public] (void) DrawImage(Image, ContentAlignment, EffectType): Draw an image at the specified position and image effect
         /// <summary>
         /// Draw an image at the specified position.
         /// </summary>
         /// <param name="image">An <see cref="Image"/> reference that represents the image to be drawn.</param>
         /// <param name="alignment">One of the values of <see cref="ContentAlignment"/> that represents the type of alignment.</param>
         /// <param name="effect">One of the values of <see cref="EffectType"/> that represents the type of effect to apply.</param>
-        public void DrawImage(Image image, ContentAlignment alignment, EffectType effect) => DrawImage(image, _rect, alignment, string.Empty, effect);
-        #endregion
+        public void DrawImage(Image image, ContentAlignment alignment, EffectType effect) => 
+            DrawImage(image, _rect, alignment, string.Empty, effect);
 
-        #region [public] (void) DrawImage(Image, ContentAlignment, string): Draw an image at the specified position
         /// <summary>
         /// Draw an image at the specified position.
         /// </summary>
         /// <param name="image">An <see cref="Image"/> reference that represents the image to be drawn.</param>
         /// <param name="alignment">One of the values of <see cref="ContentAlignment"/> that represents the type of alignment.</param>
         /// <param name="borderColor">Defines the color of the image border.</param>
-        public void DrawImage(Image image, ContentAlignment alignment, string borderColor) => DrawImage(image, _rect, alignment, borderColor, EffectType.None);
-        #endregion
+        public void DrawImage(Image image, ContentAlignment alignment, string borderColor) => 
+            DrawImage(image, _rect, alignment, borderColor, EffectType.None);
 
-        #region [public] (void) DrawImage(Image, ContentAlignment, string, EffectType): Draw an image by applying an effect at the specified position
         /// <summary>
         /// Draw an image by applying an effect at the specified position.
         /// </summary>
@@ -349,10 +323,9 @@ namespace iTin.Core.Drawing
         /// <param name="alignment">One of the values of <see cref="ContentAlignment"/> that represents the type of alignment.</param>
         /// <param name="borderColor">Defines the color of the image border.</param>
         /// <param name="effect">One of the values of <see cref="EffectType"/> that represents the type of effect to apply.</param>
-        public void DrawImage(Image image, ContentAlignment alignment, string borderColor, EffectType effect) => DrawImage(image, _rect, alignment, borderColor, effect);
-        #endregion
+        public void DrawImage(Image image, ContentAlignment alignment, string borderColor, EffectType effect) => 
+            DrawImage(image, _rect, alignment, borderColor, effect);
 
-        #region [public] (void) DrawImage(Image, Rectangle, ContentAlignment, EffectType): Draw an image by applying an effect at the specified position
         /// <summary>
         /// Draw an image by applying an effect at the specified position.
         /// </summary>
@@ -377,9 +350,7 @@ namespace iTin.Core.Drawing
             var imageRectangle = rectangles[1];
             DrawBorder(ColorHelper.GetColorFromString(borderColor), imageRectangle);
         }
-        #endregion
 
-        #region [public] (void) DrawString(string, Brush, Font, StringFormat, TextRenderingHint): Draw a text string with the brush, quality, format and font specified
         /// <summary>
         /// Draw a text string with the brush, quality, format and font specified.
         /// </summary>
@@ -388,10 +359,9 @@ namespace iTin.Core.Drawing
         /// <param name="font">A <see cref="Font"/> where the text will be displayed.</param>
         /// <param name="format">An object <see cref="StringFormat"/> that represents the format of the text.</param>
         /// <param name="quality">One of the values in the enumeration <see cref="TextRenderingHint"/> indicating the rendering quality.</param>
-        public void DrawString(string text, Brush brush, Font font, StringFormat format, TextRenderingHint quality) => DrawString(text, _rect, brush, font, format, quality);
-        #endregion
+        public void DrawString(string text, Brush brush, Font font, StringFormat format, TextRenderingHint quality) => 
+            DrawString(text, _rect, brush, font, format, quality);
 
-        #region [public] (void) DrawString(string, Rectangle, Brush, Font, StringFormat, TextRenderingHint): Draw a text string with the brush, quality, format and font specified
         /// <summary>
         /// Draw a text string with the brush, quality, format and font specified.
         /// </summary>
@@ -410,9 +380,7 @@ namespace iTin.Core.Drawing
                 Graphics.DrawString(text, font, textRectangleBrush, rect, format);
             }
         }
-        #endregion
 
-        #region [public] (void) DrawString(string, Brush, Font, PointF): 
         /// <summary>
         /// Draw a text string with the brush, quality, format and font specified.
         /// </summary>
@@ -420,10 +388,9 @@ namespace iTin.Core.Drawing
         /// <param name="brush">An object <see cref="Brush"/> that represents the definition of available brushes.</param>
         /// <param name="font">A <see cref="Font"/> where the text will be displayed.</param>
         /// <param name="point"><see cref="PointF"/> structure that specifies the upper left corner of the drawn text.</param>
-        public void DrawString(string text, Brush brush, Font font, PointF point) => DrawString(text, brush, font, point, TextRenderingHint.SystemDefault);
-        #endregion
+        public void DrawString(string text, Brush brush, Font font, PointF point) => 
+            DrawString(text, brush, font, point, TextRenderingHint.SystemDefault);
 
-        #region [public] (void) DrawString(string, Brush, Font, PointF, TextRenderingHint): 
         /// <summary>
         /// Draw a text string with the brush, quality, format and font specified.
         /// </summary>
@@ -432,10 +399,9 @@ namespace iTin.Core.Drawing
         /// <param name="font">A <see cref="Font"/> where the text will be displayed.</param>
         /// <param name="point"><see cref="PointF"/> structure that specifies the upper left corner of the drawn text.</param>
         /// <param name="quality">One of the values in the enumeration <see cref="TextRenderingHint"/> indicating the rendering quality.</param>
-        public void DrawString(string text, Brush brush, Font font, PointF point, TextRenderingHint quality) => DrawString(text, brush, font, point, StringFormat.GenericDefault, quality);
-        #endregion
+        public void DrawString(string text, Brush brush, Font font, PointF point, TextRenderingHint quality) =>
+            DrawString(text, brush, font, point, StringFormat.GenericDefault, quality);
 
-        #region [public] (void) DrawString(string, Brush, Font, PointF, StringFormat, TextRenderingHint): 
         /// <summary>
         /// Draw a text string with the brush, quality, format and font specified.
         /// </summary>
@@ -452,26 +418,22 @@ namespace iTin.Core.Drawing
                 Graphics.DrawString(text, font, brush, point, format);
             }
         }
-        #endregion
 
-        #region [public] (void) Fill(Brush): Fill the inside of the specified rectangle
         /// <summary>
         /// Fill the inside of the specified rectangle.
         /// </summary>
         /// <param name="brush">A <see cref="Brush"/> reference that determines the characteristics of the padding.</param>
-        public void Fill(Brush brush) => Fill(brush, _rect);
-        #endregion
+        public void Fill(Brush brush) => 
+            Fill(brush, _rect);
 
-        #region [public] (void) Fill(Brush, RectangleF): Fill the inside of a rectangle specified by a RectangleF structure
         /// <summary>
         /// Fill the inside of a rectangle specified by a <see cref="RectangleF"/> structure.
         /// </summary>
         /// <param name="brush">A <see cref="Brush"/> reference that determines the characteristics of the padding.</param>
         /// <param name="rect">A <see cref="RectangleF"/> structure that represents the rectangle to be filled. </param>
-        public void Fill(Brush brush, RectangleF rect) => Fill(brush, rect, SmoothingModeEx.HighQuality);
-        #endregion
+        public void Fill(Brush brush, RectangleF rect) => 
+            Fill(brush, rect, SmoothingModeEx.HighQuality);
 
-        #region [public] (void) Fill(Brush, RectangleF, SmoothingModeEx): Fill the inside of a rectangle specified by a RectangleF structure
         /// <summary>
         /// Fill the inside of a rectangle specified by a <see cref="RectangleF"/> structure.
         /// </summary>
@@ -485,18 +447,15 @@ namespace iTin.Core.Drawing
                 Graphics.FillRectangle(brush, rect);
             }
         }
-        #endregion
 
-        #region [public] (void) Fill(Brush, GraphicsPath): Fill the specified figure using the specified brush
         /// <summary>
         /// Fill the specified figure using the specified brush.
         /// </summary>
         /// <param name="brush">A <see cref="Brush"/> reference that determines the characteristics of the padding.</param>
         /// <param name="shape">A <see cref="GraphicsPath"/> reference that represents the shape of the destination in which to paint.</param>
-        public void Fill(Brush brush, GraphicsPath shape) => Fill(brush, shape, SmoothingModeEx.HighQuality);
-        #endregion
+        public void Fill(Brush brush, GraphicsPath shape) => 
+            Fill(brush, shape, SmoothingModeEx.HighQuality);
 
-        #region [public] (void) Fill(Brush, GraphicsPath, SmoothingModeEx): Fill the inside of a rectangle specified by a RectangleF structure.
         /// <summary>
         /// Fill the inside of a rectangle specified by a <see cref="RectangleF"/> structure.
         /// </summary>
@@ -510,17 +469,14 @@ namespace iTin.Core.Drawing
                 Graphics.FillPath(brush, shape);
             }
         }
-        #endregion
 
-        #region [public] (void) Fill(Color): Fill the inside of a rectangle specified by a RectangleF structure with a solid color
         /// <summary>
         /// Fill the inside of a rectangle specified by a <see cref="RectangleF"/> structure with a solid color.
         /// </summary>
         /// <param name="color">A <see cref="Color"/> structure that represents the fill color.</param>
-        public void Fill(Color color) => Fill(color, _rect);
-        #endregion
+        public void Fill(Color color) => 
+            Fill(color, _rect);
 
-        #region [public] (void) Fill(Color, RectangleF): Fill the inside of a rectangle specified by a RectangleF structure with a solid color
         /// <summary>
         /// Fill the inside of a rectangle specified by a <see cref="RectangleF"/> structure with a solid color.
         /// </summary>
@@ -541,9 +497,7 @@ namespace iTin.Core.Drawing
                 tempBrush?.Dispose();
             }
         }
-        #endregion
 
-        #region [public] (void) Fill(Color, GraphicsPath): Fill in the specified figure using a solid color
         /// <summary>
         /// Fill in the specified figure using a solid color.
         /// </summary>
@@ -564,9 +518,7 @@ namespace iTin.Core.Drawing
                 tempBrush?.Dispose();
             }
         }
-        #endregion
 
-        #region [public] (Rectangle) RectangleToClient(string, Font, StringFormat): Calculate the size and location of the text, at the customer's coordinates
         /// <summary>
         /// Calculate the size and location of the text, at the customer's coordinates.
         /// </summary>
@@ -649,9 +601,7 @@ namespace iTin.Core.Drawing
 
             return textRectangle;
         }
-        #endregion
     
-        #region [public] (Rectangle[]) AlignInside(Rectangle, Size, ContentAlignemnt, Size, ContentAlignemnt): Calculate the size and location of the text, at the customer's coordinates
         /// <summary>
         /// Calculate the size and location of the text, at the customer's coordinates.
         /// </summary>
@@ -1409,13 +1359,11 @@ namespace iTin.Core.Drawing
 
             return new[] { textClip, imageClip };
         }
-        #endregion
 
         #endregion
 
         #region protected virtual methods
 
-        #region [protected] {virtual} (void) Dispose(bool): Cleans managed and unmanaged resources
         /// <summary>
         /// Cleans managed and unmanaged resources.
         /// </summary>
@@ -1453,7 +1401,6 @@ namespace iTin.Core.Drawing
 
             _isDisposed = true;
         }
-        #endregion
 
         #endregion
 
@@ -1461,10 +1408,10 @@ namespace iTin.Core.Drawing
 
         private Brush BrushToClient(Brush brush, Rectangle rect)
         {
-            Brush tempBrush = brush;
+            var tempBrush = brush;
 
-            float sx = (float)rect.Width / _rect.Width;
-            float sy = (float)rect.Height / _rect.Height;
+            var sx = (float)rect.Width / _rect.Width;
+            var sy = (float)rect.Height / _rect.Height;
 
             switch (brush)
             {

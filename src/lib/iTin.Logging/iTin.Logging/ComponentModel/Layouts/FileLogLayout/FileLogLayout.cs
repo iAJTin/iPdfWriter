@@ -11,18 +11,28 @@ namespace iTin.Logging.ComponentModel
     public class FileLogLayout : ILayout
     {
         #region private static readonly members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static readonly IEnumerable<FileMapping> Default = new[] { FileMapping.DefaultFatalMapping, FileMapping.DefaultErrorMapping, FileMapping.DefaultInfoMapping, FileMapping.DefaultDebugMapping, FileMapping.DefaultWarnMapping };
+        private static readonly IEnumerable<FileMapping> Default = new[]
+        {
+            FileMapping.DefaultFatalMapping,
+            FileMapping.DefaultErrorMapping,
+            FileMapping.DefaultInfoMapping,
+            FileMapping.DefaultDebugMapping,
+            FileMapping.DefaultWarnMapping
+        };
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private List<FileMapping> _mappings = new List<FileMapping>();
+        private List<FileMapping> _mappings = new();
+
         #endregion
 
         #region constructor/s
 
-        #region [public] FileLogLayout(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="FileLogLayout" /> class.
         /// </summary>
@@ -30,13 +40,11 @@ namespace iTin.Logging.ComponentModel
         {
             _mappings.AddRange(Default);
         }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (IEnumerable<FileMapping>) Mappings: Defined mappings collection for this instance
         /// <summary>
         /// Defined mappings collection for this instance.
         /// </summary>
@@ -48,13 +56,11 @@ namespace iTin.Logging.ComponentModel
             get => _mappings;
             set => _mappings = (List<FileMapping>)value;
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (FileMapping) GetMapping(LogLevel): Returns the mappings for specified log level
         /// <summary>
         /// Returns the mappings for specified log level
         /// </summary>
@@ -64,26 +70,20 @@ namespace iTin.Logging.ComponentModel
         /// </returns>
         public FileMapping GetMapping(LogLevel level)
         {
-            FileMapping target = _mappings.FirstOrDefault(mapping => mapping.Level == level);
+            var target = _mappings.FirstOrDefault(mapping => mapping.Level == level);
 
             return target ?? FileMapping.NotFoundMapping;
         }
-        #endregion
 
         #endregion
 
-        #region protected methods
+        #region protected override methods
 
-        #region [public] (string) {override} ToString(): Returns a string that represents this instance
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return $"Mappings={Mappings.Count()}";
-        }
-        #endregion
+        public override string ToString() => $"Mappings={Mappings.Count()}";
 
         #endregion
     }

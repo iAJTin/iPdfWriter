@@ -11,9 +11,8 @@ public static class PdfFonts
 | name | description |
 | --- | --- |
 | static readonly [Fonts](PdfFonts/Fonts.md) |  |
-| static [RegisterDefaultFonts](PdfFonts/RegisterDefaultFonts.md)() |  |
-| static [RegisterFont](PdfFonts/RegisterFont.md)(…) |  |
-| static [RegisterFonts](PdfFonts/RegisterFonts.md)(…) |  |
+| static [RegisterFont](PdfFonts/RegisterFont.md)(…) | Returns a new StringArrayResult reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered. |
+| static [RegisterFonts](PdfFonts/RegisterFonts.md)(…) | Returns a new StringArrayResult reference which contains the font names that you can in turn use in defining the styles if it has been successfully registered. |
 
 ## See Also
 

@@ -15,7 +15,6 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
     {
         #region constructor/s
 
-        #region [public] WithTextObject(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="WithTextObject"/> class.
         /// </summary>
@@ -27,13 +26,11 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
             Style = PdfTextStyle.Default;
             ReplaceOptions = ReplaceTextOptions.Default;
         }
-        #endregion
 
         #endregion
 
         #region public static readonly properties
 
-        #region [public] static (WithTextObject) Default: Returns a new instance that contains the default values
         /// <summary>
         /// Returns a new instance of <see cref="WithTextObject"/> class that contains the default values.
         /// </summary>
@@ -41,13 +38,11 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
         /// A <see cref="WithTextObject"/> that contains the default values.
         /// </value>
         public static WithTextObject Default => new();
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) NewText: Gets or sets a value that contains the new text
         /// <summary>
         /// Gets or sets a value that contains the new text. The default is same text value.
         /// </summary>
@@ -55,13 +50,11 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
         /// A <see cref="string"/> that contains the new text.
         /// </value>
         public string NewText { get; set; }
-        #endregion
 
         #endregion
 
         #region public new properties
 
-        #region [public] {new} (PdfTextStyle) Style: Gets or sets a reference to new text style format
         /// <summary>
         /// Gets or sets a reference to new text style format. The default is <see cref="PdfTextStyle.Default"/>.
         /// </summary>
@@ -69,7 +62,6 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
         /// A <see cref="PdfTextStyle"/> object that contains image offset to apply.
         /// </value>
         public new PdfTextStyle Style { get; set; }
-        #endregion
 
         #endregion
     }

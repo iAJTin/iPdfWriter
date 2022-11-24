@@ -1,6 +1,4 @@
 ﻿
-using System.Threading.Tasks;
-
 using iTin.Core.ComponentModel;
 using iTin.Core.Models;
 using iTin.Core.Models.Design.Enums;

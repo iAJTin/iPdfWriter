@@ -1,7 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 using iTin.Logging.ComponentModel;
@@ -14,21 +12,17 @@ namespace iTin.Logging
     /// </summary>
     public class ColoredConsoleLog : ILog
     {
-        #region private readonly members
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly ColoredConsoleLayout _layout;
-        #endregion
-
         #region public events
+
         /// <summary>
         /// Occurs when the log text is about to be written.
         /// </summary>
         public event EventHandler<ColoredConsoleEventArgs> ColoredConsoleLogEntry;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] ColoredConsoleLog(LogLevel = LogLevel.All, ILayout = null): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleLog" /> class.
         /// </summary>
@@ -37,15 +31,13 @@ namespace iTin.Logging
         public ColoredConsoleLog(LogLevel level = LogLevel.All, ILayout layout = null)
         {
             Level = level;
-            _layout = layout == null ? new ColoredConsoleLayout() : (ColoredConsoleLayout) layout;
+            Layout = layout == null ? new ColoredConsoleLayout() : (ColoredConsoleLayout) layout;
         }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (LogLevel) Level: Gets the log verbosity
         /// <summary>
         /// Gets the log verbosity.
         /// </summary>
@@ -53,23 +45,19 @@ namespace iTin.Logging
         /// A <see cref="LogLevel"/> enumeration value that specifies log verbosity.
         /// </value>
         public LogLevel Level { get; }
-        #endregion
 
-        #region [public] (ColoredConsoleLayout) Layout: Gets layout reference
         /// <summary>
         /// Gets layout reference.
         /// </summary>
         /// <value>
         /// A <see cref="ColoredConsoleLayout"/> reference.
         /// </value>
-        public ColoredConsoleLayout Layout => _layout;
-        #endregion
+        public ColoredConsoleLayout Layout { get; }
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) WriteEntry(string, LogLevel, CallerData = null): Writes a log entry
         /// <summary>
         /// Writes a log entry.
         /// </summary>
@@ -77,9 +65,7 @@ namespace iTin.Logging
         /// <param name="level">A <see cref="LogLevel"/> enumeration value that specifies the event type.</param>
         /// <param name="callerData">Caller data information.</param>
         public void WriteEntry(string message, LogLevel level, CallerData callerData = null) => WriteEntry(message, level, 0, callerData);
-        #endregion
 
-        #region [public] (void) WriteEntry(string, LogLevel, int, CallerData = null): Writes a log entry
         /// <summary>
         /// Writes a log entry.
         /// </summary>
@@ -94,7 +80,7 @@ namespace iTin.Logging
                 return;
             }
 
-            ColoredConsoleEventArgs e = new ColoredConsoleEventArgs
+            var e = new ColoredConsoleEventArgs
             {
                 Layout = Layout,
                 Message = message
@@ -107,20 +93,18 @@ namespace iTin.Logging
                 return;
             }
 
-            ColoredConsoleMapping mapping = Layout.GetMapping(level) ?? ColoredConsoleMapping.DefaultInfoMapping;            
+            var mapping = Layout.GetMapping(level) ?? ColoredConsoleMapping.DefaultInfoMapping;            
             Console.ForegroundColor = mapping.ForeColor;
             Console.BackgroundColor = mapping.BackColor;
 
-            IEnumerable<string> entries = mapping.Pattern;
-            foreach (string entry in entries)
+            var entries = mapping.Pattern;
+            foreach (var entry in entries)
             {
-                MappingInfo info = new MappingInfo { Message = message, Caller = callerData, Level = level };
+                var info = new MappingInfo { Message = message, Caller = callerData, Level = level };
                 Console.Write(info.Parse(entry));
             }
         }
-        #endregion
 
-        #region [public] (void) WriteExceptionEntry(string, LogLevel, int, Exception, CallerData = null): Writes a log entry
         /// <summary>
         /// Writes a log entry.
         /// </summary>
@@ -136,7 +120,7 @@ namespace iTin.Logging
                 return;
             }
 
-            ColoredConsoleEventArgs e = new ColoredConsoleEventArgs
+            var e = new ColoredConsoleEventArgs
             {
                 Layout = Layout,
                 Message = message
@@ -150,14 +134,14 @@ namespace iTin.Logging
             }
 
             // Gets mapping
-            ColoredConsoleMapping mapping = Layout.GetMapping(level) ?? ColoredConsoleMapping.DefaultInfoMapping;
+            var mapping = Layout.GetMapping(level) ?? ColoredConsoleMapping.DefaultInfoMapping;
 
             // Gets entries to log
-            List<string> entries = mapping.Pattern.ToList();
+            var entries = mapping.Pattern.ToList();
 
             // Log Message value
-            string messageEntry = entries.FirstOrDefault();
-            MappingInfo messageMapping = new MappingInfo { Message = message, Caller = callerData, Level = level };
+            var messageEntry = entries.FirstOrDefault();
+            var messageMapping = new MappingInfo { Message = message, Caller = callerData, Level = level };
             Console.ForegroundColor = ColoredConsoleMapping.DefaultInfoMapping.ForeColor;
             Console.BackgroundColor = ColoredConsoleMapping.DefaultInfoMapping.BackColor;
             Console.Write(messageMapping.Parse(messageEntry));
@@ -166,28 +150,22 @@ namespace iTin.Logging
             entries.Remove(messageEntry);
             Console.ForegroundColor = mapping.ForeColor;
             Console.BackgroundColor = mapping.BackColor;
-            foreach (string entry in entries)
+            foreach (var entry in entries)
             {
-                MappingInfo info = new MappingInfo { Message = exception.Message, Exception = exception, Caller = callerData, Level = level };
+                var info = new MappingInfo { Message = exception.Message, Exception = exception, Caller = callerData, Level = level };
                 Console.Write(info.Parse(entry));
             }
         }
-        #endregion
 
         #endregion
 
-        #region protected methods
+        #region protected override methods
 
-        #region [public] (string) {override} ToString(): Returns a string that represents this instance
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return $"Level={Level}";
-        }
-        #endregion
+        public override string ToString() => $"Level={Level}";
 
         #endregion
     }

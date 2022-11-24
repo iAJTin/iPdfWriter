@@ -1,11 +1,11 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace iTin.Core.Models
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]

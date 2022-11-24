@@ -12,25 +12,26 @@ using iTin.Utilities.Pdf.Design.Styles;
 using iTin.Utilities.Pdf.Design.Table;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
-
-using iPdfWriter.ComponentModel;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
+    using ComponentModel;
+
     /// <summary>
     /// Shows the use of add a datatable (native render) in a pdf document.
     /// </summary>
     internal static class Sample19
     {
-        // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region Creates pdf file reference
@@ -55,19 +56,19 @@ namespace iPdfWriter.Code
                     Style = PdfTableStyle.Default,
                     ReplaceOptions = ReplaceTextOptions.FromPositionToRightMargin,
                     Table = PdfTable.CreateFromDataTable(
-                        data: 
-                            new List<Person>
+                        data:
+                        new List<Person>
                             {
-                                new Person {Name = "Name-01", Surname = "Surname-01"},
-                                new Person {Name = "Name-02", Surname = "Surname-02"},
-                                new Person {Name = "Name-03", Surname = "Surname-03"},
-                                new Person {Name = "Name-04", Surname = "Surname-04"},
-                                new Person {Name = "Name-05", Surname = "Surname-05"},
-                                new Person {Name = "Name-06", Surname = "Surname-06"},
-                                new Person {Name = "Name-07", Surname = "Surname-07"},
-                                new Person {Name = "Name-08", Surname = "Surname-08"},
-                                new Person {Name = "Name-09", Surname = "Surname-09"},
-                                new Person {Name = "Name-10", Surname = "Surname-10"},
+                                new() { Name = "Name-01", Surname = "Surname-01" },
+                                new() { Name = "Name-02", Surname = "Surname-02" },
+                                new() { Name = "Name-03", Surname = "Surname-03" },
+                                new() { Name = "Name-04", Surname = "Surname-04" },
+                                new() { Name = "Name-05", Surname = "Surname-05" },
+                                new() { Name = "Name-06", Surname = "Surname-06" },
+                                new() { Name = "Name-07", Surname = "Surname-07" },
+                                new() { Name = "Name-08", Surname = "Surname-08" },
+                                new() { Name = "Name-09", Surname = "Surname-09" },
+                                new() { Name = "Name-10", Surname = "Surname-10" }
                             }
                             .ToDataTable<Person>("People"))
                 }));
@@ -89,6 +90,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample19/Sample-19" });
+
             var ts = sw.Elapsed;
             sw.Stop();
 

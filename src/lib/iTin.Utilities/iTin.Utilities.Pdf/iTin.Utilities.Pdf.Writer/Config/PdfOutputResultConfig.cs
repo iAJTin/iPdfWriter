@@ -1,5 +1,5 @@
 ﻿
-using iTin.Utilities.Writer.Abstractions.Config;
+using iTin.Utilities.Abstractions.Writer.Config;
 
 namespace iTin.Utilities.Pdf.Writer.Config
 {

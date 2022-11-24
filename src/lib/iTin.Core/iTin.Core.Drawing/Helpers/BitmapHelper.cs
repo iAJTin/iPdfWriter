@@ -51,9 +51,9 @@ namespace iTin.Core.Drawing.Helpers
         /// </returns>
         public static Bitmap CreateEmptyBitmap(int width, int height, Color color)
         {
-            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(bmp);
-            SolidBrush brush = new SolidBrush(color);
+            var bmp = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            var g = Graphics.FromImage(bmp);
+            var brush = new SolidBrush(color);
             g.FillRectangle(brush, 0, 0, width, height);
 
             return bmp;

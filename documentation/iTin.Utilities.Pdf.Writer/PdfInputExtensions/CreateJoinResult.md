@@ -18,7 +18,6 @@ A OutputResult reference that contains action result.
 
 ## See Also
 
-* class [OutputResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md)
 * class [PdfInput](../PdfInput.md)
 * class [PdfInputExtensions](../PdfInputExtensions.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)

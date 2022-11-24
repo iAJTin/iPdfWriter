@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 using iTin.Core.Models.Design.Enums;
 
 using iTin.Utilities.Pdf.Design.Styles;

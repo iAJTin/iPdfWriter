@@ -1,9 +1,9 @@
 ﻿
 using System.IO;
 
-using iTin.Utilities.Pdf.Writer.Input;
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
 
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
+using iTin.Utilities.Pdf.Writer.Input;
 
 namespace iTin.Utilities.Pdf.Writer.Operations.Result.Set
 {

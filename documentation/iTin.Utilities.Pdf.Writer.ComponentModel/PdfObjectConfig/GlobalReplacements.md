@@ -8,11 +8,11 @@ public GlobalReplacementsCollection GlobalReplacements { get; set; }
 
 ## Property Value
 
-A [`GlobalReplacementsCollection`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text/GlobalReplacementsCollection.md) that contains the collection of global text replacements when the elements are merged.
+A [`GlobalReplacementsCollection`](../../iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text/GlobalReplacementsCollection.md) that contains the collection of global text replacements when the elements are merged.
 
 ## See Also
 
-* class [GlobalReplacementsCollection](../../iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text/GlobalReplacementsCollection.md)
+* class [GlobalReplacementsCollection](../../iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text/GlobalReplacementsCollection.md)
 * class [PdfObjectConfig](../PdfObjectConfig.md)
 * namespace [iTin.Utilities.Pdf.Writer.ComponentModel](../../iTin.Utilities.Pdf.Writer.md)
 

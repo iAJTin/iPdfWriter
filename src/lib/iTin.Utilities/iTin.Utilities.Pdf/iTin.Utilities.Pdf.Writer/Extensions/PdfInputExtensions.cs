@@ -3,15 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+
 using iTin.Core.IO.Compression;
 using iTin.Core.Helpers;
 
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
+
 using iTin.Utilities.Pdf.Writer.ComponentModel;
 using iTin.Utilities.Pdf.Writer.Operations.Result.Output;
-
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
-using System.Threading;
 
 namespace iTin.Utilities.Pdf.Writer
 {

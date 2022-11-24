@@ -7,7 +7,7 @@ namespace iTin.Logging
     /// <summary>
     /// Static class than contains methods for retrieve system information.
     /// </summary>
-    public static class SystemHelper
+    internal static class SystemHelper
     {
         /// <summary>
         /// Runs specified program with parameters and options.
@@ -16,7 +16,7 @@ namespace iTin.Logging
         /// <param name="arguments">Program arguments</param>
         public static void RunProgram(string program, string arguments)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo(program, arguments) { UseShellExecute = true };
+            var startInfo = new ProcessStartInfo(program, arguments) { UseShellExecute = true };
             using (Process.Start(startInfo))
             {
             }

@@ -12,281 +12,26 @@ using iTin.Utilities.Pdf.Design.Styles;
 using iTin.Utilities.Pdf.Design.Table;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
+    using ComponentModel.Helpers;
+
     /// <summary>
     /// Shows the use of text and image replacement in a pdf document.
     /// </summary>
     internal static class Sample13
     {
-        // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
-        {
-            {
-                "Default",
-                new PdfImageStyle
-                {
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
-                    }
-                }
-            }
-        };
-
-        // Text styles
-        private static readonly Dictionary<string, PdfTextStyle> TextStylesTable = new()
-        {
-            {
-                "MainTitle",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 18.0f,
-                        Bold = YesNo.Yes,
-                        Italic = YesNo.No,
-                        Color = "Blue"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Center,
-                            Horizontal = KnownHorizontalAlignment.Center
-                        }
-                    }
-                }
-            },
-            {
-                "RazonSocial",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Green"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "PersonaSolicitante",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Green"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "TelefonoSolicitante",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Green"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "EmailSolicitante",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Green"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "FechaInicio",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Red",
-                        Bold = YesNo.Yes
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "FechaAcabado",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Red",
-                        Bold = YesNo.Yes
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "Horario",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "Red",
-                        Bold = YesNo.Yes
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "RazonSocialEmpresa",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "#AC1198"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "ContactoEmpresa",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "#AC1198"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "TelefonoEmpresa",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "#AC1198"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            },
-            {
-                "EmailEmpresa",
-                new PdfTextStyle
-                {
-                    Font =
-                    {
-                        Name = "Arial",
-                        Size = 10.0f,
-                        Color = "#AC1198"
-                    },
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Vertical = KnownVerticalAlignment.Top
-                        }
-                    }
-                }
-            }
-       };
-
-
-        // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region Creates pdf file reference
@@ -303,121 +48,109 @@ namespace iPdfWriter.Code
 
             #region Section: Cabecera
 
-            doc.Replace(
-                new ReplaceText(
-                    new WithTextObject
-                    {
-                        Text = "#TITLE#",
-                        NewText = "Lorem ipsum",
-                        UseTestMode = useTestMode,
-                        Offset = new PointF(0.0f, -10.0f),
-                        Style = TextStylesTable["MainTitle"],
-                        ReplaceOptions = ReplaceTextOptions.AccordingToMargins
-                    }));
+            doc.Replace(new ReplaceText(
+                new WithTextObject
+                {
+                    Text = "#TITLE#",
+                    NewText = "Lorem ipsum",
+                    UseTestMode = useTestMode,
+                    Offset = new PointF(0.0f, -10.0f),
+                    Style = StylesHelper.Sample13.TextStylesTable["MainTitle"],
+                    ReplaceOptions = ReplaceTextOptions.AccordingToMargins
+                }));
 
             #endregion
 
             #region Section: Date
 
-            doc
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#DATE_ENTREGA#",
-                            NewText = DateTime.Now.ToShortDateString(),
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["RazonSocial"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }));
+            doc.Replace(new ReplaceText(
+                new WithTextObject
+                {
+                    Text = "#DATE_ENTREGA#",
+                    NewText = DateTime.Now.ToShortDateString(),
+                    UseTestMode = useTestMode,
+                    Offset = PointF.Empty,
+                    Style = StylesHelper.Sample13.TextStylesTable["RazonSocial"],
+                    ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                }));
 
             #endregion
 
             #region Section: Datos solicitante
 
-            doc
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#RAZONSOCIAL#",
-                            NewText = "Sample razón social",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["RazonSocial"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#PERSONASOLICITANTE#",
-                            NewText = "Nombre persona",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["PersonaSolicitante"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#TELEFONOSOLICITANTE#",
-                            NewText = "932645687",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["TelefonoSolicitante"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#EMAILSOLICITANTE#",
-                            NewText = "some@domain.com",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["EmailSolicitante"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }));
+            doc.Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#RAZONSOCIAL#",
+                        NewText = "Sample razón social",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["RazonSocial"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#PERSONASOLICITANTE#",
+                        NewText = "Nombre persona",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["PersonaSolicitante"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#TELEFONOSOLICITANTE#",
+                        NewText = "932645687",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["TelefonoSolicitante"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#EMAILSOLICITANTE#",
+                        NewText = "some@domain.com",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["EmailSolicitante"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }));
 
             #endregion
 
             #region Section: Datos actuación
 
-            doc
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#FECHAINICIO#",
-                            NewText = "01/01/2022",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["FechaInicio"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#FECHAACABADO#",
-                            NewText = "31/12/2022",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["FechaAcabado"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                new ReplaceText(
+            doc.Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#FECHAINICIO#",
+                        NewText = "01/01/2022",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["FechaInicio"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#FECHAACABADO#",
+                        NewText = "31/12/2022",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["FechaAcabado"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
                     new WithTextObject
                     {
                         Text = "#HORARIO#",
                         NewText = "09:00h - 18:30h",
                         UseTestMode = useTestMode,
                         Offset = PointF.Empty,
-                        Style = TextStylesTable["Horario"],
+                        Style = StylesHelper.Sample13.TextStylesTable["Horario"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
 
@@ -425,49 +158,44 @@ namespace iPdfWriter.Code
 
             #region Section: Datos empresa
 
-            doc
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#RAZONSOCIALEMPRESA#",
-                            NewText = "Empresa test",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["RazonSocialEmpresa"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#CONTACTOEMPRESA#",
-                            NewText = "Persona contacto empresa",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["ContactoEmpresa"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                    new ReplaceText(
-                        new WithTextObject
-                        {
-                            Text = "#TELEFONOEMPRESA#",
-                            NewText = "699233665",
-                            UseTestMode = useTestMode,
-                            Offset = PointF.Empty,
-                            Style = TextStylesTable["TelefonoEmpresa"],
-                            ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
-                        }))
-                .Replace(
-                new ReplaceText(
+            doc.Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#RAZONSOCIALEMPRESA#",
+                        NewText = "Empresa test",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["RazonSocialEmpresa"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#CONTACTOEMPRESA#",
+                        NewText = "Persona contacto empresa",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["ContactoEmpresa"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
+                    new WithTextObject
+                    {
+                        Text = "#TELEFONOEMPRESA#",
+                        NewText = "699233665",
+                        UseTestMode = useTestMode,
+                        Offset = PointF.Empty,
+                        Style = StylesHelper.Sample13.TextStylesTable["TelefonoEmpresa"],
+                        ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
+                    }))
+                .Replace(new ReplaceText(
                     new WithTextObject
                     {
                         Text = "#EMAILEMPRESA#",
                         NewText = "some@companydomain.com",
                         UseTestMode = useTestMode,
                         Offset = PointF.Empty,
-                        Style = TextStylesTable["EmailEmpresa"],
+                        Style = StylesHelper.Sample13.TextStylesTable["EmailEmpresa"],
                         ReplaceOptions = ReplaceTextOptions.FromPositionToNextElement
                     }));
 
@@ -537,19 +265,16 @@ namespace iPdfWriter.Code
 
             #region Section: Firmas
 
-            //using (var sign1 = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal))
-            //{
             doc.Replace(new ReplaceText(
                 new WithImageObject
                 {
                     Text = "#FIRMA1#",
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty,
-                    Style = ImagesStylesTable["Default"],
+                    Style = StylesHelper.Sample13.ImagesStylesTable["Default"],
                     ReplaceOptions = ReplaceTextOptions.Default,
                     Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma1.png").ScaleTo(200, ScaleStrategy.Horizontal)
                 }));
-            //}
 
             doc.Replace(new ReplaceText(
                 new WithImageObject
@@ -557,7 +282,7 @@ namespace iPdfWriter.Code
                     Text = "#FIRMA2#",
                     UseTestMode = useTestMode,
                     Offset = PointF.Empty,
-                    Style = ImagesStylesTable["Default"],
+                    Style = StylesHelper.Sample13.ImagesStylesTable["Default"],
                     ReplaceOptions = ReplaceTextOptions.Default,
                     Image = PdfImage.FromFile("~/Resources/Sample-13/Images/Firma2.jpg").ScalePercent(90)
                 }));
@@ -582,6 +307,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample13/Sample-13" });
+           
             var ts = sw.Elapsed;
             sw.Stop();
 

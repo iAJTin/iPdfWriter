@@ -17,7 +17,6 @@ namespace iTin.Core.Models
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -26,7 +25,6 @@ namespace iTin.Core.Models
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -36,7 +34,6 @@ namespace iTin.Core.Models
 
         #region public properties
 
-        #region [public] (string) Name: Gets or sets the custom property name
         /// <summary>
         /// Gets or sets the custom property name.
         /// </summary>
@@ -46,9 +43,7 @@ namespace iTin.Core.Models
         [XmlAttribute]
         [JsonProperty("name")]
         public string Name { get; set; }
-        #endregion
 
-        #region [public] (string) Value: Gets or sets the custom property value
         /// <summary>
         /// Gets or sets the custom property value.
         /// </summary>
@@ -58,9 +53,7 @@ namespace iTin.Core.Models
         [XmlAttribute]
         [JsonProperty("value")]
         public string Value { get; set; }
-        #endregion
 
-        #region [public] (Properties) Owner: Gets the element that owns this
         /// <summary>
         /// 
         /// </summary>
@@ -70,27 +63,20 @@ namespace iTin.Core.Models
 
         #endregion
 
-        #endregion
-
         #region public methods
 
-        #region [public] (Property) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
         public Property Clone() => (Property)MemberwiseClone();
-        #endregion
 
-        #region [public] (void) SetOwner(Properties): Sets the element that owns this
         internal void SetOwner(Properties reference) => Owner = reference;
-        #endregion
 
         #endregion
 
         #region public overrides methods
 
-        #region [public] {override} (string) ToString(): Returns a string that represents the current object
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
@@ -98,7 +84,6 @@ namespace iTin.Core.Models
         /// A <see cref="T:System.String" /> that represents the current object.
         /// </returns>
         public override string ToString() => $"Name=\"{Name}\"";
-        #endregion
 
         #endregion
     }

@@ -12,42 +12,26 @@ using iTin.Utilities.Pdf.Design.Image;
 using iTin.Utilities.Pdf.Design.Styles;
 
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Replace;
+using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
+    using ComponentModel.Helpers;
+
     /// <summary>
     /// Shows the use of text and image replacement with styles from file.
     /// </summary>
     internal static class Sample20
     {
-        // Image styles
-        private static readonly Dictionary<string, PdfImageStyle> ImagesStylesTable = new()
-        {
-            {
-                "Default",
-                new PdfImageStyle
-                {
-                    Content =
-                    {
-                        Alignment =
-                        {
-                            Horizontal = KnownHorizontalAlignment.Left
-                        }
-                    }
-                }
-            }
-        };
-
-
-        // Generates document
         public static void Generate(ILogger logger, YesNo useTestMode = YesNo.No)
         {
             #region Initialize timer
+
             var sw = new Stopwatch();
             sw.Start();
+
             #endregion
 
             #region Creates pdf file reference
@@ -80,7 +64,7 @@ namespace iPdfWriter.Code
                         Text = "#BAR-CHART#",
                         UseTestMode = useTestMode,
                         Offset = PointF.Empty,
-                        Style = ImagesStylesTable["Default"],
+                        Style = StylesHelper.Sample20.ImagesStylesTable["Default"],
                         ReplaceOptions = ReplaceTextOptions.Default,
                         Image = PdfImage.FromFile("~Resources/Sample-20/Images/bar-chart.png")
                     }))
@@ -113,6 +97,7 @@ namespace iPdfWriter.Code
             #region Saves output result
 
             var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample20/Sample-20" });
+            
             var ts = sw.Elapsed;
             sw.Stop();
 

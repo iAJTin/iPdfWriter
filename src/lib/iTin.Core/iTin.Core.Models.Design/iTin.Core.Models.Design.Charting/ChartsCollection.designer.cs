@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+using iTin.Core.Models.Collections;
+
 namespace iTin.Core.Models.Design.Charting
 {
-    using System;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-
-    using iTin.Core.Models.Collections;
-
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]

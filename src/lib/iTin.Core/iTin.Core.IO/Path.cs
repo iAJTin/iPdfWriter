@@ -9,7 +9,7 @@ using NativePath = System.IO.Path;
 namespace iTin.Core.IO
 {
     /// <summary>
-    /// Helper class for works for path's.
+    /// Performs operations on <see cref="T:System.String"></see> instances that contain file or directory path information.
     /// </summary>
     public static class Path
     {

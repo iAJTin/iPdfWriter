@@ -6,10 +6,6 @@ Gets the configuration settings.
 public PdfObjectConfig Configuration { get; }
 ```
 
-## Property Value
-
-The object configuration.
-
 ## See Also
 
 * class [PdfObjectConfig](../../iTin.Utilities.Pdf.Writer.ComponentModel/PdfObjectConfig.md)

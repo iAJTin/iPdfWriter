@@ -1,14 +1,10 @@
 # PdfInput.Index property
 
-Gets or sets a value that contains input index.
+Gets or sets a Result that contains input index.
 
 ```csharp
 public int Index { get; set; }
 ```
-
-## Property Value
-
-A Int32 that contains input index.
 
 ## See Also
 

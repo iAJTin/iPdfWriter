@@ -114,20 +114,20 @@ Basic steps, for more details please see [sample01.cs] file.
 4. Replace **#BAR-CHART#** tag with an image
 
     ```csharp   
-    using (var barGraph = PdfImage.FromFile("~/Resources/Sample-01/Images/bar-chart.png"))
-    {
-        doc.Replace(new ReplaceText(
-            new WithImageObject
-            {
-                Text = "#BAR-CHART#",
-                Style = ImagesStylesTable["Default"],
-                ReplaceOptions = ReplaceTextOptions.Default,
-                Image = barGraph
-            }));
-    }
+    doc.Replace(new ReplaceText(
+        new WithImageObject
+        {
+            Text = "#BAR-CHART#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = StylesHelper.Sample01.ImagesStylesTable["Default"],
+            ReplaceOptions = ReplaceTextOptions.Default,
+            Image = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png")
+        }));
     ```
 5. Try to create pdf output result
 
+     **sync mode**
      ```csharp   
      var result = doc.CreateResult();
      if (!result.Success)
@@ -135,10 +135,29 @@ Basic steps, for more details please see [sample01.cs] file.
          // Handle errors                 
      }
      ```
+
+     **async mode**
+     ```csharp   
+     var result = await doc.CreateResultAsync();
+     if (!result.Success)
+     {
+         // Handle errors                 
+     }
+     ```
 6. Save pdf file result
  
+    **sync mode**
     ```csharp   
     var saveResult = result.Result.Action(new SaveToFile { OutputPath = "~/Output/Sample01/Sample-01" });
+    if (!saveResult.Success)
+    {
+         // Handle errors                 
+    }
+     ```
+
+    **async mode**
+    ```csharp   
+    var saveResult = await result.Result.Action(new SaveToFileAsync { OutputPath = "~/Output/Sample01/Sample-01" });
     if (!saveResult.Success)
     {
          // Handle errors                 
@@ -316,13 +335,24 @@ Basic steps, for more details please see [sample03.cs] file.
     ```
 4. Try to merge into a pdf output result
 
-     ```csharp   
+     **sync mode**
+    ```csharp   
      var mergeResult = files.TryMergeInputs();
      if (!mergeResult.Success)
      {
          // Handle errors                 
      }
      ```
+
+     **async mode**
+    ```csharp   
+     var mergeResult = await files.TryMergeInputsAsync();
+     if (!mergeResult.Success)
+     {
+         // Handle errors                 
+     }
+     ```
+
 5. Save merged result to file
     
     ```csharp   
@@ -699,7 +729,6 @@ Basic steps, for more details please see [sample06.cs] file.
 3. Replace Tags
 
     **Page 1**
-
     ```csharp   
     page1.Replace(new ReplaceText(
         new WithTextObject
@@ -713,21 +742,20 @@ Basic steps, for more details please see [sample06.cs] file.
     ```
 
     ```csharp   
-    using (var barGraph = PdfImage.FromFile("~/Resources/Sample-06/Images/bar-chart.png"))
-    {
-        page1.Replace(new ReplaceText(
-            new WithImageObject
-            {
-                Text = "#BAR-CHART#",
-                UseTestMode = YesNo.Yes,
-                Style = ImagesStylesTable["Default"],
-                ReplaceOptions = ReplaceTextOptions.Default,
-                Image = barGraph
-            }));
-    }
+    // Inserts bar-chart image
+    page1.Replace(new ReplaceText(
+        new WithImageObject
+        {
+            Text = "#BAR-CHART#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = PdfImageStyle.Default,
+            ReplaceOptions = ReplaceTextOptions.Default,
+            Image = PdfImage.FromFile("~Resources/Sample-01/Images/bar-chart.png")
+        }));
     ```
-    **Page 2**
 
+    **Page 2**
     ```csharp   
     page2.Replace(new ReplaceText(
         new WithTableObject
@@ -741,25 +769,20 @@ Basic steps, for more details please see [sample06.cs] file.
         }));
     ```
     **Page 3**
-
     Nothing to do
 
     **Page 4**
-
     ```csharp   
-    using (var image = PdfImage.FromFile("~/Resources/Sample-06/Images/image-1.jpg"))
-    {
-        page4.Replace(new ReplaceText(
-            new WithImageObject
-            {
-                Text = "#IMAGE1#",
-                UseTestMode = YesNo.Yes,
-                Offset = PointF.Empty,
-                Style = PdfImageStyle.Default,
-                ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
-                Image = image
-            }));
-    }
+    page4.Replace(new ReplaceText(
+        new WithImageObject
+        {
+            Text = "#IMAGE1#",
+            UseTestMode = useTestMode,
+            Offset = PointF.Empty,
+            Style = PdfImageStyle.Center,
+            ReplaceOptions = ReplaceTextOptions.AccordingToMargins,
+            Image = PdfImage.FromFile("~/Resources/Sample-01/Images/image-1.jpg")
+        }));
     ```
 4. Create a special object **GlobalReplacementsCollection**
 
@@ -951,7 +974,6 @@ Basic steps, for more details please see [sample06.cs] file.
 1. Create styles
 
     **PdfImageStyle**
-
     ```csharp   
     var imageStyle = new PdfImageStyle
     {
@@ -976,8 +998,8 @@ Basic steps, for more details please see [sample06.cs] file.
         }
     };
     ```
-    **PdfTextStyle**
 
+    **PdfTextStyle**
     ```csharp   
     var textStyle = new PdfTextStyle
     {
@@ -1010,8 +1032,8 @@ Basic steps, for more details please see [sample06.cs] file.
         }
     };
     ```
-    **PdfTableStyle**
 
+    **PdfTableStyle**
     ```csharp   
     var tableStyle = new PdfTableStyle
     {
@@ -1037,6 +1059,7 @@ Basic steps, for more details please see [sample06.cs] file.
         }
     };
     ```
+
 2. Try to save styles
 
     **PdfImageStyle**

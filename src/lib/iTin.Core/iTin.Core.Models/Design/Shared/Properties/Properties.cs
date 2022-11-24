@@ -15,13 +15,14 @@ namespace iTin.Core.Models
     public partial class Properties : IList<Property>, ICloneable
     {
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly List<Property> _list;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] Properties(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="Properties"/> class.
         /// </summary>
@@ -29,7 +30,6 @@ namespace iTin.Core.Models
         {
             _list = new List<Property>();
         }
-        #endregion
 
         #endregion
 
@@ -39,7 +39,6 @@ namespace iTin.Core.Models
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -48,7 +47,6 @@ namespace iTin.Core.Models
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -58,7 +56,6 @@ namespace iTin.Core.Models
 
         #region public readonly properties
 
-        #region [public] (int) Count: Gets the number of property items contained in this properties
         /// <summary>
         /// Gets the number of property items contained in this <see cref="Properties"/>.
         /// </summary>
@@ -66,9 +63,7 @@ namespace iTin.Core.Models
         /// The number of property items contained in this  <see cref="Properties"/>.
         /// </returns>
         public int Count => _list.Count;
-        #endregion
 
-        #region [public] (bool) IsReadOnly: Gets a value indicating whether this properties is read-only.
         /// <summary>
         /// Gets a value indicating whether this <see cref="Properties"/> is read-only.
         /// </summary>
@@ -76,22 +71,18 @@ namespace iTin.Core.Models
         /// Always returns <see langword="false"/>.
         /// </returns>
         public bool IsReadOnly => false;
-        #endregion
 
         #endregion
 
         #region public overrides properties
 
-        #region [public] {overide} (bool) IsDefault: Gets a value indicating whether this instance contains the default
         /// <inheritdoc />
         public override bool IsDefault => !this.Any();
-        #endregion
 
         #endregion
 
         #region public indexers
 
-        #region [public] (Property) this[int]: Gets or sets the property at the specified index
         /// <summary>
         /// Gets or sets the property at the specified index.
         /// </summary>
@@ -110,9 +101,7 @@ namespace iTin.Core.Models
             get => _list[index];
             set => _list[index] = value;
         }
-        #endregion
 
-        #region [public] (Property) this[string]: Gets or sets the property with the specified name
         /// <summary>
         /// Gets or sets the property with the specified name.
         /// </summary>
@@ -121,13 +110,11 @@ namespace iTin.Core.Models
         /// The property with the specified name.
         /// </returns>
         public Property this[string name] => GetByName(name);
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) Add(Property): Adds a property item to the end of this properties
         /// <summary>
         /// Adds a property item to the end of this <see cref="Properties"/>.
         /// </summary>
@@ -140,16 +127,12 @@ namespace iTin.Core.Models
             item!.SetOwner(this);
             _list.Add(item);
         }
-        #endregion
 
-        #region [public] (void) Clear(): Removes all property items from this properties
         /// <summary>
         /// Removes all property items from this <see cref="Properties"/>.
         /// </summary>
         public void Clear() => _list.Clear();
-        #endregion
 
-        #region [public] (Properties) Clone(): Clones this instance.
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -168,9 +151,7 @@ namespace iTin.Core.Models
 
             return propertiesCloned;
         }
-        #endregion
 
-        #region [public] (bool) Contains(Property): Determines whether a property item is in this properties
         /// <summary>
         /// Determines whether a property item is in this <see cref="Properties"/>.
         /// </summary>
@@ -179,9 +160,7 @@ namespace iTin.Core.Models
         /// <see langword="true"/> if <paramref name="item"/> is found in this <see cref="Properties"/>; otherwise, <see langword="false"/>.
         /// </returns>
         public bool Contains(Property item) => _list.Contains(item);
-        #endregion
 
-        #region [public] (bool) Contains(string): Determines whether a property name item is in this properties
         /// <summary>
         /// Determines whether a property name item is in this <see cref="Properties"/>.
         /// </summary>
@@ -190,9 +169,7 @@ namespace iTin.Core.Models
         /// <see langword="true"/> if property with <paramref name="name"/> is found in this <see cref="Properties"/>; otherwise, <see langword="false" />.
         /// </returns>
         public bool Contains(string name) => GetByName(name) != null;
-        #endregion
 
-        #region [public] (void) CopyTo(Property[], int): Inserts an element into this properties at the specified index
         /// <summary>
         /// Copies the entire <see cref="Properties"/> to a compatible one-dimensional array, starting at the specified index of the target array.
         /// </summary>
@@ -204,9 +181,7 @@ namespace iTin.Core.Models
         /// The number of elements in the source <see cref="Properties"/> is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.
         /// </exception>
         public void CopyTo(Property[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
-        #endregion
 
-        #region [public] (int) IndexOf(Property): Determines whether a property name item is in this properties
         /// <summary>
         /// Searches for the specified property and returns the zero-based index of the first occurrence within the entire this <see cref="Properties"/>.
         /// </summary>
@@ -221,9 +196,7 @@ namespace iTin.Core.Models
 
             return _list.IndexOf(item);
         }
-        #endregion
 
-        #region [public] (IEnumerator<Property>) GetEnumerator(): Returns an enumerator that iterates through a collection
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -231,9 +204,7 @@ namespace iTin.Core.Models
         /// An <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
         public IEnumerator<Property> GetEnumerator() => _list.GetEnumerator();
-        #endregion
 
-        #region [public] (IEnumerator) IEnumerable.GetEnumerator()(): Returns an enumerator that iterates through a collection
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -241,9 +212,7 @@ namespace iTin.Core.Models
         /// An <see cref="T:System.Collections.IEnumerator"/> that can be used to iterate through the collection.
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
-        #endregion
 
-        #region [public] (void) Insert(int, Property): Inserts an element into this properties at the specified index
         /// <summary>
         /// Inserts an element into this <see cref="Properties"/> at the specified index.
         /// </summary>
@@ -262,9 +231,7 @@ namespace iTin.Core.Models
 
             _list.Insert(index, item);
         }
-        #endregion
 
-        #region [public] (bool) Remove(Property): Removes the first occurrence of a specific object from this properties
         /// <summary>
         /// Removes the first occurrence of a specific object from this <see cref="Properties"/>.
         /// </summary>
@@ -279,9 +246,7 @@ namespace iTin.Core.Models
 
             return _list.Remove(item);
         }
-        #endregion
 
-        #region [public] (void) RemoveAt(int): Inserts an element into this properties at the specified index
         /// <summary>
         /// Removes the property at the specified index of this <see cref="Properties"/>.
         /// </summary>
@@ -293,15 +258,12 @@ namespace iTin.Core.Models
         /// 
         /// <paramref name="index" /> is equal to or greater than <see cref="Count" />.</exception>
         public void RemoveAt(int index) => _list.RemoveAt(index);
-        #endregion
 
         #endregion
 
         #region private methods
 
-        #region [private] (PropertyModel) GetByName(string): Returns a reference to the specified style
         private Property GetByName(string name) => _list.Find(s => s.Name.Equals(name));
-        #endregion
 
         #endregion
     }

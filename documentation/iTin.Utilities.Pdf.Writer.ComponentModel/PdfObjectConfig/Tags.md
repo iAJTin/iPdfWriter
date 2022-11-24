@@ -8,11 +8,11 @@ public SystemTagsCollection Tags { get; set; }
 
 ## Property Value
 
-A [`SystemTagsCollection`](../SystemTagsCollection.md) that contains the collection of system tags to replace when the elements are merged.
+A [`SystemTagsCollection`](../../iTin.Utilities.Pdf.Writer.SystemTag/SystemTagsCollection.md) that contains the collection of system tags to replace when the elements are merged.
 
 ## See Also
 
-* class [SystemTagsCollection](../SystemTagsCollection.md)
+* class [SystemTagsCollection](../../iTin.Utilities.Pdf.Writer.SystemTag/SystemTagsCollection.md)
 * class [PdfObjectConfig](../PdfObjectConfig.md)
 * namespace [iTin.Utilities.Pdf.Writer.ComponentModel](../../iTin.Utilities.Pdf.Writer.md)
 

@@ -9,17 +9,23 @@ Changes in this version (v1.0.5)
 
 · Added
   -----
-      - The functionality of being able to create an instance of the PdfInput class from HTML code has been added.
-        For more information, please see sample25.cs
+    - Add support for asynchronous calls in solution projects.
 
-      - A functionality has been added that allows to add or modify the metadata information of a pdf file.
-        For more information, please see please see sample26.cs
+    - Added support for using Span<T> for supported platforms.
 
-      - A functionality has been added that allows to add a password to pdf file.
-        For more information, please see please see sample27.cs
+    - Test projects to show asynchronous usage.
+ 
+    - The functionality of being able to create an instance of the PdfInput class from HTML code has been added.
+      For more information, please see sample25.cs
 
-      - A functionality has been added that allows to insert an image into a pdf file.
-        For more information, please see please see sample28.cs
+    - A functionality has been added that allows to add or modify the metadata information of a pdf file.
+      For more information, please see please see sample26.cs
+
+    - A functionality has been added that allows to add a password to pdf file.
+      For more information, please see please see sample27.cs
+
+    - A functionality has been added that allows to insert an image into a pdf file
+      For more information, please see please see sample28.cs
 
 · Changed
   -------
@@ -45,9 +51,9 @@ Changes in this version (v1.0.5)
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Core.Interop.Windows.Devices                 1.0.0.1   Win32 Generic Interop Calls                                           |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.IO                                      1.0.0.2   Common I/O calls                                                      |
+    | iTin.Core.IO                                      1.0.0.3   Common I/O calls                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
-    | iTin.Core.IO.Compression                          1.0.0.1   Compression library                                                   |
+    | iTin.Core.IO.Compression                          1.0.0.3   Compression library                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Core.Models                                  1.0.0.3   Data models base                                                      |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
@@ -60,6 +66,8 @@ Changes in this version (v1.0.5)
     | iTin.Hardware.Abstractions.Devices.Graphics.Font  1.0.0.1   Generic Common Hardware Abstractions                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Registry.Windows                             1.0.0.3   Windows registry acces                                                |
+    •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+    | iTin.Utilities.Abstractions.Writer                1.0.0.0   Generic Common Writer's Abstractions                                  |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Utilities.Pdf.Design                         1.0.0.5   Pdf design elements                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•

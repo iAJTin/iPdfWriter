@@ -1,8 +1,4 @@
 ﻿
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
 using iTin.Utilities.Pdf.Writer;
 using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 

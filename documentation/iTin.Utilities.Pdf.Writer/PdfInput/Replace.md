@@ -1,25 +1,17 @@
 # PdfInput.Replace method
 
-Try to replace an element in this input.
-
 ```csharp
-public ReplaceResult Replace(IReplace data)
+public IPdfInputAction Replace(IReplace data)
 ```
 
 | parameter | description |
 | --- | --- |
-| data | Reference to replacement object information |
-
-## Return Value
-
-A [`ReplaceResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace/ReplaceResult.md) reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Value property will contain the value; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
-
-The type of the return value is [`ReplaceResultData`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace/ReplaceResultData.md), which contains the operation result
+| data |  |
 
 ## See Also
 
-* class [ReplaceResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Replace/ReplaceResult.md)
-* interface [IReplace](../../iTin.Utilities.Pdf.Writer.ComponentModel/IReplace.md)
+* interface [IPdfInputAction](../../iTin.Utilities.Pdf.Writer.Input/IPdfInputAction.md)
+* interface [IReplace](../../iTin.Utilities.Pdf.Writer.Operations.Replace/IReplace.md)
 * class [PdfInput](../PdfInput.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)
 

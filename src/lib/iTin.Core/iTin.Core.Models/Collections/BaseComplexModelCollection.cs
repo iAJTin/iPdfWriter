@@ -19,7 +19,6 @@ namespace iTin.Core.Models.Collections
     {
         #region constructor/s
 
-        #region [protected] BaseComplexModelCollection(TParent): Initializes a new instance of the class
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseComplexModelCollection{TItem, TParent, TSearch}"/> class.
@@ -28,13 +27,11 @@ namespace iTin.Core.Models.Collections
         protected BaseComplexModelCollection(TParent parent) : base(parent)
         {
         }
-        #endregion
 
         #endregion
 
         #region public indexer
 
-        #region [public] (TItem) this[TSearch]: Gets or sets the element specified parameter search
         /// <summary>
         /// Gets or sets the element specified by <paramref name="value"/>.
         /// </summary>
@@ -46,13 +43,11 @@ namespace iTin.Core.Models.Collections
         /// The value.
         /// </returns>
         public TItem this[TSearch value] => GetBy(value);
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) Contains(TSearch): Determines whether an element is in the collection
         /// <summary>
         /// Determines whether an element is in the <see cref="BaseComplexModelCollection{TItem, TParent, TSearch}"/>.
         /// </summary>
@@ -61,13 +56,11 @@ namespace iTin.Core.Models.Collections
         /// <b>true</b> if <paramref name="value"/> is found in the <see cref="BaseComplexModelCollection{TItem, TParent, TSearch}"/>; otherwise, <b>false</b>.
         /// </returns>
         public bool Contains(TSearch value) => GetBy(value) != null;
-        #endregion
 
         #endregion
 
         #region public abstract methods
 
-        #region [public] {abstract} (void) GetBy(TSearch): Returns the element specified
         /// <summary>
         /// Returns the element specified.
         /// </summary>
@@ -76,7 +69,6 @@ namespace iTin.Core.Models.Collections
         /// Returns the specified element.
         /// </returns>
         public abstract TItem GetBy(TSearch value);
-        #endregion
 
         #endregion
     }

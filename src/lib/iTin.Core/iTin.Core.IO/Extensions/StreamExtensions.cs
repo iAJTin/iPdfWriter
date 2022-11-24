@@ -88,7 +88,7 @@ namespace iTin.Core.IO
                 using var memoryStream = stream as NativeIO.MemoryStream ?? await stream.ToMemoryStreamAsync(cancellationToken);
                 Logger.Instance.Debug(" > Output: Success: True");
 
-                return await memoryStream.SaveToFileImplAsync(fileName, options, cancellationToken);
+                return await memoryStream.SaveToFileImplAsync(fileName, options);
             }
             catch (Exception ex)
             {
@@ -112,7 +112,7 @@ namespace iTin.Core.IO
 
                 var parsedFullFilenamePath = Path.PathResolver(fileName);
                 var directoryName = NativeIO.Path.GetDirectoryName(parsedFullFilenamePath);
-                var di = new NativeIO.DirectoryInfo(directoryName);
+                var di = new NativeIO.DirectoryInfo(directoryName!);
                 var existDirectory = di.Exists;
                 if (!existDirectory)
                 {
@@ -136,7 +136,7 @@ namespace iTin.Core.IO
         }
 
 
-        private static async Task<IResult> SaveToFileImplAsync(this NativeIO.MemoryStream stream, string fileName, SaveOptions options = null, CancellationToken cancellationToken = default)
+        private static async Task<IResult> SaveToFileImplAsync(this NativeIO.MemoryStream stream, string fileName, SaveOptions options = null)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace iTin.Core.IO
 
                 var parsedFullFilenamePath = Path.PathResolver(fileName);
                 var directoryName = NativeIO.Path.GetDirectoryName(parsedFullFilenamePath);
-                var di = new NativeIO.DirectoryInfo(directoryName);
+                var di = new NativeIO.DirectoryInfo(directoryName!);
                 var existDirectory = di.Exists;
                 if (!existDirectory)
                 {
@@ -158,10 +158,18 @@ namespace iTin.Core.IO
                     }
                 }
 
+#if NETSTANDARD2_1 || NET5_0_OR_GREATER
+
+                await using (var fs = new NativeIO.FileStream(parsedFullFilenamePath, NativeIO.FileMode.Create, NativeIO.FileAccess.ReadWrite, NativeIO.FileShare.ReadWrite))
+                {
+                    stream.WriteTo(fs);
+                }
+#else
                 using (var fs = new NativeIO.FileStream(parsedFullFilenamePath, NativeIO.FileMode.Create, NativeIO.FileAccess.ReadWrite, NativeIO.FileShare.ReadWrite))
                 {
                     stream.WriteTo(fs);
                 }
+#endif
 
                 return await Task.FromResult(BooleanResult.SuccessResult);
             }

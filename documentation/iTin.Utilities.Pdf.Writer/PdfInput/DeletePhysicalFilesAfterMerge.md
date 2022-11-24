@@ -1,14 +1,10 @@
 # PdfInput.DeletePhysicalFilesAfterMerge property
 
-Gets or sets a value indicating whether delete physical files after merge.
+Gets or sets a Result indicating whether delete physical files after merge.
 
 ```csharp
 public bool DeletePhysicalFilesAfterMerge { get; set; }
 ```
-
-## Property Value
-
-true if delete physical files after merge; otherwise, false.
 
 ## See Also
 

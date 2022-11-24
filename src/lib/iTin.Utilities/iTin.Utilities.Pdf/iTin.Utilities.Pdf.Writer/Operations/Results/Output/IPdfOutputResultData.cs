@@ -1,7 +1,7 @@
 ﻿
-using iTin.Utilities.Pdf.Writer.ComponentModel;
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
 
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
+using iTin.Utilities.Pdf.Writer.ComponentModel;
 
 namespace iTin.Utilities.Pdf.Writer.Operations.Result.Output
 {

@@ -6,16 +6,22 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
- 1. The functionality of being able to create an instance of the **PdfInput** class from **HTML** code has been added.
+ 1. Add support for asynchronous calls in solution projects.
+
+ 2. Added support for using Span<T> for supported platforms.
+
+ 3. Test projects to show asynchronous usage.
+ 
+ 4. The functionality of being able to create an instance of the **PdfInput** class from **HTML** code has been added.
     For more information, please see the **sample15** in [README.md] file
 
- 2. A functionality has been added that allows to add or modify the metadata information of a **pdf** file.
+ 5. A functionality has been added that allows to add or modify the metadata information of a **pdf** file.
     For more information, please see the **sample16** in [README.md] file
 
- 3. A functionality has been added that allows to add a **password** to **pdf** file.
+ 6. A functionality has been added that allows to add a **password** to **pdf** file.
     For more information, please see the **sample17** in [README.md] file
 
- 4. A functionality has been added that allows to insert an **image** into a **pdf** file.
+ 7. A functionality has been added that allows to insert an **image** into a **pdf** file.
     For more information, please see the **sample18** in [README.md] file
 
 ### Changed
@@ -33,14 +39,15 @@ All notable changes to this project will be documented in this file.
     | iTin.Core.Hardware.Windows.Devices.Graphics.Font | **1.0.0.1** | Windows Hardware Infrastructure |
     | iTin.Core.Interop.Shared | **1.0.0.4** | Generic Shared Interop Definitions |
     | iTin.Core.Interop.Windows.Devices | **1.0.0.1** | Win32 Generic Interop Calls |
-	| iTin.Core.IO | 1.0.0.2 | Common I/O calls |
-	| iTin.Core.IO.Compression | 1.0.0.1 | Compression library |
+	| iTin.Core.IO | **1.0.0.3** | Common I/O calls |
+	| iTin.Core.IO.Compression | **1.0.0.3** | Compression library |
 	| iTin.Core.Models | **1.0.0.3** | Data models base |
 	| iTin.Core.Models.Design.Charting | **1.0.0.3** | Base charting models |
 	| iTin.Core.Models.Design.Styling | **1.0.0.3** | Base styling models |
-	| iTin.Logging | **1.0.0.2** | Logging library |
     | iTin.Hardware.Abstractions.Devices.Graphics.Font | **1.0.0.1** | Generic Common Hardware Abstractions |
+	| iTin.Logging | **1.0.0.2** | Logging library |
 	| iTin.Registry.Windows | **1.0.0.3** | Windows registry access |
+	| **iTin.Utilities.Abstractions.Writer** | **1.0.0.0** | **Generic Common Writer's Abstractions** |
 	| iTin.Utilities.Pdf.Design | **1.0.0.5** | Pdf design objects |
 	| iTin.Utilities.Pdf.Writer | **1.0.0.4** | Pdf Writer |
 

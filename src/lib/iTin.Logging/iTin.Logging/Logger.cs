@@ -15,36 +15,39 @@ namespace iTin.Logging
     public class Logger : ILogger
     { 
         #region private static members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static ILogger _instance = new Logger();
+
         #endregion
 
         #region private readonly members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string _rootApp;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private List<ILog> _writers = new List<ILog>();
+        private List<ILog> _writers = new();
+
         #endregion
 
         #region static constructor/s
 
-        #region [private] {static} Logger(): Initializes static members of the class
         /// <summary>
         /// Initializes static members of the <see cref="Logger"/> class.
         /// </summary>
         static Logger()
         {
         }
-        #endregion
 
         #endregion
 
         #region constructor/s
 
-        #region [public] Logger([CallerFilePath] string = ""): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
@@ -52,9 +55,7 @@ namespace iTin.Logging
         public Logger([CallerFilePath] string caller = "") : this("Unknown", new ILog[]{}, caller)
         {
         }
-        #endregion
 
-        #region [public] Logger(string, params ILog[], [CallerFilePath] string = ""): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
@@ -81,13 +82,11 @@ namespace iTin.Logging
 
             SetInstance(this);
         }
-        #endregion
 
         #endregion
 
         #region public static properties
 
-        #region [public] {static} (ILogger) Instance: Gets or sets the logger instance
         /// <summary>
         /// Gets or sets the logger instance.
         /// </summary>
@@ -98,11 +97,8 @@ namespace iTin.Logging
 
         #endregion
 
-        #endregion
-
         #region private properties
 
-        #region [private] {string} RootDirectory: Gets the root directory app. This is root level to deep log
         /// <summary>
         /// Gets the root directory app. This is root level to deep log
         /// </summary>
@@ -111,21 +107,21 @@ namespace iTin.Logging
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string RootDirectory => Path.GetDirectoryName(_rootApp);
+
         #endregion
+
+        #region public readonly properties
+
+        /// <summary>
+        /// Gets the name of the application.
+        /// </summary>
+        /// <value>The name of the application.</value>
+        public string ApplicationName { get; }
 
         #endregion
 
         #region public properties
 
-        #region [public] {string} ApplicationName: Gets the name of the application
-        /// <summary>
-        /// Gets the name of the application.
-        /// </summary>
-        /// <value>The name of the application.</value>
-        public string ApplicationName { get;  }
-        #endregion
-
-        #region [public] {LogDeep} Deep: Gets or sets log deep
         /// <summary>
         /// Gets or sets log deep.
         /// </summary>
@@ -133,9 +129,7 @@ namespace iTin.Logging
         /// One of value of <see cref="LogDeep"/> enumeration.
         /// </value>
         public LogDeep Deep { get; set; }
-        #endregion
 
-        #region [public] (IList<ILog>) Logs: Gets the collection of log that are used to log the Application events
         /// <summary>
         /// Gets the collection of Log Writers that are used to log the Application events.
         /// </summary>
@@ -147,9 +141,7 @@ namespace iTin.Logging
             get => _writers;
             set => _writers = (List<ILog>) value;
         }
-        #endregion
 
-        #region [public] {LogStatus} Status: Gets or sets status log
         /// <summary>
         /// Gets or sets status log.
         /// </summary>
@@ -157,13 +149,11 @@ namespace iTin.Logging
         /// One of value of <see cref="LogStatus"/> enumeration.
         /// </value>
         public LogStatus Status { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) Debug(string, string = "", string = "", int = 0): Shows debug message for all registered loggers
         /// <summary>
         /// Shows <b>Debug</b> message for all registered loggers.
         /// </summary>
@@ -171,10 +161,9 @@ namespace iTin.Logging
         /// <param name="filePath">File path of caller</param>
         /// <param name="memberName">Member name of caller</param>
         /// <param name="lineNumber">Line number of caller</param>
-        public void Debug(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => Log(message, LogLevel.Debug, 0, filePath, memberName, lineNumber);
-        #endregion
+        public void Debug(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => 
+            Log(message, LogLevel.Debug, 0, filePath, memberName, lineNumber);
 
-        #region [public] (void) Error(string, Exception, string = "", string = "", int = 0): Shows error message for all registered loggers
         /// <summary>
         /// Shows <b>Error</b> message for all registered loggers.
         /// </summary>
@@ -183,11 +172,9 @@ namespace iTin.Logging
         /// <param name="filePath">File path of caller</param>
         /// <param name="memberName">Member name of caller</param>
         /// <param name="lineNumber">Line number of caller</param>
-        public void Error(string message, Exception exception, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => LogException(message, LogLevel.Error, 0, exception, filePath, memberName, lineNumber);
+        public void Error(string message, Exception exception, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => 
+            LogException(message, LogLevel.Error, 0, exception, filePath, memberName, lineNumber);
 
-        #endregion
-
-        #region [public] (void) Fatal(string, string = "", string = "", int = 0): Shows fatal message for all registered loggers
         /// <summary>
         /// Shows <b>Fatal</b> message for all registered loggers.
         /// </summary>
@@ -195,10 +182,9 @@ namespace iTin.Logging
         /// <param name="filePath">File path of caller</param>
         /// <param name="memberName">Member name of caller</param>
         /// <param name="lineNumber">Line number of caller</param>
-        public void Fatal(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => Log(message, LogLevel.Fatal, 0, filePath, memberName, lineNumber);
-        #endregion
+        public void Fatal(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => 
+            Log(message, LogLevel.Fatal, 0, filePath, memberName, lineNumber);
 
-        #region [public] (void) Info(string, string = "", string = "", int = 0): Shows info message for all registered loggers
         /// <summary>
         /// Shows <b>Info</b> message for all registered loggers.
         /// </summary>
@@ -206,10 +192,9 @@ namespace iTin.Logging
         /// <param name="filePath">File path of caller</param>
         /// <param name="memberName">Member name of caller</param>
         /// <param name="lineNumber">Line number of caller</param>
-        public void Info(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => Log(message, LogLevel.Info, 0, filePath, memberName, lineNumber);
-        #endregion
+        public void Info(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => 
+            Log(message, LogLevel.Info, 0, filePath, memberName, lineNumber);
 
-        #region [public] (void) Warn(string, string = "", string = "", int = 0): Shows warn message for all registered loggers
         /// <summary>
         /// Shows <b>Warn</b> message for all registered loggers.
         /// </summary>
@@ -217,29 +202,23 @@ namespace iTin.Logging
         /// <param name="filePath">File path of caller</param>
         /// <param name="memberName">Member name of caller</param>
         /// <param name="lineNumber">Line number of caller</param>
-        public void Warn(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => Log(message, LogLevel.Warn, 0, filePath, memberName, lineNumber);      
-        #endregion
+        public void Warn(string message, [CallerFilePath] string filePath = "", [CallerMemberName] string memberName = "", [CallerLineNumber] int lineNumber = 0) => 
+            Log(message, LogLevel.Warn, 0, filePath, memberName, lineNumber);      
 
         #endregion
 
-        #region protected methods
+        #region protected override methods
 
-        #region [public] (string) {override} ToString(): Returns a string that represents this instance
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return $"Application=\"{ApplicationName}\", Logs={Logs.Count}";
-        }
-        #endregion
+        public override string ToString() => $"Application=\"{ApplicationName}\", Logs={Logs.Count}";
 
         #endregion
 
         #region private static methods
 
-        #region [private] {static} (LogLevel) ConvertToLogLevel(TraceLevel): Converts the TraceLevel value to LogLevel
         /// <summary>
         /// Converts the <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.tracelevel.aspx">TraceLevel</a> value to <see cref="LogLevel"/>.
         /// </summary>
@@ -249,42 +228,26 @@ namespace iTin.Logging
         /// </returns>
         public static LogLevel ConvertToLogLevel(TraceLevel level)
         {
-            LogLevel logLevel;
-            switch (level)
+            var logLevel = level switch
             {
-                case TraceLevel.Error:
-                    logLevel = LogLevel.Error;
-                    break;
-
-                case TraceLevel.Warning:
-                    logLevel = LogLevel.Warn;
-                    break;
-
-                case TraceLevel.Info:
-                    logLevel = LogLevel.Info;
-                    break;
-
-                default:
-                    logLevel = LogLevel.Info;
-                    break;
-            }
+                TraceLevel.Error => LogLevel.Error,
+                TraceLevel.Warning => LogLevel.Warn,
+                TraceLevel.Info => LogLevel.Info,
+                _ => LogLevel.Info
+            };
 
             return logLevel;
         }
-        #endregion
-
-        #region [private] {static} (void) SetInstance(ILogger):
+        
         private static void SetInstance(ILogger logger)
         {
             _instance = logger;
         }
-        #endregion
 
         #endregion
 
         #region private methods
 
-        #region [private] (void) Log(string, LogLevel = LogLevel.Info, int = 0, string = "", string = "", int = 0): Writes the specified log record via all Log Writers available in the Logs collection
         /// <summary>
         /// <para>
         /// Writes the specified log record via all Log Writers available in the <see cref="Logs"/> collection.
@@ -303,9 +266,9 @@ namespace iTin.Logging
                 return;
             }
 
-            bool belongsApp = filePath.ToLowerInvariant().Contains(RootDirectory.ToLowerInvariant());
+            var belongsApp = filePath.ToLowerInvariant().Contains(RootDirectory.ToLowerInvariant());
 
-            bool canLog = false;
+            var canLog = false;
             switch (Deep)
             {
                 case LogDeep.AnyCall:
@@ -334,7 +297,7 @@ namespace iTin.Logging
                 return;
             }
 
-            foreach (ILog logWriter in Logs)
+            foreach (var logWriter in Logs)
             {
                 logWriter.WriteEntry(
                     message,
@@ -349,9 +312,7 @@ namespace iTin.Logging
                     });
             }
         }
-        #endregion
 
-        #region [private] (void) LogException(string, LogLevel = LogLevel.Info, int = 0, Exception = null, string = "", string = "", int = 0): Writes the specified exception log record via all Log Writers available in the Logs collection
         /// <summary>
         /// <para>
         /// Writes the specified exception log record via all Log Writers available in the <see cref="Logs"/> collection.
@@ -371,12 +332,22 @@ namespace iTin.Logging
             //    return;
             //}
 
-            foreach (ILog logWriter in Logs)
+            foreach (var logWriter in Logs)
             {
-                logWriter.WriteExceptionEntry(message, level, eventId, exception, new CallerData { ApplicationName = ApplicationName, CallerFilePath = filePath, CallerMemberName = memberName, CallerLineNumber = lineNumber });
+                logWriter.WriteExceptionEntry(
+                    message, 
+                    level, 
+                    eventId, 
+                    exception, 
+                    new CallerData
+                    {
+                        ApplicationName = ApplicationName, 
+                        CallerFilePath = filePath, 
+                        CallerMemberName = memberName, 
+                        CallerLineNumber = lineNumber
+                    });
             }
         }
-        #endregion
 
         #endregion
     }

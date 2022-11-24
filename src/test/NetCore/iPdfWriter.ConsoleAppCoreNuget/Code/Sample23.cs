@@ -1,6 +1,6 @@
 ﻿
 using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.ComponentModel.Result.Action.Save;
+using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 
 namespace iPdfWriter.Code
 {
@@ -9,7 +9,6 @@ namespace iPdfWriter.Code
     /// </summary>
     internal static class Sample23
     {
-        // Generates partial document(s)
         public static void Generate()
         {
             // Creates pdf file reference

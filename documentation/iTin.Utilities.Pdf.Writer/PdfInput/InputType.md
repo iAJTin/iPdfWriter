@@ -6,10 +6,6 @@ Gets input type.
 public KnownInputType InputType { get; }
 ```
 
-## Property Value
-
-An value of enumeration [`KnownInputType`](../../iTin.Utilities.Pdf.Writer.ComponentModel/KnownInputType.md) indicating type of the input.
-
 ## See Also
 
 * enum [KnownInputType](../../iTin.Utilities.Pdf.Writer.ComponentModel/KnownInputType.md)

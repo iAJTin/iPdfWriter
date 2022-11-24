@@ -1,8 +1,4 @@
 ﻿
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
 using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Writer;

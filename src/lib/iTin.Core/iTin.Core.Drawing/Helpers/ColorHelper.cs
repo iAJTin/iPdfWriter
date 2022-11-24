@@ -162,8 +162,9 @@ namespace iTin.Core.Drawing.Helpers
         /// </returns>
         public static Color ToGray(Color color)
         {
-            int gray = (color.R + color.G + color.B) / 3;
+            var gray = (color.R + color.G + color.B) / 3;
             color = Color.FromArgb(gray, gray, gray);
+
             return color;
         }
 
@@ -216,6 +217,7 @@ namespace iTin.Core.Drawing.Helpers
             }
 
             color = Color.FromArgb(opacity, color);
+
             return color;
         }
 

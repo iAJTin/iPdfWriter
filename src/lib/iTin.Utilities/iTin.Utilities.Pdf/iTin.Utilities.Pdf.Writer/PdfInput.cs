@@ -14,6 +14,10 @@ using iTin.Core.ComponentModel.Results;
 using iTin.Core.Helpers;
 using iTin.Core.IO;
 
+using iTin.Utilities.Abstractions.Writer.Config;
+using iTin.Utilities.Abstractions.Writer.Input;
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
+
 using iTin.Utilities.Pdf.Design.Text;
 
 using iTin.Utilities.Pdf.Writer.ComponentModel;
@@ -25,10 +29,6 @@ using iTin.Utilities.Pdf.Writer.Operations.Result.Output;
 using iTin.Utilities.Pdf.Writer.Operations.Result.Replace;
 using iTin.Utilities.Pdf.Writer.Operations.Set;
 using iTin.Utilities.Pdf.Writer.TextStrategy;
-
-using iTin.Utilities.Writer.Abstractions.Config;
-using iTin.Utilities.Writer.Abstractions.Input;
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
 
 using NativeIO = System.IO;
 using NativePdf = iTextSharp.text.pdf;
@@ -92,6 +92,7 @@ namespace iTin.Utilities.Pdf.Writer
         /// <Result>
         /// An Result of enumeration <see cref="KnownInputType"/> indicating type of the input.
         /// </Result>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Enum IInput.InputType => InputType;
 
         #endregion

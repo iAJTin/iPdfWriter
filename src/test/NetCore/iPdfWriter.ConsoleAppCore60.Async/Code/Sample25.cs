@@ -1,7 +1,5 @@
 ﻿
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 using iTin.Core.ComponentModel;
 using iTin.Logging.ComponentModel;

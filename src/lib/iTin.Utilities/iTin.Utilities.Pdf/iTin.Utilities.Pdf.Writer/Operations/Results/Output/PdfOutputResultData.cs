@@ -9,11 +9,11 @@ using iTin.Core;
 using iTin.Core.ComponentModel;
 using iTin.Core.IO.Compression;
 
+using iTin.Utilities.Abstractions.Writer.Operations.Actions;
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
+
 using iTin.Utilities.Pdf.Writer.ComponentModel;
 using iTin.Utilities.Pdf.Writer.Config;
-
-using iTin.Utilities.Writer.Abstractions.Operations.Actions;
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
 
 namespace iTin.Utilities.Pdf.Writer.Operations.Result.Output
 {

@@ -12,7 +12,7 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text
     /// </summary>
     public abstract class TextReplacementBase : ITextReplacement
     {
-        #region interface
+        #region interfaces
 
         #region IReplacement
 

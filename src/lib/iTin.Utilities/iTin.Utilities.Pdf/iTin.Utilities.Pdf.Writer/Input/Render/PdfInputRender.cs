@@ -10,6 +10,8 @@ using iTin.Core.Drawing;
 using iTin.Core.Drawing.Helpers;
 using iTin.Core.Models.Design.Enums;
 
+using iTin.Utilities.Abstractions.Writer.Operations.Results;
+
 using iTin.Utilities.Pdf.Design.Styles;
 using iTin.Utilities.Pdf.Design.Table;
 
@@ -19,8 +21,6 @@ using iTin.Utilities.Pdf.Writer.Operations.Replace;
 using iTin.Utilities.Pdf.Writer.Operations.Result.Replace;
 using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
 using iTin.Utilities.Pdf.Writer.SystemTag;
-
-using iTin.Utilities.Writer.Abstractions.Operations.Results;
 
 using iTextSharp.text;
 using iTextSharp.text.pdf;

@@ -1,6 +1,4 @@
 ﻿
-using System.Linq;
-
 using iTin.Utilities.Pdf.Writer;
 using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
 

@@ -12,9 +12,6 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Insert
     /// </summary>
     public class InsertImage : InsertImageBase
     {
-        #region constructor/s
-
-        #region [public] InsertImage(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertImage"/> class.
         /// </summary>
@@ -25,8 +22,5 @@ namespace iTin.Utilities.Pdf.Writer.Operations.Insert
             Offset = PointF.Empty;
             UseTestMode = YesNo.No;
         }
-        #endregion
-
-        #endregion
     }
 }

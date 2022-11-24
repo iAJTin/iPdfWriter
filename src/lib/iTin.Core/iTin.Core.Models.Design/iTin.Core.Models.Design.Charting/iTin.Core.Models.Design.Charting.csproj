@@ -25,6 +25,4 @@
 		<ProjectReference Include="..\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
 	</ItemGroup>
 
-	<!-- Design > Shared > Property -->
-
 </Project>

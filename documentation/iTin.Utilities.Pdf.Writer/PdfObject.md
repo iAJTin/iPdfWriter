@@ -1,6 +1,6 @@
 # PdfObject class
 
-Represents a generic pdf object, this allows add pdf files to [`Items`](PdfObject/Items.md) property and specify a user custom configuration.
+Represents a generic pdf object, this allows add pdf files to [`Items`](./PdfObject/Items.md) property and specify a user custom configuration.
 
 ```csharp
 public class PdfObject : IDisposable
@@ -10,13 +10,14 @@ public class PdfObject : IDisposable
 
 | name | description |
 | --- | --- |
-| [PdfObject](PdfObject/PdfObject.md)() | Initializes a new instance of the [`PdfObject`](PdfObject.md) class with default configuration. |
-| [PdfObject](PdfObject/PdfObject.md)(…) | Initializes a new instance of the [`PdfObject`](PdfObject.md) class with specified configuration |
+| [PdfObject](PdfObject/PdfObject.md)() | Initializes a new instance of the [`PdfObject`](./PdfObject.md) class with default configuration. |
+| [PdfObject](PdfObject/PdfObject.md)(…) | Initializes a new instance of the [`PdfObject`](./PdfObject.md) class with specified configuration |
 | [Configuration](PdfObject/Configuration.md) { get; } | Gets the configuration settings. |
 | [Items](PdfObject/Items.md) { get; set; } | Gets or sets the pdf input list. |
 | [Dispose](PdfObject/Dispose.md)() | Clean managed resources |
 | override [ToString](PdfObject/ToString.md)() | Returns a string that represents the current data type. |
-| [TryMergeInputs](PdfObject/TryMergeInputs.md)() | Merges all [`PdfInput`](PdfInput.md) entries. |
+| [TryMergeInputs](PdfObject/TryMergeInputs.md)() | Merges all [`PdfInput`](./PdfInput.md) entries. |
+| [TryMergeInputsAsync](PdfObject/TryMergeInputsAsync.md)(…) | Merges all [`PdfInput`](./PdfInput.md) entries asynchronously. |
 
 ## Protected Members
 

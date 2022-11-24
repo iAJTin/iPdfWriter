@@ -1,25 +1,17 @@
 # PdfInput.Insert method
 
-Try to insert an element in this input.
-
 ```csharp
-public InsertResult Insert(IInsert data)
+public IPdfInputAction Insert(IInsert data)
 ```
 
 | parameter | description |
 | --- | --- |
-| data | Reference to insertable object information |
-
-## Return Value
-
-A [`InsertResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert/InsertResult.md) reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Value property will contain the value; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
-
-The type of the return value is [`InsertResultData`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert/InsertResultData.md), which contains the operation result
+| data |  |
 
 ## See Also
 
-* class [InsertResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Insert/InsertResult.md)
-* interface [IInsert](../../iTin.Utilities.Pdf.Writer.ComponentModel/IInsert.md)
+* interface [IPdfInputAction](../../iTin.Utilities.Pdf.Writer.Input/IPdfInputAction.md)
+* interface [IInsert](../../iTin.Utilities.Pdf.Writer.Operations.Insert/IInsert.md)
 * class [PdfInput](../PdfInput.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)
 

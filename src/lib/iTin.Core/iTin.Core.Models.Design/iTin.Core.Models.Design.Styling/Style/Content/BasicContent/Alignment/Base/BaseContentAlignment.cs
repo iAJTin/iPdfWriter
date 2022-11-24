@@ -18,18 +18,21 @@ namespace iTin.Core.Models.Design.Styling
     public partial class BaseContentAlignment : IContentAlignment
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const KnownHorizontalAlignment DefaultHorizontalAlignment = KnownHorizontalAlignment.Left;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private KnownHorizontalAlignment _horizontal;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] BaseContentAlignment(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseContentAlignment"/> class.
         /// </summary>
@@ -37,7 +40,6 @@ namespace iTin.Core.Models.Design.Styling
         {
             Horizontal = DefaultHorizontalAlignment;
         }
-        #endregion
 
         #endregion
 
@@ -47,7 +49,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -56,7 +57,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -66,13 +66,11 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (object) ICombinable<IContentAlignment>.Combine(IContentAlignment): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference content alignment</param>
         void ICombinable<IContentAlignment>.Combine(IContentAlignment reference) => Combine((BaseContentAlignment)reference);
-        #endregion
 
         #endregion
 
@@ -82,7 +80,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (bool) IContentAlignment.IsEmpty: Gets a value indicating whether this style is an empty content alignment
         /// <summary>
         /// Gets a value indicating whether this style is an empty content alignment.
         /// </summary>
@@ -93,21 +90,17 @@ namespace iTin.Core.Models.Design.Styling
         [JsonIgnore]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         bool IContentAlignment.IsEmpty => IsDefault;
-        #endregion
 
-        #region (void) IContentAlignment.SetParent(IParent): Sets the element that owns this
         /// <summary>
         /// Sets the parent element of the element.
         /// </summary>
         /// <param name="reference">Reference to parent.</param>
         void IContentAlignment.SetParent(IParent reference) => SetParent(reference);
-        #endregion
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (bool) IsEmpty: Gets a value indicating whether this style is an empty style
         /// <summary>
         /// Gets a value indicating whether this style is an empty style.
         /// </summary>
@@ -115,13 +108,11 @@ namespace iTin.Core.Models.Design.Styling
         /// <b>true</b> if is an empty style; otherwise, <b>false</b>.
         /// </value>        
         public bool IsEmpty => IsDefault;
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (KnownHorizontalAlignment) Horizontal: Gets or sets preferred horizontal content alignemnt
         /// <summary>
         /// Gets or sets preferred horizontal content alignemnt. The default is <see cref="KnownHorizontalAlignment.Left"/>.
         /// </summary>
@@ -142,11 +133,8 @@ namespace iTin.Core.Models.Design.Styling
 
         #endregion
 
-        #endregion
-
         #region public override properties
 
-        #region [public] {overide} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -154,7 +142,6 @@ namespace iTin.Core.Models.Design.Styling
         /// <b>true</b> if this instance contains the default; otherwise, <b>false</b>.
         /// </value>
         public override bool IsDefault => base.IsDefault && Horizontal.Equals(DefaultHorizontalAlignment);
-        #endregion
 
         #endregion
 
@@ -164,7 +151,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (IParent) IContentAlignment.Parent: Gets the parent element of the element
         /// <summary>
         /// Gets the parent element of the element.
         /// </summary>
@@ -173,7 +159,6 @@ namespace iTin.Core.Models.Design.Styling
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         IParent IContentAlignment.Parent => Parent;
-        #endregion
 
         #endregion
 
@@ -183,7 +168,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region public static properties
 
-        #region [public] {static} (BaseContentAlignment) Default: Gets a default content alignment
         /// <summary>
         /// Gets a default content alignment.
         /// </summary>
@@ -191,23 +175,19 @@ namespace iTin.Core.Models.Design.Styling
         /// A content alignment.
         /// </value>
         public static BaseContentAlignment Default => Empty;
-        #endregion
 
-        #region [public] {static} (BaseContentAlignment) Empty: Gets an empty content alignment
         /// <summary>
         /// Gets an empty content alignment.
         /// </summary>
         /// <value>
         /// An empty content alignment.
         /// </value>
-        public static BaseContentAlignment Empty => new BaseContentAlignment();
-        #endregion
+        public static BaseContentAlignment Empty => new();
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (IParent) Parent: Gets the parent element of the element
         /// <summary>
         /// Gets the parent element of the element.
         /// </summary>
@@ -218,13 +198,11 @@ namespace iTin.Core.Models.Design.Styling
         [JsonIgnore]
         [Browsable(false)]
         public IParent Parent { get; private set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (BaseContentAlignment) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -238,9 +216,7 @@ namespace iTin.Core.Models.Design.Styling
 
             return cloned;
         }
-        #endregion
 
-        #region [public] (void) SetParent(IParent): Sets the parent element of the element
         /// <summary>
         /// Sets the parent element of the element.
         /// </summary>
@@ -249,13 +225,11 @@ namespace iTin.Core.Models.Design.Styling
         {
             Parent = reference;
         }
-        #endregion
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) Combine(BaseContentAlignment): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -272,7 +246,6 @@ namespace iTin.Core.Models.Design.Styling
                 Horizontal = reference.Horizontal;
             }
         }
-        #endregion
 
         #endregion
     }

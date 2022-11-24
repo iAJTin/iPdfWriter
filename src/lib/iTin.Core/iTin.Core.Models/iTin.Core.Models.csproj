@@ -25,17 +25,4 @@
 		<ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
 	</ItemGroup>
 
-
-	<!-- Design > Shared > Property -->
-	<ItemGroup>
-		<Compile Update="Design\Shared\Properties\Property\PropertyModel.*.cs">
-			<DependentUpon>PropertyModel.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Update="Design\Shared\Properties\Property\Property.designer.cs">
-			<DependentUpon>Property.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
 </Project>

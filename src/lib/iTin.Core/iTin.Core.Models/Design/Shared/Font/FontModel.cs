@@ -23,6 +23,7 @@ namespace iTin.Core.Models.Design
     public partial class FontModel : ICombinable<FontModel>, ICloneable
     {
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const string DefaultFontColor = "Black";
 
@@ -43,9 +44,11 @@ namespace iTin.Core.Models.Design
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const YesNo DefaultIsScalable = YesNo.Yes;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string _name;
 
@@ -54,11 +57,11 @@ namespace iTin.Core.Models.Design
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private float _size;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] FontModel(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="FontModel"/> class.
         /// </summary>
@@ -72,7 +75,6 @@ namespace iTin.Core.Models.Design
             IsScalable = DefaultIsScalable;
             Underline = DefaultFontUnderline;
         }
-        #endregion
 
         #endregion
 
@@ -82,7 +84,6 @@ namespace iTin.Core.Models.Design
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -91,7 +92,6 @@ namespace iTin.Core.Models.Design
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -101,13 +101,11 @@ namespace iTin.Core.Models.Design
 
         #region explicit
 
-        #region (object) ICombinable<FontModel>.Combine(FontModel): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference pattern</param>
         void ICombinable<FontModel>.Combine(FontModel reference) => Combine(reference);
-        #endregion
 
         #endregion
 
@@ -117,21 +115,18 @@ namespace iTin.Core.Models.Design
 
         #region public static properties
 
-        #region [public] {static} (FontModel) Default: Default: Gets default font settings
         /// <summary>
         /// Gets default font settings.
         /// </summary>
         /// <value>
         /// A <see cref="FontModel"/> reference containing the default font settings.
         /// </value>
-        public static FontModel DefaultFont => new FontModel();
-        #endregion
+        public static FontModel DefaultFont => new();
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (FontStyle) FontStyle: Gets a value that represents the different styles defined for this font
         /// <summary>
         /// Gets a value that represents the different styles defined for this font.
         /// </summary>
@@ -163,13 +158,11 @@ namespace iTin.Core.Models.Design
                 return fontStyles;
             }
         }
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) Name: Gets or sets preferred font name
         /// <summary>
         /// Gets or sets preferred font name. The default is <b>Segoe UI</b>.
         /// </summary>
@@ -199,9 +192,7 @@ namespace iTin.Core.Models.Design
                     : DefaultFontName;
             }
         }
-        #endregion
 
-        #region [public] (float) Size: Gets or sets preferred font size
         /// <summary>
         /// Gets or sets preferred font size. The default is <b>10.0</b>.
         /// </summary>
@@ -222,9 +213,7 @@ namespace iTin.Core.Models.Design
                 _size = value;
             }
         }
-        #endregion
 
-        #region [public] (string) Color: Gets or sets preferred font color
         /// <summary>
         /// Gets or sets preferred font color. The default is <b>Black</b>.
         /// </summary>
@@ -245,9 +234,7 @@ namespace iTin.Core.Models.Design
                 _color = value;
             }
         }
-        #endregion
 
-        #region [public] (YesNo) IsScalable: Gets or sets a value indicating whether this font is scalable
         /// <summary>
         /// Gets or sets a value indicating whether this font is scalable. The default is <see cref="YesNo.Yes"/>.
         /// </summary>
@@ -259,9 +246,7 @@ namespace iTin.Core.Models.Design
         [DefaultValue(DefaultIsScalable)]
         [JsonConverter(typeof(StringEnumConverter))]
         public YesNo IsScalable { get; set; }
-        #endregion
 
-        #region [public] (YesNo) Bold: Gets or sets a value indicating whether bold style is applied for this font
         /// <summary>
         /// Gets or sets a value indicating whether bold style is applied for this font. The default is <see cref="YesNo.No"/>.
         /// </summary>
@@ -273,9 +258,7 @@ namespace iTin.Core.Models.Design
         [DefaultValue(DefaultFontBold)]
         [JsonConverter(typeof(StringEnumConverter))]
         public YesNo Bold { get; set; }
-        #endregion
 
-        #region [public] (YesNo) Italic: Gets or sets a value indicating whether italic style is applied for this font
         /// <summary>
         /// Gets or sets a value indicating whether italic style is applied for this font. The default is <see cref="YesNo.No"/>.
         /// </summary>
@@ -287,9 +270,7 @@ namespace iTin.Core.Models.Design
         [DefaultValue(DefaultFontItalic)]
         [JsonConverter(typeof(StringEnumConverter))]
         public YesNo Italic { get; set; }
-        #endregion
 
-        #region [public] (YesNo) Underline: Gets or sets a value indicating whether the underline style is applied for this font
         /// <summary>
         /// Gets or sets a value indicating whether the underline style is applied for this font. The default is <see cref="YesNo.No"/>.
         /// </summary>
@@ -301,13 +282,11 @@ namespace iTin.Core.Models.Design
         [DefaultValue(DefaultFontUnderline)]
         [JsonConverter(typeof(StringEnumConverter))]
         public YesNo Underline { get; set; }
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {override} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <inheritdoc />
         /// <summary>
         /// Gets a value indicating whether this instance is default.
@@ -323,13 +302,11 @@ namespace iTin.Core.Models.Design
             Italic.Equals(DefaultFontItalic) &&
             IsScalable.Equals(DefaultIsScalable) &&
             Underline.Equals(DefaultFontUnderline);
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (FontModel) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -341,9 +318,7 @@ namespace iTin.Core.Models.Design
 
             return cloned;
         }
-        #endregion
 
-        #region [public] (Color) GetColor(): Gets a reference to the color structure preferred for this font
         /// <summary>
         /// Gets a reference to the <see cref="T:System.Drawing.Color" /> structure preferred for this font.
         /// </summary>
@@ -351,23 +326,19 @@ namespace iTin.Core.Models.Design
         /// <see cref="T:System.Drawing.Color"/> structure that represents a .NET color.
         /// </returns>
         public Color GetColor() => ColorHelper.GetColorFromString(Color);
-        #endregion
 
-        #region [public] (Font) ToFont(): Gets a reference to native .NET font representing the font model
         /// <summary>
         /// Gets a reference to native .NET font representing the font model
         /// </summary>
         /// <returns>
         /// Native .NET font representing the font model
         /// </returns>
-        public Font ToFont() => new Font(Name, Size, FontStyles, GraphicsUnit.Pixel);
-        #endregion
+        public Font ToFont() => new(Name, Size, FontStyles, GraphicsUnit.Pixel);
 
         #endregion
 
         #region public virtual methods
 
-        #region [public] {virtual} (void) ApplyOptions(FontOptions): Apply specified options to this font
         /// <summary>
         /// Apply specified options to this font.
         /// </summary>
@@ -446,9 +417,7 @@ namespace iTin.Core.Models.Design
             }
             #endregion
         }
-        #endregion
 
-        #region [public] {virtual} (void) Combine(FontModel): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -489,13 +458,11 @@ namespace iTin.Core.Models.Design
                 Underline = reference.Underline;
             }
         }
-        #endregion
 
         #endregion
 
         #region private static methods
 
-        #region [private] {static} (bool) IsValidFontName: Gets a value indicating whether the font is installed on this system
         /// <summary>
         /// Gets a value indicating whether the font is installed on this system.
         /// </summary>
@@ -509,7 +476,6 @@ namespace iTin.Core.Models.Design
 
             return ifc.Families.Any(font => font.Name.Equals(fontName, StringComparison.Ordinal));
         }
-        #endregion
 
         #endregion
     }

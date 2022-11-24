@@ -20,18 +20,23 @@ namespace iTin.Core.Models.Design.Styling
     public partial class BaseBasicContent : IBasicContent
     {
         #region public constants
+
         /// <summary>
         /// Defines default content color.
         /// </summary>
         public const string DefaultColor = "Transparent";
+
         #endregion
 
         #region private constants
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private const YesNo DefaultShow = YesNo.Yes;
+
         #endregion
 
         #region private field members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private YesNo _show;
 
@@ -43,11 +48,11 @@ namespace iTin.Core.Models.Design.Styling
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private BaseContentAlignment _alignment;
+
         #endregion
 
         #region constructor/s
 
-        #region [public] BaseBasicContent(): Initializes a new instance of this class
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseBasicContent"/> class.
         /// </summary>
@@ -56,7 +61,6 @@ namespace iTin.Core.Models.Design.Styling
             Show = DefaultShow;
             Color = DefaultColor;
         }
-        #endregion
 
         #endregion
 
@@ -66,7 +70,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (IContentAlignment) IBasicContent.Alignment: Gets or sets the collection of border properties
         /// <summary>
         /// Gets or sets the collection of border properties.
         /// </summary>
@@ -79,13 +82,11 @@ namespace iTin.Core.Models.Design.Styling
             get => _alignment;
             set => _alignment = (BaseContentAlignment)value;
         }
-        #endregion
 
         #endregion
 
         #region public readonly properties
 
-        #region [public] (bool) IsEmpty: Gets a value indicating whether this style is an empty style
         /// <summary>
         /// Gets a value indicating whether this style is an empty style.
         /// </summary>
@@ -95,13 +96,11 @@ namespace iTin.Core.Models.Design.Styling
         [XmlIgnore]
         [JsonIgnore]
         public bool IsEmpty => IsDefault;
-        #endregion
 
         #endregion
 
         #region public override properties
 
-        #region [public] {overide} (bool) IsDefault: Gets a value indicating whether this instance is default
         /// <summary>
         /// Gets a value indicating whether this instance is default.
         /// </summary>
@@ -113,7 +112,6 @@ namespace iTin.Core.Models.Design.Styling
             Show.Equals(DefaultShow) &&
             Color.Equals(DefaultColor) &&
             Alignment.IsDefault;
-        #endregion
 
         #endregion
 
@@ -123,7 +121,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -132,7 +129,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -142,7 +138,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (bool) IContent.IsEmpty: Gets a value indicating whether this style is an empty border
         /// <summary>
         /// Gets a value indicating whether this style is an empty border.
         /// </summary>
@@ -151,21 +146,17 @@ namespace iTin.Core.Models.Design.Styling
         /// </value>        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         bool IContent.IsEmpty => IsDefault;
-        #endregion
 
-        #region (void) IContent.SetParent(IParent): Sets the element that owns this
         /// <summary>
         /// Sets the parent element of the element.
         /// </summary>
         /// <param name="reference">Reference to parent.</param>
         void IContent.SetParent(IParent reference) => SetParent(reference);
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (string) AlternateColor: Gets or sets preferred alternate content color
         /// <summary>
         /// Gets or sets preferred alternate content color. The default is <b>Black</b>.
         /// </summary>
@@ -184,9 +175,7 @@ namespace iTin.Core.Models.Design.Styling
                 _alternateColor = value;
             }
         }
-        #endregion
 
-        #region [public] (string) Color: Gets or sets preferred content color
         /// <summary>
         /// Gets or sets preferred content color. The default is <b>Black</b>.
         /// </summary>
@@ -206,9 +195,7 @@ namespace iTin.Core.Models.Design.Styling
                 _color = value;
             }
         }
-        #endregion
 
-        #region [public] (YesNo) Show: Gets or sets a value that determines whether to display the border
         /// <summary>
         /// Gets or sets a value that determines whether to display the border. The default is <see cref="YesNo.Yes"/>.
         /// </summary>
@@ -226,13 +213,11 @@ namespace iTin.Core.Models.Design.Styling
                 _show = value;
             }
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (void) Combine(IContent): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -254,9 +239,7 @@ namespace iTin.Core.Models.Design.Styling
                 Show = reference.Show;
             }
         }
-        #endregion
 
-        #region [public] (Color) GetAlternateColor(): Gets a reference to the Color structure that represents alternate color for this content
         /// <summary>
         /// Gets a reference to the <see cref="T:System.Drawing.Color"/> structure that represents alternate color for this content.
         /// </summary>
@@ -264,9 +247,7 @@ namespace iTin.Core.Models.Design.Styling
         /// A <see cref="T:System.Drawing.Color"/> structure that represents alternate color for this content.
         /// </returns> 
         public Color GetAlternateColor() => ColorHelper.GetColorFromString(AlternateColor);
-        #endregion
 
-        #region [public] (Color) GetColor(): Gets a reference to the Color structure that represents color for this content
         /// <summary>
         /// Gets a reference to the <see cref="T:System.Drawing.Color"/> structure that represents color for this content.
         /// </summary>
@@ -274,7 +255,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A <see cref="T:System.Drawing.Color"/> structure that represents color for this content.
         /// </returns> 
         public Color GetColor() => ColorHelper.GetColorFromString(Color);
-        #endregion
 
         #endregion
 
@@ -284,13 +264,11 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (void) ICombinable<IBasicContent>.Combine(IBasicContent): Creates a new object that is a copy of the current instance
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
         /// <param name="reference">Reference content</param>
         void ICombinable<IBasicContent>.Combine(IBasicContent reference) => Combine((BaseBasicContent)reference);
-        #endregion
 
         #endregion
 
@@ -300,7 +278,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (IParent) IContent.Parent: Gets the parent element of the element
         /// <summary>
         /// Gets the parent element of the element.
         /// </summary>
@@ -309,7 +286,6 @@ namespace iTin.Core.Models.Design.Styling
         /// </value>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         IParent IContent.Parent => Parent;
-        #endregion
 
         #endregion
 
@@ -319,7 +295,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region public readonly properties
 
-        #region [public] (bool) AlignmentSpecified: Gets a value that tells the serializer if the referenced item is to be included
         /// <summary>
         /// Gets a value that tells the serializer if the referenced item is to be included.
         /// </summary>
@@ -330,9 +305,7 @@ namespace iTin.Core.Models.Design.Styling
         [XmlIgnore]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public bool AlignmentSpecified => !Alignment.IsDefault;
-        #endregion
 
-        #region [public] (IParent) Parent: Gets the parent element of the element
         /// <summary>
         /// Gets the parent element of the element.
         /// </summary>
@@ -343,13 +316,11 @@ namespace iTin.Core.Models.Design.Styling
         [JsonIgnore]
         [Browsable(false)]
         public IParent Parent { get; private set; }
-        #endregion
 
         #endregion
 
         #region public static properties
 
-        #region [public] {static} (BaseBasicContent) Default: Gets a default content
         /// <summary>
         /// Gets a default content.
         /// </summary>
@@ -357,23 +328,19 @@ namespace iTin.Core.Models.Design.Styling
         /// A default content.
         /// </value>
         public static BaseBasicContent Default => Empty;
-        #endregion
 
-        #region [public] {static} (BaseBasicContent) Empty: Gets an empty content
         /// <summary>
         /// Gets an empty content.
         /// </summary>
         /// <value>
         /// An empty content.
         /// </value>
-        public static BaseBasicContent Empty => new BaseBasicContent();
-        #endregion
+        public static BaseBasicContent Empty => new();
 
         #endregion
 
         #region public properties
 
-        #region [public] (BaseContentAlignment) Alignment: Gets or sets a reference to content alignment
         /// <summary>
         /// Gets or sets a reference to content alignment.
         /// </summary>
@@ -387,24 +354,18 @@ namespace iTin.Core.Models.Design.Styling
         {
             get
             {
-                if (_alignment == null)
-                {
-                    _alignment = BaseContentAlignment.Default;
-                }
-
+                _alignment ??= BaseContentAlignment.Default;
                 _alignment.SetParent(this);
 
                 return _alignment;
             }
             set => _alignment = value;
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (BaseBasicContent) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -419,9 +380,7 @@ namespace iTin.Core.Models.Design.Styling
 
             return cloned;
         }
-        #endregion
 
-        #region [public] (void) SetParent(IParent): Sets the parent element of the element
         /// <summary>
         /// Sets the parent element of the element.
         /// </summary>
@@ -433,11 +392,8 @@ namespace iTin.Core.Models.Design.Styling
 
         #endregion
 
-        #endregion
-
         #region public virtual methods
 
-        #region [public] {virtual} (void) Combine(BaseContentAlignment): Combines this instance with reference parameter
         /// <summary>
         /// Combines this instance with reference parameter.
         /// </summary>
@@ -466,7 +422,6 @@ namespace iTin.Core.Models.Design.Styling
 
             Alignment.Combine(reference.Alignment);
         }
-        #endregion
 
         #endregion
     }

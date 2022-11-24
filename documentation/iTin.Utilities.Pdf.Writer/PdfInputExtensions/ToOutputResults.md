@@ -1,6 +1,6 @@
 # PdfInputExtensions.ToOutputResults method
 
-Merges every entry list in *multiInputItems* parameter into a unique [`OutputResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md) item.
+Merges every entry list in *multiInputItems* parameter into a unique OutputResult item.
 
 ```csharp
 public static IEnumerable<OutputResult> ToOutputResults(
@@ -17,7 +17,6 @@ An IEnumerable.
 
 ## See Also
 
-* class [OutputResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Output/OutputResult.md)
 * class [PdfInput](../PdfInput.md)
 * class [PdfInputExtensions](../PdfInputExtensions.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)

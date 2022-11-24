@@ -77,54 +77,51 @@ namespace iTin.Core.IO
         /// </returns>
         public string RuntimeOutputFolder()
         {
-            bool isNetFramework = VersionName.Contains("NETFramework");
+            var isNetFramework = VersionName.Contains("NETFramework");
             if (isNetFramework)
             {
                 return $"net{VersionNumber.Replace(".", string.Empty)}";
             }
 
-            bool isNetStandard = VersionName.Contains("NETStandard");
+            var isNetStandard = VersionName.Contains("NETStandard");
             if (isNetStandard)
             {
                 return $"netstandard{VersionNumber}";
             }
 
-            bool isNetCore = VersionName.Contains("NETCore");
+            var isNetCore = VersionName.Contains("NETCore");
             if (isNetCore)
             {
-                if (float.Parse(VersionNumber) >= 60f)
-                {
-                    return $"net{VersionNumber}";
-                }
-
-                return $"netcoreapp{VersionNumber}";
+                return float.Parse(VersionNumber) >= 60f
+                    ? $"net{VersionNumber}" 
+                    : $"netcoreapp{VersionNumber}";
             }
 
-            bool isUAP = VersionName.Contains("UniversalWindowsPlatform");
-            if (isUAP)
+            var isUap = VersionName.Contains("UniversalWindowsPlatform");
+            if (isUap)
             {
                 return $"uap{VersionNumber}";
             }
 
-            bool isWindowsPhone = VersionName.Contains("WindowsPhone");
+            var isWindowsPhone = VersionName.Contains("WindowsPhone");
             if (isWindowsPhone)
             {
                 return $"wp{VersionNumber.Replace(".", string.Empty)}";
             }
 
-            bool isWindowsStore = VersionName.Contains("WindowsStore");
+            var isWindowsStore = VersionName.Contains("WindowsStore");
             if (isWindowsStore)
             {
                 return $"netcore{VersionNumber.Replace(".", string.Empty)}";
             }
 
-            bool isMicroFramework = VersionName.Contains("NETMicroFramework");
+            var isMicroFramework = VersionName.Contains("NETMicroFramework");
             if (isMicroFramework)
             {
                 return $"netmf{VersionNumber.Replace(".", string.Empty)}";
             }
 
-            bool isSilverlight = VersionName.Contains("Silverlight");
+            var isSilverlight = VersionName.Contains("Silverlight");
             if (isSilverlight)
             {
                 return $"sl{VersionNumber.Replace(".", string.Empty)}";

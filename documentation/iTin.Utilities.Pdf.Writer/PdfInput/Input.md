@@ -6,10 +6,6 @@ Gets or sets the input object.
 public object Input { get; set; }
 ```
 
-## Property Value
-
-The input.
-
 ## See Also
 
 * class [PdfInput](../PdfInput.md)

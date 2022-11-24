@@ -14,6 +14,7 @@ namespace iTin.Core.Drawing
     public class Clipping : IDisposable
     {
         #region private readonly members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Region _newRegion;
 
@@ -22,16 +23,18 @@ namespace iTin.Core.Drawing
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Region _previousRegion;
+
         #endregion
 
         #region private members
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private bool _isDisposed;
+
         #endregion
 
         #region constructor
 
-        #region [public] Clipping(Canvas, GraphicsPath): Initialize a new instance of the class by setting the figure to draw on
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the figure to draw on.
         /// </summary>
@@ -40,9 +43,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, GraphicsPath path) : this(canvas, path, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Canvas, Rectangle): Initialize a new instance of the class by setting the clipping rectangle
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping rectangle.
         /// </summary>
@@ -51,9 +52,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, Rectangle rect) : this(canvas, rect, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Canvas, Region): Initialize a new instance of the class by setting the clipping region
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping region.
         /// </summary>
@@ -62,9 +61,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, Region region) : this(canvas, region, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Canvas, GraphicsPath, bool): Initializes a new instance of the class by setting the figure on which to draw and if excluded from clipping
         /// <summary>
         /// Initializes a new instance of the <see cref="Clipping"/> class by setting the figure on which to draw and if excluded from clipping.
         /// </summary>
@@ -74,9 +71,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, GraphicsPath path, bool exclude) : this(SentinelHelper.PassThroughNonNull(canvas).Graphics, path, exclude)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Canvas, Rectangle, bool): Initialize a new instance of the class by setting the clipping rectangle and if it is excluded
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping rectangle and if it is excluded.
         /// </summary>
@@ -86,9 +81,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, Rectangle rect, bool exclude) : this(SentinelHelper.PassThroughNonNull(canvas).Graphics, rect, exclude)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Canvas, Region, bool): Initializes a new instance of the class by setting the clipping region and if it is excluded from clipping
         /// <summary>
         /// Initializes a new instance of the <see cref="Clipping"/> class by setting the clipping region and if it is excluded from clipping.
         /// </summary>
@@ -98,9 +91,7 @@ namespace iTin.Core.Drawing
         public Clipping(Canvas canvas, Region region, bool exclude) : this(SentinelHelper.PassThroughNonNull(canvas).Graphics, region, exclude)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, GraphicsPath): Inicializa una nueva instancia de la clase estableciendo la figura en la que dibujar
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Clipping"/> estableciendo la figura en la que dibujar.
         /// </summary>
@@ -109,9 +100,7 @@ namespace iTin.Core.Drawing
         public Clipping(Graphics graphics, GraphicsPath path) : this(graphics, path, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, Rectangle): Initialize a new instance of the class by setting the cropping rectangle
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the cropping rectangle.
         /// </summary>
@@ -120,9 +109,7 @@ namespace iTin.Core.Drawing
         public Clipping(Graphics graphics, Rectangle rect) : this(graphics, rect, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, Region): Initialize a new instance of the class by setting the clipping region
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping region.
         /// </summary>
@@ -131,9 +118,7 @@ namespace iTin.Core.Drawing
         public Clipping(Graphics graphics, Region region) : this(graphics, region, false)
         {
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, GraphicsPath, bool): Initializes a new instance of the class by setting the figure on which to draw and if excluded from clipping
         /// <summary>
         /// Initializes a new instance of the <see cref="Clipping"/> class by setting the figure on which to draw and if excluded from clipping.
         /// </summary>
@@ -164,9 +149,7 @@ namespace iTin.Core.Drawing
 
             _graphics.Clip = _newRegion;
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, Rectangle, bool): Initialize a new instance of the class by setting the clipping rectangle and if it is excluded
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping rectangle and if it is excluded.
         /// </summary>
@@ -197,9 +180,7 @@ namespace iTin.Core.Drawing
 
             _graphics.Clip = _newRegion;
         }
-        #endregion
 
-        #region [public] Clipping(Graphics, Region, bool): Initialize a new instance of the class by setting the clipping region and if it is exluded
         /// <summary>
         /// Initialize a new instance of the <see cref="Clipping"/> class by setting the clipping region and if it is exluded.
         /// </summary>
@@ -230,13 +211,11 @@ namespace iTin.Core.Drawing
 
             _graphics.Clip = _newRegion;
         }
-        #endregion
 
         #endregion
 
         #region finalizer
 
-        #region [~] Clipping(): Finalizer
         /// <summary>
         /// Finalizer
         /// </summary>
@@ -244,7 +223,6 @@ namespace iTin.Core.Drawing
         {
             Dispose(false);
         }
-        #endregion
 
         #endregion
 
@@ -254,7 +232,6 @@ namespace iTin.Core.Drawing
 
         #region public methods
 
-        #region [public] (void) Dispose(): Free managed resources
         /// <summary>
         /// Free managed resources.
         /// </summary>
@@ -263,7 +240,6 @@ namespace iTin.Core.Drawing
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
 
         #endregion
 
@@ -273,7 +249,6 @@ namespace iTin.Core.Drawing
 
         #region protecetd virtual methods
 
-        #region [protected] {virtual} (void) Dispose(bool): Cleans managed and unmanaged resources
         /// <summary>
         /// Cleans managed and unmanaged resources.
         /// </summary>
@@ -304,7 +279,6 @@ namespace iTin.Core.Drawing
 
             _isDisposed = true;
         }
-        #endregion
 
         #endregion
     }

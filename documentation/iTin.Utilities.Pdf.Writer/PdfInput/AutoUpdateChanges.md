@@ -1,14 +1,10 @@
 # PdfInput.AutoUpdateChanges property
 
-Gets or sets a value indicating whether automatic updates for changes.
+Gets or sets a Result indicating whether automatic updates for changes.
 
 ```csharp
 public bool AutoUpdateChanges { get; set; }
 ```
-
-## Property Value
-
-true if automatic update changes; otherwise, false.
 
 ## See Also
 

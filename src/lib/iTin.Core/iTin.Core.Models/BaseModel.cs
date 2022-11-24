@@ -82,11 +82,7 @@ namespace iTin.Core.Models
         {
             get
             {
-                if (_properties == null)
-                {
-                    _properties = new Properties();
-                }
-
+                _properties ??= new Properties();
                 foreach (var property in _properties)
                 {
                     property.SetOwner(_properties);
@@ -291,10 +287,9 @@ namespace iTin.Core.Models
 
                 var rawModel = Serialize(safeOptions, format);
 
-                return
-                    rawModel
-                        .AsStream(safeOptions.Encoding)
-                        .SaveToFile(safeFullFilenamePath, safeOptions.ToSaveOptions());
+                return rawModel
+                    .AsStream(safeOptions.Encoding)
+                    .SaveToFile(safeFullFilenamePath, safeOptions.ToSaveOptions());
             }
             catch (Exception ex)
             {
@@ -377,7 +372,7 @@ namespace iTin.Core.Models
 
         #endregion
 
-        #region public virtual methods
+        #region public virtual async methods
 
         /// <summary>
         /// Save this model asynchronously in a <b>Xml</b> or <b>Json</b> file. By default, if not specified, it will be saved in <b>Xml</b> format.
@@ -624,6 +619,7 @@ namespace iTin.Core.Models
 
             return await LoadFromFileAsync(pathUri.LocalPath, format);
         }
+
         #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace iTin.Core.Drawing.Helpers
     public static class ImageHelper
     {
         private static readonly ColorMatrix DisabledColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 0.30f, 0.30f, 0.30f, 0.00f, 0.00f },
@@ -25,7 +25,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix GrayScaleColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 0.30f, 0.30f, 0.30f, 0.00f, 0.00f },
@@ -36,7 +36,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix GrayScaleRedColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 1.00f, 0.00f, 0.00f, 0.00f, 0.00f },
@@ -47,7 +47,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix GrayScaleGreenColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 0.30f, 0.00f, 0.30f, 0.00f, 0.00f },
@@ -58,7 +58,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix GrayScaleBlueColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 0.30f, 0.30f, 0.00f, 0.00f, 0.00f },
@@ -69,7 +69,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix BrightnessColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 1.00f, 0.00f, 0.00f, 0.00f, 0.00f },
@@ -80,7 +80,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix MoreBrightnessColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 1.00f, 0.00f, 0.00f, 0.00f, 0.00f },
@@ -91,7 +91,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix DarkColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 1.00f, 0.00f, 0.00f, 0.00f, 0.00f },
@@ -102,7 +102,7 @@ namespace iTin.Core.Drawing.Helpers
                 });
 
         private static readonly ColorMatrix MoreDarkColorMatrix =
-            new ColorMatrix(
+            new(
                 new[]
                 {
                     new[] { 1.00f, 0.00f, 0.00f, 0.00f, 0.00f },
@@ -122,13 +122,12 @@ namespace iTin.Core.Drawing.Helpers
         public static Image Base64ToImage(string base64String)
         {
             // Convert Base64 String to byte[]
-            byte[] imageBytes = Convert.FromBase64String(base64String);
+            var imageBytes = Convert.FromBase64String(base64String);
 
-            using (MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-            {
-                ms.Write(imageBytes, 0, imageBytes.Length);
-                return Image.FromStream(ms, true);
-            }
+            using var ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            ms.Write(imageBytes, 0, imageBytes.Length);
+
+            return Image.FromStream(ms, true);
         }
 
         /// <summary>
@@ -233,10 +232,7 @@ namespace iTin.Core.Drawing.Helpers
             }
             finally
             {
-                if (tempImageAttributes != null)
-                {
-                    tempImageAttributes.Dispose();
-                }
+                tempImageAttributes?.Dispose();
             }
 
             return imageAttributes;
@@ -261,10 +257,7 @@ namespace iTin.Core.Drawing.Helpers
             }
             finally
             {
-                if (tempImageAttributes != null)
-                {
-                    tempImageAttributes.Dispose();
-                }
+                tempImageAttributes?.Dispose();
             }
 
             return imageAttributes;
@@ -279,18 +272,16 @@ namespace iTin.Core.Drawing.Helpers
         /// </returns>
         public static string GetImageMimeType(byte[] imageData)
         {
-            string mimeType = "image/unknown";
+            var mimeType = "image/unknown";
 
             try
             {
                 Guid id;
 
-                using (MemoryStream ms = imageData.ToMemoryStream())
+                using (var ms = imageData.ToMemoryStream())
                 {
-                    using (Image img = Image.FromStream(ms))
-                    {
-                        id = img.RawFormat.Guid;
-                    }
+                    using var img = Image.FromStream(ms);
+                    id = img.RawFormat.Guid;
                 }
 
                 if (id == ImageFormat.Png.Guid)
@@ -336,6 +327,7 @@ namespace iTin.Core.Drawing.Helpers
             }
             catch
             {
+                // Nothing to do
             }
 
             return mimeType;

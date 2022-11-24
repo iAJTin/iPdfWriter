@@ -13,7 +13,6 @@ namespace iTin.Core.Models
     {
         #region constructor/s
 
-        #region [public] ModelSaveOptions(): Initializes a new instance of the class
         /// <summary>
         /// Initializes a new instance of the <see cref="T:iTin.Core.Models.ModelSaveOptions" /> class.
         /// </summary>
@@ -23,13 +22,11 @@ namespace iTin.Core.Models
             Encoding = Encoding.UTF8;
             CreateFolderIfNotExist = true;
         }
-        #endregion
 
         #endregion
 
         #region public static readonly properties
 
-        #region [public] {static} (ModelSaveOptions) Default: Gets a reference that contains default options for save, by default it creates the directory if it does not exist
         /// <summary>
         /// Gets a reference that contains default options for save, by default it creates the directory if it does not exist, uses <see cref="T:System.Text.Encoding.UTF8"/> encoding and not applies indent.
         /// </summary>
@@ -37,13 +34,11 @@ namespace iTin.Core.Models
         /// A <see cref="T:iTin.Core.Models.ModelSaveOptions"/> that contains default options for save.
         /// </value>
         public static ModelSaveOptions Default => new();
-        #endregion
 
         #endregion
 
         #region public properties
 
-        #region [public] (bool) CreateFolderIfNotExist: Gets or sets a value that indicates whether the directory should be created if it does not exist
         /// <summary>
         /// Gets or sets a value that indicates whether the directory should be created if it does not exist.
         /// </summary>
@@ -51,9 +46,7 @@ namespace iTin.Core.Models
         /// <b>true</b> if directory should be created; otherwise <b>false</b>.
         /// </value>
         public bool CreateFolderIfNotExist { get; set; }
-        #endregion
 
-        #region [public] (Encoding) Encoding: Gets or sets a value that indicates whether the directory should be created if it does not exist
         /// <summary>
         /// Gets or sets a value that indicates whether the directory should be created if it does not exist.
         /// </summary>
@@ -61,9 +54,7 @@ namespace iTin.Core.Models
         /// <b>true</b> if directory should be created; otherwise <b>false</b>.
         /// </value>
         public Encoding Encoding { get; set; }
-        #endregion
 
-        #region [public] (bool) Indent: Gets or sets a value that indicates whether the directory should be created if it does not exist
         /// <summary>
         /// Gets or sets a value that indicates whether the directory should be created if it does not exist.
         /// </summary>
@@ -71,21 +62,21 @@ namespace iTin.Core.Models
         /// <b>true</b> if directory should be created; otherwise <b>false</b>.
         /// </value>
         public bool Indent { get; set; }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (SaveOptions) ToSaveOptions(): Converts this options to new SaveOptions
         /// <summary>
         /// Convert this options to new <see cref="T:iTin.Core.ComponentModel.SaveOptions"/> instance.
         /// </summary>
         /// <value>
         /// A <see cref="T:iTin.Core.ComponentModel.SaveOptions"/> reference.
         /// </value>
-        public SaveOptions ToSaveOptions() => new SaveOptions { CreateFolderIfNotExist = CreateFolderIfNotExist};
-        #endregion
+        public SaveOptions ToSaveOptions() => new SaveOptions
+        {
+            CreateFolderIfNotExist = CreateFolderIfNotExist
+        };
 
         #endregion
     }

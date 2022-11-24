@@ -1,8 +1,6 @@
 ﻿
 using System.Diagnostics;
 using System.Drawing;
-using System.Threading;
-using System.Threading.Tasks;
 
 using iTin.Core.ComponentModel;
 using iTin.Core.Models;

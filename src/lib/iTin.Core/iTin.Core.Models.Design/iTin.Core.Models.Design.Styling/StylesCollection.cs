@@ -13,7 +13,6 @@ namespace iTin.Core.Models.Design.Styling
     {
         #region constructor/s
 
-        #region [public] StylesCollection(): Initializes a new instance of the class
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="StylesCollection"/> class.
@@ -21,9 +20,7 @@ namespace iTin.Core.Models.Design.Styling
         public StylesCollection() : base(null)
         {
         }
-        #endregion
 
-        #region [public] StylesCollection(object): Initializes a new instance of the class
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="StylesCollection"/> class.
@@ -32,7 +29,6 @@ namespace iTin.Core.Models.Design.Styling
         public StylesCollection(object parent) : base(parent)
         {
         }
-        #endregion
 
         #endregion
 
@@ -42,7 +38,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (object) ICloneable.Clone(): Creates a new object that is a copy of the current instance
         /// <inheritdoc />
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
@@ -51,7 +46,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A new object that is a copy of this instance.
         /// </returns>
         object ICloneable.Clone() => Clone();
-        #endregion
 
         #endregion
 
@@ -61,7 +55,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region explicit
 
-        #region (IStyle) IStyles.GetBy(string): Returns specified style by name
         /// <summary>
         /// Returns specified style by name.
         /// </summary>
@@ -70,7 +63,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A <see cref="IStyle"/> reference.
         /// </returns>
         IStyle IStyles.GetBy(string value) => GetBy(value);
-        #endregion
 
         #endregion
 
@@ -80,7 +72,6 @@ namespace iTin.Core.Models.Design.Styling
 
         #region protected override methods
 
-        #region [protected] {override} (BaseStyle) GetBy(string): Returns the element specified
         /// <inheritdoc />
         /// <summary>
         /// Returns the element specified.
@@ -100,9 +91,7 @@ namespace iTin.Core.Models.Design.Styling
 
             return style ?? BaseStyle.Default;
         }
-        #endregion
 
-        #region [protected] {override} (void) SetOwner(BaseStyle): Sets this collection as the owner of the specified item
         /// <inheritdoc />
         /// <summary>
         /// Sets this collection as the owner of the specified item.
@@ -114,13 +103,11 @@ namespace iTin.Core.Models.Design.Styling
 
             item.SetOwner(this);
         }
-        #endregion
 
         #endregion
 
         #region public methods
 
-        #region [public] (StylesCollection) Clone(): Clones this instance
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -128,7 +115,6 @@ namespace iTin.Core.Models.Design.Styling
         /// A new object that is a copy of this instance.
         /// </returns>
         public StylesCollection Clone() => CopierHelper.DeepCopy(this);
-        #endregion
 
         #endregion
     }

@@ -1,25 +1,17 @@
 # PdfInput.Set method
 
-Try to set an element in this input.
-
 ```csharp
-public SetResult Set(ISet data)
+public IPdfInputAction Set(ISet data)
 ```
 
 | parameter | description |
 | --- | --- |
 | data | Reference to seteable object information |
 
-## Return Value
-
-A [`SetResult`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set/SetResult.md) reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Value property will contain the value; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
-
-The type of the return value is [`SetResultData`](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set/SetResultData.md), which contains the operation result
-
 ## See Also
 
-* class [SetResult](../../iTin.Utilities.Pdf.Writer.ComponentModel.Result.Set/SetResult.md)
-* interface [ISet](../../iTin.Utilities.Pdf.Writer.ComponentModel/ISet.md)
+* interface [IPdfInputAction](../../iTin.Utilities.Pdf.Writer.Input/IPdfInputAction.md)
+* interface [ISet](../../iTin.Utilities.Pdf.Writer.Operations.Set/ISet.md)
 * class [PdfInput](../PdfInput.md)
 * namespace [iTin.Utilities.Pdf.Writer](../../iTin.Utilities.Pdf.Writer.md)
 

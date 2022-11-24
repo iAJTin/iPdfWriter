@@ -13,9 +13,9 @@ public IResult SaveToFile(string outputPath, SaveOptions options = null)
 
 ## Return Value
 
-A BooleanResult which implements the IResult interface reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Value property will contain the value; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
+A BooleanResult which implements the IResult interface reference that contains the result of the operation, to check if the operation is correct, the Success property will be true and the Result property will contain the Result; Otherwise, the the Success property will be false and the Errors property will contain the errors associated with the operation, if they have been filled in.
 
-The type of the return value is Boolean, which contains the operation result
+The type of the return Result is Boolean, which contains the operation result
 
 ## See Also
 
