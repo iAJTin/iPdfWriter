@@ -52,7 +52,6 @@ Below is a list of extensions available to use with **iPdfWriter**.
    | iPdfWriter.Net.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
    | iPdfWriter.NetCore.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
 
-
 # Usage
 
 ## Samples

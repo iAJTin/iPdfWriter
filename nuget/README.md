@@ -7,6 +7,17 @@ The idea is to try to quickly and easily facilitate the task of filling in the '
 
 I hope it helps someone. :smirk:
 
+# Extensions
+
+Below is a list of extensions available to use with **iPdfWriter**.
+
+   | Library | Version | Description | Status |
+   |:--------|:--------|:------------|:-------|
+   | [![nuget package](../assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.AspNet) [iPdfWriter.AspNet](https://github.com/iAJTin/iPdfWriter.AspNet) | 1.0.0 | Extends **iPdfWriter** to work in *AspNet* (FullFramework) projects, contains extension methods to download **PdfInput** instances as well as OutputResult, facilitating its use in this environment | Done! |
+   | iPdfWriter.AspNetCore | 1.0.0 | Extends **iPdfWriter** to work in *AspNetCore* projects, contains extension methods to download **PdfInput** instances as well as **OutputResult**, facilitating its use in this environment | **Work in progress...** |
+   | iPdfWriter.Net.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
+   | iPdfWriter.NetCore.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
+
 # Usage
 
 ## Samples
@@ -133,7 +144,8 @@ Basic steps, for more details please see [sample01.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample01Page01][Sample01Page01] 
+![](https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page1.png)
+
 
 ### Sample 2 - Shows the use of html table replacement in a pdf document
 
@@ -233,7 +245,7 @@ Basic steps, for more details please see [sample02.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample02Page02][Sample02Page02] 
+    ![](https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png)
 
 ### Sample 3 - Shows the use of merge action
 
@@ -1847,7 +1859,7 @@ My email address is
 [email]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/email.png "email"
 [documentation]: https://github.com/iAJTin/iPdfWriter/tree/master/documentation/iTin.Utilities.Pdf.Writer.md
 
-[sample01.cs]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs"
+[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs
 [Sample01Page01]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png "sample01 - page01"
 
 [sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample02.cs
