@@ -144,8 +144,7 @@ Basic steps, for more details please see [sample01.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-    ![Output][Sample01Output]
-
+   [Please click here for see sample01 output]
 
 ### Sample 2 - Shows the use of html table replacement in a pdf document
 
@@ -245,7 +244,7 @@ Basic steps, for more details please see [sample02.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-    ![](https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png)
+   [Please click here for see sample02 output]
 
 ### Sample 3 - Shows the use of merge action
 
@@ -344,7 +343,7 @@ Basic steps, for more details please see [sample03.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample03AllPages][Sample03AllPages] 
+   [Please click here for see sample03 output]
 
 ### Sample 4 - Shows use global replacements
 
@@ -476,7 +475,7 @@ Basic steps, for more details please see [sample04.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample04AllPages][Sample04AllPages] 
+   [Please click here for see sample04 output]
 
 ### Sample 5 - Shows use System tags
 
@@ -642,7 +641,7 @@ Basic steps, for more details please see [sample05.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample05AllPages][Sample05AllPages] 
+   [Please click here for see sample05 output]
 
 ### Sample 6 - Shows use the test mode
 
@@ -829,7 +828,7 @@ Basic steps, for more details please see [sample06.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample06AllPages][Sample06AllPages] 
+   [Please click here for see sample06 output]
 
 ### Sample 7 - Shows the use of save as zip a pdf input (one pdf file)
 
@@ -863,7 +862,7 @@ Basic steps, for more details please see [sample06.cs] file.
      ```
 3. Output
 
-    You can see the result following the following link [Sample07.zip].
+    [Please click here for see sample07 output]
 
 ### Sample 8 - Shows the use of save as zip a merged output (many files)
 
@@ -1216,9 +1215,9 @@ Basic steps, for more details please see [sample06.cs] file.
 
 ### Sample 10 - Show a more complete example
 
- Basic steps, for more details please see [sample13.cs] file.
+   Basic steps, for more details please see [sample13.cs] file.
 
-![Sample13AllPages][Sample13AllPages] 
+   [Please click here for see sample13 output]
 
 ### Sample 11 - Show the use of add an enumerable (render as HTML)in a pdf document
 
@@ -1310,7 +1309,7 @@ Basic steps, for more details please see [sample16.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample16AllPages][Sample16AllPages] 
+    [Please click here for see sample16 output]
 
 ### Sample 12 - Show the use of add an DataTable (render as HTML)in a pdf document
 
@@ -1403,7 +1402,7 @@ Basic steps, for more details please see [sample18.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample18AllPages][Sample18AllPages] 
+    [Please click here for see sample18 output]
 
 ### Sample 13 - Shows the use of text and image replacement with styles from file
 
@@ -1619,7 +1618,7 @@ Basic steps, for more details please see [sample21.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![Sample21AllPages][Sample21AllPages] 
+    [Please click here for see sample21 output]
 
 ### Sample 15 - Shows how to create a new PdfInput instance from HTML code
 
@@ -1693,7 +1692,7 @@ Basic steps, for more details please see [sample25.cs] file.
 
    ###### Below is an image showing the result
 
-![Sample25][sample25] 
+    [Please click here for see sample25 output]
 
 ### Sample 16 - Shows how to add or modify the metadata information
 
@@ -1741,7 +1740,7 @@ Basic steps, for more details please see [sample26.cs] file.
 
    ###### Below is an image showing the result
 
-    ![Sample26][sample26] 
+    [Please click here for see sample26 output]
 
 ### Sample 17 - Shows how to add a password to pdf file
 
@@ -1789,7 +1788,7 @@ Basic steps, for more details please see [sample27.cs] file.
 
    ###### Below is an image showing the result
 
-    ![Sample27][sample27] 
+    [Please click here for see sample27 output]
 
 ### Sample 18 - Shows how to insert an image into a pdf file
 
@@ -1841,7 +1840,7 @@ Basic steps, for more details please see [sample28.cs] file.
 
    ###### Below is an image showing the result
 
-    ![Sample28][sample28] 
+    [Please click here for see sample28 output]
 
 # Documentation
 
@@ -1858,66 +1857,47 @@ My email address is
 
 [email]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/email.png "email"
 [documentation]: https://github.com/iAJTin/iPdfWriter/tree/master/documentation/iTin.Utilities.Pdf.Writer.md
-
-[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs
-[Sample01Output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png "sample01 - page01"
-
-[sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample02.cs
-[Sample02Page02]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png "sample02 - page02"
-
-[sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample03.cs
-[Sample03AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample3/mergeresult.png "sample03 - merge"
-
-[sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample04.cs
-[Sample04AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample4/globalreplacements.png "sample04 - global header"
-
-[sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample05.cs
-[Sample05AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample5/systemtags.png "sample05 - system tags - page numbers"
-
-[sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample06.cs
-[Sample06AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample6/testmode.png "sample06 - test mode"
-
-[sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample07.cs
-[Sample07.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample07
 [OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
-
-[sample08.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample08.cs
-[Sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample08
 [PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
 
-[Sample09.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample09
-
+[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs
+[sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample02.cs
+[sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample03.cs
+[sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample04.cs
+[sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample05.cs
+[sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample06.cs
+[sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample07.cs
+[sample08.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample08.cs
 [Sample10.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample10.cs
-[Sample10.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample10
-
 [sample12.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample12.cs
-[Sample12]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample12
-
 [sample13.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample13.cs
-[Sample13AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample13/sample13.png "sample13"
-
 [sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
-[Sample16AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample16/sample16.png "sample16"
-
 [sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
-[Sample17AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample17/sample17.png "sample17"
-
 [sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample18.cs
-[Sample18AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample18/sample18.png "sample18"
-
 [sample20.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample20.cs
-
 [sample21.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample21.cs
-[Sample21AllPages]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample21/sample21.png "sample21"
-
 [sample25.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample25.cs
-[sample25]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample25/sample25.png "sample25"
-
 [sample26.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample26.cs
-[sample26]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample26/sample26.png "sample26"
-
 [sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample27.cs
-[sample27]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample27/sample27.png "sample27"
-
 [sample28.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample28.cs
-[sample28]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample28/sample28.png "sample28"
+
+[Please click here for see sample01 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png
+[Please click here for see sample02 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png
+[Please click here for see sample03 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample3/mergeresult.png
+[Please click here for see sample04 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample4/globalreplacements.png
+[Please click here for see sample05 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample5/systemtags.png
+[Please click here for see sample06 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample6/testmode.png
+[Please click here for see sample07 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample07
+[sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample08
+[sample09.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample09
+[Please click here for see sample10 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample10
+[Please click here for see sample12 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample12
+[Please click here for see sample13 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample13/sample13.png
+[Please click here for see sample16 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample16/sample16.png
+[Please click here for see sample17 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample17/sample17.png
+[Please click here for see sample18 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample18/sample18.png
+[Please click here for see sample21 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample21/sample21.png
+[Please click here for see sample25 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample25/sample25.png
+[Please click here for see sample26 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample26/sample26.png
+[Please click here for see sample27 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample27/sample27.png
+[Please click here for see sample28 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample28/sample28.png
