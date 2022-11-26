@@ -4,9 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ## 1.0.6 -
 
-### Added
+### Changed
 
+  - Rename test folder for samples folder
 
+  - Library versions for this version
+  
+	| Library | Version | Description |
+	|:------|:------|:----------|
+	| iTin.Core | 2.0.0.6 | Base library containing various extensions, helpers, common constants |
+	| iTin.Core.Drawing | 1.0.0.3 | Drawing objects, extension, helpers, common constants |
+    | iTin.Core.Hardware.Abstractions | 1.0.0.0 | Generic Common Hardware Abstractions |
+    | iTin.Core.Hardware.Common | 1.0.0.5 | Common Hardware Infrastructure |
+    | iTin.Core.Hardware.Linux.Devices.Graphics.Font | 1.0.0.1 | Linux Hardware Infrastructure |
+    | iTin.Core.Hardware.MacOS.Devices.Graphics.Font | 1.0.0.1 | MacOS Hardware Infrastructure |
+    | iTin.Core.Hardware.Windows.Devices.Graphics.Font | 1.0.0.1 | Windows Hardware Infrastructure |
+    | iTin.Core.Interop.Shared | 1.0.0.4 | Generic Shared Interop Definitions |
+    | iTin.Core.Interop.Windows.Devices | 1.0.0.1 | Win32 Generic Interop Calls |
+	| iTin.Core.IO | 1.0.0.3 | Common I/O calls |
+	| iTin.Core.IO.Compression | 1.0.0.3 | Compression library |
+	| iTin.Core.Models | 1.0.0.3 | Data models base |
+	| iTin.Core.Models.Design.Charting | 1.0.0.3 | Base charting models |
+	| iTin.Core.Models.Design.Styling | 1.0.0.3 | Base styling models |
+    | iTin.Hardware.Abstractions.Devices.Graphics.Font | 1.0.0.1 | Generic Common Hardware Abstractions |
+	| iTin.Logging | 1.0.0.2 | Logging library |
+	| iTin.Registry.Windows | 1.0.0.3 | Windows registry access |
+	| iTin.Utilities.Abstractions.Writer | 1.0.0.0 | Generic Common Writer's Abstractions |
+	| iTin.Utilities.Pdf.Design | 1.0.0.5 | Pdf design objects |
+	| iTin.Utilities.Pdf.Writer | 1.0.0.4 | Pdf Writer |
 
 ## [1.0.5] - 2022-11-24
 

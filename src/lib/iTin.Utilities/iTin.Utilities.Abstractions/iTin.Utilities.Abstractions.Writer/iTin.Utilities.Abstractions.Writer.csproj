@@ -6,7 +6,7 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>iTin.Utilities.Abstractions.Writer</AssemblyName>
-    <PackageId>iTin.Utilities.Abstractions.WriteriTin.Utilities.Abstractions.Writer</PackageId>
+    <PackageId>iTin.Utilities.Abstractions.Writer</PackageId>
     <Version>1.0.0.0</Version>
     <Authors>iTin</Authors>
     <Company>iTin</Company>
