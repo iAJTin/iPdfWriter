@@ -969,7 +969,7 @@ Basic steps, for more details please see [sample06.cs] file.
     ```
 4. Output
 
-    You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample09.zip].
+    You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample10.zip].
 
 ### Sample 9 - Shows the use of how serialize and deserialize text, image and table styles
 

@@ -935,7 +935,7 @@ Basic steps, for more details please see [sample06.cs] file.
     ```
 4. Output
 
-    You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample09.zip].
+    You can see the result (**Without CompressionThreshold**) following the following link [Sample08.zip] or you can see the result (**With CompressionThreshold**) following the following link [Sample10.zip].
 
 ### Sample 9 - Shows the use of how serialize and deserialize text, image and table styles
 
@@ -1889,8 +1889,8 @@ My email address is
 [Please click here for see sample06 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample6/testmode.png
 [Please click here for see sample07 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample07
 [sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample08
-[sample09.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample09
-[Please click here for see sample10 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample10
+[Please click here for see sample09 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample09
+[sample10.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample10
 [Please click here for see sample12 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample12
 [Please click here for see sample13 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample13/sample13.png
 [Please click here for see sample16 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample16/sample16.png
