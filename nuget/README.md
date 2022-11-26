@@ -144,7 +144,7 @@ Basic steps, for more details please see [sample01.cs] file.
 
    ###### Below is an image showing the original pdf file and the result after applying the replacements described above
 
-![](https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page1.png)
+    ![Output][Sample01Output]
 
 
 ### Sample 2 - Shows the use of html table replacement in a pdf document
@@ -1860,7 +1860,7 @@ My email address is
 [documentation]: https://github.com/iAJTin/iPdfWriter/tree/master/documentation/iTin.Utilities.Pdf.Writer.md
 
 [sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs
-[Sample01Page01]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png "sample01 - page01"
+[Sample01Output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png "sample01 - page01"
 
 [sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample02.cs
 [Sample02Page02]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png "sample02 - page02"
