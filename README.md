@@ -48,9 +48,9 @@ Below is a list of extensions available to use with **iPdfWriter**.
    | Library | Version | Description | Status |
    |:--------|:--------|:------------|:-------|
    | [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.AspNet) [iPdfWriter.AspNet](https://github.com/iAJTin/iPdfWriter.AspNet) | 1.0.0 | Extends **iPdfWriter** to work in *AspNet* (FullFramework) projects, contains extension methods to download **PdfInput** instances as well as OutputResult, facilitating its use in this environment | Done! |
-   | [iPdfWriter.AspNetcore](https://github.com/iAJTin/iPdfWriter.AspNetCore) | 1.0.0 | Extends **iPdfWriter** to work in *AspNetCore* projects, contains extension methods to download **PdfInput** instances as well as **OutputResult**, facilitating its use in this environment | **Work in progress...** |
-   | iPdfWriter.Net.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
-   | iPdfWriter.NetCore.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
+   | [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.AspNetCore) [iPdfWriter.AspNetCore](https://github.com/iAJTin/iPdfWriter.AspNetCore) | 1.0.0 | Extends **iPdfWriter** to work in *AspNetCore* projects, contains extension methods to download **PdfInput** instances as well as **OutputResult**, facilitating its use in this environment | **Work in progress...** |
+   | [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.Net.Mail) [iPdfWriter.Net.Mail](https://github.com/iAJTin/iPdfWriter.Net.Mail) | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
+   | [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.NetCore.Mail) [iPdfWriter.NetCore.Mail](https://github.com/iAJTin/iPdfWriter.NetCore.Mail) | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
 
 # Usage
 

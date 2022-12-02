@@ -14,9 +14,9 @@ Below is a list of extensions available to use with **iPdfWriter**.
    | Library | Version | Description | Status |
    |:--------|:--------|:------------|:-------|
    | [![nuget package](../assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.AspNet) [iPdfWriter.AspNet](https://github.com/iAJTin/iPdfWriter.AspNet) | 1.0.0 | Extends **iPdfWriter** to work in *AspNet* (FullFramework) projects, contains extension methods to download **PdfInput** instances as well as OutputResult, facilitating its use in this environment | Done! |
-   | iPdfWriter.AspNetCore | 1.0.0 | Extends **iPdfWriter** to work in *AspNetCore* projects, contains extension methods to download **PdfInput** instances as well as **OutputResult**, facilitating its use in this environment | **Work in progress...** |
-   | iPdfWriter.Net.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
-   | iPdfWriter.NetCore.Mail | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
+   | [![nuget package](../assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.AspNetCore) [iPdfWriter.AspNetCore](https://github.com/iAJTin/iPdfWriter.AspNetCore) | 1.0.0 | Extends **iPdfWriter** to work in *AspNetCore* projects, contains extension methods to download **PdfInput** instances as well as **OutputResult**, facilitating its use in this environment | **Work in progress...** |
+   | [![nuget package](../assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.Net.Mail) [iPdfWriter.Net.Mail](https://github.com/iAJTin/iPdfWriter.Net.Mail) | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for full frameworks projects | **Work in progress...** |
+   | [![nuget package](../assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.NetCore.Mail) [iPdfWriter.NetCore.Mail](https://github.com/iAJTin/iPdfWriter.NetCore.Mail) | 1.0.0 | Extends **iPdfWriter** for send emails by *SMTP* for netcore projects | **Work in progress...** |
 
 # Usage
 
@@ -1846,16 +1846,7 @@ Basic steps, for more details please see [sample28.cs] file.
 
  - For **Writer** code documentation, please see next link [documentation].
 
-# How can I send feedback!!!
 
-If you have found **iPdfWriter** useful at work or in a personal project, I would love to hear about it. If you have decided not to use **iPdfWriter**, please send me and email stating why this is so. I will use this feedback to improve **iPdfWriter** in future releases.
-
-My email address is 
-
-![email.png][email] 
-
-
-[email]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/email.png "email"
 [documentation]: https://github.com/iAJTin/iPdfWriter/tree/master/documentation/iTin.Utilities.Pdf.Writer.md
 [OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
 [PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs

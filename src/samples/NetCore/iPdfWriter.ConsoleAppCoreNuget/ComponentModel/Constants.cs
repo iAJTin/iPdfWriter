@@ -1,5 +1,5 @@
 ﻿
-namespace iPdfWriter.ComponentModel
+namespace iPdfWriter.ConsoleApp.ComponentModel
 {
     internal static class Constants
     {

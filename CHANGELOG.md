@@ -2,16 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
-## 1.0.6 -
+## [1.0.6] - 2022-12-01
+
+### Added
+
+  - Now uses [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.Abstractions) [iPdfWriter.Abstractions](https://github.com/iAJTin/iPdfWriter.Abstractions).
 
 ### Changed
 
+  - **I M P O R T A N T!!**
+   
+    > Changed the **iTin.Utilities.Pdf.Writer** namespace to **iPdfWriter**
+  
   - Rename test folder for samples folder
 
   - Library versions for this version
   
 	| Library | Version | Description |
 	|:------|:------|:----------|
+	| **iPdfWriter** | **1.0.0.6** | **Pdf Writer** |
 	| iTin.Core | 2.0.0.6 | Base library containing various extensions, helpers, common constants |
 	| iTin.Core.Drawing | 1.0.0.3 | Drawing objects, extension, helpers, common constants |
     | iTin.Core.Hardware.Abstractions | 1.0.0.0 | Generic Common Hardware Abstractions |
@@ -29,9 +38,13 @@ All notable changes to this project will be documented in this file.
     | iTin.Hardware.Abstractions.Devices.Graphics.Font | 1.0.0.1 | Generic Common Hardware Abstractions |
 	| iTin.Logging | 1.0.0.2 | Logging library |
 	| iTin.Registry.Windows | 1.0.0.3 | Windows registry access |
-	| iTin.Utilities.Abstractions.Writer | 1.0.0.0 | Generic Common Writer's Abstractions |
 	| iTin.Utilities.Pdf.Design | 1.0.0.5 | Pdf design objects |
-	| iTin.Utilities.Pdf.Writer | 1.0.0.4 | Pdf Writer |
+
+### Removed
+  
+   | Library | Version | Description |
+   |:------|:------|:----------|
+   | iTin.Utilities.Abstractions.Writer | 1.0.0.0 | Generic Common Writer's Abstractions |
 
 ## [1.0.5] - 2022-11-24
 

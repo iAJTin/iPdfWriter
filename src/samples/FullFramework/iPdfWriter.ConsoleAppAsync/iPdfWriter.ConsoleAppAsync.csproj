@@ -1,0 +1,14 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\lib\iPdfWriter\iPdfWriter\iPdfWriter.csproj" />
+	</ItemGroup>
+
+</Project>

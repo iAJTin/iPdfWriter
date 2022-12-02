@@ -2,12 +2,12 @@
 using System.Diagnostics;
 
 using iTin.Core.ComponentModel;
+
 using iTin.Logging.ComponentModel;
 
-using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
+using iPdfWriter.Operations.Actions;
 
-namespace iPdfWriter.Code
+namespace iPdfWriter.ConsoleApp.Code
 {
     /// <summary>
     /// Show how to creates a pdf input from html

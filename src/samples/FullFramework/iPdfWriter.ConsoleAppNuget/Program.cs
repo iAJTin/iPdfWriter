@@ -1,17 +1,18 @@
 ﻿
-namespace iPdfWriter
+using System;
+
+using iTin.Core.Models.Design.Enums;
+
+using iTin.Logging;
+using iTin.Logging.ComponentModel;
+
+namespace iPdfWriter.ConsoleApp
 {
-    using System;
-
-    using iTin.Logging;
-    using iTin.Logging.ComponentModel;
-
-    using iTin.Core.Models.Design.Enums;
-
     using Code;
+
     using ComponentModel;
 
-    static class Program
+    internal static class Program
     {
         static void Main(string[] args)
         {

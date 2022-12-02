@@ -1,8 +1,9 @@
 ﻿
-using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
+using System.Linq;
 
-namespace iPdfWriter.Code
+using iPdfWriter.Operations.Actions;
+
+namespace iPdfWriter.ConsoleApp.Code
 {
     /// <summary>
     /// Show how to extract pages from a pdf document by search text

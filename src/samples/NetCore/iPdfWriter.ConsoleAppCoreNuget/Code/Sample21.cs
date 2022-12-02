@@ -10,12 +10,11 @@ using iTin.Logging.ComponentModel;
 using iTin.Utilities.Pdf.Design.Image;
 using iTin.Utilities.Pdf.Design.Styles;
 
-using iTin.Utilities.Pdf.Writer;
-using iTin.Utilities.Pdf.Writer.Operations.Replace;
-using iTin.Utilities.Pdf.Writer.Operations.Replace.Replacement.Text;
-using iTin.Utilities.Pdf.Writer.Operations.Result.Actions;
+using iPdfWriter.Operations.Actions;
+using iPdfWriter.Operations.Replace;
+using iPdfWriter.Operations.Replace.Replacement.Text;
 
-namespace iPdfWriter.Code
+namespace iPdfWriter.ConsoleApp.Code
 {
     using ComponentModel.Helpers;
 

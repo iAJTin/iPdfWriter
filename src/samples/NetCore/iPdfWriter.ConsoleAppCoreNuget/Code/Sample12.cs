@@ -8,7 +8,7 @@ using iTin.Logging.ComponentModel;
 
 using iTin.Utilities.Pdf.Design.Styles;
 
-namespace iPdfWriter.Code
+namespace iPdfWriter.ConsoleApp.Code
 {
     /// <summary>
     /// Shows the use of how serialize and deserialize text, image and table styles.

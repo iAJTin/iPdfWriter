@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netcoreapp3.1;net60</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <Version>1.0.0.5</Version>
+    <Description>Pdf design elements</Description>
+    <Copyright>Copyright © 2022</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>iTin.Utilities.Pdf.Design</PackageId>
+    <Company>iTin</Company>
+    <Product>iTin.Utilities.Pdf.Design</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.3" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties configuration_4schemas_4json_4basexlsxconfigurationschema_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core.IO\iTin.Core.IO.csproj" />
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Models.Design\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Models\iTin.Core.Models.csproj" />
+    <ProjectReference Include="..\..\iTin.Core\iTin.Core\iTin.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Update="System.Drawing">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+
+</Project>

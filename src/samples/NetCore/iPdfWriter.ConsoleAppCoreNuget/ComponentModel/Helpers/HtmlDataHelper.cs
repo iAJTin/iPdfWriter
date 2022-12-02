@@ -1,7 +1,7 @@
 ﻿
 using System.Text;
 
-namespace iPdfWriter.ComponentModel.Helpers
+namespace iPdfWriter.ConsoleApp.ComponentModel.Helpers
 {
     internal static class HtmlDataHelper
     { 
