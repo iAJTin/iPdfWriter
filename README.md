@@ -1893,7 +1893,7 @@ My email address is
 [documentation]: ./documentation/iTin.Utilities.Pdf.Writer.md
 [nuget]: ./assets/nuget.png "nuget"
 
-[sample01.cs]: ./src/test/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs"
+[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample01.cs
 [Sample01Page01]: ./assets/samples/sample1/page1.png "sample01 - page01"
 
 [sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample02.cs
