@@ -1846,8 +1846,12 @@ Basic steps, for more details please see [sample28.cs] file.
 
  - For **Writer** code documentation, please see next link [documentation].
 
+# Changes
 
-[documentation]: https://github.com/iAJTin/iPdfWriter/tree/master/documentation/iTin.Utilities.Pdf.Writer.md
+For more information, please visit the next link [CHANGELOG](https://github.com/iAJTin/iPdfWriter/blob/master/CHANGELOG.md)
+
+
+[documentation]: https://github.com/iAJTin/iPdfWriter/blob/master/documentation/iPdfWriter.md
 [OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
 [PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
 
