@@ -834,7 +834,7 @@ Basic steps, for more details please see [sample06.cs] file.
 
  Sometimes the result of a **pdf** is too heavy to be able to send it by email or to save it on disk, etc...
 
- **iPdfWriter** provides the [OutputResultConfig.cs] class, where you can define the **zip file name** as well as 
+ **iPdfWriter** provides the [PdfOutputResultConfig] class, where you can define the **zip file name** as well as 
  a property indicating whether it is to be compressed. 
  
  If the file name **is not** specified, a **random name** will be automatically generated, the [sample10.cs] file show how it works 
@@ -845,7 +845,7 @@ Basic steps, for more details please see [sample06.cs] file.
 1. Try to create pdf output result
 
      ```csharp   
-     var result = doc.CreateResult(new OutputResultConfig { Filename = "Sample-07.pdf", Zipped = true });
+     var result = doc.CreateResult(new PdfOutputResultConfig { Filename = "Sample-07.pdf", Zipped = true });
      if (!result.Success)
      {
          // Handle errors                 
@@ -1852,29 +1852,29 @@ For more information, please visit the next link [CHANGELOG](https://github.com/
 
 
 [documentation]: https://github.com/iAJTin/iPdfWriter/blob/master/documentation/iPdfWriter.md
-[OutputResultConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
-[PdfObjectConfig.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iTin.Utilities/iTin.Utilities.Pdf/iTin.Utilities.Pdf.Writer/ComponentModel/Config/OutputResultConfig.cs
+[PdfOutputResultConfig]: https://github.com/iAJTin/iPdfWriter/blob/master/src/lib/iPdfWriter/iPdfWriter/Config/PdfOutputResultConfig.cs
 
-[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample01.cs
-[sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample02.cs
-[sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample03.cs
-[sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample04.cs
-[sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample05.cs
-[sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample06.cs
-[sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample07.cs
-[sample08.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample08.cs
-[Sample10.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample10.cs
-[sample12.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample12.cs
-[sample13.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample13.cs
-[sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample16.cs
-[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample17.cs
-[sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample18.cs
-[sample20.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample20.cs
-[sample21.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample21.cs
-[sample25.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample25.cs
-[sample26.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample26.cs
-[sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample27.cs
-[sample28.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Code/Sample28.cs
+
+[sample01.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample01.cs
+[sample02.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample02.cs
+[sample03.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample03.cs
+[sample04.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample04.cs
+[sample05.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample05.cs
+[sample06.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample06.cs
+[sample07.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample07.cs
+[sample08.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample08.cs
+[Sample10.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample10.cs
+[sample12.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample12.cs
+[sample13.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample13.cs
+[sample16.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample16.cs
+[sample17.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample17.cs
+[sample18.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample18.cs
+[sample20.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample20.cs
+[sample21.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample21.cs
+[sample25.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample25.cs
+[sample26.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample26.cs
+[sample27.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample27.cs
+[sample28.cs]: https://github.com/iAJTin/iPdfWriter/blob/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Code/Sample28.cs
 
 [Please click here for see sample01 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample1/page1.png
 [Please click here for see sample02 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample2/page2.png
@@ -1882,11 +1882,11 @@ For more information, please visit the next link [CHANGELOG](https://github.com/
 [Please click here for see sample04 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample4/globalreplacements.png
 [Please click here for see sample05 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample5/systemtags.png
 [Please click here for see sample06 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample6/testmode.png
-[Please click here for see sample07 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample07
-[sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample08
-[Please click here for see sample09 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/iPdfWriter.ConsoleAppCore/Output/Sample09
-[sample10.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample10
-[Please click here for see sample12 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore60/Output/Sample12
+[Please click here for see sample07 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Output/Sample07
+[sample08.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Output/Sample08
+[Please click here for see sample09 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Output/Sample09
+[sample10.zip]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Output/Sample10
+[Please click here for see sample12 output]: https://github.com/iAJTin/iPdfWriter/tree/master/src/samples/NetCore/iPdfWriter.ConsoleAppCore/Output/Sample12
 [Please click here for see sample13 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample13/sample13.png
 [Please click here for see sample16 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample16/sample16.png
 [Please click here for see sample17 output]: https://github.com/iAJTin/iPdfWriter/tree/master/assets/samples/sample17/sample17.png
