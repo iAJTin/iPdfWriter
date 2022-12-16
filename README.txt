@@ -4,9 +4,20 @@ What is iPdfWriter?
 
 iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags.
 
-
-Changes in this version (v1.0.6)
+Changes in this version (v1.0.7)
 ================================
+
+· Added
+  -----
+
+
+· Changed
+  -------
+
+
+
+v1.0.6
+======
 
 · Added
   -----
@@ -67,7 +78,7 @@ Changes in this version (v1.0.6)
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
 
 · Remove
-  -----
+  ------
 
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | Library                                           Version   Description                                                           |

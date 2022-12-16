@@ -2,11 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.7 - 
+
+### Added
+
+  -  
+
+### Changed
+
+  -
+
+
 ## [1.0.6] - 2022-12-02
 
 ### Added
 
-  - Now uses [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.Abstractions) [iPdfWriter.Abstractions](https://github.com/iAJTin/iPdfWriter.Abstractions).
+  - Now uses [![nuget package](./assets/nuget_24x24.png)](https://www.nuget.org/packages/iPdfWriter.Abstractions) [iPdfWriter.Abstractions](https://github.com/iAJTin/iPdfWriter.Abstractions)
 
 ### Changed
 
@@ -514,6 +525,7 @@ All notable changes to this project will be documented in this file.
 	|iTin.Utilities.Pdf.Design| 1.0.0 | Pdf design objects |
 	|iTin.Utilities.Pdf.Writer| 1.0.0 | Pdf Writer |
 
+[1.0.7]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.7
 [1.0.6]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.6
 [1.0.5]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.5
 [1.0.4]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.4
