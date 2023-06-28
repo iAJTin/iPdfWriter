@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.7] - 2023-06-28 
+## [1.0.8] - 2023-06-28 
 
 ### Changed
 
@@ -35,6 +35,12 @@ All notable changes to this project will be documented in this file.
 	| iTin.Logging | 1.0.0.2 | Logging library |
 	| iTin.Registry.Windows | 1.0.0.3 | Windows registry access |
 	| **iTin.Utilities.Pdf.Design** | **1.0.0.6** | **Pdf design objects** |
+
+## [1.0.7] - 2023-06-28 
+
+  - **I M P O R T A N T!!**
+   
+    > Version with bugs, version has been unlisted from nuget
 
 
 ## [1.0.6] - 2022-12-02
@@ -549,6 +555,7 @@ All notable changes to this project will be documented in this file.
 	|iTin.Utilities.Pdf.Design| 1.0.0 | Pdf design objects |
 	|iTin.Utilities.Pdf.Writer| 1.0.0 | Pdf Writer |
 
+[1.0.8]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.8
 [1.0.7]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.7
 [1.0.6]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.6
 [1.0.5]: https://github.com/iAJTin/iPdfWriter/releases/tag/v1.0.5

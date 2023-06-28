@@ -4,7 +4,7 @@ What is iPdfWriter?
 
 iPdfWriter is a lightweight implementation that allows modifying a pdf document totally or partially by replacing tags.
 
-Changes in this version (v1.0.7)
+Changes in this version (v1.0.8)
 ================================
 
 · Changed
@@ -59,6 +59,13 @@ Changes in this version (v1.0.7)
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
     | iTin.Utilities.Pdf.Design                         1.0.0.6   Pdf design elements                                                   |
     •———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————•
+
+v1.0.7
+======
+
+ - I M P O R T A N T !!!
+
+   Version with bugs, version has been unlisted from nuget
 
 v1.0.6
 ======
