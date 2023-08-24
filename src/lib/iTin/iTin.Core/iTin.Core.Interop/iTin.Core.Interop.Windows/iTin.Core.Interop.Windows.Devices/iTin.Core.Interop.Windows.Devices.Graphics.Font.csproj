@@ -14,10 +14,11 @@
     <Description>Generic Win32 Font Interop</Description>
     <Copyright>Copyright © 2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\iTin.Core.Interop.Shared\iTin.Core.Interop.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\..\..\..\iTin\iTin.Core\iTin.Core.Interop.Shared\src\iTin.Core.Interop.Shared.csproj" />
   </ItemGroup>
   
 </Project>

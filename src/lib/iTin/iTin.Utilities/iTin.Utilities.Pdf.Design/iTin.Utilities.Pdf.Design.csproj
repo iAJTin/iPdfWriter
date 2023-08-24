@@ -29,11 +29,7 @@
   </ProjectExtensions>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Drawing\iTin.Core.Drawing.csproj" />
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core.IO\iTin.Core.IO.csproj" />
     <ProjectReference Include="..\..\iTin.Core\iTin.Core.Models.Design\iTin.Core.Models.Design.Styling\iTin.Core.Models.Design.Styling.csproj" />
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Models\iTin.Core.Models.csproj" />
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core\iTin.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 using iTin.Core.Models.Design;
 using iTin.Core.Models.Design.Styling;
+using IStyle = iTin.Core.Models.Design.IStyle;
 
 namespace iTin.Utilities.Pdf.Design.Styles
 {

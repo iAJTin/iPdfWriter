@@ -20,8 +20,4 @@
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.4" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\iTin.Core\iTin.Core.csproj" />
-	</ItemGroup>
-
 </Project>

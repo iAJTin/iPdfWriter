@@ -21,8 +21,4 @@
 		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\iTin.Core.IO\iTin.Core.IO.csproj" />
-	</ItemGroup>
-
 </Project>

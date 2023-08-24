@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\iTin.Core.Models\iTin.Core.Models.csproj" />
+	  <ProjectReference Include="..\..\..\..\..\..\..\..\iTin\iTin.Core\iTin.Core.Models\src\iTin.Core.Models.csproj" />
 	</ItemGroup>
 
 </Project>

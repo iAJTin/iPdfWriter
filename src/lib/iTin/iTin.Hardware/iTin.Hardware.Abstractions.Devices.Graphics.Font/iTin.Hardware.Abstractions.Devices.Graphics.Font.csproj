@@ -17,7 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\iTin.Core\iTin.Core.Hardware.Abstractions\iTin.Core.Hardware.Abstractions.csproj" />
     <ProjectReference Include="..\..\iTin.Core\iTin.Core.Hardware.Linux.Devices.Graphics.Font\iTin.Core.Hardware.Linux.Devices.Graphics.Font.csproj" />
     <ProjectReference Include="..\..\iTin.Core\iTin.Core.Hardware.MacOS.Devices.Graphics.Font\iTin.Core.Hardware.MacOS.Devices.Graphics.Font.csproj" />
     <ProjectReference Include="..\..\iTin.Core\iTin.Core.Hardware.Windows.Devices.Graphics.Font\iTin.Core.Hardware.Windows.Devices.Graphics.Font.csproj" />

@@ -14,10 +14,11 @@
     <Description>MacOS Generic Devices Hardware Calls</Description>
     <Copyright>Copyright © 2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\iTin.Core.Hardware.Abstractions\iTin.Core.Hardware.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\..\iTin\iTin.Core\iTin.Core.Hardware.Abstractions\src\iTin.Core.Hardware.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
